@@ -1,8 +1,5 @@
 { pkgs, config, ... }:
 {
-
-  programs.ssh.enable = true;
-
   programs.zsh = {
 
     enable = true;

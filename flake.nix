@@ -42,6 +42,7 @@
               ./modules/home/git.nix
               ./modules/home/tmux.nix
               ./modules/home/zsh.nix
+              ./modules/home/ssh.nix
             ];
           };
         }
