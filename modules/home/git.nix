@@ -63,7 +63,7 @@
         gpgsign = false;
       };
       gpg = {
-        format = ssh;
+        format = "ssh";
         ssh = {
           program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
         };
