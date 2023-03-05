@@ -41,6 +41,7 @@
       "flutter"
       "android-studio"
       "zulu"
+      "1password"
     ];
     taps = [  ];
     brews = [  ];
