@@ -73,12 +73,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "ssh-agent" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
-      extraConfig = ''
-        zstyle :omz:plugins:ssh-agent lifetime 4h
-        zstyle :omz:plugins:ssh-agent agent-forwarding on
-        # zstyle :omz:plugins:ssh-agent identities keys/id_rsa keys/id_rsa.bitbucket.burdastudios keys/id_ed25519.gitlab.bfops.io
-      '';
+      plugins = [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
       custom = "$HOME/.zsh_custom";
     };
     plugins = [

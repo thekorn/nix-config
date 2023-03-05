@@ -26,6 +26,7 @@
     bottom
     cocoapods
     neovim
+    _1password-gui
 
     gpkg
     #nodePackages.pnpm
