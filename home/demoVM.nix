@@ -1,4 +1,4 @@
-{ pkgs, lazyvim, ... }: {
+{ pkgs, ... }: {
     
   imports = [
     ./shared/alacritty.nix
@@ -76,6 +76,6 @@
     ".config/lazygit/config.yml".source = ../home/shared/dotfiles/lazygit.yml;
     ".ripgreprc".source = ../home/shared/dotfiles/.ripgreprc;
     ".config/bottom/bottom.toml".source = ../home/shared/dotfiles/bottom/bottom.toml;
-    ".config/nvim".source = lazyvim;
+    #".config/nvim".source = lazyvim;
   };
 }
