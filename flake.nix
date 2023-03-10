@@ -57,19 +57,23 @@
 
     formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
 
-    darwinConfigurations."demoVM" = mkDarwinHost {
-      pkgs = import nixpkgs { 
-        system = "aarch64-darwin";
-        config.allowUnfree = true; 
-      };
-      modules = homeConfigurations."demoVM" ++ [./hosts/darwin/demoVM.nix];
-      specialArgs = {inherit self inputs;};
-    };
 
     homeConfigurations."demoVM" = mkHome {
       pkgs = self.outputs.darwinConfigurations.demoVM.pkgs;
       modules = [./home/demoVM.nix];
       extraSpecialArgs = {inherit self inputs gpkg lazyvim;};
+    };
+    
+    darwinConfigurations."demoVM" = mkDarwinHost {
+      pkgs = import nixpkgs { 
+        system = "aarch64-darwin";
+        config.allowUnfree = true; 
+      };
+      modules = [
+        ./hosts/darwin/demoVM.nix
+        homeConfigurations."demoVM"
+      ];
+      specialArgs = {inherit self inputs;};
     };
   };
 }
