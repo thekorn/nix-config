@@ -5,12 +5,6 @@
       ./shared/homebrew.nix
       ./shared/fonts.nix
       ./shared/system.nix
-      #./features/laptop.nix
-      #./features/noto-fonts.nix
-      #./features/wayland.nix
-      #./features/flatpak.nix
-      #./features/firewall.nix
-      #./users/maturana.nix
   ];
 
 
