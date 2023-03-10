@@ -92,7 +92,7 @@
           (
             { config, lib, pkgs, ... }:
             let
-              primaryUser = "test";
+              primaryUser = "thekorn";
             in
               {
                 home-manager.extraSpecialArgs = { inherit self inputs; inherit lazyvim; };
