@@ -4,7 +4,7 @@
   imports = [
       ./shared/homebrew.nix
       ./shared/fonts.nix
-      ./shared/system.nix
+      ./shared/preferences.nix
   ];
 
 
