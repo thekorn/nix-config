@@ -25,6 +25,8 @@
     self,
     nixpkgs,
     home-manager,
+    gpkg,
+    lazyvim,
     ...
   } @ inputs: let
     eachSupportedSystem = nixpkgs.lib.genAttrs [
