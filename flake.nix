@@ -22,7 +22,7 @@
     lazyvim.flake = false;
   };
 
-outputs = inputs @ { self, flake-utils, darwin, vscode-server, deploy-rs, nixpkgs, nixpkgsUnstable, home-manager }:
+outputs = inputs @ { self, flake-utils, darwin, vscode-server, deploy-rs, nixpkgs, nixpkgsUnstable, home-manager, gpkg, lazyvim }:
 
 
     flake-utils.lib.eachDefaultSystem
