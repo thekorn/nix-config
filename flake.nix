@@ -78,7 +78,7 @@
                 #users.users.${primaryUser}.home = "/Users/${primaryUser}";
                 #home-manager.useGlobalPkgs = true;
                 #home-manager.users.${primaryUser} = homeManagerCommonConfig;
-                home-manager.extraSpecialArgs = { inherit self inputs gpgk; };
+                home-manager.extraSpecialArgs = { inherit self inputs; inherit gpkg; inherit lazyvim; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
