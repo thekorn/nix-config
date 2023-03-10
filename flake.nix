@@ -44,7 +44,7 @@
         ];
       });
 
-    mkDarwinHost = nixpkgs.lib.nixosSystem;
+    mkDarwinHost = darwin.lib.darwinSystem;
     mkHome = home-manager.lib.homeManagerConfiguration;
   in {
     homeManagerModules = import ./modules/home-manager;
