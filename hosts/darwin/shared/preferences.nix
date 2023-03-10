@@ -1,8 +1,8 @@
 {
 
-  system.activationScripts.postActivation.text = ''
-    mkdir -p ~/devel/github.com
-  '';
+  #system.activationScripts.postActivation.text = ''
+  #  mkdir -p ~/devel/github.com
+  #'';
 
   system.defaults = {
     dock = {
