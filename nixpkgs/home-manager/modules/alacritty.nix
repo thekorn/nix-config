@@ -1,6 +1,7 @@
-{ pkgs, config, home, ... }:
+{ pkgs, config, ... }:
 {
 
+  programs.home-manager.enable = true;
 
   home.file."/.config/alacritty/nord.theme.yml".source = ./dotfiles/alacritty/nord.theme.yml;
   programs.alacritty = {
