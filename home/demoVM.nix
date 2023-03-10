@@ -11,6 +11,8 @@
     ./shared/ssh.nix
   ];
 
+  programs.home-manager.enable = true;
+
   home.stateVersion = "22.11";
   # specify my home-manager configs
   home.packages = with pkgs; [
