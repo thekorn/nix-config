@@ -4,7 +4,7 @@
   imports = [
       ./shared/homebrew.nix
       ./shared/fonts.nix
-      ./shared/systems.nix
+      ./shared/system.nix
       #./features/laptop.nix
       #./features/noto-fonts.nix
       #./features/wayland.nix
