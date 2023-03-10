@@ -20,7 +20,7 @@ $ sh <(curl -L https://nixos.org/nix/install)
 
 ```
 $ cd .config/nix
-$ nix build .#darwinConfigurations.test.system --extra-experimental-features "nix-command flakes"
+$ nix build .#darwinConfigurations.demoVM.system --extra-experimental-features "nix-command flakes"
 
 # the plan is to now run this to install nix-darwin with our configuration
 # ./result/sw/bin/darwin-rebuild switch --flake . # this will fail as we first have to do the following lines
@@ -37,3 +37,5 @@ $ ./result/sw/bin/darwin-rebuild switch --flake .
  * https://github.com/thexyno/blogpages.git 
  * https://daiderd.com/nix-darwin/manual/index.html
  * https://nix-community.github.io/home-manager/options.html
+ * https://codeberg.org/imMaturana/dotfiles
+ * https://github.com/schickling/dotfiles
