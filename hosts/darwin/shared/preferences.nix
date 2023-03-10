@@ -47,8 +47,10 @@
 
     finder = {
       AppleShowAllExtensions = true;
-      _FXShowPosixPathInTitle = true;
       FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
+      ShowPathbar = true;
+      ShowStatusBar = true;
     };
 
     trackpad = {
