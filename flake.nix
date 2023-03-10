@@ -22,7 +22,7 @@
     lazyvim.flake = false;
   };
 
-outputs = inputs @ { self, flake-utils, darwin, vscode-server, deploy-rs, nixpkgs, nixpkgsUnstable, home-manager, gpkg, lazyvim }:
+outputs = inputs @ { self, flake-utils, darwin, nixpkgs, home-manager, gpkg, lazyvim }:
 
 
     flake-utils.lib.eachDefaultSystem
@@ -49,10 +49,13 @@ outputs = inputs @ { self, flake-utils, darwin, vscode-server, deploy-rs, nixpkg
 
       homeConfigurations = {
         demoVM = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+          pkgs = import nixpkgs { 
+            system = "aarch64-darwin";
+            config.allowUnfree = true; 
+          };
           modules = [ ./nixpkgs/home-manager/demoVM.nix ];
           # extraModules = [ ./nixpkgs/home-manager/mac.nix ];
-          extraSpecialArgs = { pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.aarch64-darwin; };
+          #extraSpecialArgs = { pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.aarch64-darwin; };
           # system = "aarch64-darwin";
           # configuration = { };
           # homeDirectory = "/home/schickling";
@@ -115,7 +118,7 @@ outputs = inputs @ { self, flake-utils, darwin, vscode-server, deploy-rs, nixpkg
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.test = import ./nixpkgs/home-manager/demoVM.nix;
-              home-manager.extraSpecialArgs = { inherit gpkg; inherit lazyvim; inherit nixpkgs; pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.aarch64-darwin; };
+              home-manager.extraSpecialArgs = { inherit gpkg; inherit lazyvim; inherit nixpkgs; };
             }
           ];
           inputs = { inherit darwin nixpkgs; };
