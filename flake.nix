@@ -66,7 +66,7 @@
         ./hosts/darwin/demoVM.nix
         home-manager.darwinModules.home-manager
           (
-            { config, lib, pkgs, gpgk, lazyvim, ... }:
+            { config, lib, pkgs, ... }:
             let
               primaryUser = "test";
             in
@@ -78,7 +78,7 @@
                 #users.users.${primaryUser}.home = "/Users/${primaryUser}";
                 #home-manager.useGlobalPkgs = true;
                 #home-manager.users.${primaryUser} = homeManagerCommonConfig;
-                home-manager.extraSpecialArgs = { inherit self inputs; inherit gpkg; inherit lazyvim; };
+                home-manager.extraSpecialArgs = { inherit self inputs; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
