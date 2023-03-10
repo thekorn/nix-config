@@ -1,35 +1,7 @@
 {
 
   system.activationScripts.postActivation.text = ''
-    # Stop iTunes from responding to the keyboard media keys
-    launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
-
-    # Use list view in all Finder windows by default
-    # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-
-    # show dock on both displays
-    defaults write com.apple.Dock appswitcher-all-displays -bool true
-
-    # Show the ~/Library folder
-    chflags nohidden ~/Library
-
-    # Hot corners
-    # Possible values:
-    #  0: no-op
-    #  2: Mission Control
-    #  3: Show application windows
-    #  4: Desktop
-    #  5: Start screen saver
-    #  6: Disable screen saver
-    #  7: Dashboard
-    # 10: Put display to sleep
-    # Top right screen corner → Display to sleep
-    defaults write com.apple.dock wvous-tr-corner -int 10
-    defaults write com.apple.dock wvous-tr-modifier -int 0
-    # Top left screen corner → Start screen saver
-    defaults write com.apple.dock wvous-tl-corner -int 5
-    defaults write com.apple.dock wvous-tl-modifier -int 0
+    mkdir -p ~/devel/github.com
   '';
 
   system.defaults = {
