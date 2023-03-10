@@ -46,19 +46,10 @@
       });
 
     mkDarwinHost = darwin.lib.darwinSystem;
-    mkHome = home-manager.lib.homeManagerConfiguration;
-
-
-
-
-    homeConfigurations."demoVM" = mkHome {
-      pkgs = self.outputs.darwinConfigurations.demoVM.pkgs;
-      modules = [./home/demoVM.nix];
-      extraSpecialArgs = {inherit self inputs gpkg lazyvim;};
-    };
+    #mkHome = home-manager.lib.homeManagerConfiguration;
   in {
-    homeManagerModules = import ./modules/home-manager;
-    darwinModules = import ./modules/host;
+    #homeManagerModules = import ./modules/home-manager;
+    #darwinModules = import ./modules/host;
 
     devShells = eachSupportedSystem (system: {
       default = import ./shell.nix {pkgs = legacyPackages.${system};};
@@ -73,7 +64,26 @@
       };
       modules = [
         ./hosts/darwin/demoVM.nix
-        homeConfigurations."demoVM"
+        home-manager.darwinModules.home-manager
+          (
+            { config, lib, pkgs, gpgk, lazyvim, ... }:
+            let
+              primaryUser = "test";
+            in
+              {
+                #nixpkgs = nixpkgsConfig;
+                # Hack to support legacy worklows that use `<nixpkgs>` etc.
+                # nix.nixPath = { nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix"; };
+                # `home-manager` config
+                #users.users.${primaryUser}.home = "/Users/${primaryUser}";
+                #home-manager.useGlobalPkgs = true;
+                #home-manager.users.${primaryUser} = homeManagerCommonConfig;
+                home-manager.extraSpecialArgs = { inherit gpkg; inherit lazyvim; };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
+              }
+          )  
       ];
       specialArgs = {inherit self inputs;};
     };
