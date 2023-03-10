@@ -23,7 +23,7 @@
   #home.homeDirectory = "/Users/schickling";
   #home.username = "schickling";
 #
-  #home.stateVersion = "20.09";
+  home.stateVersion = "22.11";
 #
   #programs.fish.interactiveShellInit = ''
   #  # set -x SSH_AUTH_SOCK "$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
@@ -66,5 +66,5 @@
   #  "1password-cli"
   #];
 #
-  #programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 }
