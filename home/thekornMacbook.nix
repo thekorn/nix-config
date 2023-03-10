@@ -42,7 +42,7 @@
     cocoapods
 
     #gpkg
-    #nodePackages.pnpm
+    nodePackages.pnpm
   ];
   home.sessionVariables = {
     PAGER = "less";
