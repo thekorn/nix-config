@@ -78,7 +78,7 @@
                 #users.users.${primaryUser}.home = "/Users/${primaryUser}";
                 #home-manager.useGlobalPkgs = true;
                 #home-manager.users.${primaryUser} = homeManagerCommonConfig;
-                home-manager.extraSpecialArgs = { inherit self inputs; inherit gpkg };
+                home-manager.extraSpecialArgs = { inherit self inputs; inherit gpkg; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
