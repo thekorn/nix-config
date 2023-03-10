@@ -51,9 +51,9 @@
     homeManagerModules = import ./modules/home-manager;
     darwinModules = import ./modules/host;
 
-    ##devShells = eachSupportedSystem (system: {
-    ##  default = import ./shell.nix {pkgs = legacyPackages.${system};};
-    ##});
+    devShells = eachSupportedSystem (system: {
+      default = import ./shell.nix {pkgs = legacyPackages.${system};};
+    });
 
     formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
 
