@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lazyvim, ... }: {
     
   imports = [
     ./shared/alacritty.nix
