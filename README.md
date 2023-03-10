@@ -6,6 +6,11 @@ This is my experiment to convert my dotfiles based configuration to nix
 
  * git
  * homebrew
+
+```
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
  * clone this repository
 
 ```
