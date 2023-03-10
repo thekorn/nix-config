@@ -3,7 +3,7 @@
 {
   imports = [
     ./modules/home-manager.nix
-    ./modules/home/alacritty.nix
+    #./modules/home/alacritty.nix
     ./modules/home/bat.nix
     ./modules/home/exa.nix
     ./modules/home/fzf.nix
