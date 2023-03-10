@@ -1,5 +1,17 @@
 { pkgs, ... }: {
   # here go the darwin preferences and config items
+
+  imports = [
+      ./shared/homebrew.nix
+      #./features/laptop.nix
+      #./features/noto-fonts.nix
+      #./features/wayland.nix
+      #./features/flatpak.nix
+      #./features/firewall.nix
+      #./users/maturana.nix
+  ];
+
+
   programs.zsh.enable = true;
   environment = {
     shells = with pkgs; [ bash zsh ];
@@ -26,24 +38,4 @@
   };
   # backwards compat; don't change
   system.stateVersion = 4;
-  homebrew = {
-    enable = true;
-    caskArgs.no_quarantine = true;
-    global.brewfile = true;
-    masApps = {
-      # Xcode = 497799835;
-    };
-    casks = [
-      "raycast" 
-      "docker"
-      "google-chrome"
-      "firefox"
-      "flutter"
-      "android-studio"
-      "zulu"
-      "1password"
-    ];
-    taps = [  ];
-    brews = [  ];
-  };
 }
