@@ -73,9 +73,9 @@
   ];
 
   home.file = {
-    ".config/lazygit/config.yml".source = ../home/dotfiles/lazygit.yml;
-    ".ripgreprc".source = ../home/dotfiles/.ripgreprc;
-    ".config/bottom/bottom.toml".source = ../home/dotfiles/bottom/bottom.toml;
+    ".config/lazygit/config.yml".source = ../home/shared/dotfiles/lazygit.yml;
+    ".ripgreprc".source = ../home/shared/dotfiles/.ripgreprc;
+    ".config/bottom/bottom.toml".source = ../home/shared/dotfiles/bottom/bottom.toml;
     ".config/nvim".source = lazyvim;
   };
 }
