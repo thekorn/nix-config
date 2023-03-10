@@ -1,5 +1,6 @@
 {
-  description = "my minimal flake";
+  description = "My NixOS config";
+
   inputs = {
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
@@ -17,36 +18,91 @@
 
     lazyvim.url = "github:thekorn/nvim-config";
     lazyvim.flake = false;
+
   };
-  outputs = inputs@{ nixpkgs, home-manager, darwin, gpkg, lazyvim, ... }: {
-    darwinConfigurations.test = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
+
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    gpkg,
+    lazyvim,
+    darwin,
+    ...
+  } @ inputs: let
+    eachSupportedSystem = nixpkgs.lib.genAttrs [
+      "x86_64-linux"
+      "aarch64-darwin"
+    ];
+
+    legacyPackages = eachSupportedSystem (system:
+      import nixpkgs {
+        inherit system;
+        config = {allowUnfree = true;};
+        overlays = with inputs; [
+          #nur.overlay
+          #emacs.overlay
+        ];
+      });
+
+    mkDarwinHost = darwin.lib.darwinSystem;
+    #mkHome = home-manager.lib.homeManagerConfiguration;
+  in {
+    #homeManagerModules = import ./modules/home-manager;
+    #darwinModules = import ./modules/host;
+
+    devShells = eachSupportedSystem (system: {
+      default = import ./shell.nix {pkgs = legacyPackages.${system};};
+    });
+
+    formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
+
+    darwinConfigurations."demoVM" = mkDarwinHost {
       pkgs = import nixpkgs { 
         system = "aarch64-darwin";
         config.allowUnfree = true; 
       };
       modules = [
-        ./modules/darwin
+        ./hosts/darwin/demoVM.nix
         home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            extraSpecialArgs = { inherit gpkg; inherit lazyvim; };
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.test.imports = [ 
-              ./modules/home-manager
-              ./modules/home/alacritty.nix
-              ./modules/home/bat.nix
-              ./modules/home/exa.nix
-              ./modules/home/fzf.nix
-              ./modules/home/git.nix
-              ./modules/home/tmux.nix
-              ./modules/home/zsh.nix
-              ./modules/home/ssh.nix
-            ];
-          };
-        }
+          (
+            { config, lib, pkgs, ... }:
+            let
+              primaryUser = "test";
+            in
+              {
+                home-manager.extraSpecialArgs = { inherit self inputs; inherit lazyvim; };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
+              }
+          )  
       ];
+      specialArgs = {inherit self inputs;};
+    };
+
+    darwinConfigurations."thekorn-macbook" = mkDarwinHost {
+      pkgs = import nixpkgs { 
+        system = "aarch64-darwin";
+        config.allowUnfree = true; 
+      };
+      modules = [
+        ./hosts/darwin/thekornMacbook.nix
+        home-manager.darwinModules.home-manager
+          (
+            { config, lib, pkgs, ... }:
+            let
+              primaryUser = "test";
+            in
+              {
+                home-manager.extraSpecialArgs = { inherit self inputs; inherit lazyvim; };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.${primaryUser}.imports = [ ./home/thekornMacbook.nix ];
+              }
+          )  
+      ];
+      specialArgs = {inherit self inputs;};
     };
   };
 }

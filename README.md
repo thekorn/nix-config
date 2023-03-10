@@ -6,6 +6,11 @@ This is my experiment to convert my dotfiles based configuration to nix
 
  * git
  * homebrew
+
+```
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
  * clone this repository
 
 ```
@@ -20,16 +25,16 @@ $ sh <(curl -L https://nixos.org/nix/install)
 
 ```
 $ cd .config/nix
-$ nix build .#darwinConfigurations.test.system --extra-experimental-features "nix-command flakes"
+$ nix build .#darwinConfigurations.demoVM.system --extra-experimental-features "nix-command flakes"
 
 # the plan is to now run this to install nix-darwin with our configuration
-# ./result/sw/bin/darwin-rebuild switch --flake . # this will fail as we first have to do the following lines
+# ./result/sw/bin/darwin-rebuild switch --flake .#demoVM # this will fail as we first have to do the following lines
 
 $ printf 'run\tprivate/var/run\n' | sudo tee -a /etc/synthetic.conf
 $ /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
 
 # now we can finally darwin-rebuild
-$ ./result/sw/bin/darwin-rebuild switch --flake .
+$ ./result/sw/bin/darwin-rebuild switch --flake .#demoVM
 ```
 
 ## reference
@@ -37,3 +42,5 @@ $ ./result/sw/bin/darwin-rebuild switch --flake .
  * https://github.com/thexyno/blogpages.git 
  * https://daiderd.com/nix-darwin/manual/index.html
  * https://nix-community.github.io/home-manager/options.html
+ * https://codeberg.org/imMaturana/dotfiles
+ * https://github.com/schickling/dotfiles

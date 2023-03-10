@@ -1,5 +1,18 @@
-{ pkgs, gpkg, lazyvim, ... }: {
-  # Don't change this when you change package input. Leave it alone.
+{ pkgs, lazyvim, ... }: {
+    
+  imports = [
+    ./shared/alacritty.nix
+    ./shared/bat.nix
+    ./shared/exa.nix
+    ./shared/fzf.nix
+    ./shared/git.nix
+    ./shared/tmux.nix
+    ./shared/zsh.nix
+    ./shared/ssh.nix
+  ];
+
+  programs.home-manager.enable = true;
+
   home.stateVersion = "22.11";
   # specify my home-manager configs
   home.packages = with pkgs; [
@@ -27,7 +40,7 @@
     cocoapods
     neovim
 
-    gpkg
+    #gpkg
     #nodePackages.pnpm
   ];
   home.sessionVariables = {
@@ -60,9 +73,9 @@
   ];
 
   home.file = {
-    ".config/lazygit/config.yml".source = ../home/dotfiles/lazygit.yml;
-    ".ripgreprc".source = ../home/dotfiles/.ripgreprc;
-    ".config/bottom/bottom.toml".source = ../home/dotfiles/bottom/bottom.toml;
+    ".config/lazygit/config.yml".source = ../home/shared/dotfiles/lazygit.yml;
+    ".ripgreprc".source = ../home/shared/dotfiles/.ripgreprc;
+    ".config/bottom/bottom.toml".source = ../home/shared/dotfiles/bottom/bottom.toml;
     ".config/nvim".source = lazyvim;
   };
 }
