@@ -1,4 +1,4 @@
-{ pkgs, gpkg, ... }: {
+{ pkgs, ... }: {
     
   imports = [
     ./shared/alacritty.nix
@@ -40,7 +40,7 @@
     cocoapods
     neovim
 
-    gpkg
+    #gpkg
     #nodePackages.pnpm
   ];
   home.sessionVariables = {
