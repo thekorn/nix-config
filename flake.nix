@@ -71,17 +71,34 @@
               primaryUser = "test";
             in
               {
-                #nixpkgs = nixpkgsConfig;
-                # Hack to support legacy worklows that use `<nixpkgs>` etc.
-                # nix.nixPath = { nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix"; };
-                # `home-manager` config
-                #users.users.${primaryUser}.home = "/Users/${primaryUser}";
-                #home-manager.useGlobalPkgs = true;
-                #home-manager.users.${primaryUser} = homeManagerCommonConfig;
                 home-manager.extraSpecialArgs = { inherit self inputs; inherit lazyvim; };
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
+              }
+          )  
+      ];
+      specialArgs = {inherit self inputs;};
+    };
+
+    darwinConfigurations."thekorn-macbook" = mkDarwinHost {
+      pkgs = import nixpkgs { 
+        system = "aarch64-darwin";
+        config.allowUnfree = true; 
+      };
+      modules = [
+        ./hosts/darwin/thekornMacbook.nix
+        home-manager.darwinModules.home-manager
+          (
+            { config, lib, pkgs, ... }:
+            let
+              primaryUser = "test";
+            in
+              {
+                home-manager.extraSpecialArgs = { inherit self inputs; inherit lazyvim; };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.${primaryUser}.imports = [ ./home/thekornMacbook.nix ];
               }
           )  
       ];
