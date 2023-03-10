@@ -1,9 +1,4 @@
 {
-
-  #system.activationScripts.postActivation.text = ''
-  #  mkdir -p ~/devel/github.com
-  #'';
-
   system.defaults = {
     dock = {
       autohide = true;

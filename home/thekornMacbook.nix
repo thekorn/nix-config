@@ -9,6 +9,11 @@
     ./shared/tmux.nix
     ./shared/zsh.nix
     ./shared/ssh.nix
+    ./shared/devel.nix
+    ./shared/nvim.nix
+    ./shared/bottom.nix
+    ./shared/lazygit.nix
+    ./shared/ripgrep.nix
   ];
 
   programs.home-manager.enable = true;
@@ -16,7 +21,6 @@
   home.stateVersion = "22.11";
   # specify my home-manager configs
   home.packages = with pkgs; [
-    ripgrep
     fd
     curl
     less
@@ -28,7 +32,6 @@
     teams
     jq
     htop
-    lazygit
     vscode
     delta
     rustup
@@ -36,9 +39,7 @@
     mkcert
     mongosh
     go
-    bottom
     cocoapods
-    neovim
 
     #gpkg
     #nodePackages.pnpm
@@ -71,14 +72,4 @@
 
     "$PNPM_HOME:$PATH"
   ];
-
-  home.file = {
-    ".config/lazygit/config.yml".source = ../home/shared/dotfiles/lazygit.yml;
-    ".ripgreprc".source = ../home/shared/dotfiles/.ripgreprc;
-    ".config/bottom/bottom.toml".source = ../home/shared/dotfiles/bottom/bottom.toml;
-    ".config/nvim".source = lazyvim;
-    "devel/github.com/thekorn/README.md".text = "# All my github repos";
-    "devel/bitbucket.org/burdastudios/README.md".text = "# All my burda studios publishing repos";
-    "devel/gitlab.bfops.io/README.md".text = "# All my burda forward repos";
-  };
 }
