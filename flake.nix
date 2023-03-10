@@ -47,6 +47,15 @@
 
     mkDarwinHost = darwin.lib.darwinSystem;
     mkHome = home-manager.lib.homeManagerConfiguration;
+
+
+
+
+    homeConfigurations."demoVM" = mkHome {
+      pkgs = self.outputs.darwinConfigurations.demoVM.pkgs;
+      modules = [./home/demoVM.nix];
+      extraSpecialArgs = {inherit self inputs gpkg lazyvim;};
+    };
   in {
     homeManagerModules = import ./modules/home-manager;
     darwinModules = import ./modules/host;
@@ -57,13 +66,6 @@
 
     formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
 
-
-    homeConfigurations."demoVM" = mkHome {
-      pkgs = self.outputs.darwinConfigurations.demoVM.pkgs;
-      modules = [./home/demoVM.nix];
-      extraSpecialArgs = {inherit self inputs gpkg lazyvim;};
-    };
-    
     darwinConfigurations."demoVM" = mkDarwinHost {
       pkgs = import nixpkgs { 
         system = "aarch64-darwin";
