@@ -58,8 +58,8 @@ outputs = inputs @ { self, flake-utils, darwin, nixpkgs, home-manager, gpkg, laz
           #extraSpecialArgs = { pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.aarch64-darwin; };
           # system = "aarch64-darwin";
           # configuration = { };
-          # homeDirectory = "/home/schickling";
-          # username = "schickling";
+          homeDirectory = "/home/test";
+          username = "test";
         };
 
 
