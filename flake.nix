@@ -62,7 +62,7 @@
         system = "aarch64-darwin";
         config.allowUnfree = true; 
       };
-      modules = [./hosts/darwin/demoVM.nix];
+      modules = homeConfigurations."demoVM" ++ [./hosts/darwin/demoVM.nix];
       specialArgs = {inherit self inputs;};
     };
 
