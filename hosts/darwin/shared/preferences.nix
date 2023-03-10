@@ -39,7 +39,8 @@
       minimize-to-application = false;
       expose-group-by-app = true;
       tilesize            = 36;
-      orientation = "left";
+      orientation = "bottom";
+      show-recents = false;
     };
 
     screencapture.location = "/tmp";
