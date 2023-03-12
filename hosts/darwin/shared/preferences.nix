@@ -18,6 +18,7 @@
       FXPreferredViewStyle = "Nlsv";
       ShowPathbar = true;
       ShowStatusBar = true;
+      _FXShowPosixPathInTitle = false;
     };
 
     trackpad = {
