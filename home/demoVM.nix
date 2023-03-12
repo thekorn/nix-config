@@ -1,5 +1,5 @@
 { pkgs, lazyvim, ... }: {
-    
+
   imports = [
     ./shared/alacritty.nix
     ./shared/bat.nix
@@ -49,7 +49,7 @@
 
     JIRA_URL = "https://burda-studios.atlassian.net";
     JIRA_NAME = "markus.korn";
-    JIRA_DEFAULT_ACTION= "new";
+    JIRA_DEFAULT_ACTION = "new";
 
     ANDROID_HOME = "$HOME/Library/Android/sdk";
     LG_CONFIG_FILE = "$HOME/.config/lazygit/config.yml";
@@ -61,7 +61,7 @@
 
   home.sessionPath = [
     "$HOME/.gpkg/bin"
-    
+
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/cmdline-tools/latest/bin"
     "$ANDROID_HOME/tools"
