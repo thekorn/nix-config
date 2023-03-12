@@ -35,6 +35,8 @@
 
       set-option -g detach-on-destroy off       # dont quit the terminal session if there is at least one other tmux session running
       set -g status-left-length 32              # we have more space on the session name field
+
+      set -g status-right "#{prefix_highlight}#[fg=brightblack,bg=black,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] %Y-%m-%d #[fg=white,bg=brightblack,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] %H:%M #[fg=cyan,bg=brightblack,nobold,noitalics,nounderscore]#[fg=black,bg=cyan,bold] #h "
     '';
   };
 }

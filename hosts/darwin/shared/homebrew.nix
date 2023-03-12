@@ -15,6 +15,7 @@
       "android-studio"
       "zulu"
       "1password"
+      "insomnia"
     ];
     taps = [  ];
     brews = [  ];
