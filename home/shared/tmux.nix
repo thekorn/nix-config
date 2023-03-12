@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   programs.tmux = {
     enable = true;
     historyLimit = 5000;
@@ -8,10 +7,7 @@
     terminal = "screen-256color";
     newSession = true;
 
-    plugins = with pkgs; [
-      tmuxPlugins.nord
-      tmuxPlugins.pain-control
-    ];
+    plugins = with pkgs; [ tmuxPlugins.nord tmuxPlugins.pain-control ];
 
     extraConfig = ''
       set -g default-terminal "screen-256color" # colors!

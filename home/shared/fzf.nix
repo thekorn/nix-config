@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
 }

@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   programs.zsh = {
 
     enable = true;
@@ -9,11 +8,11 @@
     shellAliases = {
       # nix
       nixswitch = "darwin-rebuild switch --flake ~/.config/nix/.#";
-      update = "pushd ~/.config/nix; git pull; nix flake update; nixswitch; popd";
+      update =
+        "pushd ~/.config/nix; git pull; nix flake update; nixswitch; popd";
 
       ## android studio
       "android-studio" = "open -a /Applications/Android\\ Studio.app";
-
 
       # bunte
       # bunte = "wo bunte";
@@ -35,7 +34,7 @@
       #testrushx = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/startx.js";
 
       # Goes up the tree to the git root dir
-      "g-" = "cd $(git rev-parse --show-toplevel || echo \".\")";
+      "g-" = ''cd $(git rev-parse --show-toplevel || echo ".")'';
 
       # lazygit
       lg = "lazygit";
@@ -49,7 +48,8 @@
       snowsql = "/Applications/SnowSQL.app/Contents/MacOS/snowsql";
 
       ## git 
-      cbr = "git branch --sort=-committerdate | fzf --header \"Checkout Recent Branch\" --preview \"git diff {1} --color=always\" --pointer=\"\" | xargs git checkout";
+      cbr = ''
+        git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'';
     };
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
@@ -70,18 +70,18 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
+      plugins =
+        [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
       custom = "$HOME/.zsh_custom";
     };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
+    plugins = [{
+      name = "powerlevel10k";
+      src = pkgs.zsh-powerlevel10k;
+      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    }];
   };
 
   home.file.".p10k.zsh".source = ./dotfiles/.p10k.zsh;
-  home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.zsh;
+  home.file.".zsh_custom/functions.zsh".source =
+    ./dotfiles/zsh_custom/functions.zsh;
 }

@@ -7,7 +7,7 @@
       # Xcode = 497799835;
     };
     casks = [
-      "raycast" 
+      "raycast"
       "docker"
       "google-chrome"
       "firefox"
@@ -18,7 +18,7 @@
       "insomnia"
       "snowflake-snowsql"
     ];
-    taps = [  ];
-    brews = [  ];
+    taps = [ ];
+    brews = [ ];
   };
 }

@@ -39,9 +39,8 @@
     mongosh
     go
     cocoapods
-
-    #gpkg
-    #nodePackages.pnpm
+    nixfmt
+    nodePackages.pnpm
   ];
   home.sessionVariables = {
     PAGER = "less";

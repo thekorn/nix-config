@@ -1,9 +1,5 @@
 { pkgs, lazyvim, ... }: {
-  home.packages = with pkgs; [
-    neovim
-  ];
+  home.packages = with pkgs; [ neovim ];
 
-  home.file = {
-    ".config/nvim".source = lazyvim;
-  };
+  home.file = { ".config/nvim".source = lazyvim; };
 }

@@ -1,8 +1,7 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
 
-
-  home.file."/.config/alacritty/nord.theme.yml".source = ./dotfiles/alacritty/nord.theme.yml;
+  home.file."/.config/alacritty/nord.theme.yml".source =
+    ./dotfiles/alacritty/nord.theme.yml;
   programs.alacritty = {
     enable = true;
     settings = {
@@ -10,12 +9,8 @@
         normal.family = "MesloLGS Nerd Font Mono";
         size = 12;
       };
-      import = [
-        "~/.config/alacritty/nord.theme.yml"
-      ];
-      selection = {
-        save_to_clipboard = true;
-      };
+      import = [ "~/.config/alacritty/nord.theme.yml" ];
+      selection = { save_to_clipboard = true; };
     };
   };
 }

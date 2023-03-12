@@ -1,4 +1,1 @@
-{ pkgs, config, ... }:
-{
-  programs.exa.enable = true;
-}
+{ pkgs, config, ... }: { programs.exa.enable = true; }
