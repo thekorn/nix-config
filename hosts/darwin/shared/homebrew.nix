@@ -16,6 +16,7 @@
       "zulu"
       "1password"
       "insomnia"
+      "snowflake-snowsql"
     ];
     taps = [  ];
     brews = [  ];

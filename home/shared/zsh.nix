@@ -54,7 +54,7 @@
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-      eval "$(fnm env --use-on-cd)"
+      eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
     localVariables = {
       ZSH_TMUX_AUTOSTART = "true";
