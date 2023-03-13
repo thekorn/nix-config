@@ -94,5 +94,53 @@
         ];
         specialArgs = { inherit self inputs; };
       };
+
+      darwinConfigurations."thekorn-studio" = mkDarwinHost {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+        };
+        modules = [
+          ./hosts/darwin/thekornStudio.nix
+          home-manager.darwinModules.home-manager
+          ({ config, lib, pkgs, ... }:
+            let primaryUser = "thekorn";
+            in {
+              home-manager.extraSpecialArgs = {
+                inherit self inputs;
+                inherit lazyvim;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${primaryUser}.imports =
+                [ ./home/thekornStudio.nix ];
+            })
+        ];
+        specialArgs = { inherit self inputs; };
+      };
+
+      darwinConfigurations."thekorn-work" = mkDarwinHost {
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+        };
+        modules = [
+          ./hosts/darwin/thekornWork.nix
+          home-manager.darwinModules.home-manager
+          ({ config, lib, pkgs, ... }:
+            let primaryUser = "thekorn";
+            in {
+              home-manager.extraSpecialArgs = {
+                inherit self inputs;
+                inherit lazyvim;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${primaryUser}.imports =
+                [ ./home/thekornWork.nix ];
+            })
+        ];
+        specialArgs = { inherit self inputs; };
+      };
     };
 }
