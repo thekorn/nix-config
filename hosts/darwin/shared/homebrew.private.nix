@@ -10,6 +10,6 @@
     };
     casks = [ "docker" "insomnia" ];
     taps = [ ];
-    brews = [ "qmk/qmk/qmk" ];
+    # brews = [ "qmk/qmk/qmk" ];
   };
 }

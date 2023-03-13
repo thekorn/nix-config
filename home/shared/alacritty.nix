@@ -5,6 +5,11 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      # workaround for now
+      # will be fixed in 0.12
+      # https://github.com/alacritty/alacritty/issues/1349
+      #window = { option_as_alt = "Both"; };
+      alt_send_esc = false;
       font = {
         normal.family = "MesloLGS Nerd Font Mono";
         size = 12;
