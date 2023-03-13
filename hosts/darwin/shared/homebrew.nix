@@ -17,6 +17,7 @@
       "1password"
       "insomnia"
       "snowflake-snowsql"
+      "vlc"
     ];
     taps = [ ];
     brews = [ ];

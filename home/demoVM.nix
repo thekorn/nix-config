@@ -40,6 +40,7 @@
     go
     cocoapods
     nixfmt
+    ffmpeg
     nodePackages.pnpm
   ];
   home.sessionVariables = {
@@ -60,8 +61,6 @@
   };
 
   home.sessionPath = [
-    "$HOME/.gpkg/bin"
-
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/cmdline-tools/latest/bin"
     "$ANDROID_HOME/tools"

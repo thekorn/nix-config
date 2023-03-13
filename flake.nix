@@ -14,14 +14,12 @@
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    gpkg.url = "github:thekorn/gpkg";
-
     lazyvim.url = "github:thekorn/nvim-config";
     lazyvim.flake = false;
 
   };
 
-  outputs = { self, nixpkgs, home-manager, gpkg, lazyvim, darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, lazyvim, darwin, ... }@inputs:
     let
       eachSupportedSystem =
         nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ];
