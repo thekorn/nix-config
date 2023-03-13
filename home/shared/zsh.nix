@@ -61,6 +61,7 @@
       ZSH_TMUX_AUTOSTART_ONCE = "true";
     };
     dirHashes = {
+      nix = "$HOME/.config/nix";
       devel = "$HOME/devel";
       github = "$HOME/devel/github.com";
       bitbucket = "$HOME/devel/bitbucket.org";

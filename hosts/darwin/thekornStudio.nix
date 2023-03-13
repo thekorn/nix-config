@@ -1,8 +1,12 @@
 { pkgs, ... }: {
   # here go the darwin preferences and config items
 
-  imports =
-    [ ./shared/homebrew.nix ./shared/fonts.nix ./shared/preferences.nix ];
+  imports = [
+    ./shared/homebrew.common.nix
+    ./shared/homebrew.private.nix
+    ./shared/fonts.nix
+    ./shared/preferences.nix
+  ];
 
   programs.zsh.enable = true;
   environment = {
