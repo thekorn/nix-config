@@ -42,7 +42,6 @@
     nixfmt
     ffmpeg
     nodePackages.pnpm
-    qmk
   ];
   home.sessionVariables = {
     PAGER = "less";
