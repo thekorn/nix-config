@@ -10,6 +10,6 @@
     };
     casks = [ "docker" "insomnia" ];
     taps = [ ];
-    # brews = [ "qmk/qmk/qmk" ];
+    brews = [ "pkg-config" "qmk/qmk/qmk" ];
   };
 }
