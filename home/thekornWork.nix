@@ -28,7 +28,7 @@
     fnm
     awscli
     silver-searcher
-    teams
+    #teams
     jq
     htop
     vscode

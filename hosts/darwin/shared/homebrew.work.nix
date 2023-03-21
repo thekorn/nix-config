@@ -22,6 +22,7 @@
       "insomnia"
       "snowflake-snowsql"
       "vlc"
+      "zeplin"
     ];
     taps = [ ];
     brews = [ ];

@@ -119,7 +119,7 @@
         specialArgs = { inherit self inputs; };
       };
 
-      darwinConfigurations."thekorn-work" = mkDarwinHost {
+      darwinConfigurations."BFG-024849" = mkDarwinHost {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
@@ -128,7 +128,7 @@
           ./hosts/darwin/thekornWork.nix
           home-manager.darwinModules.home-manager
           ({ config, lib, pkgs, ... }:
-            let primaryUser = "thekorn";
+            let primaryUser = "d438477";
             in {
               home-manager.extraSpecialArgs = {
                 inherit self inputs;
