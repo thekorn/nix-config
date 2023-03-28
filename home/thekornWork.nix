@@ -41,6 +41,7 @@
     cocoapods
     nixfmt
     ffmpeg
+    lcov
     nodePackages.pnpm
   ];
   home.sessionVariables = {
