@@ -59,6 +59,9 @@
     # pnpm
     PNPM_HOME = "$HOME/.local/share/pnpm";
 
+    #bunte monorepo
+    BROWSERSLIST_IGNORE_OLD_DATA = 1;
+
   };
 
   home.sessionPath = [
