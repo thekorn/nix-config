@@ -24,3 +24,25 @@ function flutter-watch(){
     select-pane -t 0 \;
   rm $PID_FILE;
 }
+
+function updateNvim() (
+  local CONFIG_DIR=~/.config/nvim;
+  [ -d "$CONFIG_DIR/.git" ] || git clone git@github.com:thekorn/nvim-config.git $CONFIG_DIR;
+  cd $CONFIG_DIR;
+  git pull;
+)
+
+# nix
+function nixswitch(){
+  darwin-rebuild switch --flake ~/.config/nix/.#;
+}
+
+# update config
+function update()(
+  set -e
+  cd ~/.config/nix;
+  git pull;
+  nix flake update;
+  nixswitch;
+  updateNvim;
+)

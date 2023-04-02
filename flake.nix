@@ -13,13 +13,9 @@
     # Controls system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-
-    lazyvim.url = "github:thekorn/nvim-config";
-    lazyvim.flake = false;
-
   };
 
-  outputs = { self, nixpkgs, home-manager, lazyvim, darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs:
     let
       eachSupportedSystem =
         nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ];
@@ -59,10 +55,7 @@
           ({ config, lib, pkgs, ... }:
             let primaryUser = "test";
             in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit lazyvim;
-              };
+              home-manager.extraSpecialArgs = { inherit self inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${primaryUser}.imports = [ ./home/demoVM.nix ];
@@ -82,10 +75,7 @@
           ({ config, lib, pkgs, ... }:
             let primaryUser = "thekorn";
             in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit lazyvim;
-              };
+              home-manager.extraSpecialArgs = { inherit self inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${primaryUser}.imports =
@@ -106,10 +96,7 @@
           ({ config, lib, pkgs, ... }:
             let primaryUser = "thekorn";
             in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit lazyvim;
-              };
+              home-manager.extraSpecialArgs = { inherit self inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${primaryUser}.imports =
@@ -130,10 +117,7 @@
           ({ config, lib, pkgs, ... }:
             let primaryUser = "d438477";
             in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit lazyvim;
-              };
+              home-manager.extraSpecialArgs = { inherit self inputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${primaryUser}.imports =

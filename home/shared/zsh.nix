@@ -6,9 +6,6 @@
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     shellAliases = {
-      # nix
-      nixswitch = "darwin-rebuild switch --flake ~/.config/nix/.#";
-      update = "cd ~/.config/nix; git pull; nix flake update; nixswitch; popd";
 
       ## android studio
       "android-studio" = "open -a /Applications/Android\\ Studio.app";
