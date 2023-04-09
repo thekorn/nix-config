@@ -4,7 +4,17 @@
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
-    casks = [ "raycast" "google-chrome" "firefox" "1password" "vlc" "gimp" ];
+    casks = [
+      "insomnia"
+      "docker"
+      "raycast"
+      "google-chrome"
+      "firefox"
+      "1password"
+      "vlc"
+      "gimp"
+      "visual-studio-code"
+    ];
     taps = [ ];
     brews = [ ];
   };

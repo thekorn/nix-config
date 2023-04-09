@@ -14,16 +14,8 @@
       #"Microsoft ToDo" = 1274495053;
       Slack = 803453959;
     };
-    casks = [
-      "docker"
-      "flutter"
-      "android-studio"
-      "zulu"
-      "insomnia"
-      "snowflake-snowsql"
-      "vlc"
-      "zeplin"
-    ];
+    casks =
+      [ "flutter" "android-studio" "zulu" "snowflake-snowsql" "vlc" "zeplin" ];
     taps = [ ];
     brews = [ ];
   };

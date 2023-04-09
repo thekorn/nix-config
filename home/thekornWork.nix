@@ -31,7 +31,6 @@
     #teams
     jq
     htop
-    vscode
     delta
     rustup
     httpie
