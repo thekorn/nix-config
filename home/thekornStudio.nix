@@ -70,5 +70,6 @@
     "$ANDROID_HOME/platform-tools"
 
     "$PNPM_HOME:$PATH"
+    "$HOME/.pub-cache/bin"
   ];
 }
