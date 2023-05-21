@@ -14,6 +14,7 @@
       "vlc"
       "gimp"
       "visual-studio-code"
+      "nss"
     ];
     taps = [ ];
     brews = [ ];
