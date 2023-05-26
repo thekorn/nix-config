@@ -5,7 +5,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window = { option_as_alt = "Both"; };
+      window = { option_as_alt = "OnlyLeft"; };
       font = {
         normal.family = "MesloLGS Nerd Font Mono";
         size = 12;
