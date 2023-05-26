@@ -29,6 +29,7 @@ function setupNvim() (
   local CONFIG_DIR=~/.config/nvim;
   local CUSTOM_CONFIG_DIR=$CONFIG_DIR/lua/custom;
   [ -d "$CUSTOM_CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/nvim_user.git $CUSTOM_CONFIG_DIR;
+)
 
 function updateNvim() (
   local CONFIG_DIR=~/.config/nvim;
