@@ -18,6 +18,8 @@
       #npm-check-updates = "npx npm-check-updates -u";
 
       # vs code
+      c = "code";
+      ci = "code-insiders";
       ca = "code -a";
 
       # exa vs ls
