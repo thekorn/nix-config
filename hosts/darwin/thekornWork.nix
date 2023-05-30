@@ -4,6 +4,7 @@
   imports = [
     ./shared/homebrew.common.nix
     ./shared/homebrew.work.nix
+    ./shared/home.work.nix
     ./shared/fonts.nix
     ./shared/preferences.nix
   ];
