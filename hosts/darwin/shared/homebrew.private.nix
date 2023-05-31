@@ -10,6 +10,6 @@
     };
     casks = [ "transmission" ];
     taps = [ ];
-    brews = [ "pkg-config" "qmk/qmk/qmk" ];
+    brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" ];
   };
 }
