@@ -15,6 +15,7 @@
       "vlc"
       "gimp"
       "visual-studio-code"
+      "swiftformat-for-xcode"
     ];
     taps = [ ];
     brews = [ "nss" ];
