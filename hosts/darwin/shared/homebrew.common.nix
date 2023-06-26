@@ -17,7 +17,7 @@
       "visual-studio-code"
       "swiftformat-for-xcode"
     ];
-    taps = [ ];
-    brews = [ "nss" ];
+    taps = [ "leoafarias/fvm" ];
+    brews = [ "nss" "fvm" ];
   };
 }
