@@ -8,7 +8,7 @@
       "Microsoft Remote Desktop" = 1295203466;
       "Microsoft OneDrive" = 823766827;
     };
-    casks = [ "transmission" ];
+    casks = [ "transmission" "discord" ];
     taps = [ ];
     brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" ];
   };
