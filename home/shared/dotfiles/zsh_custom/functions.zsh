@@ -13,6 +13,11 @@ wttr() {
     curl wttr.in/"${1:-}";
 }
 
+sf() {
+    open http://localhost:"${1:-9000}";
+    python3 -m http.server "${1:-9000}";
+}
+
 # flutter
 function flutter-watch(){
   local PID_FILE="/tmp/tf$$.pid"
