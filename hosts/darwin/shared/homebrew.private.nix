@@ -10,6 +10,6 @@
     };
     casks = [ "transmission" "discord" ];
     taps = [ ];
-    brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" ];
+    brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" "ccache" ];
   };
 }
