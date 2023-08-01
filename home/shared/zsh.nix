@@ -47,7 +47,6 @@
       ## git 
       cbr = ''
         git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'';
-      cm = ''op run --env-file="$HOME/.config/opencommit.env" -- opencommit'';
     };
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh

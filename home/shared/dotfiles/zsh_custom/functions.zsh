@@ -19,6 +19,15 @@ sf() {
     python3 -m http.server "${1:-9000}";
 }
 
+#git opencommit
+cm() {
+  if [ -x "$(command -v op)" ] && [ -x "$(command -v opencommit)" ]; then
+    op run --env-file="$HOME/.config/opencommit.env" -- opencommit
+  else
+    git commit "$@"
+  fi
+}
+
 # flutter
 function flutter-watch(){
   local PID_FILE="/tmp/tf$$.pid"
