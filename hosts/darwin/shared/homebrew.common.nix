@@ -12,12 +12,13 @@
       "microsoft-edge"
       "firefox"
       "1password"
+      "1password-cli"
       "vlc"
       "gimp"
       "visual-studio-code"
       "swiftformat-for-xcode"
     ];
     taps = [ "leoafarias/fvm" ];
-    brews = [ "nss" "fvm" ];
+    brews = [ "nss" "fvm" "unar" ];
   };
 }

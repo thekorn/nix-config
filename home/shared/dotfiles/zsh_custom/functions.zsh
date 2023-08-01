@@ -13,6 +13,7 @@ wttr() {
     curl wttr.in/"${1:-}";
 }
 
+# static file server
 sf() {
     open http://localhost:"${1:-9000}";
     python3 -m http.server "${1:-9000}";

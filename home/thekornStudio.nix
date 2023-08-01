@@ -71,5 +71,8 @@
 
     "$PNPM_HOME:$PATH"
     "$HOME/.pub-cache/bin"
+
+    "$HOME/.local/bin"
+    "$HOME/.gpkg/bin"
   ];
 }
