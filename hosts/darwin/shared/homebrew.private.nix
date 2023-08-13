@@ -9,7 +9,7 @@
       "Microsoft OneDrive" = 823766827;
     };
     casks = [ "transmission" "discord" ];
-    taps = [ ];
-    brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" "ccache" ];
+    taps = [ "oven-sh/bun" ];
+    brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" "ccache" "bun" ];
   };
 }
