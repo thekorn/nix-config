@@ -14,6 +14,7 @@
     ./shared/bottom.nix
     ./shared/lazygit.nix
     ./shared/ripgrep.nix
+    ./shared/opencommit.nix
   ];
 
   programs.home-manager.enable = true;
@@ -71,5 +72,8 @@
 
     "$PNPM_HOME:$PATH"
     "$HOME/.pub-cache/bin"
+
+    "$HOME/.local/bin"
+    "$HOME/.gpkg/bin"
   ];
 }
