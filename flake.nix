@@ -148,5 +148,24 @@
         specialArgs = { inherit self inputs; };
 
       };
+
+      nixosConfigurations.thekorn-nixos-vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/linux/thekorn-nixos-workstation.nix
+          home-manager.nixosModules.home-manager
+          ({ config, lib, pkgs, ... }:
+            let primaryUser = "thekorn";
+            in {
+              home-manager.extraSpecialArgs = { inherit self inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${primaryUser}.imports =
+                [ ./home/thekornNixOSWorkstation.nix ];
+            })
+        ];
+        specialArgs = { inherit self inputs; };
+
+      };
     };
 }
