@@ -6,7 +6,7 @@
 
 {
   imports = [ # Include the results of the hardware scan.
-    ./configurations/thekornNixOS/hardware-configuration.nix
+    ./configurations/thekornNixOSVM/hardware-configuration.nix
   ];
 
   networking.hostName = "thekorn-nixos-vm";
