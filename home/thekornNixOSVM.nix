@@ -43,6 +43,7 @@
     #cocoapods
     nixfmt
     ffmpeg
+    unzip
     nodePackages.pnpm
   ];
   home.sessionVariables = {
