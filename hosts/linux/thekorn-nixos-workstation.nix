@@ -21,6 +21,7 @@
   services.sshd.enable = true;
 
   programs.zsh.enable = true;
+  programs.hyprland.enable = true;
   environment = {
     shells = with pkgs; [ bash zsh ];
     #loginShell = pkgs.zsh;

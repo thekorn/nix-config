@@ -1,1 +1,1 @@
-{ pkgs, config, ... }: { programs.hyprland.enable = true; }
+{ pkgs, config, ... }: { }
