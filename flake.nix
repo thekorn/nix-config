@@ -17,7 +17,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, darwin, hyprland,  ... }@inputs:
     let
       eachSupportedSystem = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -155,6 +155,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/linux/thekorn-nixos-workstation.nix
+#          hyprland.homeManagerModules.default
           home-manager.nixosModules.home-manager
           ({ config, lib, pkgs, ... }:
             let primaryUser = "thekorn";
@@ -165,7 +166,7 @@
               home-manager.users.${primaryUser}.imports =
                 [ ./home/thekornNixOSWorkstation.nix ];
             })
-          { wayland.windowManager.hyprland.enable = true; }
+        #  { wayland.windowManager.hyprland.enable = true; }
         ];
         specialArgs = { inherit self inputs; };
 
