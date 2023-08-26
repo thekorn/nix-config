@@ -7,7 +7,7 @@
     #./shared/homebrew.studio.nix
     #./shared/homebrew.private.nix
     #./shared/home.private.nix
-    ./shared/fonts.nix
+    ../shared/fonts.nix
     #./shared/preferences.nix
   ];
 
