@@ -13,6 +13,8 @@
     # Controls system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs:
@@ -163,6 +165,7 @@
               home-manager.users.${primaryUser}.imports =
                 [ ./home/thekornNixOSWorkstation.nix ];
             })
+          { wayland.windowManager.hyprland.enable = true; }
         ];
         specialArgs = { inherit self inputs; };
 
