@@ -132,8 +132,7 @@
 
       nixosConfigurations.thekorn-nixos-vm = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        modules =
-          [ ./hosts/linux/configurations/thekornNixOSVM/configuration.nix ];
+        modules = [ ./hosts/linux/thekornNixOSVM.nix ];
       };
     };
 }
