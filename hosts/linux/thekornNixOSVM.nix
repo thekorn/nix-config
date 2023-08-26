@@ -8,6 +8,7 @@
     #./shared/homebrew.private.nix
     #./shared/home.private.nix
     ./shared/fonts.nix
+    ./shared/home.private.nix
     #./shared/preferences.nix
   ];
 
@@ -19,12 +20,6 @@
 
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
-
-  users.users.thekorn = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    packages = with pkgs; [ git neovim htop tree ];
-  };
 
   system.stateVersion = "23.05"; # Did you read the comment?
 
