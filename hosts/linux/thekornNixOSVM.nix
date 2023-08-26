@@ -3,13 +3,8 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./configurations/thekornNixOSVM/hardware-configuration.nix
-    #./shared/homebrew.common.nix
-    #./shared/homebrew.studio.nix
-    #./shared/homebrew.private.nix
-    #./shared/home.private.nix
     ./shared/fonts.nix
     ./shared/home.private.nix
-    #./shared/preferences.nix
   ];
 
   networking.hostName = "thekorn-nixos-vm";
