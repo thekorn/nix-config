@@ -71,3 +71,12 @@ function update()(
   nixswitch;
   updateNvim;
 )
+
+# update config
+function update-nixos()(
+  set -e
+  cd ~/.config/nix;
+  git pull;
+  sudo nixos-rebuild switch --flake ~/.config/nix/.#;
+  updateNvim;
+)

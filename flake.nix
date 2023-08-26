@@ -17,8 +17,11 @@
 
   outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs:
     let
-      eachSupportedSystem =
-        nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ];
+      eachSupportedSystem = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-darwin"
+        "aarch64-linux"
+      ];
 
       legacyPackages = eachSupportedSystem (system:
         import nixpkgs {
@@ -125,6 +128,25 @@
             })
         ];
         specialArgs = { inherit self inputs; };
+      };
+
+      nixosConfigurations.thekorn-nixos-vm = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/linux/thekornNixOSVM.nix
+          home-manager.nixosModules.home-manager
+          ({ config, lib, pkgs, ... }:
+            let primaryUser = "thekorn";
+            in {
+              home-manager.extraSpecialArgs = { inherit self inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${primaryUser}.imports =
+                [ ./home/thekornNixOSVM.nix ];
+            })
+        ];
+        specialArgs = { inherit self inputs; };
+
       };
     };
 }
