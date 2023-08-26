@@ -52,9 +52,12 @@
                 {
                     "background": "#3b4252",
                     "background_templates": [
-                        "{{ if gt .Code 0 }}#cc2222{{ end }}"
+                        "{{ if gt .Code 0 }}#bf616a{{ end }}"
                     ],
                     "foreground": "#a3be8c",
+                    "foreground_templates": [
+                        "{{ if gt .Code 0 }}#ebcb8b{{ end }}"
+                    ],
                     "invert_powerline": true,
                     "powerline_symbol": "\ue0b2",
                     "properties": {

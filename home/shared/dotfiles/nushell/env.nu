@@ -82,3 +82,5 @@ $env.NU_PLUGIN_DIRS = [
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 source ~/.config/nushell/oh-my-posh.nu
+
+alias ll = exa --long --header --git --icons
