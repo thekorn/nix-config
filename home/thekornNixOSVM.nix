@@ -28,6 +28,7 @@
     less
     zsh-forgit
     fnm
+    nodejs_20
     awscli
     silver-searcher
     #teams
