@@ -7,7 +7,7 @@
     #./shared/homebrew.studio.nix
     #./shared/homebrew.private.nix
     #./shared/home.private.nix
-    ../shared/fonts.nix
+    ./shared/fonts.nix
     #./shared/preferences.nix
   ];
 
@@ -34,13 +34,13 @@
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
-    systemPackages = [ pkgs.coreutils ];
+    #systemPackages = [ pkgs.coreutils ];
     #systemPath = [ "/opt/homebrew/bin" ];
     #pathsToLink = [ "/Applications" ];
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  services.nix-daemon.enable = true;
+  #services.nix-daemon.enable = true;
 }
 
