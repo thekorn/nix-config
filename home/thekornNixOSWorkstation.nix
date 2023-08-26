@@ -16,6 +16,7 @@
     ./shared/ripgrep.nix
     ./shared/opencommit.nix
     ./shared/nushell.nix
+    ./shared/hyprland.nix
   ];
 
   programs.home-manager.enable = true;
@@ -46,6 +47,7 @@
     unzip
     nodePackages.pnpm
   ];
+
   home.sessionVariables = {
     PAGER = "less";
     CLICLOLOR = 1;
