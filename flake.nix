@@ -149,7 +149,7 @@
 
       };
 
-      nixosConfigurations.thekorn-nixos-vm = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.thekorn-nixos-workstation = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/linux/thekorn-nixos-workstation.nix
