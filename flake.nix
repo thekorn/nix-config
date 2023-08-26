@@ -155,7 +155,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/linux/thekorn-nixos-workstation.nix
-#          hyprland.homeManagerModules.default
+          #hyprland.homeManagerModules.default
           home-manager.nixosModules.home-manager
           ({ config, lib, pkgs, ... }:
             let primaryUser = "thekorn";
@@ -166,7 +166,7 @@
               home-manager.users.${primaryUser}.imports =
                 [ ./home/thekornNixOSWorkstation.nix ];
             })
-        #  { wayland.windowManager.hyprland.enable = true; }
+        #{ wayland.windowManager.hyprland.enable = true; }
         ];
         specialArgs = { inherit self inputs; };
 
