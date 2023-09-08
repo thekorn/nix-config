@@ -3,7 +3,7 @@
   imports = [
     ./shared/alacritty.nix
     ./shared/bat.nix
-    ./shared/exa.nix
+    ./shared/eza.nix
     ./shared/fzf.nix
     ./shared/git.nix
     ./shared/tmux.nix

@@ -21,9 +21,9 @@
       c = "code";
       ca = "code -a";
 
-      # exa vs ls
-      ls = "exa";
-      ll = "exa --long --header --git --icons";
+      # eza vs ls
+      ls = "eza";
+      ll = "eza --long --header --git --icons";
       tree = "ll --tree --level=4 -a -I=.git --git-ignore";
 
       # local rush for testing

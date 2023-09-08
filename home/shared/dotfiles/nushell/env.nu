@@ -83,4 +83,4 @@ $env.NU_PLUGIN_DIRS = [
 
 source ~/.config/nushell/oh-my-posh.nu
 
-alias ll = exa --long --header --git --icons
+alias ll = eza --long --header --git --icons
