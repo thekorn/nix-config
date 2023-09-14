@@ -69,6 +69,7 @@ function update()(
   git pull;
   nix flake update;
   nixswitch;
+  updateBrew;
   updateNvim;
 )
 
@@ -79,4 +80,10 @@ function update-nixos()(
   git pull;
   sudo nixos-rebuild switch --flake ~/.config/nix/.#;
   updateNvim;
+)
+
+function updateBrew()(
+  set -e
+  brew update;
+  brew upgrade;
 )
