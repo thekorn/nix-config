@@ -19,6 +19,6 @@
       "swiftformat-for-xcode"
     ];
     taps = [ "leoafarias/fvm" ];
-    brews = [ "nss" "fvm" "unar" ];
+    brews = [ "nss" "fvm" "unar" "xcodesorg/made/xcodes" "aria2" ];
   };
 }

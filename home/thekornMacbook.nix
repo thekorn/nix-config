@@ -15,6 +15,7 @@
     ./shared/lazygit.nix
     ./shared/ripgrep.nix
     ./shared/opencommit.nix
+    ./shared/xcodes.nix
   ];
 
   programs.home-manager.enable = true;
