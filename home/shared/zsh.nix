@@ -49,7 +49,7 @@
         git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'';
 
       ## xcodes
-      xc = ''op run --env-file="$HOME/.config/xcodes.env" -- xcodes'';
+      xcodes = ''op run --env-file="$HOME/.config/xcodes.env" -- xcodes'';
       sim = "open -a Simulator";
     };
     initExtra = ''
