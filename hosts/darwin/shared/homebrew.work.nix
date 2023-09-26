@@ -4,7 +4,7 @@
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = {
-      Xcode = 497799835;
+      #Xcode = 497799835;
       TestFlight = 899247664;
       #"Microsoft Word" = 462054704;
       #"Microsoft Excel" = 462058435;

@@ -72,8 +72,18 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins =
-        [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
+      plugins = [
+        "git"
+        "tmux"
+        "jira"
+        "aws"
+        "z"
+        "web-search"
+        "fzf"
+        "flutter"
+        "fnm"
+        "xcode"
+      ];
       custom = "$HOME/.zsh_custom";
     };
     plugins = [{
