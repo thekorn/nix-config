@@ -16,9 +16,9 @@
       "vlc"
       "gimp"
       "visual-studio-code"
-      "swiftformat-for-xcode"
     ];
     taps = [ "leoafarias/fvm" ];
-    brews = [ "nss" "fvm" "unar" "xcodesorg/made/xcodes" "aria2" ];
+    brews =
+      [ "swift-format" "nss" "fvm" "unar" "xcodesorg/made/xcodes" "aria2" ];
   };
 }
