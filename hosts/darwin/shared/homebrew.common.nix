@@ -16,6 +16,7 @@
       "vlc"
       "gimp"
       "visual-studio-code"
+      "brave-browser"
     ];
     taps = [ "leoafarias/fvm" ];
     brews =
