@@ -9,6 +9,7 @@
       st = "status";
       br = "branch";
       pu = "push -u";
+      put = "push -u --tags";
       type = "cat-file -t";
       dump = "cat-file -p";
       lg =
