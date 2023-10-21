@@ -30,8 +30,10 @@
       #testrush = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/start.js";
       #testrushx = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/startx.js";
 
-      # Goes up the tree to the git root dir
+      # git
+      ## Goes up the tree to the git root dir
       "g-" = ''cd $(git rev-parse --show-toplevel || echo ".")'';
+      "cma" = "git add . && cm";
 
       # lazygit
       lg = "lazygit";
