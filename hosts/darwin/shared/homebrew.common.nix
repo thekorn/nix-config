@@ -27,6 +27,7 @@
       "unar"
       "xcodesorg/made/xcodes"
       "aria2"
+      "hyperfine"
     ];
   };
 }
