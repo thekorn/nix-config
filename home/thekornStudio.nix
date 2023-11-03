@@ -15,6 +15,7 @@
     ./shared/lazygit.nix
     ./shared/ripgrep.nix
     ./shared/opencommit.nix
+    ./shared/openinterpreter.nix
     ./shared/xcodes.nix
     ./shared/nushell.nix
   ];

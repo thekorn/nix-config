@@ -53,6 +53,10 @@
       ## xcodes
       xcodes = ''op run --env-file="$HOME/.config/xcodes.env" -- xcodes'';
       sim = "open -a Simulator";
+
+      ## open interpreter
+      interpreter = ''
+        op run --env-file="$HOME/.config/openinterpreter.env" -- interpreter'';
     };
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
