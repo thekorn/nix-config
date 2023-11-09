@@ -48,7 +48,7 @@
     CLICLOLOR = 1;
     EDITOR = "nano";
 
-    JIRA_URL = "https://burda-studios.atlassian.net";
+    JIRA_URL = "https://burdaforward.atlassian.net";
     JIRA_NAME = "markus.korn";
     JIRA_DEFAULT_ACTION = "new";
 
