@@ -40,20 +40,10 @@ function flutter-watch(){
   rm $PID_FILE;
 }
 
-function setupNvim() (
-  local CONFIG_DIR=~/.config/nvim;
-  local CUSTOM_CONFIG_DIR=$CONFIG_DIR/lua/custom;
-  [ -d "$CUSTOM_CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/nvim_user.git $CUSTOM_CONFIG_DIR;
-)
-
 function updateNvim() (
   local CONFIG_DIR=~/.config/nvim;
-  local CUSTOM_CONFIG_DIR=$CONFIG_DIR/lua/custom;
-  [ -d "$CONFIG_DIR/.git" ] || git clone https://github.com/NvChad/NvChad.git $CONFIG_DIR;
-  [ -d "$CUSTOM_CONFIG_DIR/.git" ] || setupNvim;
+  [ -d "$CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/config.nvim.git $CONFIG_DIR;
   cd $CONFIG_DIR;
-  git pull;
-  cd $CUSTOM_CONFIG_DIR;
   git pull;
 )
 
