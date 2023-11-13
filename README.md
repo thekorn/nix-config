@@ -1,6 +1,6 @@
 # config using nix and flake
 
-This is my experiment to convert my dotfiles based configuration to nix
+This is the config for my machines.
 
 ## prerequisits
 
