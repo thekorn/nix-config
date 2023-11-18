@@ -21,6 +21,7 @@
     taps = [ "leoafarias/fvm" ];
     brews = [
       "zig"
+      "zls"
       "swift-format"
       "nss"
       "fvm"
