@@ -16,7 +16,5 @@
     };
     casks =
       [ "flutter" "android-studio" "zulu" "snowflake-snowsql" "vlc" "zeplin" ];
-    taps = [ "oven-sh/bun" ];
-    brews = [ "bun" ];
   };
 }

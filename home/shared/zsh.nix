@@ -10,9 +10,6 @@
       ## android studio
       "android-studio" = "open -a /Applications/Android\\ Studio.app";
 
-      # bunte
-      # bunte = "wo bunte";
-
       # helper
       #tms = "tmux-sessionizer";
       #npm-check-updates = "npx npm-check-updates -u";
