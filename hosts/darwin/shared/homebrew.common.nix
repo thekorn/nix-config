@@ -19,15 +19,7 @@
       "brave-browser"
     ];
     taps = [ "leoafarias/fvm" ];
-    brews = [
-      "zig"
-      "zls"
-      "swift-format"
-      "nss"
-      "fvm"
-      "unar"
-      "xcodesorg/made/xcodes"
-      "aria2"
-    ];
+    brews =
+      [ "swift-format" "nss" "fvm" "unar" "xcodesorg/made/xcodes" "aria2" ];
   };
 }
