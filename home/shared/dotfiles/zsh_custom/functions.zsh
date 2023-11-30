@@ -57,7 +57,7 @@ function update()(
   set -e
   cd ~/.config/nix;
   git pull;
-  nix flake update;
+  nix flake update --commit-lock-file;
   nixswitch;
   updateBrew;
   updateNvim;
