@@ -58,6 +58,7 @@ function update()(
   cd ~/.config/nix;
   git pull;
   nix flake update --commit-lock-file;
+  git pu;
   nixswitch;
   updateBrew;
   updateNvim;
