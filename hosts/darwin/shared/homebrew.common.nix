@@ -12,7 +12,6 @@
       "microsoft-edge"
       "firefox"
       "1password"
-      "1password-cli"
       "vlc"
       "gimp"
       "visual-studio-code"
