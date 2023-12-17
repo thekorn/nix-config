@@ -1,6 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
+    ./shared/1password.nix
     ./shared/alacritty.nix
     ./shared/bat.nix
     ./shared/eza.nix
