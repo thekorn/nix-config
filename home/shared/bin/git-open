@@ -1,40 +1,50 @@
 #!/bin/bash
 
-isgithub=$(git remote get-url origin | grep -c "github.com")
-isbitbucket=$(git remote get-url origin | grep -c "bitbucket.org")
+inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
 
-branch=$(git rev-parse --abbrev-ref HEAD)
-dirlen=$(git rev-parse --show-toplevel | wc -c)
+if [ "$inside_git_repo" ]; then
+    isgithub=$(git remote get-url origin | grep -c "github.com")
+    isbitbucket=$(git remote get-url origin | grep -c "bitbucket.org")
 
-if [[ $isgithub -eq 1 ]]; then
-    origin=$(git remote get-url origin | sed -e "s/^git@github.com://" -e "s/^https:\/\/github.com\///" -e "s/.git$//")
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    dirlen=$(git rev-parse --show-toplevel | wc -c)
 
-    if [[ "$1" == "--pr" ]]; then
-        open "https://github.com/${origin}/pull/new/${branch}"
-    else
-        for path in "$@"; do
-            open "https://github.com/${origin}/tree/${branch}/$(realpath "${path}" | cut -c "${dirlen}"-)"
-        done
-
-        if [[ "$#" -eq 0 ]]; then
-            open "https://github.com/${origin}/tree/${branch}/$(pwd | cut -c "${dirlen}"-)"
-        fi
-    fi
-else
-    if [[ $isbitbucket -eq 1 ]]; then
-        origin=$(git remote get-url origin | sed -e "s/^git@bitbucket.org://" -e "s/^https:\/\/bitbucket.org\///" -e "s/.git$//")
+    if [[ $isgithub -eq 1 ]]; then
+        origin=$(git remote get-url origin | sed -e "s/^git@github.com://" -e "s/^https:\/\/github.com\///" -e "s/.git$//")
 
         if [[ "$1" == "--pr" ]]; then
-            open "https://bitbucket.org/${origin}/pull-requests/new?source=${branch}&t=1"
+            open "https://github.com/${origin}/pull/new/${branch}"
         else
-
             for path in "$@"; do
-                open "https://bitbucket.org/${origin}/src/${branch}/$(realpath "${path}" | cut -c "${dirlen}"-)"
+                open "https://github.com/${origin}/tree/${branch}/$(realpath "${path}" | cut -c "${dirlen}"-)"
             done
 
             if [[ "$#" -eq 0 ]]; then
-                open "https://bitbucket.org/${origin}/src/${branch}/$(pwd | cut -c "${dirlen}"-)"
+                open "https://github.com/${origin}/tree/${branch}/$(pwd | cut -c "${dirlen}"-)"
             fi
         fi
+    else
+        if [[ $isbitbucket -eq 1 ]]; then
+            origin=$(git remote get-url origin | sed -e "s/^git@bitbucket.org://" -e "s/^https:\/\/bitbucket.org\///" -e "s/.git$//")
+
+            if [[ "$1" == "--pr" ]]; then
+                open "https://bitbucket.org/${origin}/pull-requests/new?source=${branch}&t=1"
+            else
+
+                for path in "$@"; do
+                    open "https://bitbucket.org/${origin}/src/${branch}/$(realpath "${path}" | cut -c "${dirlen}"-)"
+                done
+
+                if [[ "$#" -eq 0 ]]; then
+                    open "https://bitbucket.org/${origin}/src/${branch}/$(pwd | cut -c "${dirlen}"-)"
+                fi
+            fi
+        else
+            echo "Not a github or bitbucket repository."
+            exit 1
+        fi
     fi
+else
+    echo "Not a git repository."
+    exit 1
 fi
