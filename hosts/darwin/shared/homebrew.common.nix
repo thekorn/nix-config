@@ -16,6 +16,7 @@
       "gimp"
       "visual-studio-code"
       "brave-browser"
+      "bruno"
     ];
     taps = [ "leoafarias/fvm" ];
     brews = [ "swift-format" "nss" "fvm" "unar" "aria2" ];
