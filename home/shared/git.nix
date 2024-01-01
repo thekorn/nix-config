@@ -18,6 +18,7 @@
       permission-reset = ''
         !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
       patch = "!git --no-pager diff --no-color";
+      #open = "!git-open";
     };
     delta = {
       enable = true;
