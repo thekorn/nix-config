@@ -99,5 +99,4 @@
   home.file.".p10k.zsh".source = ./dotfiles/.p10k.zsh;
   home.file.".zsh_custom/functions.zsh".source =
     ./dotfiles/zsh_custom/functions.zsh;
-  home.file.".local/bin/git-open".source = ./dotfiles/zsh_custom/git-open;
 }

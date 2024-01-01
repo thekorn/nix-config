@@ -1,4 +1,5 @@
 { pkgs, config, ... }: {
+  home.file.".local/bin/git-open".source = ./bin/git-open;
   programs.git = {
     enable = true;
     userName = "Markus Korn";
@@ -9,6 +10,8 @@
       st = "status";
       br = "branch";
       pu = "push -u";
+      o = "open";
+      or = "open --pr";
       put = "push -u --tags";
       type = "cat-file -t";
       dump = "cat-file -p";
@@ -18,7 +21,6 @@
       permission-reset = ''
         !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
       patch = "!git --no-pager diff --no-color";
-      #open = "!git-open";
     };
     delta = {
       enable = true;
