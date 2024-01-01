@@ -63,6 +63,10 @@
     localVariables = {
       ZSH_TMUX_AUTOSTART = "true";
       ZSH_TMUX_AUTOSTART_ONCE = "true";
+      ZSH_WEB_SEARCH_ENGINES = [
+        "tt"
+        "https://burdaforward.atlassian.net/jira/software/c/projects/TT/boards/611/backlog?text="
+      ];
     };
     dirHashes = {
       nix = "$HOME/.config/nix";
@@ -75,18 +79,8 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [
-        "git"
-        "tmux"
-        "jira"
-        "aws"
-        "z"
-        "web-search"
-        "fzf"
-        "flutter"
-        "fnm"
-        "xcode"
-      ];
+      plugins =
+        [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
       custom = "$HOME/.zsh_custom";
     };
     plugins = [{
