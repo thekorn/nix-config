@@ -19,6 +19,7 @@
     ./shared/openinterpreter.nix
     ./shared/xcodes.nix
     ./shared/nushell.nix
+    #./shared/podman.nix
   ];
 
   programs.home-manager.enable = true;
@@ -33,7 +34,6 @@
     fnm
     awscli
     silver-searcher
-    teams
     jq
     htop
     delta

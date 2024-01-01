@@ -31,7 +31,6 @@
     nodejs_20
     awscli
     silver-searcher
-    #teams
     jq
     htop
     delta

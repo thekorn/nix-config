@@ -30,7 +30,6 @@
     fnm
     awscli
     silver-searcher
-    #teams
     jq
     htop
     delta
