@@ -19,6 +19,7 @@
     ./shared/openinterpreter.nix
     ./shared/xcodes.nix
     ./shared/nushell.nix
+    ./shared/atuin.nix
     #./shared/podman.nix
   ];
 

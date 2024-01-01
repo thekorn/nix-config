@@ -16,6 +16,7 @@
     ./shared/lazygit.nix
     ./shared/ripgrep.nix
     ./shared/xcodes.nix
+    ./shared/atuin.nix
   ];
 
   programs.home-manager.enable = true;
