@@ -4,7 +4,7 @@
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
-    casks = [ "prismlauncher" "zulu17" "steam" "keymapp" "whatsapp" ];
+    casks = [ "prismlauncher" "zulu17" "steam" "keymapp" "whatsapp" "sonos" ];
     taps = [ "homebrew/cask-versions" ];
     brews = [
       #"podman"
