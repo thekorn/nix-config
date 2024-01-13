@@ -66,6 +66,6 @@
     "$ANDROID_HOME/tools/bin"
     "$ANDROID_HOME/platform-tools"
 
-    "$PNPM_HOME:$PATH"
+    "$PNPM_HOME"
   ];
 }
