@@ -55,6 +55,7 @@
       interpreter = ''
         op run --env-file="$HOME/.config/openinterpreter.env" -- interpreter'';
     };
+    zprof = { enable = false; };
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
