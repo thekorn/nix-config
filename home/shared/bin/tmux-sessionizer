@@ -5,7 +5,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd -t d -d 3 --min-depth 3 . ~/devel/ | fzf)
+    selected=$(fd -p -t d -d 3 --min-depth 3 . ~/devel/ | sed "s;$HOME;~;" | fzf)
 fi
 
 if [[ -z $selected ]]; then
