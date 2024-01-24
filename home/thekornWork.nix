@@ -15,8 +15,9 @@
     ./shared/bottom.nix
     ./shared/lazygit.nix
     ./shared/ripgrep.nix
-    ./shared/xcodes.nix
     ./shared/atuin.nix
+    ./shared/opencommit.nix
+    ./shared/openinterpreter.nix
   ];
 
   programs.home-manager.enable = true;
