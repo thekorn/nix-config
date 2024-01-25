@@ -22,7 +22,18 @@ sf() {
 #git opencommit
 cm() {
   if [ -x "$(command -v op)" ] && [ -x "$(command -v opencommit)" ]; then
-    op run --env-file="$HOME/.config/opencommit.env" -- opencommit
+    branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
+    branchName=${branchPath##*/}           #Get text behind the last / of the branch path
+    regex="([A-Z]+-[0-9]*)"
+    prefix=""
+
+    if [[ $branchName =~ $regex ]]; then
+      prefix="${BASH_REMATCH[1]}: "
+    fi
+
+    echo "${prefix}blabla"
+
+    op run --env-file="$HOME/.config/opencommit.env" -- opencommit '${prefix}${msg}'
   else
     git commit "$@"
   fi
