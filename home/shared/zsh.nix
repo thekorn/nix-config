@@ -11,7 +11,6 @@
       "android-studio" = "open -a /Applications/Android\\ Studio.app";
 
       # helper
-      #tms = "tmux-sessionizer";
       #npm-check-updates = "npx npm-check-updates -u";
 
       # vs code
@@ -47,8 +46,6 @@
       cbr = ''
         git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'';
 
-      ## xcodes
-      xcodes = ''op run --env-file="$HOME/.config/xcodes.env" -- xcodes'';
       sim = "open -a Simulator";
 
       ## open interpreter

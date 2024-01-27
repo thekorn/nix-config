@@ -28,12 +28,10 @@ cm() {
     prefix=""
 
     if [[ $branchName =~ $regex ]]; then
-      prefix="${BASH_REMATCH[1]}: "
+      prefix="${match[1]} "
     fi
 
-    echo "${prefix}blabla"
-
-    op run --env-file="$HOME/.config/opencommit.env" -- opencommit '${prefix}${msg}'
+    op run --env-file="$HOME/.config/opencommit.env" -- opencommit #"${prefix}\$msg"
   else
     git commit "$@"
   fi
