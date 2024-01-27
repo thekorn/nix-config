@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
-    #./shared/alacritty.nix
+    ./shared/alacritty.nix
     ./shared/bat.nix
     ./shared/eza.nix
     ./shared/fzf.nix
