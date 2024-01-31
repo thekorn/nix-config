@@ -44,7 +44,7 @@
 
       ## git 
       cbr = ''
-        git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'';
+        git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'';
 
       sim = "open -a Simulator";
 
