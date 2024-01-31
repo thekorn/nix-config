@@ -20,7 +20,6 @@
       "cleanshot"
     ];
     taps = [ "leoafarias/fvm" ];
-    brews =
-      [ "swift-format" "nss" "fvm" "unar" "aria2" "ktlint" "swiftformat" ];
+    brews = [ "nss" "fvm" "unar" "aria2" "ktlint" "swiftformat" ];
   };
 }
