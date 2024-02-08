@@ -18,6 +18,7 @@
       "brave-browser"
       "bruno"
       "cleanshot"
+      "zed"
     ];
     taps = [ "leoafarias/fvm" ];
     brews =

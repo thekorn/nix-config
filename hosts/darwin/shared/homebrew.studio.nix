@@ -13,7 +13,6 @@
       "sonos"
       "flutter"
       "arc"
-      "zed"
     ];
     taps = [ "homebrew/cask-versions" ];
     brews = [
