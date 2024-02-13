@@ -65,7 +65,8 @@ function update() (
   set -e
   cd ~/.config/nix
   git pull
-  nix flake update --commit-lock-file
+  # FIXME: working around and issue with allacritty/ xdg-utils nix package
+  #nix flake update --commit-lock-file
   git pu
   nixswitch
   updateBrew
