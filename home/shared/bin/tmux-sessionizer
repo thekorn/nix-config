@@ -5,7 +5,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    specific_directories=("/tmp" "~/.config/nix")
+    specific_directories=("/tmp" "~/.config/nix" "~/.config/nvim")
     combined_directories=($(fd -p -t d -d 3 --min-depth 3 . ~/devel/ | sed "s;$HOME;~;") "${specific_directories[@]}")
     selected=$(printf '%s\n' "${combined_directories[@]}" | fzf)
 fi
