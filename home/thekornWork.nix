@@ -45,6 +45,7 @@
     ffmpeg
     lcov
     nodePackages.pnpm
+    wget
   ];
   home.sessionVariables = {
     PAGER = "less";

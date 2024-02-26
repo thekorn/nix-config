@@ -45,6 +45,7 @@
     nixfmt
     ffmpeg
     nodePackages.pnpm
+    wget
   ];
   home.sessionVariables = {
     PAGER = "less";
