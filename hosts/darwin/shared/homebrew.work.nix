@@ -22,6 +22,7 @@
       "vlc"
       "zeplin"
       "zulip"
+      "microsoft-edge"
     ];
   };
 }

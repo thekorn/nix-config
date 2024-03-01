@@ -11,7 +11,6 @@
     casks = [
       "transmission"
       "discord"
-      "keymapp"
       "whatsapp"
       "zulu8"
       "zulu11"

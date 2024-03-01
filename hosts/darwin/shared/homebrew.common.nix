@@ -5,11 +5,9 @@
     global.brewfile = true;
     masApps = { };
     casks = [
-      "insomnia"
       "docker"
       "raycast"
       "google-chrome"
-      "microsoft-edge"
       "firefox"
       "1password"
       "vlc"
