@@ -5,6 +5,7 @@ inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
 if [ "$inside_git_repo" ]; then
     isgithub=$(git remote get-url origin | grep -c "github.com")
     isbitbucket=$(git remote get-url origin | grep -c "bitbucket.org")
+    isbfgitlab=$(git remote get-url origin | grep -c "gitlab.bfops.io")
 
     branch=$(git rev-parse --abbrev-ref HEAD)
     dirlen=$(git rev-parse --show-toplevel | wc -c)
@@ -23,26 +24,40 @@ if [ "$inside_git_repo" ]; then
                 open "https://github.com/${origin}/tree/${branch}/$(pwd | cut -c "${dirlen}"-)"
             fi
         fi
-    else
-        if [[ $isbitbucket -eq 1 ]]; then
-            origin=$(git remote get-url origin | sed -e "s/^git@bitbucket.org://" -e "s/^https:\/\/bitbucket.org\///" -e "s/.git$//")
+    elif [[ $isbitbucket -eq 1 ]]; then
+        origin=$(git remote get-url origin | sed -e "s/^git@bitbucket.org://" -e "s/^https:\/\/bitbucket.org\///" -e "s/.git$//")
 
-            if [[ "$1" == "--pr" ]]; then
-                open "https://bitbucket.org/${origin}/pull-requests/new?source=${branch}&t=1"
-            else
-
-                for path in "$@"; do
-                    open "https://bitbucket.org/${origin}/src/${branch}/$(realpath "${path}" | cut -c "${dirlen}"-)"
-                done
-
-                if [[ "$#" -eq 0 ]]; then
-                    open "https://bitbucket.org/${origin}/src/${branch}/$(pwd | cut -c "${dirlen}"-)"
-                fi
-            fi
+        if [[ "$1" == "--pr" ]]; then
+            open "https://bitbucket.org/${origin}/pull-requests/new?source=${branch}&t=1"
         else
-            echo "Not a github or bitbucket repository."
-            exit 1
+
+            for path in "$@"; do
+                open "https://bitbucket.org/${origin}/src/${branch}/$(realpath "${path}" | cut -c "${dirlen}"-)"
+            done
+
+            if [[ "$#" -eq 0 ]]; then
+                open "https://bitbucket.org/${origin}/src/${branch}/$(pwd | cut -c "${dirlen}"-)"
+            fi
         fi
+    elif [[ $isbfgitlab -eq 1 ]]; then
+        echo "ITS BF GITLAB"
+        origin=$(git remote get-url origin | sed -e "s/^git@gitlab.bfops.io://" -e "s/^https:\/\/gitlab.bfops.io\///" -e "s/.git$//")
+
+        if [[ "$1" == "--pr" ]]; then
+            open "https://gitlab.bfops.io/${origin}/-/merge_requests/new?merge_request[source_branch]=${branch}"
+        else
+
+            for path in "$@"; do
+                open "https://gitlab.bfops.io/${origin}/-/tree/${branch}$(realpath "${path}" | cut -c "${dirlen}"-)"
+            done
+
+            if [[ "$#" -eq 0 ]]; then
+                open "https://gitlab.bfops.io/${origin}/-/tree/${branch}/$(pwd | cut -c "${dirlen}"-)"
+            fi
+        fi
+    else
+        echo "Not a github, bitbucket or bf gitlab repository."
+        exit 1
     fi
 else
     echo "Not a git repository."
