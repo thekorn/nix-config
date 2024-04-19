@@ -19,7 +19,15 @@
       "zed"
     ];
     taps = [ "leoafarias/fvm" ];
-    brews =
-      [ "nss" "fvm" "unar" "aria2" "ktlint" "swiftformat" "clang-format" ];
+    brews = [
+      "nss"
+      "fvm"
+      "unar"
+      "aria2"
+      "ktlint"
+      "swiftformat"
+      "clang-format"
+      "cocoapods"
+    ];
   };
 }

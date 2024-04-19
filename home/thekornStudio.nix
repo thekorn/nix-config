@@ -41,7 +41,6 @@
     mkcert
     mongosh
     go
-    cocoapods
     nixfmt
     ffmpeg
     nodePackages.pnpm

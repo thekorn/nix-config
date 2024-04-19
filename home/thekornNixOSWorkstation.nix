@@ -40,7 +40,6 @@
     mkcert
     mongosh
     go
-    #cocoapods
     nixfmt
     ffmpeg
     unzip
