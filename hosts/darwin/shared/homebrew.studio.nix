@@ -20,6 +20,7 @@
     taps = [ "homebrew/cask-versions" ];
     brews = [
       #"podman"
+      "wb32-dfu-updater_cli"
     ];
   };
 }
