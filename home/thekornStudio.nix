@@ -20,7 +20,7 @@
     ./shared/nushell.nix
     ./shared/atuin.nix
     ./shared/zed.nix
-    ./shared/zig.nix
+    #./shared/zig.nix <- zig 0.12 is still unstable in nix, using zig from brew
   ];
 
   programs.home-manager.enable = true;
