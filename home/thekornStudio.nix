@@ -19,6 +19,7 @@
     ./shared/openinterpreter.nix
     ./shared/nushell.nix
     ./shared/atuin.nix
+    ./shared/zed.nix
   ];
 
   programs.home-manager.enable = true;
