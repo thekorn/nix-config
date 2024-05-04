@@ -20,6 +20,7 @@
     ./shared/nushell.nix
     ./shared/atuin.nix
     ./shared/zed.nix
+    ./shared/zig.nix
   ];
 
   programs.home-manager.enable = true;
