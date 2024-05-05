@@ -15,6 +15,9 @@
     "theme": "Nord",
     "buffer_font_size": 15,
     "terminal": {
-        "font_family": "CaskaydiaCove NFM",
+        "font_family": "MesloLGS Nerd Font Mono",
+        "line_height": {
+            "custom": 1.15
+        }
     }
 }
