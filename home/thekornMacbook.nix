@@ -18,6 +18,7 @@
     ./shared/opencommit.nix
     ./shared/openinterpreter.nix
     ./shared/atuin.nix
+    ./shared/zed.nix
   ];
 
   programs.home-manager.enable = true;

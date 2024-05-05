@@ -13,5 +13,8 @@
         "metrics": false
     },
     "theme": "Nord",
-    "buffer_font_size": 15
+    "buffer_font_size": 15,
+    "terminal": {
+        "font_family": "CaskaydiaCove NFM",
+    }
 }
