@@ -20,6 +20,7 @@
     ./shared/nushell.nix
     ./shared/atuin.nix
     ./shared/zed.nix
+    ./shared/android-studio.nix
     #./shared/zig.nix <- zig 0.12 is still unstable in nix, using zig from brew
   ];
 
@@ -57,7 +58,6 @@
     JIRA_NAME = "markus.korn";
     JIRA_DEFAULT_ACTION = "new";
 
-    ANDROID_HOME = "$HOME/Library/Android/sdk";
     LG_CONFIG_FILE = "$HOME/.config/lazygit/config.yml";
 
     # pnpm
@@ -69,12 +69,6 @@
   };
 
   home.sessionPath = [
-    "$ANDROID_HOME/emulator"
-    "$ANDROID_HOME/cmdline-tools/latest/bin"
-    "$ANDROID_HOME/tools"
-    "$ANDROID_HOME/tools/bin"
-    "$ANDROID_HOME/platform-tools"
-
     "$PNPM_HOME"
     "$HOME/.pub-cache/bin"
 

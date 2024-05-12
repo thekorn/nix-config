@@ -16,7 +16,6 @@
     };
     casks = [
       "flutter"
-      "android-studio"
       "zulu"
       "snowflake-snowsql"
       "vlc"

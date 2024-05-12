@@ -16,6 +16,7 @@
     ./shared/ripgrep.nix
     ./shared/opencommit.nix
     ./shared/nushell.nix
+    ./shared/android-studio.nix
   ];
 
   programs.home-manager.enable = true;
@@ -53,7 +54,6 @@
     JIRA_NAME = "markus.korn";
     JIRA_DEFAULT_ACTION = "new";
 
-    ANDROID_HOME = "$HOME/Library/Android/sdk";
     LG_CONFIG_FILE = "$HOME/.config/lazygit/config.yml";
 
     # pnpm
@@ -65,12 +65,6 @@
   };
 
   home.sessionPath = [
-    "$ANDROID_HOME/emulator"
-    "$ANDROID_HOME/cmdline-tools/latest/bin"
-    "$ANDROID_HOME/tools"
-    "$ANDROID_HOME/tools/bin"
-    "$ANDROID_HOME/platform-tools"
-
     "$PNPM_HOME"
     "$HOME/.pub-cache/bin"
 
