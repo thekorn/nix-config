@@ -56,8 +56,6 @@
     JIRA_NAME = "markus.korn";
     JIRA_DEFAULT_ACTION = "new";
 
-    LG_CONFIG_FILE = "$HOME/.config/lazygit/config.yml";
-
     # pnpm
     PNPM_HOME = "$HOME/.local/share/pnpm";
 
