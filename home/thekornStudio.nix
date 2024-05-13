@@ -21,6 +21,8 @@
     ./shared/atuin.nix
     ./shared/zed.nix
     ./shared/android-studio.nix
+    ./shared/work.nix
+    ./shared/pnpm.nix
     #./shared/zig.nix <- zig 0.12 is still unstable in nix, using zig from brew
   ];
 
@@ -53,21 +55,9 @@
     PAGER = "less";
     CLICLOLOR = 1;
     EDITOR = "nano";
-
-    JIRA_URL = "https://burdaforward.atlassian.net";
-    JIRA_NAME = "markus.korn";
-    JIRA_DEFAULT_ACTION = "new";
-
-    # pnpm
-    PNPM_HOME = "$HOME/.local/share/pnpm";
-
-    #bunte monorepo
-    BROWSERSLIST_IGNORE_OLD_DATA = 1;
-
   };
 
   home.sessionPath = [
-    "$PNPM_HOME"
     "$HOME/.pub-cache/bin"
 
     "$HOME/.local/bin"

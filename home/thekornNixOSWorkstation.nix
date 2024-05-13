@@ -18,6 +18,7 @@
     ./shared/nushell.nix
     ./shared/hyprland.nix
     ./shared/android-studio.nix
+    ./shared/pnpm.nix
   ];
 
   programs.home-manager.enable = true;
@@ -44,28 +45,15 @@
     nixfmt
     ffmpeg
     unzip
-    nodePackages.pnpm
   ];
 
   home.sessionVariables = {
     PAGER = "less";
     CLICLOLOR = 1;
     EDITOR = "nano";
-
-    JIRA_URL = "https://burdaforward.atlassian.net";
-    JIRA_NAME = "markus.korn";
-    JIRA_DEFAULT_ACTION = "new";
-
-    # pnpm
-    PNPM_HOME = "$HOME/.local/share/pnpm";
-
-    #bunte monorepo
-    BROWSERSLIST_IGNORE_OLD_DATA = 1;
-
   };
 
   home.sessionPath = [
-    "$PNPM_HOME"
     "$HOME/.pub-cache/bin"
 
     "$HOME/.local/bin"
