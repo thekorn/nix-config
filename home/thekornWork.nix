@@ -21,6 +21,7 @@
     ./shared/android-studio.nix
     ./shared/work.nix
     ./shared/pnpm.nix
+    ./shared/zed.nix
   ];
 
   programs.home-manager.enable = true;
