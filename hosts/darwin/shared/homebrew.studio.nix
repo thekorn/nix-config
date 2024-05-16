@@ -5,7 +5,6 @@
     global.brewfile = true;
     masApps = { };
     casks = [
-      "insomnia"
       "prismlauncher"
       "zulu17"
       "steam"
