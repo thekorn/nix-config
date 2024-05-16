@@ -15,6 +15,7 @@
       "zulip"
       "microsoft-edge"
       "whatsapp"
+      "cleanshot"
     ];
     taps = [ "homebrew/cask-versions" ];
     brews = [
