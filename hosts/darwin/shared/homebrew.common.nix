@@ -14,9 +14,11 @@
       "vlc"
       "gimp"
       "visual-studio-code"
+      "android-studio"
       "brave-browser"
       "bruno"
       "zed"
+      "zulu"
     ];
     taps = [ "leoafarias/fvm" ];
     brews = [

@@ -6,7 +6,7 @@
     masApps = { };
     casks = [
       "prismlauncher"
-      "zulu17"
+      "zulu@17"
       "steam"
       "keymapp"
       "whatsapp"
@@ -14,6 +14,7 @@
       "arc"
       "zulip"
       "microsoft-edge"
+      "whatsapp"
     ];
     taps = [ "homebrew/cask-versions" ];
     brews = [
