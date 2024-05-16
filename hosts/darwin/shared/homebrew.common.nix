@@ -6,6 +6,7 @@
     masApps = { };
     casks = [
       "docker"
+      "flutter"
       "raycast"
       "google-chrome"
       "firefox"
@@ -15,7 +16,6 @@
       "visual-studio-code"
       "brave-browser"
       "bruno"
-      "cleanshot"
       "zed"
     ];
     taps = [ "leoafarias/fvm" ];

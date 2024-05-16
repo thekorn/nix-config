@@ -12,7 +12,6 @@
       "keymapp"
       "whatsapp"
       "sonos"
-      "flutter"
       "arc"
       "zulip"
       "microsoft-edge"
