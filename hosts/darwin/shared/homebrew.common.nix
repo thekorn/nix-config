@@ -28,6 +28,8 @@
       "swiftformat"
       "clang-format"
       "cocoapods"
+      "zig"
+      "zls"
     ];
   };
 }

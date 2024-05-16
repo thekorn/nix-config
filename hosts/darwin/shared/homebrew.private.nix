@@ -14,8 +14,7 @@
       "sonos"
       "arc"
     ];
-    brews =
-      [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" "ccache" "zig" "zls" ];
+    brews = [ "pkg-config" "qmk/qmk/qmk" "cmake" "qt" "ninja" "ccache" ];
     taps = [ "homebrew/cask-versions" ];
   };
 }

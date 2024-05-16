@@ -19,8 +19,6 @@
     brews = [
       #"podman"
       "wb32-dfu-updater_cli"
-      "zig"
-      "zls"
     ];
   };
 }
