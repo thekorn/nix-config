@@ -18,6 +18,9 @@
         "font_family": "MesloLGS Nerd Font Mono",
         "line_height": {
             "custom": 1.15
+        },
+        "env": {
+          "DISABLE_TMUX": "1"
         }
     }
 }
