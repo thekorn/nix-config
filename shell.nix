@@ -1,2 +1,2 @@
-{ pkgs }:
-pkgs.mkShell { nativeBuildInputs = with pkgs; [ home-manager cryptsetup ]; }
+{pkgs}:
+pkgs.mkShell {nativeBuildInputs = with pkgs; [home-manager cryptsetup];}

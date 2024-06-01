@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ # Include the results of the hardware scan.
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     ./configurations/thekornNixOSVM/hardware-configuration.nix
     ./shared/fonts.nix
     ./shared/home.private.nix
@@ -22,9 +25,12 @@
 
   programs.zsh.enable = true;
   environment = {
-    shells = with pkgs; [ bash zsh ];
+    shells = with pkgs; [
+      bash
+      zsh
+    ];
     #loginShell = pkgs.zsh;
-    systemPackages = [ pkgs.coreutils ];
+    systemPackages = [pkgs.coreutils];
     #systemPath = [ "/opt/homebrew/bin" ];
     #pathsToLink = [ "/Applications" ];
   };
@@ -33,4 +39,3 @@
   '';
   #services.nix-daemon.enable = true;
 }
-

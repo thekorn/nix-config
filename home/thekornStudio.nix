@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   imports = [
     ./shared/1password.nix
     ./shared/alacritty.nix
@@ -23,7 +22,7 @@
     ./shared/android-studio.nix
     ./shared/work.nix
     ./shared/pnpm.nix
-    #./shared/zig.nix <- zig 0.12 is still unstable in nix, using zig from brew
+    ./shared/zig.nix
   ];
 
   programs.home-manager.enable = true;
@@ -46,7 +45,7 @@
     mkcert
     mongosh
     go
-    nixfmt
+    alejandra
     ffmpeg
     nodePackages.pnpm
     wget

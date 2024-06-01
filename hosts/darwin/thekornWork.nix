@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # here go the darwin preferences and config items
 
   imports = [
@@ -11,15 +11,14 @@
 
   programs.zsh.enable = true;
   environment = {
-    shells = with pkgs; [ bash zsh ];
+    shells = with pkgs; [bash zsh];
     loginShell = pkgs.zsh;
-    systemPackages = [ pkgs.coreutils ];
-    systemPath = [ "/opt/homebrew/bin" ];
-    pathsToLink = [ "/Applications" ];
+    systemPackages = [pkgs.coreutils];
+    systemPath = ["/opt/homebrew/bin"];
+    pathsToLink = ["/Applications"];
   };
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
   services.nix-daemon.enable = true;
-
 }

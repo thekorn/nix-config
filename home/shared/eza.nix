@@ -1,1 +1,5 @@
-{ pkgs, config, ... }: { programs.eza.enable = true; }
+{
+  pkgs,
+  config,
+  ...
+}: {programs.eza.enable = true;}

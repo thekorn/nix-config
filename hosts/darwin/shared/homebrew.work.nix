@@ -3,8 +3,7 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = { };
-    casks =
-      [ "snowflake-snowsql" "vlc" "zeplin" "zulip" "microsoft-edge" "slack" ];
+    masApps = {};
+    casks = ["snowflake-snowsql" "vlc" "zeplin" "zulip" "microsoft-edge" "slack"];
   };
 }

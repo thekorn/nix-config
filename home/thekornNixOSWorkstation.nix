@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   imports = [
     #./shared/alacritty.nix
     ./shared/bat.nix
@@ -42,7 +41,7 @@
     mkcert
     mongosh
     go
-    nixfmt
+    alejandra
     ffmpeg
     unzip
   ];

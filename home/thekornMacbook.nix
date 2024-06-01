@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   imports = [
     ./shared/1password.nix
     ./shared/alacritty.nix
@@ -21,6 +20,7 @@
     ./shared/zed.nix
     ./shared/android-studio.nix
     ./shared/pnpm.nix
+    ./shared/zig.nix
   ];
 
   programs.home-manager.enable = true;
@@ -43,7 +43,7 @@
     mkcert
     mongosh
     go
-    nixfmt
+    alejandra
     ffmpeg
     wget
   ];

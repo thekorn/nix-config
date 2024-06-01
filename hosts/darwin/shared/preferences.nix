@@ -59,5 +59,4 @@
     enableKeyMapping = true;
     remapCapsLockToControl = true;
   };
-
 }

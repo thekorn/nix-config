@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   imports = [
     ./shared/alacritty.nix
     ./shared/bat.nix
@@ -38,7 +37,7 @@
     mkcert
     mongosh
     go
-    nixfmt
+    alejandra
     ffmpeg
     nodePackages.pnpm
   ];
@@ -53,8 +52,7 @@
 
     # pnpm
     PNPM_HOME = "$HOME/.local/share/pnpm";
-
   };
 
-  home.sessionPath = [ "$PNPM_HOME" ];
+  home.sessionPath = ["$PNPM_HOME"];
 }

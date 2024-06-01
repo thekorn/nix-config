@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ oh-my-posh nushell ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [oh-my-posh nushell];
   home.file = {
     ".config/nushell/oh-my-posh.nu".source = ./dotfiles/nushell/oh-my-posh.nu;
     ".config/nushell/powerlevel10k_rainbow.json".source =

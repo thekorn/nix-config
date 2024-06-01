@@ -3,7 +3,7 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = { };
+    masApps = {};
     casks = [
       "prismlauncher"
       "zulu@17"
@@ -16,7 +16,7 @@
       "microsoft-edge"
       "whatsapp"
     ];
-    taps = [ "homebrew/cask-versions" ];
+    taps = ["homebrew/cask-versions"];
     brews = [
       #"podman"
       "wb32-dfu-updater_cli"

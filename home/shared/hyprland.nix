@@ -1,1 +1,5 @@
-{ pkgs, config, ... }: { }
+{
+  pkgs,
+  config,
+  ...
+}: {}

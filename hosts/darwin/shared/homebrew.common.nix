@@ -2,8 +2,9 @@
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
+    onActivation.cleanup = "zap";
     global.brewfile = true;
-    masApps = { };
+    masApps = {};
     casks = [
       "docker"
       "flutter"
@@ -20,7 +21,7 @@
       "zed"
       "zulu"
     ];
-    taps = [ "leoafarias/fvm" ];
+    taps = ["leoafarias/fvm"];
     brews = [
       "nss"
       "fvm"
@@ -30,8 +31,6 @@
       "swiftformat"
       "clang-format"
       "cocoapods"
-      "zig"
-      "zls"
     ];
   };
 }

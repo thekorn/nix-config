@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   imports = [
     ./shared/1password.nix
     ./shared/alacritty.nix
@@ -22,6 +21,7 @@
     ./shared/work.nix
     ./shared/pnpm.nix
     ./shared/zed.nix
+    ./shared/zig.nix
   ];
 
   programs.home-manager.enable = true;
@@ -44,7 +44,7 @@
     mkcert
     mongosh
     go
-    nixfmt
+    alejandra
     ffmpeg
     lcov
     wget

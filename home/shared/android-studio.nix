@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  home.sessionVariables = { ANDROID_HOME = "$HOME/Library/Android/sdk"; };
+{pkgs, ...}: {
+  home.sessionVariables = {ANDROID_HOME = "$HOME/Library/Android/sdk";};
   home.sessionPath = [
     "$ANDROID_HOME/emulator"
     "$ANDROID_HOME/cmdline-tools/latest/bin"
