@@ -20,8 +20,6 @@
     lcov
     wget
 
-    nodePackages.rush
-
     unar
     ktlint
     aria2
