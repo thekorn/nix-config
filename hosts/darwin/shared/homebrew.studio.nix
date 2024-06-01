@@ -15,6 +15,7 @@
       "zulip"
       "microsoft-edge"
       "whatsapp"
+      "chatgpt"
     ];
     taps = ["homebrew/cask-versions"];
     brews = [
