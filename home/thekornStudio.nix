@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./shared/programs/gptcommit.nix
     ./shared/programs/qmk.nix
 
     ./shared/common.nix
