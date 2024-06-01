@@ -20,7 +20,6 @@
     brews = [
       #"podman"
       "wb32-dfu-updater_cli"
-      "qmk/qmk/qmk"
     ];
   };
 }

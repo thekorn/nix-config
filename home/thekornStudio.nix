@@ -23,6 +23,7 @@
     ./shared/work.nix
     ./shared/pnpm.nix
     ./shared/zig.nix
+    ./shared/qmk.nix
   ];
 
   programs.home-manager.enable = true;
