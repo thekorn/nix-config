@@ -35,6 +35,7 @@
       # git
       ## Goes up the tree to the git root dir
       "g-" = ''cd $(git rev-parse --show-toplevel || echo ".")'';
+      "cm" = "git cm"; #alternativvely use "ocm" for opencommit
       "cma" = "git add . && cm";
 
       # lazygit

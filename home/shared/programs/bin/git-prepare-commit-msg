@@ -1,14 +1,29 @@
 #!/bin/zsh
 
 if [ -x "$(command -v op)" ] && [ -x "$(command -v gptcommit)" ]; then
-    # in a perfect world we would be able to prefix the command with the ticket, if avaiable
-    #branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
-    #branchName=${branchPath##*/}           #Get text behind the last / of the branch path
-    #regex="([A-Z]+-[0-9]*)"
-    #
-    #if [[ $branchName =~ $regex ]]; then
-    #    echo "${match[1]} " >$1
-    #fi
 
-    op run --env-file="$HOME/.config/gptcommit/gptcommit.env" -- gptcommit prepare-commit-msg --commit-msg-file "$1" --commit-source "$2" --commit-sha "$3"
+    tempfile=$(mktemp /tmp/commit-msg.XXXXXX)
+    branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
+    branchName=${branchPath##*/}           #Get text behind the last / of the branch path
+    regex="([A-Z]+-[0-9]*)"
+
+    # whatever is in there already just keep (like the commit summary)
+    cat $1 >$tempfile
+
+    # prepend the generated commit message
+    op run --env-file="$HOME/.config/gptcommit/gptcommit.env" -- gptcommit prepare-commit-msg --commit-msg-file "${tempfile}" --commit-source "$2" --commit-sha "$3"
+
+    # if there is a branchname matching a ticket, write to the commit file
+    if [[ $branchName =~ $regex ]]; then
+        echo -n "${match[1]}: " >$1
+
+        # append the entire generated bunch to the commit file
+        cat $tempfile >>$1
+    else
+        # append the entire generated bunch to the commit file
+        cat $tempfile >$1
+    fi
+
+    # delete the temp file
+    rm $tempfile
 fi

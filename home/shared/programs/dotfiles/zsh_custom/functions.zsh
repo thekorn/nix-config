@@ -20,7 +20,7 @@ sf() {
 }
 
 #git opencommit
-cm() {
+ocm() {
   if [ -x "$(command -v op)" ] && [ -x "$(command -v opencommit)" ]; then
     branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
     branchName=${branchPath##*/}           #Get text behind the last / of the branch path
