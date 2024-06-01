@@ -4,10 +4,14 @@
   ...
 }: {
   home.file.".local/bin/git-open".source = ./bin/git-open;
+  #home.file.".local/bin/git-prepare-commit-msg".source = ./bin/git-prepare-commit-msg;
   programs.git = {
     enable = true;
     userName = "Markus Korn";
     userEmail = "markus.korn@gmail.com";
+    hooks = {
+      prepare-commit-msg = ./bin/git-prepare-commit-msg;
+    };
     aliases = {
       co = "checkout";
       cm = "commit";
