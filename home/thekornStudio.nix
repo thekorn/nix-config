@@ -9,7 +9,6 @@
     ./shared/programs/tmux.nix
     ./shared/programs/zsh.nix
     ./shared/programs/ssh.nix
-    ./shared/devel.nix
     ./shared/programs/nvim.nix
     ./shared/programs/bottom.nix
     ./shared/programs/lazygit.nix
@@ -24,48 +23,13 @@
     ./shared/programs/pnpm.nix
     ./shared/programs/zig.nix
     ./shared/programs/qmk.nix
+
+    ./shared/common.nix
+    ./shared/common.packages.nix
+    ./shared/devel.nix
   ];
 
   programs.home-manager.enable = true;
 
   home.stateVersion = "22.11";
-  # specify my home-manager configs
-  home.packages = with pkgs; [
-    fd
-    curl
-    less
-    zsh-forgit
-    fnm
-    awscli
-    silver-searcher
-    jq
-    htop
-    delta
-    rustup
-    httpie
-    mkcert
-    mongosh
-    go
-    alejandra
-    ffmpeg
-    nodePackages.pnpm
-    wget
-
-    unar
-    ktlint
-    aria2
-    clang-tools_18
-  ];
-  home.sessionVariables = {
-    PAGER = "less";
-    CLICLOLOR = 1;
-    EDITOR = "nano";
-  };
-
-  home.sessionPath = [
-    "$HOME/.pub-cache/bin"
-
-    "$HOME/.local/bin"
-    "$HOME/.gpkg/bin"
-  ];
 }
