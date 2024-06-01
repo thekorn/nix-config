@@ -13,7 +13,7 @@
     ./programs/bottom.nix
     ./programs/lazygit.nix
     ./programs/ripgrep.nix
-    ./programs/opencommit.nix
+    ./programs/gptcommit.nix
     ./programs/atuin.nix
     ./programs/zed.nix
     ./programs/zig.nix
