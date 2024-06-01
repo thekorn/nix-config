@@ -1,13 +1,14 @@
-#!/bin/bash
+#!/bin/zsh
 
 if [ -x "$(command -v op)" ] && [ -x "$(command -v gptcommit)" ]; then
-    branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
-    branchName=${branchPath##*/}           #Get text behind the last / of the branch path
-    regex="([A-Z]+-[0-9]*)"
-
-    if [[ $branchName =~ $regex ]]; then
-        echo "${match[1]} " >>$1
-    fi
+    # in a perfect world we would be able to prefix the command with the ticket, if avaiable
+    #branchPath=$(git symbolic-ref -q HEAD) #Somthing like refs/heads/myBranchName
+    #branchName=${branchPath##*/}           #Get text behind the last / of the branch path
+    #regex="([A-Z]+-[0-9]*)"
+    #
+    #if [[ $branchName =~ $regex ]]; then
+    #    echo "${match[1]} " >$1
+    #fi
 
     op run --env-file="$HOME/.config/gptcommit/gptcommit.env" -- gptcommit prepare-commit-msg --commit-msg-file "$1" --commit-source "$2" --commit-sha "$3"
 fi
