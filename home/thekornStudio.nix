@@ -50,6 +50,11 @@
     ffmpeg
     nodePackages.pnpm
     wget
+
+    unar
+    ktlint
+    aria2
+    clang-tools_18
   ];
   home.sessionVariables = {
     PAGER = "less";

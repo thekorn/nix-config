@@ -25,11 +25,7 @@
     brews = [
       "nss"
       "fvm"
-      "unar"
-      "aria2"
-      "ktlint"
-      "swiftformat"
-      "clang-format"
+      "swiftformat" #<- nix version is outdated
       "cocoapods"
     ];
   };
