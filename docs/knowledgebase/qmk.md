@@ -2,24 +2,12 @@
 
 ## prerequists
 
-See [setup instructions](https://docs.qmk.fm/#/newbs_getting_started?id=setting-up-your-qmk-environment)
+In order to install the qmk tool and build dependencies, make sure to add the `./home/shared/qmk.nix` file to your home-manager configuration.
 
-Those packages needs to be installed:
-
-```
-  $ sudo apt install -y \
-        git \
-        python3-pip \
-        gcc-arm-none-eabi \
-        arduino \
-        dfu-programmer \
-        dfu-util
-```
-
-Install the `qmk` tool for the current user
-
-```
-  $ python3 -m pip install --user qmk
+```nix
+  imports = [
+    ./home/shared/qmk.nix
+  ];
 ```
 
 ## setup qmk
@@ -27,33 +15,37 @@ Install the `qmk` tool for the current user
 Run
 
 ```
-  $ qmk setup
+  $ qmk setup -H ~/devel/github.com/qmk/qmk_firmware -y
 ```
 
-and fix all issues
+in order to verify the setup, run
+
+```
+  $ qmk doctor
+```
 
 ## build and install firmware
 
 ### gmmk pro
 
 ```
-  $ qmk compile -kb gmmk/pro/rev1/ansi -km andrebrait
-``` 
+  $ qmk compile keyboards/gmmk_pro_rev1_ansi_thekorn.json
+```
 
 Then, install, and set the keyboard in boot mode (`FN + \`)
 
 ```
-  $ qmk flash -kb gmmk/pro/rev1/ansi -km andrebrait
+$ qmk flash ~/devel/github.com/qmk/qmk_firmware/gmmk_pro_rev1_ansi_gmmk_pro_rev1_ansi_thekorn.bin
 ```
 
 ### gmmk2
 
 ```
-  $ qmk compile -kb gmmk/gmmk2/p65/ansi -km thekorn
-``` 
+  $ qmk compile keyboards/gmmk_gmmk2_p65_ansi_thekorn-qmmk2.json
+```
 
 Then, install, and set the keyboard in boot mode (`FN + <space>`)
 
 ```
-  $ qmk flash -kb gmmk/gmmk2/p65/ansi -km thekorn
+  $ qmk flash ~/devel/github.com/qmk/qmk_firmware/gmmk_gmmk2_p65_ansi_gmmk_gmmk2_p65_ansi_thekorn-qmmk2.bin
 ```
