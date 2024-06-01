@@ -6,8 +6,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./configurations/thekornNixOSVM/hardware-configuration.nix
-    ./shared/fonts.nix
-    ./shared/home.private.nix
+    ./shared/programs/fonts.nix
+    ./shared/programs/home.private.nix
   ];
 
   networking.hostName = "thekorn-nixos-vm";

@@ -1,23 +1,23 @@
 {pkgs, ...}: {
   imports = [
-    #./shared/alacritty.nix
-    ./shared/bat.nix
-    ./shared/eza.nix
-    ./shared/fzf.nix
-    ./shared/git.nix
-    ./shared/tmux.nix
-    ./shared/zsh.nix
-    ./shared/ssh.nix
+    #./shared/programs/alacritty.nix
+    ./shared/programs/bat.nix
+    ./shared/programs/eza.nix
+    ./shared/programs/fzf.nix
+    ./shared/programs/git.nix
+    ./shared/programs/tmux.nix
+    ./shared/programs/zsh.nix
+    ./shared/programs/ssh.nix
     ./shared/devel.nix
-    ./shared/nvim.nix
-    ./shared/bottom.nix
-    ./shared/lazygit.nix
-    ./shared/ripgrep.nix
-    ./shared/opencommit.nix
-    ./shared/nushell.nix
-    ./shared/hyprland.nix
-    ./shared/android-studio.nix
-    ./shared/pnpm.nix
+    ./shared/programs/nvim.nix
+    ./shared/programs/bottom.nix
+    ./shared/programs/lazygit.nix
+    ./shared/programs/ripgrep.nix
+    ./shared/programs/opencommit.nix
+    ./shared/programs/nushell.nix
+    ./shared/programs/hyprland.nix
+    ./shared/programs/android-studio.nix
+    ./shared/programs/pnpm.nix
   ];
 
   programs.home-manager.enable = true;

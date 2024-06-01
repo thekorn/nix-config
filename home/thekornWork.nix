@@ -1,27 +1,27 @@
 {pkgs, ...}: {
   imports = [
-    ./shared/1password.nix
-    ./shared/alacritty.nix
-    ./shared/bat.nix
-    ./shared/eza.nix
-    ./shared/fzf.nix
-    ./shared/git.nix
-    ./shared/tmux.nix
-    ./shared/zsh.nix
-    ./shared/ssh.nix
+    ./shared/programs/1password.nix
+    ./shared/programs/alacritty.nix
+    ./shared/programs/bat.nix
+    ./shared/programs/eza.nix
+    ./shared/programs/fzf.nix
+    ./shared/programs/git.nix
+    ./shared/programs/tmux.nix
+    ./shared/programs/zsh.nix
+    ./shared/programs/ssh.nix
     ./shared/devel.nix
-    ./shared/nvim.nix
-    ./shared/bottom.nix
-    ./shared/lazygit.nix
-    ./shared/ripgrep.nix
-    ./shared/atuin.nix
-    ./shared/opencommit.nix
-    ./shared/openinterpreter.nix
-    ./shared/android-studio.nix
-    ./shared/work.nix
-    ./shared/pnpm.nix
-    ./shared/zed.nix
-    ./shared/zig.nix
+    ./shared/programs/nvim.nix
+    ./shared/programs/bottom.nix
+    ./shared/programs/lazygit.nix
+    ./shared/programs/ripgrep.nix
+    ./shared/programs/atuin.nix
+    ./shared/programs/opencommit.nix
+    ./shared/programs/openinterpreter.nix
+    ./shared/programs/android-studio.nix
+    ./shared/programs/work.nix
+    ./shared/programs/pnpm.nix
+    ./shared/programs/zed.nix
+    ./shared/programs/zig.nix
   ];
 
   programs.home-manager.enable = true;
