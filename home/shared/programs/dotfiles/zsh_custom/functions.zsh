@@ -85,3 +85,16 @@ function updateBrew() (
   brew update
   brew upgrade
 )
+
+
+function bunte-aws-mfa () {
+  secret="aws - burda-studios"
+
+  op item get "$secret" 2>&1 > /dev/null
+  if [[ "$?" == "1" ]] ; then
+    eval $(op signin)
+  fi
+  device=$(op item get "$secret" --field device)
+  otp=$(op item get "$secret" --otp)
+  rush cli --awsmfa --awsmfa-account "$device" --awsmfa-otp "$otp"
+}

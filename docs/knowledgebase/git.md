@@ -4,7 +4,7 @@
 
 ```sh
 $ git branch -d $( git branch --merged | grep -v '^\*' | grep -v 'master' | grep -v 'main' )
-``` 
+```
 
 ## delete all merged git branches on the remote
 
@@ -33,3 +33,24 @@ Taken from [this blogpost](https://www.damirscorner.com/blog/posts/20210423-Chan
     ```
     $ git submodule update --init --recursive --remote
     ```
+
+## hooks
+
+This config ships its set of global hooks. In case your project wants to ship
+its own hook, you can re-enable to the `local` hooks by running
+
+```sh
+$ git config core.hooksPath .git/hooks
+```
+
+You can get the current hook path by running
+
+```sh
+$ git config --get core.hooksPath
+```
+
+You can reset the current hooksPath setting by
+
+```sh
+$ git config --unset core.hooksPath
+```
