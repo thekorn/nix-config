@@ -17,7 +17,16 @@
                     "powerline_symbol": "\ue0b0",
                     "properties": {
                         "home_icon": "~",
-                        "style": "full"
+                        "style": "powerlevel",
+                        "mapped_locations": {
+                          "~/.config/nix": "~nix",
+                          "~/devel": "~devel",
+                          "~/devel/github.com": "~github" ,
+                          "~/devel/bitbucket.org": "~bitbucket",
+                          "~/devel/github.com/thekorn": "~thekorn",
+                          "~/devel/bitbucket.org/burdastudios": "~burdastudios",
+                          "~/devel/gitlab.bfops.io": "~bfops"
+                        }
                     },
                     "style": "powerline",
                     "template": " \uf07c {{ .Path }} ",
