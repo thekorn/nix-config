@@ -140,6 +140,14 @@
                     "type": "ruby"
                 },
                 {
+                  "type": "flutter",
+                  "style": "powerline",
+                  "powerline_symbol": "\ue0b2",
+                  "foreground": "#ffffff",
+                  "background": "#06A4CE",
+                  "template": "  {{ .Full }} "
+                },
+                {
                     "background_templates": [
                         "{{if contains \"default\" .Profile}}#FFA400{{end}}",
                         "{{if contains \"jan\" .Profile}}#f1184c{{end}}"
