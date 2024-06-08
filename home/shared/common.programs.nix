@@ -16,6 +16,7 @@
     ./programs/gptcommit.nix
     ./programs/atuin.nix
     ./programs/zed.nix
+    ./programs/oh-my-posh.nix
     # workaround, zig nix is broken https://github.com/NixOS/nixpkgs/issues/317055
     # using brew for now
     # ./programs/zig.nix

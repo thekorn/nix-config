@@ -62,7 +62,6 @@
     };
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
     localVariables = {
@@ -95,15 +94,6 @@
         fi
       '';
     };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
   };
-
-  home.file.".p10k.zsh".source = ./dotfiles/.p10k.zsh;
   home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.zsh;
 }
