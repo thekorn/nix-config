@@ -83,7 +83,7 @@ function update-nixos() (
 function updateBrew() (
   set -e
   brew update
-  brew upgrade
+  brew upgrade --greedy
 )
 
 
