@@ -127,6 +127,15 @@
                     "type": "python"
                 },
                 {
+                  "type": "flutter",
+                  "style": "powerline",
+                  "invert_powerline": true,
+                  "powerline_symbol": "\ue0b2",
+                  "foreground": "#ffffff",
+                  "background": "#06A4CE",
+                  "template": " \ue64c {{ .Full }} "
+                },
+                {
                     "background": "#AE1401",
                     "foreground": "#ffffff",
                     "invert_powerline": true,
