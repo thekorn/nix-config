@@ -22,6 +22,7 @@
     # ./programs/zig.nix
     ./programs/pnpm.nix
     ./programs/android-studio.nix
+    ./programs/dart-cli.nix
   ];
 
   programs.home-manager.enable = true;
