@@ -4,7 +4,6 @@
   ...
 }: {
   home.file.".local/bin/git-open".source = ./bin/git-open;
-  #home.file.".local/bin/git-prepare-commit-msg".source = ./bin/git-prepare-commit-msg;
   programs.git = {
     enable = true;
     userName = "Markus Korn";
@@ -114,6 +113,9 @@
           user = {
             email = "markus.korn@burda.com";
             name = "Markus Korn";
+          };
+          core = {
+            hooksPath = ".git/hooks";
           };
         };
       }
