@@ -103,6 +103,9 @@
             email = "markus.korn@burda.com";
             name = "Markus Korn";
           };
+          core = {
+            hooksPath = ".git/hooks";
+          };
         };
       }
       {
