@@ -9,7 +9,6 @@
     silver-searcher
     jq
     htop
-    btop
     delta
     rustup
     httpie

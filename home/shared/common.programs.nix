@@ -23,6 +23,7 @@
     ./programs/pnpm.nix
     ./programs/android-studio.nix
     ./programs/dart-cli.nix
+    ./programs/btop.nix
   ];
 
   programs.home-manager.enable = true;
