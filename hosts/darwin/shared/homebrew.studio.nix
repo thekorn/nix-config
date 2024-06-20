@@ -16,6 +16,7 @@
       "microsoft-edge"
       "whatsapp"
       "chatgpt"
+      "proxyman"
     ];
     taps = ["homebrew/cask-versions"];
     brews = [
