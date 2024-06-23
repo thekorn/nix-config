@@ -27,9 +27,6 @@
       "fvm"
       "swiftformat" #<- nix version is outdated
       "cocoapods"
-      # workaround, zig nix is broken https://github.com/NixOS/nixpkgs/issues/317055
-      "zig"
-      "zls"
     ];
   };
 }
