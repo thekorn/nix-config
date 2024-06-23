@@ -1,5 +1,5 @@
 {...}: {
-  nixpkgs.crossSystem.system = "aarch64-linux";
+  #nixpkgs.crossSystem.system = "aarch64-linux";
   imports = [
     <nixpkgs/nixos/modules/installer/sd-card/sd-image-aarch64.nix>
   ];
