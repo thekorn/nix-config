@@ -65,7 +65,8 @@ function update() (
   set -e
   cd ~/.config/nix
   git pull
-  nix flake update --commit-lock-file
+  # there is an issue atm with recent perl - deactivate for now
+  #nix flake update --commit-lock-file
   git pu
   nixswitch
   updateBrew
