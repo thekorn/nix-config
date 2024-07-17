@@ -56,6 +56,10 @@
 
       ## open interpreter
       interpreter = ''op run --env-file="$HOME/.config/openinterpreter.env" -- interpreter'';
+
+      ## rush
+      rxb = "rushx build";
+      rxbt = "rushx _phase:build && rushx _phase:test";
     };
     zprof = {
       enable = false;

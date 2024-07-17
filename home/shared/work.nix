@@ -3,6 +3,7 @@
     # this would be perfect, however we need a way to satisfy the node version requirement
     # means rush needs to be installed in the respectivve node version
     #nodePackages.rush
+    graphviz
   ];
   home.sessionVariables = {
     #jira
