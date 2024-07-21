@@ -4,6 +4,7 @@
     # means rush needs to be installed in the respectivve node version
     #nodePackages.rush
     graphviz
+    hyperfine
   ];
   home.sessionVariables = {
     #jira
