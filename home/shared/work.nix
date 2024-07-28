@@ -5,6 +5,7 @@
     #nodePackages.rush
     graphviz
     hyperfine
+    biome
   ];
   home.sessionVariables = {
     #jira

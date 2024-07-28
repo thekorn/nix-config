@@ -7,7 +7,8 @@
     ./shared/homebrew.private.nix
     ./shared/home.private.nix
     ./shared/fonts.nix
-    ./shared/preferences.nix
+    #./shared/preferences.nix
+    (import ./shared/preferences.nix {username = "thekorn";})
   ];
 
   programs.zsh.enable = true;

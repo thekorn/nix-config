@@ -1,4 +1,4 @@
-{
+{username, ...}: {
   system.defaults = {
     dock = {
       autohide = true;
@@ -8,6 +8,14 @@
       tilesize = 36;
       orientation = "bottom";
       show-recents = false;
+      persistent-apps = [
+        "/System/Applications/Mail.app"
+        "/Applications/Zed.app"
+        "/System/Applications/Notes.app"
+        "/Applications/Safari.app"
+        "/etc/profiles/per-user/${username}/Applications/Alacritty.app"
+      ];
+      persistent-others = ["/tmp/" "/Users/${username}/Downloads/"];
     };
 
     screencapture.location = "/tmp";
