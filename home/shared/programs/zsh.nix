@@ -37,6 +37,7 @@
       "g-" = ''cd $(git rev-parse --show-toplevel || echo ".")'';
       "cm" = "git cm"; #alternativvely use "ocm" for opencommit
       "cma" = "git add . && cm";
+      "cmap" = "cma && git push";
 
       # lazygit
       lg = "lazygit";
