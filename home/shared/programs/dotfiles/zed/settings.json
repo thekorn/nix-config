@@ -12,7 +12,12 @@
         "diagnostics": false,
         "metrics": false
     },
-    "theme": "Nord",
+    "theme": {
+      "mode": "system",
+      "light": "Nord",
+      "dark": "One Dark"
+    },
+    "ui_font_size": 15,
     "buffer_font_size": 15,
     "terminal": {
         "font_family": "MesloLGS Nerd Font Mono",

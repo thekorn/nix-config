@@ -16,6 +16,7 @@
     mongosh
     go
     alejandra
+    nixd
     ffmpeg
     lcov
     wget
