@@ -9,6 +9,8 @@
     ./shared/devel.nix
     ./shared/work.nix
 
+    ./shared/programs/zig.nix
+
     # this would be great, but ladybird build fails with those
     # using homebrew for now
     #./shared/devel/ladybird.darwin.nix
