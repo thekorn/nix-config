@@ -21,12 +21,13 @@
       "zed"
       "zulu"
     ];
-    taps = ["leoafarias/fvm"];
+    taps = ["leoafarias/fvm" "LucasPickering/homebrew-tap"];
     brews = [
       "nss"
       "fvm"
       "swiftformat" #<- nix version is outdated
       "cocoapods"
+      "LucasPickering/homebrew-tap/slumber"
     ];
   };
 }

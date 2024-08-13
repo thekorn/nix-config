@@ -18,11 +18,10 @@
       "chatgpt"
       "proxyman"
     ];
-    taps = ["homebrew/cask-versions" "LucasPickering/homebrew-tap"];
+    taps = ["homebrew/cask-versions"];
     brews = [
       #"podman"
       "wb32-dfu-updater_cli"
-      "LucasPickering/homebrew-tap/slumber"
     ];
   };
 }
