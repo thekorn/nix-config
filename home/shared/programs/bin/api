@@ -23,8 +23,6 @@ if [ ! -f "$selected/slumber.yml" ]; then
   exit 1
 fi
 
-echo "Selected: $selected"
-
 if [ -f "$selected/.env" ]; then
   op run --env-file="$selected/.env" -- slumber --file "$selected/slumber.yml"
 else
