@@ -4,6 +4,7 @@
   ...
 }: {
   home.file.".local/bin/tmux-sessionizer".source = ./bin/tmux-sessionizer;
+  home.file.".local/bin/api".source = ./bin/api;
   programs.tmux = {
     enable = true;
     historyLimit = 5000;
