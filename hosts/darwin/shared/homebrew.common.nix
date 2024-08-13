@@ -27,7 +27,7 @@
       "fvm"
       "swiftformat" #<- nix version is outdated
       "cocoapods"
-      "LucasPickering/homebrew-tap/slumber"
+      "LucasPickering/homebrew-tap/slumber" #<- nix version is outdated
     ];
   };
 }
