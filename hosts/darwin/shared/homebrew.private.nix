@@ -5,7 +5,7 @@
     global.brewfile = true;
     masApps = {};
     casks = ["transmission" "discord" "whatsapp" "sonos" "arc"];
-    brews = ["autoconf" "autoconf-archive" "automake" "cmake" "ninja" "ccache" "pkg-config"];
+    brews = ["autoconf" "autoconf-archive" "automake" "ccache" "cmake" "ffmpeg" "nasm" "ninja" "pkg-config"];
     taps = ["homebrew/cask-versions"];
   };
 }
