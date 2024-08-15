@@ -5,6 +5,8 @@
     ./shared/common.packages.nix
     ./shared/common.programs.nix
     ./shared/devel.nix
+
+    ./shared/programs/zig.nix
   ];
 
   programs.home-manager.enable = true;
