@@ -9,15 +9,11 @@
       "zulu@17"
       "steam"
       "keymapp"
-      "whatsapp"
-      "sonos"
-      "arc"
       "zulip"
       "whatsapp"
       "chatgpt"
       "proxyman"
     ];
-    taps = ["homebrew/cask-versions"];
     brews = [
       #"podman"
       "wb32-dfu-updater_cli"
