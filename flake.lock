@@ -59,7 +59,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-nPW78Z0aljFK8Tr46p9Kv7rNmxYJM8svoNxDY8NMKco=",
+        "narHash": "sha256-ys0qstG5vhRqmTTc2LMVod/Vbvx6Je440EHgVB+2/fo=",
         "path": "patches/gptcommit",
         "type": "path"
       },
