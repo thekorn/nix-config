@@ -13,7 +13,6 @@
       "sonos"
       "arc"
       "zulip"
-      "microsoft-edge"
       "whatsapp"
       "chatgpt"
       "proxyman"
