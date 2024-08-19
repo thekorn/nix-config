@@ -15,6 +15,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    gptcommit.url = "path:patches/gptcommit";
   };
 
   outputs = {
