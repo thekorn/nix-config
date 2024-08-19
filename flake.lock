@@ -58,11 +58,10 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
+        "dirtyRev": "7d975e3f38717388b37724ce08f3d2c237da8818-dirty",
+        "dirtyShortRev": "7d975e3-dirty",
         "lastModified": 1724060084,
-        "narHash": "sha256-xzAydOmhaV/+tnWd1211irMGCxDB6vtX1hDaiCF9fjk=",
-        "ref": "refs/heads/main",
-        "rev": "7d975e3f38717388b37724ce08f3d2c237da8818",
-        "revCount": 281,
+        "narHash": "sha256-5WCtXLM9ozTBXcIUiMcNt8CJeOUdRIzRH30BQcFvSOI=",
         "type": "git",
         "url": "file:///Users/thekorn/devel/github.com/thekorn/gptcommit"
       },
