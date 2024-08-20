@@ -92,7 +92,7 @@
       #  [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
       custom = "$HOME/.zsh_custom";
       extraConfig = ''
-        plugins=(git tmux jira aws z web-search fzf flutter fnm)
+        plugins=(git tmux jira aws z web-search fzf fnm)
         if [ "$DISABLE_TMUX" = "1" ]
         then
           plugins[$plugins[(i)tmux]]=()
