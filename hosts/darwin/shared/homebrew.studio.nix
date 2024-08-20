@@ -13,6 +13,7 @@
       "whatsapp"
       "chatgpt"
       "proxyman"
+      "raspberry-pi-imager"
     ];
     brews = [
       #"podman"
