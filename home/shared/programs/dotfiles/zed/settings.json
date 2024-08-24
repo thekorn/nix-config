@@ -14,7 +14,7 @@
     },
     "theme": {
       "mode": "system",
-      "light": "Nord",
+      "light": "One Dark",
       "dark": "One Dark"
     },
     "ui_font_size": 15,
