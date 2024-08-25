@@ -98,3 +98,8 @@ function bunte-aws-mfa () {
   otp=$(op item get "$secret" --otp)
   rush cli --awsmfa --awsmfa-account "$device" --awsmfa-otp "$otp"
 }
+
+function ph() {
+  set -e
+  ssh rpi5-thekorn "pihole $@"
+}
