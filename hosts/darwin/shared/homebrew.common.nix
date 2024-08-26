@@ -14,7 +14,6 @@
       "1password"
       "vlc"
       "gimp"
-      "visual-studio-code"
       "android-studio"
       "brave-browser"
       "bruno"

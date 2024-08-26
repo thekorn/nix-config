@@ -21,6 +21,7 @@
     ./programs/android-studio.nix
     ./programs/dart-cli.nix
     ./programs/btop.nix
+    ./programs/vscode.nix
   ];
 
   programs.home-manager.enable = true;
