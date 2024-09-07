@@ -111,6 +111,10 @@
       "terminal.integrated.automationProfile.windows" = null;
       "github.copilot.editor.enableAutoCompletions" = true;
       "zig.zls.path" = "zls";
+      "workbench.activityBar.location" = "hidden";
+      "editor.minimap.enabled" = false;
+      "breadcrumbs.enabled" = false;
+      "editor.renderWhitespace" = "all";
       "editor.codeActionsOnSave" = {
       };
       "rust-analyzer.debug.engineSettings" = {};
