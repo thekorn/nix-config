@@ -2,7 +2,7 @@
   fonts.packages = [
     (
       pkgs.nerdfonts.override {
-        fonts = ["Meslo" "CascadiaCode"];
+        fonts = ["Meslo" "CascadiaCode" "GeistMono"];
       }
     )
   ];

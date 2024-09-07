@@ -14,6 +14,7 @@
       };
       font = {
         normal.family = "MesloLGS Nerd Font Mono";
+        #normal.family = "GeistMono Nerd Font";
         size = 12;
       };
       import = ["~/.config/alacritty/nord.theme.toml"];
