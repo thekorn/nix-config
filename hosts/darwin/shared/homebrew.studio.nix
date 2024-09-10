@@ -14,6 +14,7 @@
       "chatgpt"
       "proxyman"
       "raspberry-pi-imager"
+      "obs"
     ];
     brews = [
       #"podman"
