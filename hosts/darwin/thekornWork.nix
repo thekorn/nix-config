@@ -10,6 +10,8 @@
     (import ./shared/preferences.nix {username = "d438477";})
   ];
 
+  system.stateVersion = 5;
+
   programs.zsh.enable = true;
   environment = {
     shells = with pkgs; [bash zsh];
