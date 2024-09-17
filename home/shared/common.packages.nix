@@ -25,5 +25,7 @@
     ktlint
     aria2
     clang-tools_18
+
+    ranger
   ];
 }
