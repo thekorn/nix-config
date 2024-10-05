@@ -10,11 +10,9 @@
     jq
     htop
     delta
-    rustup
     httpie
     mkcert
     mongosh
-    go
     alejandra
     nixd
     ffmpeg
@@ -26,6 +24,6 @@
     aria2
     clang-tools_18
 
-    ranger
+    #ranger
   ];
 }
