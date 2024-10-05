@@ -90,6 +90,15 @@
                     "type": "executiontime"
                 },
                 {
+                    "type": "nix-shell",
+                    "style": "powerline",
+                    "background": "#00acd7",
+                    "foreground": "#ffffff",
+                    "invert_powerline": true,
+                    "powerline_symbol": "\ue0b2",
+                    "template": " 󱄅 "
+                },
+                {
                     "background": "#b48ead",
                     "foreground": "#3b4252",
                     "invert_powerline": true,
