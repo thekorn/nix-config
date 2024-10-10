@@ -304,22 +304,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-tmux": {
-      "locked": {
-        "lastModified": 1720494119,
-        "narHash": "sha256-IE7PZn9bSjxI4/MugjAEx49oPoxu0uKXdfC+X7HcRuQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "05bbf675397d5366259409139039af8077d695ce",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "05bbf675397d5366259409139039af8077d695ce",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1728538411,
@@ -365,8 +349,7 @@
         "darwin": "darwin",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_2",
-        "nixpkgs-tmux": "nixpkgs-tmux"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
