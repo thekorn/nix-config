@@ -3,9 +3,12 @@
     autoconf
     autoconf-archive
     automake
-    cmake
-    ninja
     ccache
+    cmake
+    ffmpeg
+    nasm
+    ninja
     pkg-config
+    llvm
   ];
 }

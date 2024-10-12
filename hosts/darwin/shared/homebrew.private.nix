@@ -10,7 +10,7 @@
       #"whatsapp"
       "sonos"
     ];
-    brews = ["autoconf" "autoconf-archive" "automake" "ccache" "cmake" "ffmpeg" "nasm" "ninja" "pkg-config"];
+    brews = [];
     taps = ["homebrew/cask-versions"];
   };
 }
