@@ -7,6 +7,7 @@
     casks = [
       "prismlauncher"
       "zulu@17"
+      "zulu@21"
       "steam"
       "keymapp"
       #"whatsapp"
