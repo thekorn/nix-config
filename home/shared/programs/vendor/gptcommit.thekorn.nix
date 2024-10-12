@@ -1,3 +1,4 @@
+# override to fix https://github.com/zurawiki/gptcommit/pull/285
 {
   stdenv,
   lib,
@@ -7,6 +8,7 @@
   nix-update-script,
   Security,
   SystemConfiguration,
+  openssl,
 }: let
   pname = "gptcommit";
   version = "master";
@@ -29,8 +31,8 @@ in
     doCheck = false;
 
     buildInputs =
-      lib.optionals stdenv.hostPlatform.isDarwin [Security SystemConfiguration];
-    #++ lib.optionals stdenv.hostPlatform.isLinux [openssl];
+      lib.optionals stdenv.hostPlatform.isDarwin [Security SystemConfiguration]
+      ++ lib.optionals stdenv.hostPlatform.isLinux [openssl];
 
     passthru = {
       updateScript = nix-update-script {};
