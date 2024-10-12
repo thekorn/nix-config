@@ -12,6 +12,8 @@
     secureSocket = false;
     terminal = "screen-256color";
     newSession = true;
+    # use tmux 3.4 as 3.5a always stars /bin/sh in nixpkgs-unstable
+    package = pkgs.callPackage ./vendor/tmux34.nix {};
 
     plugins = with pkgs; [tmuxPlugins.nord tmuxPlugins.pain-control];
 
