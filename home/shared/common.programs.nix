@@ -13,8 +13,7 @@
     ./programs/bottom.nix
     ./programs/lazygit.nix
     ./programs/ripgrep.nix
-    #./programs/gptcommit.nix #<-- broken upstream, fixed at https://github.com/zurawiki/gptcommit/pull/285
-    #./programs/gptcommit_src.nix #<-- broken upstream, fixed at https://github.com/zurawiki/gptcommit/pull/285
+    ./programs/gptcommit.nix
     ./programs/atuin.nix
     ./programs/zed.nix
     ./programs/oh-my-posh.nix
