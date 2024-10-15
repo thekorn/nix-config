@@ -20,10 +20,10 @@ in
       owner = "thekorn";
       repo = pname;
       rev = "${version}";
-      hash = "sha256-xzAydOmhaV/+tnWd1211irMGCxDB6vtX1hDaiCF9fjk=";
+      hash = "sha256-B/gSuo0UCqRen3am5pccPRgcoNr+08R2NPBjB4Wyr2k=";
     };
 
-    cargoHash = "sha256-m6JTmVCZzN5elwk8k9BK0Z+HcuvhQWcYbo+ZvA9w4Vo=";
+    cargoHash = "sha256-dulbSaFtHVIU8jxdV9+vvvMi85SYcu2S24dcWInen30=";
 
     nativeBuildInputs = [pkg-config];
 
