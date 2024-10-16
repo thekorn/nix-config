@@ -101,5 +101,20 @@ function bunte-aws-mfa () {
 
 function ph() {
   set -e
-  ssh rpi5-thekorn "pihole $@"
+  LC_ALL=C.UTF-8 ssh rpi5-thekorn "pihole $@"
+}
+
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+function zfif() {
+    set -e
+    zed $(fif "$@")
+}
+
+function cfif() {
+    set -e
+    code $(fif "$@")
 }
