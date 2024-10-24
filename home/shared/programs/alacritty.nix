@@ -17,7 +17,9 @@
         #normal.family = "GeistMono Nerd Font";
         size = 12;
       };
-      import = ["~/.config/alacritty/nord.theme.toml"];
+      general = {
+        import = ["~/.config/alacritty/nord.theme.toml"];
+      };
       selection = {save_to_clipboard = true;};
     };
   };
