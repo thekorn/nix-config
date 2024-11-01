@@ -11,7 +11,7 @@
   openssl,
 }: let
   pname = "gptcommit";
-  version = "be496bd";
+  version = "7061475";
 in
   rustPlatform.buildRustPackage {
     inherit pname version;
@@ -20,10 +20,10 @@ in
       owner = "thekorn";
       repo = pname;
       rev = "${version}";
-      hash = "sha256-B/gSuo0UCqRen3am5pccPRgcoNr+08R2NPBjB4Wyr2k=";
+      hash = "sha256-DZsUmZO1dr+aS7Aa+DmP1G5lDlomQpmFdN+q/rYly5k=";
     };
 
-    cargoHash = "sha256-c9Azn0/HjqsrW5Gp9Ihab+2a5Z/MoBYdr3WM7hILAHo=";
+    cargoHash = "sha256-+/255qFHUROUb19rWCrSYRW9Ii5EKjvWIAwMlY+q0IY=";
 
     nativeBuildInputs = [pkg-config];
 
