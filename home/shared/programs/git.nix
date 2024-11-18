@@ -4,6 +4,7 @@
   ...
 }: {
   home.file.".local/bin/git-open".source = ./bin/git-open;
+  home.file.".local/.githelpers".source = ./dotfiles/git/githelpers.sh;
   programs.git = {
     enable = true;
     userName = "Markus Korn";
@@ -27,6 +28,12 @@
       permission-reset = ''
         !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
       patch = "!git --no-pager diff --no-color";
+
+      l = "!. ~/.local/.githelpers && pretty_git_log";
+      la = "!git l --all";
+      lr = "!git l -30";
+      lra = "!git lr --all";
+      lgg = "!git l -G $1 -- $2";
     };
     delta = {
       enable = true;
