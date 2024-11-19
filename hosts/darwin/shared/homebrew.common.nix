@@ -19,6 +19,7 @@
       "bruno"
       "zed"
       "zulu"
+      "tableplus"
     ];
     taps = ["leoafarias/fvm" "LucasPickering/homebrew-tap"];
     brews = [
