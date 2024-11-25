@@ -30,7 +30,7 @@
     zsh-forgit
     fnm
     nodejs_20
-    awscli
+    awscli2
     silver-searcher
     jq
     htop
