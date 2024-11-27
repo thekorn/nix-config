@@ -22,6 +22,7 @@
     ./programs/dart-cli.nix
     ./programs/btop.nix
     ./programs/vscode.nix
+    ./programs/ghostty.nix
   ];
 
   programs.home-manager.enable = true;
