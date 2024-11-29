@@ -5,6 +5,7 @@
 }: {
   home.file.".local/bin/tmux-sessionizer".source = ./bin/tmux-sessionizer;
   home.file.".local/bin/api".source = ./bin/api;
+  home.file.".local/bin/todo".source = ./bin/todo;
   programs.tmux = {
     enable = true;
     historyLimit = 5000;
@@ -43,6 +44,7 @@
       set -g status-right "#{prefix_highlight}#[fg=brightblack,bg=black,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] %Y-%m-%d #[fg=white,bg=brightblack,nobold,noitalics,nounderscore]#[fg=white,bg=brightblack] %H:%M #[fg=cyan,bg=brightblack,nobold,noitalics,nounderscore]#[fg=black,bg=cyan,bold] #h "
 
       bind-key S run-shell "tmux popup -E ~/.local/bin/tmux-sessionizer"
+      bind-key T run-shell "tmux popup -E ~/.local/bin/todo"
       bind-key N run-shell "~/.local/bin/tmux-sessionizer ~/.config/nix"
     '';
   };
