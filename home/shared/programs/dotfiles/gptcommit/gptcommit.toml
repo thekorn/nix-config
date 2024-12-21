@@ -13,7 +13,7 @@ file_ignore = [
 
 [openai]
 api_base = "https://api.openai.com/v1"
-model = "gpt-4-turbo"
+model = "gpt-4o"
 retries = 2
 proxy = ""
 
@@ -161,4 +161,3 @@ conventional_commit = true
 conventional_commit_prefix_format = "{{ prefix }}: "
 lang = "en"
 show_per_file_summary = false
-
