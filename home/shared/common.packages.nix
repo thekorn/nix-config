@@ -5,7 +5,7 @@
     less
     zsh-forgit
     fnm
-    awscli2
+    #awscli2 <-- broken (see: https://github.com/NixOS/nixpkgs/issues/367876, check https://nixpk.gs/pr-tracker.html?pr=367979 to re-enable)
     silver-searcher
     jq
     htop
