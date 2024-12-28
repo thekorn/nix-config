@@ -13,7 +13,8 @@
         "/Applications/Zed.app"
         "/System/Applications/Notes.app"
         "/Applications/Safari.app"
-        "/etc/profiles/per-user/${username}/Applications/Alacritty.app"
+        #"/etc/profiles/per-user/${username}/Applications/Alacritty.app"
+        "/Applications/Ghostty.app"
       ];
       persistent-others = ["/tmp/" "/Users/${username}/Downloads/"];
     };
