@@ -20,6 +20,7 @@
       "zed"
       "zulu"
       "tableplus"
+      "ghostty"
     ];
     taps = ["leoafarias/fvm" "LucasPickering/homebrew-tap"];
     brews = [
