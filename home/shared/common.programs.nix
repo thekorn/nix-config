@@ -23,6 +23,7 @@
     ./programs/btop.nix
     ./programs/vscode.nix
     ./programs/ghostty.nix
+    ./programs/yazi.nix
   ];
 
   programs.home-manager.enable = true;
