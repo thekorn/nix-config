@@ -14,7 +14,7 @@
         "editor.defaultFormatter" = "vscode.json-language-features";
       };
       "redhat.telemetry.enabled" = false;
-      "editor.fontFamily" = "'CaskaydiaCove NF', 'cascadia code pl', 'MesloLGS NF'";
+      "editor.fontFamily" = "'GeistMono Nerd Font', 'CaskaydiaCove NF', 'cascadia code pl', 'MesloLGS NF'";
       "terminal.integrated.profiles.linux" = {
         "zsh (to-tmux)" = {
           "path" = "zsh";
@@ -45,7 +45,7 @@
       "eslint.debug" = true;
       "editor.fontSize" = 12;
       "terminal.integrated.fontSize" = 12;
-      "terminal.integrated.fontFamily" = "'CaskaydiaCove NFM', 'cascadia mono pl', 'MesloLGS NF'";
+      "terminal.integrated.fontFamily" = "'GeistMono Nerd Font', 'CaskaydiaCove NFM', 'cascadia mono pl', 'MesloLGS NF'";
       "vetur.trace.server" = "verbose";
       "emmet.includeLanguages" = {};
       "workbench.editor.splitInGroupLayout" = "vertical";
