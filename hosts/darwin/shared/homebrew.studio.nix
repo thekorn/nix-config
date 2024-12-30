@@ -6,6 +6,7 @@
     masApps = {};
     casks = [
       "prismlauncher"
+      "zulu"
       "zulu@17"
       "zulu@21"
       "steam"
