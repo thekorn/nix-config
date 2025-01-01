@@ -4,3 +4,4 @@ font-size = 12
 font-thicken = true
 confirm-close-surface = false
 auto-update = off
+copy-on-select = clipboard
