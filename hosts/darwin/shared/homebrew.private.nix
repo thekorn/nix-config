@@ -7,7 +7,7 @@
     casks = [
       "transmission"
       "discord"
-      #"whatsapp"
+      "whatsapp"
       "sonos"
       "zulu"
     ];

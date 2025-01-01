@@ -11,7 +11,6 @@
       "zulu@21"
       "steam"
       "keymapp"
-      #"whatsapp"
       "chatgpt"
       "proxyman"
       "raspberry-pi-imager"
