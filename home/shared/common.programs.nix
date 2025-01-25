@@ -24,6 +24,7 @@
     ./programs/vscode.nix
     ./programs/ghostty.nix
     ./programs/yazi.nix
+    ./programs/podman.nix
   ];
 
   programs.home-manager.enable = true;

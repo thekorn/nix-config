@@ -6,7 +6,6 @@
     global.brewfile = true;
     masApps = {};
     casks = [
-      "docker"
       "flutter"
       "raycast"
       "google-chrome"
