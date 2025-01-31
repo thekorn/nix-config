@@ -25,6 +25,7 @@
     ./programs/ghostty.nix
     ./programs/yazi.nix
     ./programs/podman.nix
+    ./programs/llm.nix
   ];
 
   programs.home-manager.enable = true;
