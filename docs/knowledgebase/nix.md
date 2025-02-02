@@ -25,3 +25,10 @@ access-tokens = github.com=***censored***
 ## pinning packages
 
 one way is to vendor packages https://jade.fyi/blog/pinning-packages-in-nix/
+
+
+## update inputs
+
+```bash
+nix flake update
+```
