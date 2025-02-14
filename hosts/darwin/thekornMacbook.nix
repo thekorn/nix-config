@@ -22,5 +22,7 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  services.nix-daemon.enable = true;
+  #services.nix-daemon.enable = true;
+  #nix.enable = true;
+  ids.gids.nixbld = 30000;
 }
