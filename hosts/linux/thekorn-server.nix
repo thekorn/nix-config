@@ -7,7 +7,7 @@
     # Include the results of the hardware scan.
     ./configurations/thekorn-server/hardware-configuration.nix
 
-    ./shared/programs/home.private.nix
+    ./shared/home.private.nix
   ];
 
   # Bootloader.
