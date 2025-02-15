@@ -6,6 +6,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./configurations/thekorn-server/hardware-configuration.nix
+
+    ./shared/programs/home.private.nix
   ];
 
   # Bootloader.
@@ -15,7 +17,7 @@
   networking.hostName = "thekorn-server"; # Define your hostname.
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -36,18 +38,18 @@
   };
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  #services.xserver.xkb = {
+  #  layout = "us";
+  #  variant = "";
+  #};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.thekorn = {
-    isNormalUser = true;
-    description = "markus korn";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
-  };
+  #users.users.thekorn = {
+  #  isNormalUser = true;
+  #  description = "markus korn";
+  #  extraGroups = ["networkmanager" "wheel"];
+  #  packages = with pkgs; [];
+  #};
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
