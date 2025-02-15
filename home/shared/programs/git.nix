@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   home.file.".local/bin/git-open".source = ./bin/git-open;
@@ -53,6 +54,11 @@
         interactive = {keep-plus-minus-markers = true;};
       };
     };
+    signing = {
+      format = "ssh";
+      signByDefault = true;
+      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+    };
     extraConfig = {
       #credential = {
       #  helper = "store";
@@ -71,12 +77,6 @@
       commit = {
         # dont sign per default
         gpgsign = false;
-      };
-      gpg = {
-        format = "ssh";
-        ssh = {
-          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-        };
       };
     };
     includes = [
