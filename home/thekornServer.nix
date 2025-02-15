@@ -57,6 +57,6 @@
     "$HOME/.local/bin"
   ];
 
-  programs.ssh.startAgent = true;
+  services.ssh-agent.enable = true;
   programs.ssh.addKeysToAgent = "yes";
 }
