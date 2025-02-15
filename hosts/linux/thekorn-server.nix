@@ -54,13 +54,21 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.zsh.enable = true;
+  environment = {
+    shells = with pkgs; [bash zsh];
+    systemPackages = [pkgs.coreutils];
+    #systemPath = [ "/opt/homebrew/bin" ];
+    #pathsToLink = [ "/Applications" ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    git
-  ];
+  #environment.systemPackages = with pkgs; [
+  #  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  #  wget
+  #  git
+  #];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
