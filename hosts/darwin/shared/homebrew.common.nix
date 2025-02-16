@@ -17,7 +17,7 @@
       "brave-browser"
       "bruno"
       "zed"
-      "tableplus"
+      #"tableplus"
       "ghostty"
     ];
     taps = ["leoafarias/fvm" "LucasPickering/homebrew-tap"];

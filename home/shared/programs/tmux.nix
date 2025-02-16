@@ -32,7 +32,7 @@
 
       set -g history-limit 5000                 # boost history
 
-      bind-key r source-file ~/.conf/tmux/tmux.conf \; display-message "~/.conf/tmux/tmux.conf reloaded"
+      bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "~/.config/tmux/tmux.conf reloaded"
 
       bind Enter copy-mode # enter copy mode
 
