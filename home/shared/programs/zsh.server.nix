@@ -18,10 +18,6 @@
       ll = "eza --long --header --git --icons";
       tree = "ll --tree --level=4 -a -I=.git --git-ignore";
 
-      # local rush for testing
-      #testrush = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/start.js";
-      #testrushx = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/startx.js";
-
       # git
       ## Goes up the tree to the git root dir
       "g-" = ''cd $(git rev-parse --show-toplevel || echo ".")'';
@@ -61,13 +57,6 @@
       enable = true;
       custom = "$HOME/.zsh_custom";
       plugins = ["git" "tmux" "fzf" "fnm" "ssh-agent"];
-      #      extraConfig = ''
-      #        plugins=(git tmux jira aws z web-search fzf fnm)
-      #        if [ "$DISABLE_TMUX" = "1" ]
-      #        then
-      #          plugins[$plugins[(i)tmux]]=()
-      #        fi
-      #      '';
     };
   };
   home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.server.zsh;
