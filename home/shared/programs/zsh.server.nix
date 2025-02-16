@@ -43,6 +43,8 @@
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
     localVariables = {
+      ZSH_TMUX_AUTOSTART = "true";
+      ZSH_TMUX_AUTOSTART_ONCE = "true";
     };
     dirHashes = {
       nix = "$HOME/.config/nix";
@@ -56,6 +58,7 @@
     oh-my-zsh = {
       enable = true;
       custom = "$HOME/.zsh_custom";
+      plugins = ["git" "tmux" "fzf" "fnm"];
       #      extraConfig = ''
       #        plugins=(git tmux jira aws z web-search fzf fnm)
       #        if [ "$DISABLE_TMUX" = "1" ]
