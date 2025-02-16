@@ -1,14 +1,14 @@
 {pkgs, ...}: {
   imports = [
-    ./shared/programs/bat.nix
-    ./shared/programs/eza.nix
-    ./shared/programs/fzf.nix
-    ./shared/programs/git.nix
-    ./shared/programs/tmux.server.nix
-    ./shared/programs/zsh.server.nix
-    ./shared/devel.nix
-    ./shared/programs/nvim.nix
-    ./shared/programs/lazygit.nix
-    ./shared/programs/ripgrep.nix
+    ./programs/bat.nix
+    ./programs/eza.nix
+    ./programs/fzf.nix
+    ./programs/git.nix
+    ./programs/tmux.server.nix
+    ./programs/zsh.server.nix
+    ./devel.nix
+    ./programs/nvim.nix
+    ./programs/lazygit.nix
+    ./programs/ripgrep.nix
   ];
 }
