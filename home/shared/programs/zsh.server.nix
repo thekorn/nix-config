@@ -41,6 +41,8 @@
     initExtra = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
+
+      zstyle :omz:plugins:ssh-agent identities id_ed25519
     '';
     localVariables = {
       ZSH_TMUX_AUTOSTART = "true";
@@ -58,7 +60,7 @@
     oh-my-zsh = {
       enable = true;
       custom = "$HOME/.zsh_custom";
-      plugins = ["git" "tmux" "fzf" "fnm"];
+      plugins = ["git" "tmux" "fzf" "fnm" "ssh-agent"];
       #      extraConfig = ''
       #        plugins=(git tmux jira aws z web-search fzf fnm)
       #        if [ "$DISABLE_TMUX" = "1" ]
