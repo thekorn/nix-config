@@ -6,10 +6,7 @@
     masApps = {};
     casks = [
       "transmission"
-      "discord"
-      "whatsapp"
       "sonos"
-      "zulu"
     ];
     brews = [];
     taps = ["homebrew/cask-versions"];

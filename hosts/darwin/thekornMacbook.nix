@@ -7,7 +7,10 @@
     ./shared/home.private.nix
     ./shared/fonts.nix
     #./shared/preferences.nix
-    (import ./shared/preferences.nix {username = "thekorn";})
+    (import ./shared/preferences.nix {
+      inherit pkgs;
+      username = "thekorn";
+    })
   ];
 
   system.stateVersion = 5;

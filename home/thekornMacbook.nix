@@ -9,6 +9,12 @@
     #./shared/programs/zig.nix
   ];
 
+  home.packages = with pkgs; [
+    zulu23
+    discord
+    whatsapp-for-mac
+  ];
+
   programs.home-manager.enable = true;
 
   home.stateVersion = "22.11";

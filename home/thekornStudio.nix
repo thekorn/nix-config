@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./shared/programs/qmk.nix
+    ./shared/programs/steam.nix
 
     ./shared/common.nix
     ./shared/common.darwin.nix
@@ -17,6 +18,19 @@
 
     # package not working, use homebrew
     #./shared/devel/rpi.darwin.nix
+  ];
+
+  home.packages = with pkgs; [
+    zulu17
+    zulu21
+    zulu23
+
+    prismlauncher
+    chatgpt
+    wb32-dfu-updater
+    rpi-imager
+    discord
+    whatsapp-for-mac
   ];
 
   programs.home-manager.enable = true;

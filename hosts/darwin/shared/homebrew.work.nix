@@ -5,15 +5,10 @@
     global.brewfile = true;
     masApps = {};
     casks = [
-      "snowflake-snowsql"
-      "vlc"
       "zeplin"
-      "zulip"
       "microsoft-edge"
-      "slack"
       "proxyman"
       "figma"
-      "zulu@17"
     ];
   };
 }

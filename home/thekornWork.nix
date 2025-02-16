@@ -8,6 +8,10 @@
     ./shared/work.nix
   ];
 
+  home.packages = with pkgs; [
+    zulu23
+  ];
+
   programs.home-manager.enable = true;
 
   home.stateVersion = "22.11";

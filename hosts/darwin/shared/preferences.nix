@@ -1,4 +1,8 @@
-{username, ...}: {
+{
+  username,
+  pkgs,
+  ...
+}: {
   system.defaults = {
     dock = {
       autohide = true;
@@ -10,10 +14,9 @@
       show-recents = false;
       persistent-apps = [
         "/System/Applications/Mail.app"
-        "/Applications/Zed.app"
+        "${pkgs.zed-editor}/Applications/Zed.app"
         "/System/Applications/Notes.app"
         "/Applications/Safari.app"
-        #"/etc/profiles/per-user/${username}/Applications/Alacritty.app"
         "/Applications/Ghostty.app"
       ];
       persistent-others = ["/tmp/" "/Users/${username}/Downloads/"];

@@ -6,27 +6,15 @@
     global.brewfile = true;
     masApps = {};
     casks = [
-      "flutter"
-      "raycast"
-      "google-chrome"
-      "firefox"
-      "1password"
-      "vlc"
-      "gimp"
+      "1password" #<- nix version is marked as broken
       "android-studio"
-      "brave-browser"
-      "bruno"
-      "zed"
-      #"tableplus"
-      "ghostty"
+      "ghostty" #<- nix version is marked as broken
+      "firefox" #<- nix version is broken
     ];
-    taps = ["leoafarias/fvm" "LucasPickering/homebrew-tap"];
+    taps = ["leoafarias/fvm"];
     brews = [
-      "nss"
       "fvm"
-      "swiftformat" #<- nix version is outdated
-      "cocoapods"
-      "LucasPickering/homebrew-tap/slumber" #<- nix version is outdated
+      #"cocoapods"
     ];
   };
 }
