@@ -68,5 +68,5 @@
       #      '';
     };
   };
-  home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.zsh;
+  home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.server.zsh;
 }
