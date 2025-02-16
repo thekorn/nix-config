@@ -4,19 +4,12 @@
     ./shared/programs/eza.nix
     ./shared/programs/fzf.nix
     ./shared/programs/git.nix
-    ./shared/programs/tmux.nix
-    ./shared/programs/zsh.nix
-    #./shared/programs/ssh.nix
+    ./shared/programs/tmux.server.nix
+    ./shared/programs/zsh.server.nix
     ./shared/devel.nix
     ./shared/programs/nvim.nix
-    #./shared/programs/bottom.nix
     ./shared/programs/lazygit.nix
     ./shared/programs/ripgrep.nix
-    #./shared/programs/opencommit.nix
-    #./shared/programs/nushell.nix
-    #./shared/programs/hyprland.nix
-    #./shared/programs/android-studio.nix
-    #./shared/programs/pnpm.nix
   ];
 
   programs.home-manager.enable = true;
@@ -29,19 +22,13 @@
     less
     zsh-forgit
     fnm
-    #nodejs_20
     awscli2
     silver-searcher
     jq
     htop
     delta
-    #rustup
     httpie
-    #mkcert
-    #mongosh
-    #go
     alejandra
-    ffmpeg
     unzip
   ];
 
