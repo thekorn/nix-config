@@ -21,14 +21,13 @@
   ];
 
   home.packages = with pkgs; [
-    zulu17
-    zulu21
+    #zulu17
+    #zulu21
     zulu23
 
     prismlauncher
     chatgpt
     wb32-dfu-updater
-    rpi-imager
     discord
     whatsapp-for-mac
   ];
