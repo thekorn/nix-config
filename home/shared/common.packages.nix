@@ -25,7 +25,6 @@
     aria2
     clang-tools_18
 
-    zed-editor
     bruno
     brave
     gimp-with-plugins
@@ -37,7 +36,6 @@
     swiftformat
     slumber
     cocoapods
-
 
     #ranger
   ];

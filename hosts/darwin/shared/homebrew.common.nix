@@ -14,7 +14,6 @@
     taps = ["leoafarias/fvm"];
     brews = [
       "fvm"
-      #"cocoapods"
     ];
   };
 }
