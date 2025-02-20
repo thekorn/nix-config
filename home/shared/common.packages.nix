@@ -18,7 +18,10 @@
     ffmpeg
     lcov
     wget
-    vlc-bin
+
+    #video player
+    mpv-unwrapped
+    yt-dlp
 
     unar
     ktlint
