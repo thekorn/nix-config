@@ -35,6 +35,9 @@
       lr = "!git l -30";
       lra = "!git lr --all";
       lgg = "!git l -G $1 -- $2";
+
+      # list tags
+      ltags = "!git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags";
     };
     delta = {
       enable = true;
