@@ -13,8 +13,6 @@
     # Controls system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = {
@@ -56,37 +54,6 @@
       });
 
       formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
-
-      darwinConfigurations."demoVM" = mkDarwinHost {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
-        };
-        modules = [
-          ./hosts/darwin/demoVM.nix
-          home-manager.darwinModules.home-manager
-          (
-            {
-              config,
-              lib,
-              pkgs,
-              ...
-            }: let
-              primaryUser = "test";
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/demoVM.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-        };
-      };
 
       darwinConfigurations."thekorn-macbook" = mkDarwinHost {
         pkgs = import nixpkgs {
@@ -175,63 +142,6 @@
               home-manager.users.${primaryUser}.imports = [./home/thekornWork.nix];
             }
           )
-        ];
-        specialArgs = {
-          inherit self inputs;
-        };
-      };
-
-      nixosConfigurations.thekorn-nixos-vm = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          ./hosts/linux/thekornNixOSVM.nix
-          home-manager.nixosModules.home-manager
-          (
-            {
-              config,
-              lib,
-              pkgs,
-              ...
-            }: let
-              primaryUser = "thekorn";
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornNixOSVM.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-        };
-      };
-
-      nixosConfigurations.thekorn-nixos-workstation = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/linux/thekorn-nixos-workstation.nix
-          home-manager.nixosModules.home-manager
-          (
-            {
-              config,
-              lib,
-              pkgs,
-              ...
-            }: let
-              primaryUser = "thekorn";
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornNixOSWorkstation.nix];
-            }
-          )
-          {wayland.windowManager.hyprland.enable = true;}
         ];
         specialArgs = {
           inherit self inputs;
