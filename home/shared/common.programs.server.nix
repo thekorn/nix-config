@@ -10,6 +10,7 @@
     ./programs/nvim.nix
     ./programs/lazygit.nix
     ./programs/ripgrep.nix
+    ./programs/zig.nix
     ./programs/oh-my-posh.server.nix
   ];
 }
