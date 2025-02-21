@@ -66,6 +66,11 @@
       #credential = {
       #  helper = "store";
       #};
+      #gpg = {
+      #  ssh = {
+      #    defaultKeyCommand = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      #  };
+      #};
       core = {
         editor = "nvim";
         whitespace = "trailing-space,space-before-tab";
@@ -115,6 +120,9 @@
           core = {
             hooksPath = ".git/hooks";
           };
+          # FIXME: default sign per 1password command not working
+          commit = {gpgsign = false;};
+          tag = {gpgsign = false;};
         };
       }
       {
@@ -127,6 +135,9 @@
           core = {
             hooksPath = ".git/hooks";
           };
+          # FIXME: default sign per 1password command not working
+          commit = {gpgsign = false;};
+          tag = {gpgsign = false;};
         };
       }
     ];
