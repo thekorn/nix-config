@@ -44,7 +44,9 @@
       ZSH_TMUX_AUTOSTART = "true";
       ZSH_TMUX_AUTOSTART_ONCE = "true";
       ZSH_TMUX_AUTOCONNECT = "false";
-      ZSH_TMUX_AUTONAME_SESSION = "true";
+      ZSH_TMUX_AUTONAME_SESSION = "false";
+      ZSH_TMUX_AUTOQUIT = "false";
+      ZSH_TMUX_DETACHED = "false"; #maybe true
     };
     dirHashes = {
       nix = "$HOME/.config/nix";
