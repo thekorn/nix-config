@@ -33,7 +33,6 @@
     flutter
     nss
     swiftformat
-    slumber
     cocoapods
 
     #ranger

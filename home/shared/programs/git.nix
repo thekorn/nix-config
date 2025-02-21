@@ -3,9 +3,96 @@
   config,
   lib,
   ...
-}: {
-  home.file.".local/bin/git-open".source = ./bin/git-open;
-  home.file.".local/.githelpers".source = ./dotfiles/git/githelpers.sh;
+}: let
+  gitOpen = pkgs.writeShellScriptBin "git-open" ''
+    inside_git_repo="$(${pkgs.git}/bin/git rev-parse --is-inside-work-tree 2>/dev/null)"
+
+    if [ "$inside_git_repo" ]; then
+        isgithub=$(${pkgs.git}/bin/git remote get-url origin | grep -c "github.com")
+        isbitbucket=$(${pkgs.git}/bin/git remote get-url origin | grep -c "bitbucket.org")
+        isbfgitlab=$(${pkgs.git}/bin/git remote get-url origin | grep -c "gitlab.bfops.io")
+
+        branch=$(${pkgs.git}/bin/git rev-parse --abbrev-ref HEAD)
+        dirlen=$(${pkgs.git}/bin/git rev-parse --show-toplevel | wc -c)
+
+        if [[ $isgithub -eq 1 ]]; then
+            origin=$(${pkgs.git}/bin/git remote get-url origin | sed -e "s/^git@github.com://" -e "s/^https:\/\/github.com\///" -e "s/.git$//")
+
+            if [[ "$1" == "--pr" ]]; then
+                open "https://github.com/''${origin}/pull/new/''${branch}"
+            else
+                for path in "$@"; do
+                    open "https://github.com/''${origin}/tree/''${branch}/$(realpath "''${path}" | cut -c "''${dirlen}"-)"
+                done
+
+                if [[ "$#" -eq 0 ]]; then
+                    open "https://github.com/''${origin}/tree/''${branch}/$(pwd | cut -c "''${dirlen}"-)"
+                fi
+            fi
+        elif [[ $isbitbucket -eq 1 ]]; then
+            origin=$(${pkgs.git}/bin/git remote get-url origin | sed -e "s/^git@bitbucket.org://" -e "s/^https:\/\/bitbucket.org\///" -e "s/.git$//")
+
+            if [[ "$1" == "--pr" ]]; then
+                open "https://bitbucket.org/''${origin}/pull-requests/new?source=''${branch}&t=1"
+            else
+
+                for path in "$@"; do
+                    open "https://bitbucket.org/''${origin}/src/''${branch}/$(realpath "''${path}" | cut -c "''${dirlen}"-)"
+                done
+
+                if [[ "$#" -eq 0 ]]; then
+                    open "https://bitbucket.org/''${origin}/src/''${branch}/$(pwd | cut -c "''${dirlen}"-)"
+                fi
+            fi
+        elif [[ $isbfgitlab -eq 1 ]]; then
+            echo "ITS BF GITLAB"
+            origin=$(${pkgs.git}/bin/git remote get-url origin | sed -e "s/^git@gitlab.bfops.io://" -e "s/^https:\/\/gitlab.bfops.io\///" -e "s/.git$//")
+
+            if [[ "$1" == "--pr" ]]; then
+                open "https://gitlab.bfops.io/''${origin}/-/merge_requests/new?merge_request[source_branch]=''${branch}"
+            else
+
+                for path in "$@"; do
+                    open "https://gitlab.bfops.io/''${origin}/-/tree/''${branch}$(realpath "''${path}" | cut -c "''${dirlen}"-)"
+                done
+
+                if [[ "$#" -eq 0 ]]; then
+                    open "https://gitlab.bfops.io/''${origin}/-/tree/''${branch}/$(pwd | cut -c "''${dirlen}"-)"
+                fi
+            fi
+        else
+            echo "Not a github, bitbucket or bf gitlab repository."
+            exit 1
+        fi
+    else
+        echo "Not a git repository."
+        exit 1
+    fi
+  '';
+  gitHelpers = pkgs.writeShellScriptBin "git-helpers" ''
+    HASH="%C(always,yellow)%h%C(always,reset)"
+    RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
+    AUTHOR="%C(always,bold blue)%an%C(always,reset)"
+    REFS="%C(always,red)%d%C(always,reset)"
+    SUBJECT="%s"
+
+    FORMAT="$HASH $RELATIVE_TIME{$AUTHOR{$REFS $SUBJECT"
+
+    pretty_git_log() {
+      ${pkgs.git}/bin/git log --graph --pretty="tformat:$FORMAT" $* |
+      column -t -s '{' |
+      less -XRS --quit-if-one-screen
+    }
+
+    remove_untracked_files() {
+      ${pkgs.git}/bin/git ls-files --other --exclude-standard | xargs rm -rf
+    }
+  '';
+in {
+  home.packages = [
+    gitOpen
+    gitHelpers
+  ];
   programs.git = {
     enable = true;
     userName = "Markus Korn";
@@ -30,7 +117,7 @@
         !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
       patch = "!git --no-pager diff --no-color";
 
-      l = "!. ~/.local/.githelpers && pretty_git_log";
+      l = "!. ${gitHelpers}/bin/git-helpers && pretty_git_log";
       la = "!git l --all";
       lr = "!git l -30";
       lra = "!git lr --all";
