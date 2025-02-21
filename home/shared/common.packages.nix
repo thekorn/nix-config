@@ -19,10 +19,6 @@
     lcov
     wget
 
-    #video player
-    mpv-unwrapped
-    yt-dlp
-
     unar
     ktlint
     aria2

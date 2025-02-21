@@ -26,6 +26,7 @@
     ./programs/yazi.nix
     ./programs/podman.nix
     ./programs/llm.nix
+    ./programs/mpv.nix
   ];
 
   programs.home-manager.enable = true;
