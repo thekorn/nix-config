@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.vscode = {
     enable = true;
-    userSettings = {
+    profiles.default.userSettings = {
       "workbench.colorTheme" = "Nord";
       "editor.suggestSelection" = "first";
       "files.exclude" = {

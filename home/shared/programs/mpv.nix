@@ -8,7 +8,7 @@
         path=.
     fi
 
-    selected=$(${pkgs.eza}/bin/eza -f $path | xargs file --mime-type| egrep 'image|video'| cut -f1 -d : |${pkgs.fzf}/bin/fzf)
+    selected=$(${pkgs.fd}/bin/fd -tf $path | xargs file --mime-type| egrep 'image|video'| cut -f1 -d : |${pkgs.fzf}/bin/fzf)
     if [[ -z $selected ]]; then
         echo "No file selected"
         exit 0
