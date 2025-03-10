@@ -7,6 +7,8 @@
     #hyperfine
     #biome
     slack
+
+    code-cursor
   ];
   home.sessionVariables = {
     #jira
