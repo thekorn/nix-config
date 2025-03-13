@@ -24,7 +24,7 @@
     ./programs/vscode.nix
     ./programs/ghostty.nix
     ./programs/yazi.nix
-    ./programs/podman.nix
+    #./programs/podman.nix #<-- podman does not work for CTF
     ./programs/llm.nix
     ./programs/mpv.nix
     ./programs/slumber.nix
