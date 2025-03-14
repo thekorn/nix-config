@@ -29,7 +29,6 @@
     brave
     gimp-with-plugins
     #firefox #<- nix version is broken
-    google-chrome
     raycast
     flutter
     nss

@@ -28,6 +28,7 @@
     ./programs/llm.nix
     ./programs/mpv.nix
     ./programs/slumber.nix
+    ./programs/google-chrome.nix
   ];
 
   programs.home-manager.enable = true;
