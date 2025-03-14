@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./shared/programs/qmk.nix
-    ./shared/programs/steam.nix
+    #./shared/programs/steam.nix
 
     ./shared/common.nix
     ./shared/common.darwin.nix

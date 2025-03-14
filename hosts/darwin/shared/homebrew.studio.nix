@@ -7,6 +7,7 @@
     casks = [
       "proxyman"
       "obs"
+      "steam"
     ];
     brews = [
     ];
