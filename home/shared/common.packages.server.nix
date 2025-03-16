@@ -13,6 +13,7 @@
     delta
     httpie
     alejandra
+    nixd
     unzip
   ];
 }

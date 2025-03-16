@@ -4,10 +4,18 @@
 // see the documentation: https://zed.dev/docs/configuring-zed#folder-specific-settings
 {
   "format_on_save": "on",
-  "formatter": {
-    "external": {
-      "command": "alejandra",
-      "arguments": ["-"]
+  "languages": {
+    "Nix": {
+      "language_servers": ["!nil", "nixd"],
+      "formatter": {
+        "external": {
+          "command": "alejandra",
+          "arguments": ["--quiet", "--"]
+        }
+      }
     }
+  },
+  "auto_install_extensions": {
+    "nix": true
   }
 }

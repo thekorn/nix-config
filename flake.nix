@@ -35,10 +35,6 @@
           config = {
             allowUnfree = true;
           };
-          overlays = with inputs; [
-            #nur.overlay
-            #emacs.overlay
-          ];
         }
     );
 
