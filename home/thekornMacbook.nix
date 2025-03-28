@@ -12,7 +12,7 @@
   home.packages = with pkgs; [
     zulu23
     discord
-    whatsapp-for-mac
+    #whatsapp-for-mac
   ];
 
   programs.home-manager.enable = true;
