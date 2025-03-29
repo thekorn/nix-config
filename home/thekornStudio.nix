@@ -29,7 +29,7 @@
     chatgpt
     wb32-dfu-updater
     discord
-    whatsapp-for-mac
+    #whatsapp-for-mac
   ];
 
   programs.home-manager.enable = true;
