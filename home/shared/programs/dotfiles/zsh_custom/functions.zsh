@@ -50,9 +50,6 @@ function updateNvim() (
   cd $CONFIG_DIR
   git checkout master
   git pull
-  git fetch --all
-  git merge upstream/master -m "Merge upstream"
-  git push
 )
 
 function updateZedConfig() (
