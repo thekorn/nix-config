@@ -26,7 +26,7 @@
     ./programs/yazi.nix
     #./programs/podman.nix #<-- podman does not work for CTF
     ./programs/llm.nix
-    ./programs/mpv.nix
+    #./programs/mpv.nix #<-- broken build 2025-03-31
     ./programs/slumber.nix
     ./programs/google-chrome.nix
   ];
