@@ -9,6 +9,7 @@
     slack
 
     code-cursor
+    mongodb-tools
   ];
   home.sessionVariables = {
     #jira
