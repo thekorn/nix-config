@@ -61,6 +61,10 @@
       ## rush
       rxb = "rushx build";
       rxbt = "rushx _phase:build && rushx _phase:test";
+
+      ## neovim
+      vi = "nvim";
+      vim = "nvim";
     };
     zprof = {
       enable = false;

@@ -46,9 +46,9 @@ function flutter-watch() {
 
 function updateNvim() (
   local CONFIG_DIR=~/.config/nvim
-  [ -d "$CONFIG_DIR/.git" ] || git clone -b master git@github.com:thekorn/config.nvim.git $CONFIG_DIR
+  [ -d "$CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/config.nvim.git $CONFIG_DIR
   cd $CONFIG_DIR
-  git checkout master
+  git checkout main
   git pull
 )
 

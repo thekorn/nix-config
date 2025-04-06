@@ -30,6 +30,10 @@
 
       ## git
       cbr = ''git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'';
+
+      ## neovim
+      vi = "nvim";
+      vim = "nvim";
     };
     zprof = {
       enable = false;
