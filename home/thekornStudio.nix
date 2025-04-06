@@ -21,9 +21,9 @@
   ];
 
   home.packages = with pkgs; [
-    #zulu17
+    zulu17
     #zulu21
-    zulu23
+    #zulu23
 
     prismlauncher
     chatgpt
