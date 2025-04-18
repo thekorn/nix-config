@@ -13,6 +13,7 @@
     httpie
     mkcert
     mongosh
+    mongodb-tools
     alejandra
     nixd
     ffmpeg
