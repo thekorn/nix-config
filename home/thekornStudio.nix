@@ -18,6 +18,7 @@
 
     # package not working, use homebrew
     #./shared/devel/rpi.darwin.nix
+    #./shared/programs/vendor/prismlauncher.nix
   ];
 
   home.packages = with pkgs; [
@@ -25,7 +26,7 @@
     #zulu21
     #zulu23
 
-    prismlauncher
+    #prismlauncher
     chatgpt
     wb32-dfu-updater
     discord

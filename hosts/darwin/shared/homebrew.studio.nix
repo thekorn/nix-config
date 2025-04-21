@@ -8,6 +8,7 @@
       "proxyman"
       "obs"
       "steam"
+      "prismlauncher"
     ];
     brews = [
     ];
