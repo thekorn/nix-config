@@ -161,6 +161,7 @@ in {
       core = {
         editor = "nvim";
         whitespace = "trailing-space,space-before-tab";
+        autocrlf = "input";
       };
       push = {
         default = "current";
