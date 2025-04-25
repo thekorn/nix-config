@@ -5,7 +5,7 @@
     #localVariables = {
     #  GHOSTTY_RESOURCES_DIR = "/Applications/Ghostty.app/Contents/Resources/ghostty";
     #};
-    #initExtra = ''
+    #initContent= ''
     #  if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
     #    autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
     #    ghostty-integration

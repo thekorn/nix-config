@@ -69,7 +69,7 @@
     zprof = {
       enable = false;
     };
-    initExtra = ''
+    initContent = ''
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
