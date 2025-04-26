@@ -6,8 +6,6 @@
     masApps = {};
     casks = [
       "zeplin"
-      "microsoft-edge"
-      "proxyman"
       "figma"
     ];
   };

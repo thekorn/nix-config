@@ -5,7 +5,6 @@
     global.brewfile = true;
     masApps = {};
     casks = [
-      "proxyman"
       "obs"
       "steam"
       "prismlauncher"
