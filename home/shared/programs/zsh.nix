@@ -13,9 +13,6 @@
       enable = true;
     };
     shellAliases = {
-      ## android studio
-      "android-studio" = "open -a /Applications/Android\\ Studio.app";
-
       # helper
       #npm-check-updates = "npx npm-check-updates -u";
 
@@ -47,16 +44,10 @@
       ffs = "firefox --search";
       ffp = "firefox --private-window";
 
-      ## snowflake
-      snowsql = "/Applications/SnowSQL.app/Contents/MacOS/snowsql";
-
       ## git
       cbr = ''git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'';
 
       sim = "open -a Simulator";
-
-      ## open interpreter
-      interpreter = ''op run --env-file="$HOME/.config/openinterpreter.env" -- interpreter'';
 
       ## rush
       rxb = "rushx build";

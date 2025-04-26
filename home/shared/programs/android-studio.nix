@@ -7,4 +7,8 @@
     "$ANDROID_HOME/tools/bin"
     "$ANDROID_HOME/platform-tools"
   ];
+  programs.zsh.shellAliases = {
+    ## android studio
+    "android-studio" = "open -a /Applications/Android\\ Studio.app";
+  };
 }

@@ -9,6 +9,6 @@
       "sonos"
     ];
     brews = [];
-    taps = ["homebrew/cask-versions"];
+    taps = [];
   };
 }
