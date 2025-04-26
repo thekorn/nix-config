@@ -15,5 +15,6 @@
     alejandra
     nixd
     unzip
+    gnumake
   ];
 }
