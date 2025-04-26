@@ -29,6 +29,8 @@
     ./programs/mpv.nix #<-- broken build 2025-03-31
     ./programs/slumber.nix
     ./programs/google-chrome.nix
+
+    ./programs/fvm.nix
   ];
 
   programs.home-manager.enable = true;
