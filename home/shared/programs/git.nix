@@ -113,6 +113,7 @@ in {
       dump = "cat-file -p";
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       diffc = "diff --cached";
+      merges = "log --oneline --decorate --color=auto --merges --first-parent";
       permission-reset = ''
         !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
       patch = "!git --no-pager diff --no-color";
