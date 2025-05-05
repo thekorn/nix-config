@@ -6,8 +6,5 @@ confirm-close-surface = false
 auto-update = off
 copy-on-select = clipboard
 quit-after-last-window-closed = true
-#custom-shader = shaders/fireworks.glsl
-#custom-shader = shaders/just-snow.glsl
-#custom-shader = shaders/bettercrt.glsl
 
 config-file = ?custom
