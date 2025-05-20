@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  # https://github.com/nix-darwin/nix-darwin/issues/1457
+  system.primaryUser = username;
   system.defaults = {
     dock = {
       autohide = true;
