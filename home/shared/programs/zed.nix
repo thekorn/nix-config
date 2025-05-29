@@ -31,4 +31,9 @@ in {
   #  ".config/zed/settings.json".source = ./dotfiles/zed/settings.json;
   #  ".config/zed/themes/nord.json".source = ./dotfiles/zed/nord.json;
   #};
+  programs.zsh = {
+    shellAliases = {
+      zed = "zeditor";
+    };
+  };
 }

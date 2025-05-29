@@ -4,23 +4,29 @@ This is the config for my machines.
 
 ## prerequisits
 
- * git
- * homebrew
+- git
+- homebrew
 
 ```
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
- * clone this repository
+- clone this repository
 
 ```
 $ git clone https://github.com/thekorn/nix-config.git .config/nix
 ```
 
- * install nix
+- install nix
 
 ```
-$ sh <(curl -L https://nixos.org/nix/install) 
+$ curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+```
+
+- install nix-darwin
+
+```
+$ sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
 ```
 
 ```
@@ -30,17 +36,14 @@ $ nix build .#darwinConfigurations.demoVM.system --extra-experimental-features "
 # the plan is to now run this to install nix-darwin with our configuration
 # ./result/sw/bin/darwin-rebuild switch --flake .#demoVM # this will fail as we first have to do the following lines
 
-$ printf 'run\tprivate/var/run\n' | sudo tee -a /etc/synthetic.conf
-$ /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
-
 # now we can finally darwin-rebuild
 $ ./result/sw/bin/darwin-rebuild switch --flake .#demoVM
 ```
 
 ## reference
 
- * https://github.com/thexyno/blogpages.git 
- * https://daiderd.com/nix-darwin/manual/index.html
- * https://nix-community.github.io/home-manager/options.html
- * https://codeberg.org/imMaturana/dotfiles
- * https://github.com/schickling/dotfiles
+- https://github.com/thexyno/blogpages.git
+- https://daiderd.com/nix-darwin/manual/index.html
+- https://nix-community.github.io/home-manager/options.html
+- https://codeberg.org/imMaturana/dotfiles
+- https://github.com/schickling/dotfiles

@@ -62,7 +62,7 @@ function updateZedConfig() (
 
 # nix
 function nixswitch() {
-  sudo darwin-rebuild switch --flake ~/.config/nix/.#
+  sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
 }
 
 # update config
