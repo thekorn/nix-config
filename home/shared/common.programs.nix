@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./programs/1password.nix
-    ./programs/alacritty.nix
     ./programs/bat.nix
     ./programs/eza.nix
     ./programs/fzf.nix
