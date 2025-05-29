@@ -61,9 +61,6 @@
           home-manager.darwinModules.home-manager
           (
             {
-              config,
-              lib,
-              pkgs,
               ...
             }: let
               primaryUser = "thekorn";
@@ -92,9 +89,6 @@
           home-manager.darwinModules.home-manager
           (
             {
-              config,
-              lib,
-              pkgs,
               ...
             }: let
               primaryUser = "thekorn";
@@ -123,9 +117,6 @@
           home-manager.darwinModules.home-manager
           (
             {
-              config,
-              lib,
-              pkgs,
               ...
             }: let
               primaryUser = "d438477";
@@ -151,9 +142,6 @@
           home-manager.nixosModules.home-manager
           (
             {
-              config,
-              lib,
-              pkgs,
               ...
             }: let
               primaryUser = "thekorn";

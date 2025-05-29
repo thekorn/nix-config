@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   home.sessionVariables = {ANDROID_HOME = "$HOME/Library/Android/sdk";};
   home.sessionPath = [
     "$ANDROID_HOME/emulator"

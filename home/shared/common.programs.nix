@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./programs/1password.nix
     ./programs/bat.nix
