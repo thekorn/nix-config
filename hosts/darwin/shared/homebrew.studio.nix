@@ -9,6 +9,7 @@
       "steam"
       "prismlauncher"
       "zen"
+      "nvidia-geforce-now"
     ];
     brews = [
     ];
