@@ -8,6 +8,7 @@
       "obs"
       "steam"
       "prismlauncher"
+      "zen"
     ];
     brews = [
     ];
