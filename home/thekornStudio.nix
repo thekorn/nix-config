@@ -27,7 +27,7 @@
     #zulu23
 
     #prismlauncher
-    chatgpt
+    #chatgpt
     wb32-dfu-updater
     discord
     #whatsapp-for-mac
