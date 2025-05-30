@@ -30,6 +30,7 @@
     #chatgpt
     wb32-dfu-updater
     discord
+    claude-code
     #whatsapp-for-mac
   ];
 
