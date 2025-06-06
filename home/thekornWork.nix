@@ -9,7 +9,9 @@
   ];
 
   home.packages = with pkgs; [
+    chatgpt
     zulu23
+    mongodb-compass
   ];
 
   programs.home-manager.enable = true;
