@@ -60,9 +60,7 @@
           ./hosts/darwin/thekornMacbook.nix
           home-manager.darwinModules.home-manager
           (
-            {
-              ...
-            }: let
+            {...}: let
               primaryUser = "thekorn";
             in {
               home-manager.extraSpecialArgs = {
@@ -88,9 +86,7 @@
           ./hosts/darwin/thekornStudio.nix
           home-manager.darwinModules.home-manager
           (
-            {
-              ...
-            }: let
+            {...}: let
               primaryUser = "thekorn";
             in {
               home-manager.extraSpecialArgs = {
@@ -116,9 +112,7 @@
           ./hosts/darwin/thekornWork.nix
           home-manager.darwinModules.home-manager
           (
-            {
-              ...
-            }: let
+            {...}: let
               primaryUser = "d438477";
             in {
               home-manager.extraSpecialArgs = {
@@ -141,9 +135,7 @@
           ./hosts/linux/thekorn-server.nix
           home-manager.nixosModules.home-manager
           (
-            {
-              ...
-            }: let
+            {...}: let
               primaryUser = "thekorn";
             in {
               home-manager.extraSpecialArgs = {

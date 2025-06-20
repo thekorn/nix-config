@@ -3,7 +3,6 @@
   pkgs,
   ...
 }: {
-
   imports = [
     ../../shared/certificates.nix
   ];
