@@ -3,6 +3,8 @@
   virtualisation.docker.enable = true;
   users.extraGroups.docker.members = ["thekorn"];
 
+  systemPackages = [pkgs.minikube];
+
   systemd.services.minikube = {
     # https://joepreludian.medium.com/how-to-start-up-minikube-automatically-via-system-d-2cad99fd79bf
     # this service is "wanted by" (see systemd man pages, or other tutorials) the system
