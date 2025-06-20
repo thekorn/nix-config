@@ -78,12 +78,10 @@ in {
     extraConfig = {
       #credential = {
       #  helper = "store";
-      #};
-      #gpg = {
-      #  ssh = {
-      #    defaultKeyCommand = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-      #  };
-      #};
+      };
+      gpg = {
+        format = "ssh";
+      };
       core = {
         editor = "nvim";
         whitespace = "trailing-space,space-before-tab";
