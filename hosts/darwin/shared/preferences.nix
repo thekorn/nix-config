@@ -77,8 +77,4 @@
     enableKeyMapping = true;
     remapCapsLockToControl = true;
   };
-
-  security.pki.certificateFiles = [
-    ../../shared/fritz.box.pem
-  ];
 }
