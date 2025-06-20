@@ -41,6 +41,7 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
+  programs.gnupg.agent.enable = true;
   environment = {
     shells = with pkgs; [bash zsh];
     systemPackages = [pkgs.coreutils];

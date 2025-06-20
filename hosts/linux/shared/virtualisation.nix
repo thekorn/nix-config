@@ -43,4 +43,7 @@
   environment.variables = {
     KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
   };
+  networking.hosts = {
+    "127.0.0.1" = ["hello.local"];
+  };
 }
