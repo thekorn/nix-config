@@ -23,6 +23,8 @@
   #};
   #
 
+  environment.systemPackages = with pkgs; [kubernetes-helm];
+
   networking.firewall.allowedTCPPorts = [
     6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
     # 2379 # k3s, etcd clients: required if using a "High Availability Embedded etcd" configuration
@@ -37,4 +39,8 @@
     "--debug" # Optionally add additional args to k3s
     "--write-kubeconfig-mode 644"
   ];
+
+  environment.variables = {
+    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+  };
 }
