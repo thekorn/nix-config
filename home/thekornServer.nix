@@ -4,8 +4,6 @@
     ./shared/common.linux.nix
     ./shared/common.packages.server.nix
     ./shared/common.programs.server.nix
-
-    ./shared/kube.nix
   ];
 
   programs.home-manager.enable = true;
