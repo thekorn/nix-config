@@ -3,6 +3,11 @@
   pkgs,
   ...
 }: {
+
+  imports = [
+    ../../shared/certificates.nix
+  ];
+
   # https://github.com/nix-darwin/nix-darwin/issues/1457
   system.primaryUser = username;
   system.defaults = {
@@ -73,4 +78,8 @@
     enableKeyMapping = true;
     remapCapsLockToControl = true;
   };
+
+  security.pki.certificateFiles = [
+    ../../shared/fritz.box.pem
+  ];
 }

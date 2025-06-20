@@ -8,6 +8,7 @@
     ./configurations/thekorn-server/hardware-configuration.nix
 
     ./shared/home.private.nix
+    ../shared/certificates.nix
   ];
 
   # Bootloader.
