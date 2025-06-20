@@ -8,6 +8,8 @@
     ./configurations/thekorn-server/hardware-configuration.nix
 
     ./shared/home.private.nix
+    ./shared/virtualisation.nix
+
     ../shared/certificates.nix
   ];
 
@@ -52,7 +54,4 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.nix-ld.enable = true;
-  virtualisation.docker.enable = true;
-
-  users.extraGroups.docker.members = ["thekorn"];
 }
