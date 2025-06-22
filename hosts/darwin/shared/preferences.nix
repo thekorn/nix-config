@@ -63,14 +63,17 @@
       _HIHideMenuBar = false;
     };
 
-    alf = {
-      globalstate = 1;
-      allowsignedenabled = 1;
-      allowdownloadsignedenabled = 1;
-      stealthenabled = 1;
-    };
-
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+  };
+
+  networking = {
+    applicationFirewall = {
+      enableStealthMode = true;
+      allowSignedApp = true;
+      allowSigned = true;
+      enable = true;
+      blockAllIncoming = true;
+    };
   };
 
   system.keyboard = {
