@@ -12,9 +12,10 @@
       "firefox" #<- nix version is broken
       "docker" #<-- podman does not work for CTF
     ];
-    taps = ["leoafarias/fvm"];
+    taps = ["leoafarias/fvm" "sst/tap"];
     brews = [
       "fvm"
+      "opencode"
     ];
   };
 }
