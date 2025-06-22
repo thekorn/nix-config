@@ -12,7 +12,6 @@
   home.packages = with pkgs; [
     zulu23
     discord
-    chatgpt
     #whatsapp-for-mac
   ];
 

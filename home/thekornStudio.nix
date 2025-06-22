@@ -27,7 +27,6 @@
     #zulu23
 
     #prismlauncher
-    #chatgpt
     wb32-dfu-updater
     discord
     claude-code

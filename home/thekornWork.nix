@@ -9,7 +9,6 @@
   ];
 
   home.packages = with pkgs; [
-    chatgpt
     zulu23
     mongodb-compass
   ];
