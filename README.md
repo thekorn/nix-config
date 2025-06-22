@@ -47,3 +47,7 @@ $ ./result/sw/bin/darwin-rebuild switch --flake .#demoVM
 - https://nix-community.github.io/home-manager/options.html
 - https://codeberg.org/imMaturana/dotfiles
 - https://github.com/schickling/dotfiles
+
+## TODO:
+
+- Idea: move git commit hooks handling to lefthook https://lefthook.dev
