@@ -36,6 +36,7 @@
     swiftformat
     cocoapods
 
-    #ranger
+    jujutsu
+    jjui
   ];
 }
