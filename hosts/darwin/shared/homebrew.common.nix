@@ -16,6 +16,7 @@
     brews = [
       "fvm"
       "opencode"
+      "gemini-cli" #<-- nix version is outdated
     ];
   };
 }
