@@ -10,7 +10,7 @@
       "android-studio"
       "ghostty" #<- nix version is marked as broken
       "firefox" #<- nix version is broken
-      "docker" #<-- podman does not work for CTF
+      "docker-desktop" #<-- podman does not work for CTF
     ];
     taps = ["leoafarias/fvm" "sst/tap"];
     brews = [
