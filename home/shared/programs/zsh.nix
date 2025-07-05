@@ -36,9 +36,9 @@
       lg = "lazygit";
 
       ## firefox
-      ff = "firefox --new-tab";
-      ffs = "firefox --search";
-      ffp = "firefox --private-window";
+      ff = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --new-tab";
+      ffs = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --search";
+      ffp = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --private-window";
 
       ## git
       cbr = ''git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'';

@@ -29,7 +29,7 @@
     bruno
     brave
     gimp-with-plugins
-    #firefox #<- nix version is broken
+    firefox-bin-unwrapped
     raycast
     flutter
     nss

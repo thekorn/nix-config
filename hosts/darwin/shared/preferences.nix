@@ -23,7 +23,7 @@
         "${pkgs.zed-editor}/Applications/Zed.app"
         "/System/Applications/Notes.app"
         "/Applications/Safari.app"
-        "/Applications/Ghostty.app"
+        "${pkgs.ghostty-bin}/Applications/Ghostty.app"
       ];
       persistent-others = ["/tmp/" "/Users/${username}/Downloads/"];
     };

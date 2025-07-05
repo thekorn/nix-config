@@ -1,20 +1,20 @@
 {pkgs, ...}: {
-  # package still needs to be installed via https://github.com/ghostty-org/ghostty
+  home.packages = with pkgs; [ghostty-bin];
   home.file = {".config/ghostty/config".source = ./dotfiles/ghostty/config;};
   programs.zsh = {
-    #localVariables = {
-    #  GHOSTTY_RESOURCES_DIR = "/Applications/Ghostty.app/Contents/Resources/ghostty";
-    #};
-    #initContent= ''
-    #  if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-    #    autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-    #    ghostty-integration
-    #    unfunction ghostty-integration
-    #  fi
-    #'';
+    localVariables = {
+      GHOSTTY_RESOURCES_DIR = "${pkgs.ghostty-bin}/Applications/Ghostty.app/Contents/Resources/ghostty";
+    };
+    initContent = ''
+      if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+        autoload -Uz -- "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+        #ghostty-integration
+        #unfunction ghostty-integration
+      fi
+    '';
 
     shellAliases = {
-      ghostty = "/Applications/Ghostty.app/Contents/MacOS/ghostty";
+      ghostty = "${pkgs.ghostty-bin}/Applications/Ghostty.app/Contents/MacOS/ghostty";
     };
   };
 }

@@ -6,5 +6,7 @@ confirm-close-surface = false
 auto-update = off
 copy-on-select = clipboard
 quit-after-last-window-closed = true
+shell-integration = none
+#shell-integration-features = no-cursor, sudo, title
 
 config-file = ?custom
