@@ -10,6 +10,7 @@
       "prismlauncher"
       #"zen"
       "nvidia-geforce-now"
+      #"vibetunnel"
     ];
     brews = [
     ];
