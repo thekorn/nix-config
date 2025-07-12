@@ -30,6 +30,7 @@
     ./programs/google-chrome.nix
 
     ./programs/fvm.nix
+    ./programs/jujutsu.nix
   ];
 
   programs.home-manager.enable = true;

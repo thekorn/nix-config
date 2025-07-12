@@ -35,8 +35,5 @@
     nss
     swiftformat
     cocoapods
-
-    jujutsu
-    jjui
   ];
 }

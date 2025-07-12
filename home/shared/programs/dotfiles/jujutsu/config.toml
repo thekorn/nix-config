@@ -1,0 +1,20 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[ui]
+default-command = "log"
+
+[user]
+name = "Markus Korn"
+email = "markus.korn@gmail.com"
+
+[revset-aliases]
+work = "heads(::@ ~ description(exact:''))::"
+
+[aliases]
+wip = ["log", "-r", "work"]
+
+# override user.email if the repository is located under ~/devel/gitlab.bfops.io and ~/devel/bitbucket.org/burdastudios
+[[--scope]]
+--when.repositories = ["~/devel/gitlab.bfops.io", "~/devel/bitbucket.org/burdastudios"]
+[--scope.user]
+email = "markus.korn@burda.com"
