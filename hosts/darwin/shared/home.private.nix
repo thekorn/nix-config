@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   users = {users = {thekorn = {home = "/Users/thekorn";};};};
 
-  services.tailscale.enable = true;
+  services.tailscale.enable = false;
 }
