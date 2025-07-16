@@ -26,9 +26,9 @@
     aria2
     clang-tools_18
 
-    bruno
+    #bruno
     brave
-    gimp-with-plugins
+    #gimp-with-plugins
     firefox-bin-unwrapped
     raycast
     flutter
