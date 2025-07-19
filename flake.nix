@@ -13,12 +13,15 @@
     # Controls system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    microvm.url = "github:microvm-nix/microvm.nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    microvm,
     darwin,
     ...
   } @ inputs: let
@@ -132,6 +135,7 @@
       nixosConfigurations.thekorn-server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          microvm.nixosModules.microvm
           ./hosts/linux/thekorn-server.nix
           home-manager.nixosModules.home-manager
           (
