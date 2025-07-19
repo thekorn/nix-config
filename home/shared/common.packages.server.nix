@@ -16,5 +16,6 @@
     nixd
     unzip
     gnumake
+    tree-sitter
   ];
 }
