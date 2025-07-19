@@ -135,7 +135,7 @@
       nixosConfigurations.thekorn-server = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          microvm.nixosModules.microvm
+          microvm.nixosModules.host
           ./hosts/linux/thekorn-server.nix
           home-manager.nixosModules.home-manager
           (
