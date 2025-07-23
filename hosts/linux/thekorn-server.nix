@@ -8,7 +8,7 @@
     ./configurations/thekorn-server/hardware-configuration.nix
 
     ./shared/home.private.nix
-    ./shared/virtualisation.nix
+    #./shared/virtualisation.nix
 
     ../shared/certificates.nix
   ];
