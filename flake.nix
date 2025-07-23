@@ -155,5 +155,29 @@
           inherit self inputs;
         };
       };
+
+      nixosConfigurations.thekorn-server2 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          microvm.nixosModules.host
+          ./hosts/linux/thekorn-server2.nix
+          home-manager.nixosModules.home-manager
+          (
+            {...}: let
+              primaryUser = "thekorn";
+            in {
+              home-manager.extraSpecialArgs = {
+                inherit self inputs;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${primaryUser}.imports = [./home/thekornServer2.nix];
+            }
+          )
+        ];
+        specialArgs = {
+          inherit self inputs;
+        };
+      };
     };
 }
