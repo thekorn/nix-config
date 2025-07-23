@@ -20,7 +20,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "thekorn-server";
+  networking.hostName = "thekorn-server2";
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
