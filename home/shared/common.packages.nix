@@ -19,7 +19,7 @@
     ffmpeg
     lcov
     wget
-    superfile
+    # superfile
 
     unar
     ktlint
