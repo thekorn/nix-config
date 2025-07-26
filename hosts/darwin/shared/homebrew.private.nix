@@ -6,7 +6,6 @@
     masApps = {};
     casks = [
       "transmission"
-      "sonos"
     ];
     brews = [];
     taps = [];
