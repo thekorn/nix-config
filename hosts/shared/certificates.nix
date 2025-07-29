@@ -3,7 +3,5 @@
   pkgs,
   ...
 }: {
-  security.pki.certificateFiles = [
-    ./fritz.box.pem
-  ];
+  security.pki.certificateFiles = [];
 }
