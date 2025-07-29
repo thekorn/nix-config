@@ -104,13 +104,7 @@ in {
           user = {
             email = "markus.korn@gmail.com";
             name = "Markus Korn";
-            #FIXME: that's a hack, lets do it properly
-            signingkey =
-              if config.networking.hostName == "thekorn-server"
-              then "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2TeK+8hSMifAqXjBuWu0AyzqM+iMVEN7lk/+36cY9n thekorn-server"
-              else if config.networking.hostName == "thekorn-server2"
-              then "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEQ6apBbQZBmXmg9KHvH1Z/4tRU6Ib7We53AhMF6vwBP thekorn-server2"
-              else throw "Unsupported hostname: ${config.networking.hostName}";
+            signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2TeK+8hSMifAqXjBuWu0AyzqM+iMVEN7lk/+36cY9n thekorn-server";
           };
           commit = {gpgsign = true;};
         };
@@ -121,13 +115,7 @@ in {
           user = {
             email = "markus.korn@gmail.com";
             name = "Markus Korn";
-            #FIXME: that's a hack, lets do it properly
-            signingkey =
-              if config.networking.hostName == "thekorn-server"
-              then "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2TeK+8hSMifAqXjBuWu0AyzqM+iMVEN7lk/+36cY9n thekorn-server"
-              else if config.networking.hostName == "thekorn-server2"
-              then "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEQ6apBbQZBmXmg9KHvH1Z/4tRU6Ib7We53AhMF6vwBP thekorn-server2"
-              else throw "Unsupported hostname: ${config.networking.hostName}";
+            signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM2TeK+8hSMifAqXjBuWu0AyzqM+iMVEN7lk/+36cY9n thekorn-server";
           };
           commit = {gpgsign = true;};
         };
