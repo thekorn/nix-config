@@ -36,5 +36,6 @@
     swiftformat
     cocoapods
     nil
+    opencode
   ];
 }

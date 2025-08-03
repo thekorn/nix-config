@@ -13,7 +13,6 @@
     taps = ["leoafarias/fvm" "sst/tap"];
     brews = [
       "fvm"
-      "opencode"
       "gemini-cli" #<-- nix version is outdated
     ];
   };
