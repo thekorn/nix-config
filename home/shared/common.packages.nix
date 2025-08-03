@@ -37,5 +37,6 @@
     cocoapods
     nil
     opencode
+    fvm
   ];
 }

@@ -10,9 +10,8 @@
       "android-studio"
       "docker-desktop" #<-- podman does not work for CTF
     ];
-    taps = ["leoafarias/fvm" "sst/tap"];
+    taps = [];
     brews = [
-      "fvm"
       "gemini-cli" #<-- nix version is outdated
     ];
   };

@@ -8,9 +8,7 @@
       "obs"
       "steam"
       "prismlauncher"
-      #"zen"
       "nvidia-geforce-now"
-      #"vibetunnel"
     ];
     brews = [
     ];
