@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  users,
+  ...
+}: {
   # here go the darwin preferences and config items
 
   imports = [
@@ -6,10 +10,9 @@
     ./shared/homebrew.private.nix
     ./shared/home.private.nix
     ./shared/fonts.nix
-    #./shared/preferences.nix
     (import ./shared/preferences.nix {
       inherit pkgs;
-      username = "thekorn";
+      username = users.private;
     })
   ];
 

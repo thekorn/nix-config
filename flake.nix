@@ -42,6 +42,11 @@
     );
 
     mkDarwinHost = darwin.lib.darwinSystem;
+
+    users = {
+      private = "thekorn";
+      work = "d438477";
+    };
   in
     #mkHome = home-manager.lib.homeManagerConfiguration;
     {
@@ -64,10 +69,11 @@
           home-manager.darwinModules.home-manager
           (
             {...}: let
-              primaryUser = "thekorn";
+              primaryUser = users.private;
             in {
               home-manager.extraSpecialArgs = {
                 inherit self inputs;
+                inherit users;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -77,6 +83,7 @@
         ];
         specialArgs = {
           inherit self inputs;
+          inherit users;
         };
       };
 
@@ -90,10 +97,11 @@
           home-manager.darwinModules.home-manager
           (
             {...}: let
-              primaryUser = "thekorn";
+              primaryUser = users.private;
             in {
               home-manager.extraSpecialArgs = {
                 inherit self inputs;
+                inherit users;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -103,6 +111,7 @@
         ];
         specialArgs = {
           inherit self inputs;
+          inherit users;
         };
       };
 
@@ -116,10 +125,11 @@
           home-manager.darwinModules.home-manager
           (
             {...}: let
-              primaryUser = "d438477";
+              primaryUser = users.work;
             in {
               home-manager.extraSpecialArgs = {
                 inherit self inputs;
+                inherit users;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -129,6 +139,7 @@
         ];
         specialArgs = {
           inherit self inputs;
+          inherit users;
         };
       };
 
@@ -140,10 +151,11 @@
           home-manager.nixosModules.home-manager
           (
             {...}: let
-              primaryUser = "thekorn";
+              primaryUser = users.private;
             in {
               home-manager.extraSpecialArgs = {
                 inherit self inputs;
+                inherit users;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -153,6 +165,7 @@
         ];
         specialArgs = {
           inherit self inputs;
+          inherit users;
         };
       };
 
@@ -164,10 +177,11 @@
           home-manager.nixosModules.home-manager
           (
             {...}: let
-              primaryUser = "thekorn";
+              primaryUser = users.private;
             in {
               home-manager.extraSpecialArgs = {
                 inherit self inputs;
+                inherit users;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -177,6 +191,7 @@
         ];
         specialArgs = {
           inherit self inputs;
+          inherit users;
         };
       };
     };
