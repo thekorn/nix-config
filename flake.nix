@@ -41,158 +41,42 @@
         }
     );
 
-    mkDarwinHost = darwin.lib.darwinSystem;
-
     users = {
       private = "thekorn";
       work = "d438477";
     };
-  in
-    #mkHome = home-manager.lib.homeManagerConfiguration;
-    {
-      #homeManagerModules = import ./modules/home-manager;
-      #darwinModules = import ./modules/host;
 
-      devShells = eachSupportedSystem (system: {
-        default = import ./shell.nix {pkgs = legacyPackages.${system};};
-      });
-
-      formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
-
-      darwinConfigurations."thekorn-macbook" = mkDarwinHost {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
-        };
-        modules = [
-          ./hosts/darwin/thekornMacbook.nix
-          home-manager.darwinModules.home-manager
-          (
-            {...}: let
-              primaryUser = users.private;
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit users;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornMacbook.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-          inherit users;
-        };
-      };
-
-      darwinConfigurations."thekorn-studio" = mkDarwinHost {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
-        };
-        modules = [
-          ./hosts/darwin/thekornStudio.nix
-          home-manager.darwinModules.home-manager
-          (
-            {...}: let
-              primaryUser = users.private;
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit users;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornStudio.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-          inherit users;
-        };
-      };
-
-      darwinConfigurations."BFG-024849" = mkDarwinHost {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-          config.allowUnfree = true;
-        };
-        modules = [
-          ./hosts/darwin/thekornWork.nix
-          home-manager.darwinModules.home-manager
-          (
-            {...}: let
-              primaryUser = users.work;
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit users;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornWork.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-          inherit users;
-        };
-      };
-
-      nixosConfigurations.thekorn-server = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          microvm.nixosModules.host
-          ./hosts/linux/thekorn-server.nix
-          home-manager.nixosModules.home-manager
-          (
-            {...}: let
-              primaryUser = users.private;
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit users;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-          inherit users;
-        };
-      };
-
-      nixosConfigurations.thekorn-server2 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          microvm.nixosModules.host
-          ./hosts/linux/thekorn-server2.nix
-          home-manager.nixosModules.home-manager
-          (
-            {...}: let
-              primaryUser = users.private;
-            in {
-              home-manager.extraSpecialArgs = {
-                inherit self inputs;
-                inherit users;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${primaryUser}.imports = [./home/thekornServer2.nix];
-            }
-          )
-        ];
-        specialArgs = {
-          inherit self inputs;
-          inherit users;
-        };
-      };
+    # Import our library functions and machine definitions
+    lib = import ./lib {
+      inherit nixpkgs home-manager darwin microvm;
     };
+    machines = import ./machines.nix;
+
+    # Helper to create configurations with proper context
+    mkConfigurations = configType: let
+      filteredMachines = nixpkgs.lib.filterAttrs (_: machine: machine.type == configType) machines;
+      mkFunction = if configType == "darwin" then lib.mkDarwinHost else lib.mkNixosHost;
+    in
+      nixpkgs.lib.mapAttrs (
+        hostname: machine:
+          mkFunction {
+            inherit hostname;
+            hostConfig = machine.hostConfig;
+            user = machine.user;
+            homeConfig = machine.homeConfig;
+            system = machine.system or (if configType == "darwin" then "aarch64-darwin" else "x86_64-linux");
+            specialArgs = {inherit self inputs users;};
+          }
+      )
+      filteredMachines;
+  in {
+    devShells = eachSupportedSystem (system: {
+      default = import ./shell.nix {pkgs = legacyPackages.${system};};
+    });
+
+    formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
+
+    darwinConfigurations = mkConfigurations "darwin";
+    nixosConfigurations = mkConfigurations "nixos";
+  };
 }
