@@ -1,10 +1,10 @@
+# Darwin work profile
 {
   pkgs,
   users,
   ...
 }: {
   imports = [
-    ../../modules/darwin-base.nix
     ../../hosts/darwin/shared/homebrew.common.nix
     ../../hosts/darwin/shared/homebrew.work.nix
     ../../hosts/darwin/shared/fonts.nix
@@ -12,6 +12,7 @@
       inherit pkgs;
       username = users.work;
     })
+    ../../hosts/darwin/shared/home.work.nix
   ];
 
   ids.gids.nixbld = 30000;

@@ -64,6 +64,7 @@
             hostConfig = machine.hostConfig;
             user = machine.user;
             homeConfig = machine.homeConfig;
+            profiles = machine.profiles or [];
             system = machine.system or (if configType == "darwin" then "aarch64-darwin" else "x86_64-linux");
             specialArgs = {inherit self inputs users;};
           }

@@ -3,8 +3,6 @@
   users,
   ...
 }: {
-  imports = [
-    ../../profiles/darwin/private.nix
-    ./shared/home.private.nix
-  ];
+  # Machine-specific overrides for thekorn-macbook
+  # All configuration comes from profiles: ["private", "development"]
 }

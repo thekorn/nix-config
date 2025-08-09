@@ -1,3 +1,4 @@
+# Profile for studio Darwin machines
 {
   pkgs,
   users,

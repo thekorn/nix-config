@@ -3,8 +3,6 @@
   users,
   ...
 }: {
-  imports = [
-    ../../profiles/darwin/work.nix
-    ./shared/home.work.nix
-  ];
+  # Machine-specific overrides for BFG-024849 (work machine)
+  # All configuration comes from profiles: ["work", "development"]
 }

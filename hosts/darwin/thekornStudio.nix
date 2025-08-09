@@ -3,9 +3,6 @@
   users,
   ...
 }: {
-  imports = [
-    ../../profiles/darwin/private.nix
-    ../../profiles/darwin/studio.nix
-    ./shared/home.private.nix
-  ];
+  # Machine-specific overrides for thekorn-studio
+  # All configuration comes from profiles: ["private", "development", "studio", "gaming"]
 }

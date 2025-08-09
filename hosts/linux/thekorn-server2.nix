@@ -6,10 +6,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./configurations/thekorn-server2/hardware-configuration.nix
-    ./shared/home.private.nix
     #./shared/virtualisation.nix
-    ../../profiles/nixos/server.nix
   ];
+
+  # Machine-specific configuration for thekorn-server2
+  # All other configuration comes from profiles: ["server", "private"]
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

@@ -5,12 +5,29 @@
   microvm,
   ...
 }: rec {
+  # Helper to load profiles based on machine configuration
+  loadProfiles = {
+    profiles,
+    platform, # "darwin" or "nixos"
+  }: let
+    # Load shared profiles that exist
+    sharedProfiles = nixpkgs.lib.filter (path: builtins.pathExists path) (
+      map (profile: ../profiles/shared/${profile}.nix) profiles
+    );
+    # Load platform-specific profiles if they exist
+    platformProfiles = nixpkgs.lib.filter (path: builtins.pathExists path) (
+      map (profile: ../profiles/${platform}/${profile}.nix) profiles
+    );
+  in
+    sharedProfiles ++ platformProfiles;
+
   # Helper to create Darwin configurations
   mkDarwinHost = {
     hostname,
     hostConfig,
     user,
     homeConfig,
+    profiles ? [],
     system ? "aarch64-darwin",
     modules ? [],
     specialArgs ? {},
@@ -22,7 +39,7 @@
       };
       modules =
         [
-          ../hosts/darwin/${hostConfig}.nix
+          ../modules/darwin-base.nix
           home-manager.darwinModules.home-manager
           ({...}: {
             home-manager = {
@@ -33,6 +50,10 @@
             };
           })
         ]
+        ++ (loadProfiles {
+          inherit profiles;
+          platform = "darwin";
+        })
         ++ modules;
       inherit specialArgs;
     };
@@ -43,6 +64,7 @@
     hostConfig,
     user,
     homeConfig,
+    profiles ? [],
     system ? "x86_64-linux",
     modules ? [],
     specialArgs ? {},
@@ -52,7 +74,7 @@
       modules =
         [
           microvm.nixosModules.host
-          ../hosts/linux/${hostConfig}.nix
+          ../modules/nixos-base.nix
           home-manager.nixosModules.home-manager
           ({...}: {
             home-manager = {
@@ -63,6 +85,10 @@
             };
           })
         ]
+        ++ (loadProfiles {
+          inherit profiles;
+          platform = "nixos";
+        })
         ++ modules;
       inherit specialArgs;
     };

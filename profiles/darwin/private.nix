@@ -1,10 +1,10 @@
+# Darwin private profile
 {
   pkgs,
   users,
   ...
 }: {
   imports = [
-    ../../modules/darwin-base.nix
     ../../hosts/darwin/shared/homebrew.common.nix
     ../../hosts/darwin/shared/homebrew.private.nix
     ../../hosts/darwin/shared/fonts.nix
@@ -12,5 +12,6 @@
       inherit pkgs;
       username = users.private;
     })
+    ../../hosts/darwin/shared/home.private.nix
   ];
 }

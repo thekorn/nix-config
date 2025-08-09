@@ -1,10 +1,10 @@
+# NixOS server profile
 {
   pkgs,
   users,
   ...
 }: {
   imports = [
-    ../../modules/nixos-base.nix
     ../../hosts/shared/certificates.nix
   ];
 
