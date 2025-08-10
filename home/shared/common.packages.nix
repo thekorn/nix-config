@@ -38,5 +38,6 @@
     nil
     opencode
     fvm
+    bun
   ];
 }
