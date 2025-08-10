@@ -13,6 +13,8 @@
     zulu23
     discord
     biome
+    bun
+    claude-code
     #whatsapp-for-mac
   ];
 
