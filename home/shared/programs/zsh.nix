@@ -52,6 +52,10 @@
       ## neovim
       vi = "nvim";
       vim = "nvim";
+
+      ## CTF
+      akacurl = "curl -H '$APH' -H 'bf-debug: true'";
+      akastgcurl = "curl -H '$APH' -H 'bf-debug: true' --resolve '*:443:23.50.55.49'";
     };
     zprof = {
       enable = false;
@@ -67,6 +71,8 @@
         "tt"
         "https://burdaforward.atlassian.net/jira/software/c/projects/TT/boards/611/backlog?text="
       ];
+      ## CTF
+      APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
     };
     dirHashes = {
       nix = "$HOME/.config/nix";
