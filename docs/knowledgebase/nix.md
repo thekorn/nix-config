@@ -13,9 +13,9 @@ nix-collect-garbage --delete-older-than 14d
 
 for authenticated fetching of nix packages to increase the rate limit.
 
-1) create a github access [token](https://github.com/settings/tokens?type=beta)
+1. create a github access [token](https://github.com/settings/tokens?type=beta)
 
-2) create a file `~/.config/nix/nix.conf` with the following content:
+2. create a file `~/.config/nix/nix.conf` with the following content:
 
 ```bash
 $ cat ~/.config/nix/nix.conf
@@ -26,9 +26,33 @@ access-tokens = github.com=***censored***
 
 one way is to vendor packages https://jade.fyi/blog/pinning-packages-in-nix/
 
-
 ## update inputs
 
 ```bash
 nix flake update
+```
+
+## update nix
+
+get the current nix version:
+
+```bash
+nix-shell -p nix -I nixpkgs=channel:nixpkgs-unstable --run "nix --version"
+```
+
+update on linux:
+
+```bash
+$ sudo su
+nix-env --install --file '<nixpkgs>' --attr nix cacert -I nixpkgs=channel:nixpkgs-unstable
+systemctl daemon-reload
+systemctl restart nix-daemon
+```
+
+update on macos:
+
+```bash
+sudo nix-env --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-unstable
+sudo launchctl remove org.nixos.nix-daemon
+sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
 ```
