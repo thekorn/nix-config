@@ -6,7 +6,7 @@
     ./shared/common.programs.nix
     ./shared/devel.nix
 
-    #./shared/programs/zig.nix
+    ./shared/programs/zig.nix
   ];
 
   home.packages = with pkgs; [
