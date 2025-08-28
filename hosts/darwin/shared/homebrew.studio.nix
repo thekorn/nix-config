@@ -10,6 +10,7 @@
       "prismlauncher"
       "nvidia-geforce-now"
       "parallels"
+      "utm"
     ];
     brews = [
     ];
