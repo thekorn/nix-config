@@ -19,6 +19,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.configurationLimit = 10;
 
   networking.hostName = "thekorn-server2";
 
