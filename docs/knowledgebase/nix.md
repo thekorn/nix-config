@@ -9,6 +9,13 @@ nix-store --gc
 nix-collect-garbage --delete-older-than 14d
 ```
 
+on nix os, in order to free up `/boot` space, you can run the following command:
+
+```bash
+sudo nix-collect-garbage --delete-old
+sudo nixos-rebuild switch
+```
+
 ## use a github access token
 
 for authenticated fetching of nix packages to increase the rate limit.
