@@ -39,5 +39,7 @@
     opencode
     fvm
     bun
+
+    glab
   ];
 }

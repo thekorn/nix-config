@@ -17,5 +17,7 @@
     unzip
     gnumake
     tree-sitter
+
+    glab
   ];
 }
