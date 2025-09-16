@@ -7,6 +7,7 @@
     casks = [
       "zeplin"
       "figma"
+      "obs"
     ];
   };
 }
