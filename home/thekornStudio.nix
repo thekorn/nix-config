@@ -22,11 +22,9 @@
   ];
 
   home.packages = with pkgs; [
-    zulu17
-    #zulu21
-    #zulu23
+    zulu21
 
-    #prismlauncher
+    prismlauncher
     wb32-dfu-updater
     discord
     claude-code

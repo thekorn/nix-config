@@ -7,7 +7,6 @@
     casks = [
       "obs"
       "steam"
-      "prismlauncher"
       "nvidia-geforce-now"
       "parallels"
       "utm"
