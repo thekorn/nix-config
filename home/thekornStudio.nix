@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./shared/programs/qmk.nix
+    #./shared/programs/qmk.nix
     #./shared/programs/steam.nix
 
     ./shared/common.nix
@@ -18,14 +18,12 @@
 
     # package not working, use homebrew
     #./shared/devel/rpi.darwin.nix
-    #./shared/programs/vendor/prismlauncher.nix
   ];
 
   home.packages = with pkgs; [
     zulu21
 
-    prismlauncher
-    wb32-dfu-updater
+    #prismlauncher
     discord
     claude-code
     #whatsapp-for-mac
