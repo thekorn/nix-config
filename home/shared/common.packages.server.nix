@@ -6,7 +6,7 @@
     less
     zsh-forgit
     fnm
-    #awscli2
+    awscli2
     silver-searcher
     jq
     htop
