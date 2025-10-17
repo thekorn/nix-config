@@ -7,7 +7,6 @@
     casks = [
       "obs"
       "steam"
-      "nvidia-geforce-now"
       "parallels"
       "utm"
     ];
