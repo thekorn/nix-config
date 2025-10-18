@@ -10,6 +10,7 @@
       "android-studio"
       "docker-desktop" #<-- podman does not work for CTF
       "pocket-casts"
+      "helium-browser"
     ];
     taps = [];
     brews = [
