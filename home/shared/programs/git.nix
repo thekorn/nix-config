@@ -93,64 +93,63 @@ in {
     gitOpen
     gitHelpers
   ];
+
+  programs.delta = {
+    enable = true;
+    options = {
+      decorations = {
+        commit-decoration-style = "blue ol";
+        commit-style = "raw";
+        file-style = "omit";
+        hunk-header-decoration-style = "blue box";
+        hunk-header-file-style = "red";
+        hunk-header-line-number-style = "#067a00";
+        hunk-header-style = "file line-number syntax";
+      };
+      features = "chameleon";
+      whitespace-error-style = "22 reverse";
+      side-by-side = false;
+      interactive = {keep-plus-minus-markers = true;};
+    };
+  };
+
   programs.git = {
     enable = true;
-    userName = "Markus Korn";
-    userEmail = "markus.korn@gmail.com";
     hooks = {
       prepare-commit-msg = ./bin/git-prepare-commit-msg;
     };
-    aliases = {
-      co = "checkout";
-      cm = "commit";
-      st = "status";
-      br = "branch";
-      pu = "push -u";
-      o = "open";
-      or = "open --pr";
-      put = "push -u --tags";
-      type = "cat-file -t";
-      dump = "cat-file -p";
-      lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      diffc = "diff --cached";
-      merges = "log --oneline --decorate --color=auto --merges --first-parent";
-      permission-reset = ''
-        !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
-      patch = "!git --no-pager diff --no-color";
-
-      l = "!. ${gitHelpers}/bin/git-helpers && pretty_git_log";
-      la = "!git l --all";
-      lr = "!git l -30";
-      lra = "!git lr --all";
-      lgg = "!git l -G $1 -- $2";
-
-      # list tags
-      ltags = "!git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags";
-    };
-    delta = {
-      enable = true;
-      options = {
-        decorations = {
-          commit-decoration-style = "blue ol";
-          commit-style = "raw";
-          file-style = "omit";
-          hunk-header-decoration-style = "blue box";
-          hunk-header-file-style = "red";
-          hunk-header-line-number-style = "#067a00";
-          hunk-header-style = "file line-number syntax";
-        };
-        features = "chameleon";
-        whitespace-error-style = "22 reverse";
-        side-by-side = false;
-        interactive = {keep-plus-minus-markers = true;};
+    settings = {
+      user = {
+        name = "Markus Korn";
+        email = "markus.korn@gmail.com";
       };
-    };
-    signing = {
-      format = "ssh";
-      signByDefault = true;
-      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-    };
-    extraConfig = {
+      alias = {
+        co = "checkout";
+        cm = "commit";
+        st = "status";
+        br = "branch";
+        pu = "push -u";
+        o = "open";
+        or = "open --pr";
+        put = "push -u --tags";
+        type = "cat-file -t";
+        dump = "cat-file -p";
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        diffc = "diff --cached";
+        merges = "log --oneline --decorate --color=auto --merges --first-parent";
+        permission-reset = ''
+          !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
+        patch = "!git --no-pager diff --no-color";
+
+        l = "!. ${gitHelpers}/bin/git-helpers && pretty_git_log";
+        la = "!git l --all";
+        lr = "!git l -30";
+        lra = "!git lr --all";
+        lgg = "!git l -G $1 -- $2";
+
+        # list tags
+        ltags = "!git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags";
+      };
       #credential = {
       #  helper = "store";
       #};
@@ -175,6 +174,11 @@ in {
         # dont sign per default
         gpgsign = false;
       };
+    };
+    signing = {
+      format = "ssh";
+      signByDefault = true;
+      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
     };
     includes = [
       {

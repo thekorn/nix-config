@@ -9,7 +9,7 @@
     silver-searcher
     jq
     htop
-    delta
+    #delta
     httpie
     mkcert
     mongosh

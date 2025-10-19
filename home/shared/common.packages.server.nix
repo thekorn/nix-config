@@ -10,7 +10,7 @@
     silver-searcher
     jq
     htop
-    delta
+    #delta
     httpie
     alejandra
     nixd
