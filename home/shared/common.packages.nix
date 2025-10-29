@@ -24,7 +24,7 @@
     unar
     ktlint
     aria2
-    clang-tools_18
+    llvmPackages_18.clang-tools
 
     #bruno
     brave
