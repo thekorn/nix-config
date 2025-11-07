@@ -22,11 +22,11 @@
     ./programs/btop.nix
     ./programs/vscode.nix
     ./programs/ghostty.nix
-    ./programs/yazi.nix
+    #./programs/yazi.nix
     #./programs/podman.nix #<-- podman does not work for CTF
     ./programs/llm.nix
     ./programs/mpv.nix #<-- broken build 2025-03-31
-    ./programs/slumber.nix
+    #./programs/slumber.nix
     ./programs/google-chrome.nix
 
     ./programs/fvm.nix
