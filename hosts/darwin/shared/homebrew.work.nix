@@ -5,9 +5,7 @@
     global.brewfile = true;
     masApps = {};
     casks = [
-      "zeplin"
       "figma"
-      "obs"
     ];
   };
 }

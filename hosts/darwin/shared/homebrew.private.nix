@@ -6,6 +6,8 @@
     masApps = {};
     casks = [
       "transmission"
+      "pocket-casts"
+      "helium-browser"
     ];
     brews = [];
     taps = [];
