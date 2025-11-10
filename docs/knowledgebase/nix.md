@@ -63,3 +63,17 @@ sudo nix-env --install --file '<nixpkgs>' --attr nix -I nixpkgs=channel:nixpkgs-
 sudo launchctl remove org.nixos.nix-daemon
 sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
 ```
+
+## locate a file
+
+1. create the database:
+
+```bash
+nix run github:nix-community/nix-index#nix-index
+```
+
+2. query for a file:
+
+```bash
+nix run github:nix-community/nix-index#nix-locate -- bin/hello
+```
