@@ -69,7 +69,6 @@ function nixswitch() {
 function update() (
   set -e
   cd ~/.config/nix
-  sudo nix-channel --update
   git pull
   nix flake update --commit-lock-file
   git pu
