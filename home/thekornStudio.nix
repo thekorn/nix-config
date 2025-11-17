@@ -21,7 +21,7 @@
   ];
 
   home.packages = with pkgs; [
-    zulu21
+    zulu25
 
     #prismlauncher
     discord

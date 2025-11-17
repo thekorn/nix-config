@@ -9,7 +9,7 @@
   ];
 
   home.packages = with pkgs; [
-    zulu23
+    zulu25
     mongodb-compass
     claude-code
   ];

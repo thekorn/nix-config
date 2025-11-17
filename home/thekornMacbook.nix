@@ -10,7 +10,7 @@
   ];
 
   home.packages = with pkgs; [
-    zulu23
+    zulu25
     discord
     biome
     bun
