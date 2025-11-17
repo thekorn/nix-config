@@ -9,6 +9,7 @@
       "steam"
       "parallels"
       "utm"
+      "nvidia-geforce-now"
     ];
     brews = [
     ];
