@@ -9,6 +9,18 @@ nix-store --gc
 nix-collect-garbage --delete-older-than 14d
 ```
 
+in order to aggressivly remove all old generations of the store, run
+
+```bash
+nix-collect-garbage -d
+```
+
+to optimize the store, run
+
+```bash
+nix store optimise
+```
+
 on nix os, in order to free up `/boot` space, you can run the following command:
 
 ```bash
