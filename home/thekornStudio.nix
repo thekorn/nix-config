@@ -23,7 +23,7 @@
   home.packages = with pkgs; [
     zulu25
 
-    #prismlauncher
+    prismlauncher
     discord
     claude-code
     #whatsapp-for-mac
