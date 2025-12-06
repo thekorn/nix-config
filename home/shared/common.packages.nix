@@ -27,7 +27,7 @@
     llvmPackages_18.clang-tools
 
     #bruno
-    brave
+    #brave
     #gimp-with-plugins
     firefox-bin-unwrapped
     raycast
