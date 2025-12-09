@@ -6,6 +6,7 @@
     masApps = {};
     casks = [
       "figma"
+      "antigravity"
     ];
   };
 }
