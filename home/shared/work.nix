@@ -6,7 +6,7 @@
     #graphviz
     #hyperfine
     #biome
-    slack
+    #slack
   ];
   home.sessionVariables = {
     #jira
