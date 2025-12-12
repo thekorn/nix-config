@@ -41,5 +41,6 @@
     bun
 
     glab
+    television
   ];
 }
