@@ -10,7 +10,6 @@
       "parallels"
       "utm"
       "nvidia-geforce-now"
-      "antigravity"
     ];
     brews = [
     ];
