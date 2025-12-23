@@ -36,7 +36,7 @@
     swiftformat
     cocoapods
     nil
-    #opencode
+    opencode
     fvm
     bun
 
