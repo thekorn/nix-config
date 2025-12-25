@@ -92,26 +92,27 @@ in {
   home.packages = [
     gitOpen
     gitHelpers
+    pkgs.difftastic
   ];
 
-  programs.delta = {
-    enable = true;
-    options = {
-      decorations = {
-        commit-decoration-style = "blue ol";
-        commit-style = "raw";
-        file-style = "omit";
-        hunk-header-decoration-style = "blue box";
-        hunk-header-file-style = "red";
-        hunk-header-line-number-style = "#067a00";
-        hunk-header-style = "file line-number syntax";
-      };
-      features = "chameleon";
-      whitespace-error-style = "22 reverse";
-      side-by-side = false;
-      interactive = {keep-plus-minus-markers = true;};
-    };
-  };
+  #programs.delta = {
+  #  enable = true;
+  #  options = {
+  #      decorations = {
+  #          commit-decoration-style = "blue ol";
+  #          commit-style = "raw";
+  #          file-style = "omit";
+  #          hunk-header-decoration-style = "blue box";
+  #          hunk-header-file-style = "red";
+  #          hunk-header-line-number-style = "#067a00";
+  #          hunk-header-style = "file line-number syntax";
+  #        };
+  #      features = "chameleon";
+  #      whitespace-error-style = "22 reverse";
+  #      side-by-side = false;
+  #      interactive = {keep-plus-minus-markers = true;};
+  #    };
+  #};
 
   programs.git = {
     enable = true;
@@ -147,6 +148,15 @@ in {
         lra = "!git lr --all";
         lgg = "!git l -G $1 -- $2";
 
+        # `git log` with patches shown with difftastic.
+        dl = "log -p --ext-diff";
+
+        # Show the most recent commit with difftastic.
+        ds = "show --ext-diff";
+
+        # `git diff` with difftastic.
+        dft = "diff";
+
         # list tags
         ltags = "!git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags";
       };
@@ -167,7 +177,10 @@ in {
         default = "current";
         followTags = true;
       };
-      diff = {submodule = "log";};
+      diff = {
+        submodule = "log";
+        external = "difft";
+      };
       pull = {rebase = false;};
       init = {defaultBranch = "main";};
       commit = {
