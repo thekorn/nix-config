@@ -12,7 +12,7 @@
     #delta
     httpie
     mkcert
-    mongosh
+    #mongosh
     mongodb-tools
     alejandra
     nixd
