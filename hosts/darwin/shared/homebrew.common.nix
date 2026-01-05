@@ -10,6 +10,7 @@
       "android-studio"
       "docker-desktop" # <-- podman does not work for CTF
       "antigravity"
+      "helium-browser"
     ];
     taps = [];
     brews = [
