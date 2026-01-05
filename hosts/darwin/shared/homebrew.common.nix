@@ -9,7 +9,7 @@
       "1password" # <- nix version is marked as broken
       "android-studio"
       "docker-desktop" # <-- podman does not work for CTF
-      "antigravity"
+      #"antigravity" <-- not working with my current google workspace subscription
       "helium-browser"
     ];
     taps = [];
