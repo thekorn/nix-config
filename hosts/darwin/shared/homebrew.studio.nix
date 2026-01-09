@@ -8,8 +8,8 @@
       "obs"
       "steam"
       "parallels"
-      "utm"
-      "nvidia-geforce-now"
+      # "utm"
+      # "nvidia-geforce-now"
     ];
     brews = [
     ];

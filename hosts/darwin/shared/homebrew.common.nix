@@ -11,6 +11,7 @@
       "docker-desktop" # <-- podman does not work for CTF
       #"antigravity" <-- not working with my current google workspace subscription
       "helium-browser"
+      "affinity"
     ];
     taps = [];
     brews = [
