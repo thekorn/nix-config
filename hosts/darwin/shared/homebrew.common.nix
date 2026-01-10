@@ -15,7 +15,7 @@
     ];
     taps = [];
     brews = [
-      "gemini-cli" # <-- nix version is outdated
+      #"gemini-cli" # <-- nix version is outdated
     ];
   };
 }
