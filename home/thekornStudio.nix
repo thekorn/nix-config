@@ -25,7 +25,6 @@
 
     prismlauncher
     discord
-    claude-code
     #whatsapp-for-mac
   ];
 

@@ -10,8 +10,6 @@
 
   home.packages = with pkgs; [
     zulu25
-    mongodb-compass
-    claude-code
   ];
 
   programs.home-manager.enable = true;

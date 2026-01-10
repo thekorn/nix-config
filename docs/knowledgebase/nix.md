@@ -76,6 +76,12 @@ sudo launchctl remove org.nixos.nix-daemon
 sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
 ```
 
+update Determinate nix:
+
+```bash
+sudo determinate-nixd upgrade
+```
+
 ## locate a file
 
 1. create the database:
