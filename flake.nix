@@ -158,6 +158,14 @@
               plymouth_theme = "omarchy"; # Custom boot splash theme
               silent_boot = true; # Hide kernel messages
             };
+            monitors = [
+              #              "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling
+              "HDMI-A-1,3140x2610,auto,1"
+            ];
+            # TODO
+            firewall = {
+              enable = false;
+            };
           };
 
           # Home Manager integration

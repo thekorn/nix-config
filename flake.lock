@@ -644,7 +644,7 @@
       },
       "locked": {
         "lastModified": 0,
-        "narHash": "sha256-On2gexRjAULuF8qVhbLIV0kr4nESLH9cyLmklmX+vwo=",
+        "narHash": "sha256-x3TZEg/kpHSw1C5rnEIGW+Pd30FIvP0/LagVRKOEuC8=",
         "path": "/home/thekorn/.config/omarchy-nix",
         "type": "path"
       },
