@@ -7,6 +7,7 @@
     casks = [
       "transmission"
       "pocket-casts"
+      "vnc-viewer"
     ];
     brews = [];
     taps = [];
