@@ -147,7 +147,7 @@
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
+            #home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
           }
         )
       ];
