@@ -643,14 +643,17 @@
         "walker": "walker"
       },
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-x3TZEg/kpHSw1C5rnEIGW+Pd30FIvP0/LagVRKOEuC8=",
-        "path": "/home/thekorn/.config/omarchy-nix",
-        "type": "path"
+        "lastModified": 1769350850,
+        "narHash": "sha256-PTo+AQ2CYf9CBIuz6FABxeiQ5tT9v2rYfDECKFfXSMw=",
+        "owner": "thekorn",
+        "repo": "omarchy-nix",
+        "rev": "32837df51b785879903e3e0a5dd1c7dea896d35a",
+        "type": "github"
       },
       "original": {
-        "path": "/home/thekorn/.config/omarchy-nix",
-        "type": "path"
+        "owner": "thekorn",
+        "repo": "omarchy-nix",
+        "type": "github"
       }
     },
     "pre-commit-hooks": {
