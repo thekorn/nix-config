@@ -152,8 +152,8 @@
             # Required configuration
             omarchy = {
               username = primaryUser;
-              full_name = primaryUser;
-              email_address = "hello@thekorn.dev";
+              full_name = "Markus Korn";
+              email_address = "markus.korn@gmail.com";
               theme = "tokyo-night";
               seamless_boot = {
                 enable = true; # Enable Plymouth + auto-login

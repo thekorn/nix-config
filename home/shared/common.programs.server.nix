@@ -6,7 +6,7 @@
     ./programs/git.server.nix
     ./programs/tmux.server.nix
     ./devel.nix
-    ./programs/nvim.nix
+    #    ./programs/nvim.nix
     ./programs/lazygit.nix
     ./programs/ripgrep.nix
     ./programs/zig.nix

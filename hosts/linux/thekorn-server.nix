@@ -54,7 +54,7 @@
     isNormalUser = true;
     description = "thekorn";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [git neovim htop tree];
+    packages = with pkgs; [git htop tree];
     shell = pkgs.bash;
   };
 
