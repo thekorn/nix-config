@@ -16,8 +16,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     omarchy-nix = {
-      # url = "github:thekorn/omarchy-nix";
-      url = "path:/home/thekorn/.config/omarchy-nix";
+      url = "github:thekorn/omarchy-nix";
+      #url = "path:/home/thekorn/.config/omarchy-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -145,39 +145,43 @@
       modules = [
         omarchy-nix.nixosModules.default
         ./hosts/linux/thekorn-server.nix
-        {
-          # Required configuration
-          omarchy = {
-            username = "thekorn";
-            full_name = "thekorn";
-            email_address = "hello@thekorn.dev";
-            theme = "tokyo-night";
-            seamless_boot = {
-              enable = true; # Enable Plymouth + auto-login
-              username = "thekorn"; # Required for auto-login
-              plymouth_theme = "omarchy"; # Custom boot splash theme
-              silent_boot = true; # Hide kernel messages
+        (
+          {...}: let
+            primaryUser = users.private;
+          in {
+            # Required configuration
+            omarchy = {
+              username = primaryUser;
+              full_name = primaryUser;
+              email_address = "hello@thekorn.dev";
+              theme = "tokyo-night";
+              seamless_boot = {
+                enable = true; # Enable Plymouth + auto-login
+                username = primaryUser; # Required for auto-login
+                plymouth_theme = "omarchy"; # Custom boot splash theme
+                silent_boot = true; # Hide kernel messages
+              };
+              monitors = [
+                #              "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling, rotate 90deg
+                "HDMI-A-1,3140x2610,auto,1"
+              ];
+              # TODO
+              firewall = {
+                enable = false;
+              };
+              quick_app_bindings = [
+                "ALT_L, RETURN, Terminal, exec, $terminal"
+                "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
+                "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
+              ];
             };
-            monitors = [
-              #              "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling
-              "HDMI-A-1,3140x2610,auto,1"
-            ];
-            # TODO
-            firewall = {
-              enable = false;
-            };
-            quick_app_bindings = [
-              "ALT_L, RETURN, Terminal, exec, $terminal"
-              "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
-              "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
-            ];
-          };
 
-          # Home Manager integration
-          home-manager.users.thekorn = {
-            imports = [omarchy-nix.homeManagerModules.default];
-          };
-        }
+            # Home Manager integration
+            home-manager.users.${primaryUser} = {
+              imports = [omarchy-nix.homeManagerModules.default];
+            };
+          }
+        )
         home-manager.nixosModules.home-manager
         (
           {...}: let
