@@ -1,9 +1,9 @@
 {pkgs, ...}: {
   imports = [
-    ./shared/common.nix
-    ./shared/common.linux.nix
-    ./shared/common.packages.server.nix
-    ./shared/common.programs.server.nix
+#    ./shared/common.nix
+#    ./shared/common.linux.nix
+#    ./shared/common.packages.server.nix
+#    ./shared/common.programs.server.nix
   ];
 
   programs.home-manager.enable = true;

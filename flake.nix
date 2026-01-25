@@ -14,11 +14,19 @@
     # Controls system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    omarchy-nix = {
+      # url = "github:thekorn/omarchy-nix";
+      url = "path:/home/thekorn/.config/omarchy-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    omarchy-nix,
     home-manager,
     darwin,
     ...
@@ -135,7 +143,28 @@
     nixosConfigurations.thekorn-server = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        omarchy-nix.nixosModules.default
         ./hosts/linux/thekorn-server.nix
+        {
+          # Required configuration
+          omarchy = {
+            username = "thekorn";
+            full_name = "thekorn";
+            email_address = "hello@thekorn.dev";
+            theme = "tokyo-night";
+            seamless_boot = {
+              enable = true; # Enable Plymouth + auto-login
+              username = "thekorn"; # Required for auto-login
+              plymouth_theme = "omarchy"; # Custom boot splash theme
+              silent_boot = true; # Hide kernel messages
+            };
+          };
+
+          # Home Manager integration
+          home-manager.users.thekorn = {
+            imports = [omarchy-nix.homeManagerModules.default];
+          };
+        }
         home-manager.nixosModules.home-manager
         (
           {...}: let
@@ -147,7 +176,7 @@
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            #home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
+            home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
           }
         )
       ];
