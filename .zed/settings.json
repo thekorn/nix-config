@@ -10,12 +10,12 @@
       "formatter": {
         "external": {
           "command": "alejandra",
-          "arguments": ["--quiet", "--"]
-        }
-      }
-    }
+          "arguments": ["--quiet", "--"],
+        },
+      },
+    },
   },
   "auto_install_extensions": {
-    "nix": true
-  }
+    "nix": true,
+  },
 }
