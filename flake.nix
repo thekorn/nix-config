@@ -166,6 +166,11 @@
             firewall = {
               enable = false;
             };
+            quick_app_bindings = [
+              "ALT_L, RETURN, Terminal, exec, $terminal"
+              "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
+              "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
+            ];
           };
 
           # Home Manager integration
