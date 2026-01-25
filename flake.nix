@@ -165,9 +165,8 @@
                 #              "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling, rotate 90deg
                 "HDMI-A-1,3140x2610,auto,1"
               ];
-              # TODO
               firewall = {
-                enable = false;
+                enable = true;
               };
               quick_app_bindings = [
                 "ALT_L, RETURN, Terminal, exec, $terminal"
