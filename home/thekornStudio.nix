@@ -25,6 +25,7 @@
 
     prismlauncher
     discord
+    amp-cli
     #whatsapp-for-mac
   ];
 

@@ -8,6 +8,7 @@
       "obs"
       "steam"
       "parallels"
+      #"antigravity"
       # "utm"
       # "nvidia-geforce-now"
     ];
