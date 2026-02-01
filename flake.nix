@@ -7,7 +7,8 @@
     #nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # swift 5.10.1 is broken on newer builds
     # https://github.com/NixOS/nixpkgs/issues/483584
-    nixpkgs.url = "github:nixos/nixpkgs/ed142ab";
+    #nixpkgs.url = "github:nixos/nixpkgs/ed142ab";
+    nixpkgs.url = "github:nixos/nixpkgs/2175e5c";
 
     # Manages configs links things into your home directory
     home-manager.url = "github:nix-community/home-manager/master";

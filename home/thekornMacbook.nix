@@ -12,8 +12,7 @@
   home.packages = with pkgs; [
     zulu25
     discord
-    biome
-    bun
+    amp-cli
     #whatsapp-for-mac
   ];
 
