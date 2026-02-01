@@ -1,52 +1,72 @@
 # config using nix and flake
 
-This is the config for my machines.
+This is the multi-machine configuration for my Darwin (macOS) and Linux systems, managed via Nix Flakes, nix-darwin, and home-manager.
 
-## prerequisits
+## Prerequisites
 
-- git
-- homebrew
+- **Git**: Required to clone this repository.
+- **Homebrew** (Darwin only): Used for managing some macOS applications.
 
-```
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-- clone this repository
-
-```
-$ git clone https://github.com/thekorn/nix-config.git .config/nix
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-- install nix
+- **Nix**: Install Nix with Flakes support.
 
-```
-$ curl -fsSL https://install.determinate.systems/nix | sh -s -- install
-```
-
-- install nix-darwin
-
-```
-$ sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
+```bash
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 ```
 
-```
-$ cd .config/nix
-$ nix build .#darwinConfigurations.demoVM.system --extra-experimental-features "nix-command flakes"
+## Setup
 
-# the plan is to now run this to install nix-darwin with our configuration
-# ./result/sw/bin/darwin-rebuild switch --flake .#demoVM # this will fail as we first have to do the following lines
+1. Clone this repository into `~/.config/nix`:
 
-# now we can finally darwin-rebuild
-$ ./result/sw/bin/darwin-rebuild switch --flake .#demoVM
+```bash
+git clone https://github.com/thekorn/nix-config.git ~/.config/nix
+cd ~/.config/nix
 ```
 
-## reference
+2. Apply the configuration for your host:
 
-- https://github.com/thexyno/blogpages.git
-- https://daiderd.com/nix-darwin/manual/index.html
-- https://nix-community.github.io/home-manager/options.html
-- https://codeberg.org/imMaturana/dotfiles
-- https://github.com/schickling/dotfiles
+### Darwin (macOS)
+
+For a first-time installation:
+```bash
+nix run nix-darwin -- switch --flake .#<hostname>
+```
+
+For subsequent updates:
+```bash
+darwin-rebuild switch --flake .#<hostname>
+```
+
+### Linux (NixOS)
+
+```bash
+sudo nixos-rebuild switch --flake .#<hostname>
+```
+
+## Available Hosts
+
+### Darwin
+- `thekorn-macbook` (Personal MacBook)
+- `thekorn-studio` (Personal Mac Studio)
+- `BFG-024849` (Work Laptop, user: `d438477`)
+
+### Linux
+- `thekorn-server` (Main server)
+- `thekorn-server2` (Secondary server)
+
+## Maintenance
+
+- **Format code**: `nix fmt`
+- **Update inputs**: `nix flake update`
+
+## Reference
+
+- [nix-darwin manual](https://daiderd.com/nix-darwin/manual/index.html)
+- [home-manager options](https://nix-community.github.io/home-manager/options.html)
+- [Architecture details](./docs/architecture.md)
 
 ## TODO:
 
