@@ -14,8 +14,6 @@
       "affinity"
     ];
     taps = [];
-    brews = [
-      #"gemini-cli" # <-- nix version is outdated
-    ];
+    brews = [];
   };
 }

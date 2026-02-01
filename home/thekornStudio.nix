@@ -26,6 +26,7 @@
     prismlauncher
     discord
     amp-cli
+    gemini-cli-bin
     #whatsapp-for-mac
   ];
 

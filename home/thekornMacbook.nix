@@ -13,6 +13,7 @@
     zulu25
     discord
     amp-cli
+    gemini-cli-bin
     #whatsapp-for-mac
   ];
 
