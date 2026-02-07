@@ -26,7 +26,8 @@
     #./programs/podman.nix #<-- podman does not work for CTF
     ./programs/mpv.nix
     #./programs/slumber.nix
-    ./programs/google-chrome.nix
+    # marked as broken: https://github.com/NixOS/nixpkgs/pull/486721
+    #./programs/google-chrome.nix
 
     ./programs/fvm.nix
     #./programs/jujutsu.nix
