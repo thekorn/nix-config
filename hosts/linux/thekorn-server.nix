@@ -68,6 +68,7 @@
     wget
     git
     coreutils
+    nodejs
   ];
   environment.shells = with pkgs; [bash zsh];
 
