@@ -14,7 +14,7 @@
     ./programs/ripgrep.nix
     ./programs/gptcommit.nix
     ./programs/atuin.nix
-    ./programs/zed.nix
+    #./programs/zed.nix
     ./programs/oh-my-posh.nix
     ./programs/pnpm.nix
     ./programs/android-studio.nix

@@ -20,7 +20,8 @@
       show-recents = false;
       persistent-apps = [
         "/System/Applications/Mail.app"
-        "${pkgs.zed-editor}/Applications/Zed.app"
+        #"${pkgs.zed-editor}/Applications/Zed.app" #nixpkgs version
+        "/Applications/Zed.app" #homebrew version
         "/System/Applications/Notes.app"
         "/Applications/Safari.app"
         "${pkgs.ghostty-bin}/Applications/Ghostty.app"

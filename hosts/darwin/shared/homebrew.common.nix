@@ -12,6 +12,7 @@
       #"antigravity" <-- not working with my current google workspace subscription
       "helium-browser"
       "affinity"
+      "zed"
     ];
     taps = [];
     brews = [];
