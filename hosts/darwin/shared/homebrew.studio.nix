@@ -9,6 +9,7 @@
       "steam"
       "parallels"
       "multipass"
+      "voiceink"
       #"antigravity"
       # "utm"
       # "nvidia-geforce-now"
