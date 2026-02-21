@@ -21,6 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs = {
@@ -29,6 +31,7 @@
     omarchy-nix,
     home-manager,
     darwin,
+    llm-agents,
     ...
   } @ inputs: let
     eachSupportedSystem = nixpkgs.lib.genAttrs [
@@ -60,6 +63,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         config.allowUnfree = true;
+        overlays = [llm-agents.overlays.default];
       };
       modules = [
         ./hosts/darwin/thekornMacbook.nix
@@ -88,6 +92,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         config.allowUnfree = true;
+        overlays = [llm-agents.overlays.default];
       };
       modules = [
         ./hosts/darwin/thekornStudio.nix

@@ -36,7 +36,8 @@
     swiftformat
     cocoapods
     nil
-    opencode
+
+    llm-agents.opencode
     fvm
     bun
 
