@@ -8,6 +8,7 @@
       "transmission"
       "pocket-casts"
       "vnc-viewer"
+      "voiceink"
     ];
     brews = [];
     taps = [];
