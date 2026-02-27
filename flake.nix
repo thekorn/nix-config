@@ -121,6 +121,7 @@
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         config.allowUnfree = true;
+        overlays = [llm-agents.overlays.default];
       };
       modules = [
         ./hosts/darwin/thekornWork.nix

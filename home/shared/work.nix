@@ -7,6 +7,7 @@
     #hyperfine
     #biome
     #slack
+    tflint
   ];
   home.sessionVariables = {
     #jira

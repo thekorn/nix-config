@@ -19,7 +19,8 @@
 in {
   home.packages = [
     pkgs.mpv-unwrapped
-    pkgs.yt-dlp
+    # 2026-02-23: broken build
+    #pkgs.yt-dlp
     play
   ];
 }

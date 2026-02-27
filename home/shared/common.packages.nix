@@ -38,6 +38,7 @@
     nil
 
     llm-agents.opencode
+    llm-agents.amp
     fvm
     bun
 
