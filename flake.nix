@@ -50,190 +50,143 @@
         }
     );
 
-    mkDarwinHost = darwin.lib.darwinSystem;
-
     users = {
       private = "thekorn";
       work = "d438477";
     };
+
+    commonSpecialArgs = {
+      inherit self inputs users;
+    };
+
+    mkDarwinHost = {
+      hostModule,
+      homeModule,
+      user,
+      system ? "aarch64-darwin",
+      extraModules ? [],
+    }:
+      darwin.lib.darwinSystem {
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [llm-agents.overlays.default];
+        };
+        modules =
+          [
+            hostModule
+            home-manager.darwinModules.home-manager
+            ({...}: {
+              home-manager = {
+                extraSpecialArgs = commonSpecialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${user}.imports = [homeModule];
+              };
+            })
+          ]
+          ++ extraModules;
+        specialArgs =
+          commonSpecialArgs
+          // {
+            primaryUser = user;
+          };
+      };
+
+    mkNixOSHost = {
+      hostModule,
+      homeModule,
+      user,
+      system ? "x86_64-linux",
+      extraModules ? [],
+    }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules =
+          [
+            hostModule
+            home-manager.nixosModules.home-manager
+            ({...}: {
+              home-manager = {
+                extraSpecialArgs = commonSpecialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${user}.imports = [homeModule];
+              };
+            })
+          ]
+          ++ extraModules;
+        specialArgs =
+          commonSpecialArgs
+          // {
+            primaryUser = user;
+          };
+      };
   in {
     formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
 
     darwinConfigurations."thekorn-macbook" = mkDarwinHost {
-      pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-        config.allowUnfree = true;
-        overlays = [llm-agents.overlays.default];
-      };
-      modules = [
-        ./hosts/darwin/thekornMacbook.nix
-        home-manager.darwinModules.home-manager
-        (
-          {...}: let
-            primaryUser = users.private;
-          in {
-            home-manager.extraSpecialArgs = {
-              inherit self inputs;
-              inherit users;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${primaryUser}.imports = [./home/thekornMacbook.nix];
-          }
-        )
-      ];
-      specialArgs = {
-        inherit self inputs;
-        inherit users;
-        primaryUser = users.private;
-      };
+      user = users.private;
+      hostModule = ./hosts/darwin/thekornMacbook.nix;
+      homeModule = ./home/thekornMacbook.nix;
     };
 
     darwinConfigurations."thekorn-studio" = mkDarwinHost {
-      pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-        config.allowUnfree = true;
-        overlays = [llm-agents.overlays.default];
-      };
-      modules = [
-        ./hosts/darwin/thekornStudio.nix
-        home-manager.darwinModules.home-manager
-        (
-          {...}: let
-            primaryUser = users.private;
-          in {
-            home-manager.extraSpecialArgs = {
-              inherit self inputs;
-              inherit users;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${primaryUser}.imports = [./home/thekornStudio.nix];
-          }
-        )
-      ];
-      specialArgs = {
-        inherit self inputs;
-        inherit users;
-        primaryUser = users.private;
-      };
+      user = users.private;
+      hostModule = ./hosts/darwin/thekornStudio.nix;
+      homeModule = ./home/thekornStudio.nix;
     };
 
     darwinConfigurations."BFG-024849" = mkDarwinHost {
-      pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-        config.allowUnfree = true;
-        overlays = [llm-agents.overlays.default];
-      };
-      modules = [
-        ./hosts/darwin/thekornWork.nix
-        home-manager.darwinModules.home-manager
-        (
-          {...}: let
-            primaryUser = users.work;
-          in {
-            home-manager.extraSpecialArgs = {
-              inherit self inputs;
-              inherit users;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${primaryUser}.imports = [./home/thekornWork.nix];
-          }
-        )
-      ];
-      specialArgs = {
-        inherit self inputs;
-        inherit users;
-        primaryUser = users.work;
-      };
+      user = users.work;
+      hostModule = ./hosts/darwin/thekornWork.nix;
+      homeModule = ./home/thekornWork.nix;
     };
 
-    nixosConfigurations.thekorn-server = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
+    nixosConfigurations.thekorn-server = mkNixOSHost {
+      user = users.private;
+      hostModule = ./hosts/linux/thekorn-server.nix;
+      homeModule = ./home/thekornServer.nix;
+      extraModules = [
         omarchy-nix.nixosModules.default
-        ./hosts/linux/thekorn-server.nix
-        (
-          {...}: let
-            primaryUser = users.private;
-          in {
-            # Required configuration
-            omarchy = {
+        ({...}: let
+          primaryUser = users.private;
+        in {
+          omarchy = {
+            username = primaryUser;
+            full_name = "Markus Korn";
+            email_address = "markus.korn@gmail.com";
+            theme = "tokyo-night";
+            seamless_boot = {
+              enable = true;
               username = primaryUser;
-              full_name = "Markus Korn";
-              email_address = "markus.korn@gmail.com";
-              theme = "tokyo-night";
-              seamless_boot = {
-                enable = true; # Enable Plymouth + auto-login
-                username = primaryUser; # Required for auto-login
-                plymouth_theme = "omarchy"; # Custom boot splash theme
-                silent_boot = true; # Hide kernel messages
-              };
-              monitors = [
-                #              "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling, rotate 90deg
-                "HDMI-A-1,3140x2610,auto,1"
-              ];
-              firewall = {
-                enable = true;
-              };
-              quick_app_bindings = [
-                "ALT_L, RETURN, Terminal, exec, $terminal"
-                "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
-                "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
-              ];
+              plymouth_theme = "omarchy";
+              silent_boot = true;
             };
+            monitors = [
+              "HDMI-A-1,3140x2610,auto,1"
+            ];
+            firewall = {
+              enable = true;
+            };
+            quick_app_bindings = [
+              "ALT_L, RETURN, Terminal, exec, $terminal"
+              "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
+              "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
+            ];
+          };
 
-            # Home Manager integration
-            home-manager.users.${primaryUser} = {
-              imports = [omarchy-nix.homeManagerModules.default];
-            };
-          }
-        )
-        home-manager.nixosModules.home-manager
-        (
-          {...}: let
-            primaryUser = users.private;
-          in {
-            home-manager.extraSpecialArgs = {
-              inherit self inputs;
-              inherit users;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
-          }
-        )
+          home-manager.users.${primaryUser} = {
+            imports = [omarchy-nix.homeManagerModules.default];
+          };
+        })
       ];
-      specialArgs = {
-        inherit self inputs;
-        inherit users;
-      };
     };
 
-    nixosConfigurations.thekorn-server2 = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./hosts/linux/thekorn-server2.nix
-        home-manager.nixosModules.home-manager
-        (
-          {...}: let
-            primaryUser = users.private;
-          in {
-            home-manager.extraSpecialArgs = {
-              inherit self inputs;
-              inherit users;
-            };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${primaryUser}.imports = [./home/thekornServer2.nix];
-          }
-        )
-      ];
-      specialArgs = {
-        inherit self inputs;
-        inherit users;
-      };
+    nixosConfigurations.thekorn-server2 = mkNixOSHost {
+      user = users.private;
+      hostModule = ./hosts/linux/thekorn-server2.nix;
+      homeModule = ./home/thekornServer2.nix;
     };
   };
 }
