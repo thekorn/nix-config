@@ -1,10 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./shared/common.nix
-    ./shared/common.darwin.nix
-    ./shared/common.packages.nix
-    ./shared/common.programs.nix
-    ./shared/devel.nix
+    ../profiles/darwin-desktop.nix
 
     ./shared/programs/zig.nix
   ];
@@ -13,10 +9,5 @@
     zulu25
     discord
     llm-agents.gemini-cli
-    #whatsapp-for-mac
   ];
-
-  programs.home-manager.enable = true;
-
-  home.stateVersion = "22.11";
 }
