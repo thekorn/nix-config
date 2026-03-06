@@ -149,9 +149,7 @@
       homeModule = ./home/thekornServer.nix;
       extraModules = [
         omarchy-nix.nixosModules.default
-        ({...}: let
-          primaryUser = users.private;
-        in {
+        ({primaryUser, ...}: {
           omarchy = {
             username = primaryUser;
             full_name = "Markus Korn";
