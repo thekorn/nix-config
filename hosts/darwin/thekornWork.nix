@@ -1,29 +1,8 @@
-{
-  pkgs,
-  users,
-  ...
-}: {
-  # here go the darwin preferences and config items
-
+{...}: {
   imports = [
-    ./shared/homebrew.common.nix
+    ./shared/base.nix
     ./shared/homebrew.work.nix
-    ./shared/home.work.nix
-    ./shared/fonts.nix
-    ./shared/preferences.nix
   ];
 
-  system.stateVersion = 5;
-
-  programs.zsh.enable = true;
-  environment = {
-    shells = with pkgs; [bash zsh];
-    systemPackages = [pkgs.coreutils];
-    systemPath = ["/opt/homebrew/bin"];
-    pathsToLink = ["/Applications"];
-  };
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
   ids.gids.nixbld = 30000;
 }
