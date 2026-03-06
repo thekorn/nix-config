@@ -10,10 +10,7 @@
     ./shared/homebrew.work.nix
     ./shared/home.work.nix
     ./shared/fonts.nix
-    (import ./shared/preferences.nix {
-      inherit pkgs;
-      username = users.work;
-    })
+    ./shared/preferences.nix
   ];
 
   system.stateVersion = 5;

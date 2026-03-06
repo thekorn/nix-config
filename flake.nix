@@ -85,6 +85,7 @@
       specialArgs = {
         inherit self inputs;
         inherit users;
+        primaryUser = users.private;
       };
     };
 
@@ -114,6 +115,7 @@
       specialArgs = {
         inherit self inputs;
         inherit users;
+        primaryUser = users.private;
       };
     };
 
@@ -143,6 +145,7 @@
       specialArgs = {
         inherit self inputs;
         inherit users;
+        primaryUser = users.work;
       };
     };
 

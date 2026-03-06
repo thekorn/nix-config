@@ -1,8 +1,10 @@
 {
-  username,
+  primaryUser,
   pkgs,
   ...
-}: {
+}: let
+  username = primaryUser;
+in {
   imports = [
     ../../shared/certificates.nix
   ];

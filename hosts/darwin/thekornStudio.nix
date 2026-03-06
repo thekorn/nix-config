@@ -12,11 +12,7 @@
     ./shared/homebrew.ladybird.nix
     ./shared/home.private.nix
     ./shared/fonts.nix
-    #./shared/preferences.nix
-    (import ./shared/preferences.nix {
-      inherit pkgs;
-      username = users.private;
-    })
+    ./shared/preferences.nix
   ];
 
   system.stateVersion = 5;
