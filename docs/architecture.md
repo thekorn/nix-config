@@ -2,56 +2,45 @@
 
 ## Directory Structure
 
-- **`hosts/`**: System-level configurations (nix-darwin for macOS, NixOS for Linux)
-  - `darwin/shared/`: Shared macOS system modules (fonts, homebrew, preferences)
-  - `linux/shared/`: Shared Linux system modules
-- **`home/`**: User-level home-manager configurations
-  - `shared/`: Shared user modules organized by function
-  - `thekorn*.nix`: Per-machine user configurations
+- **`flake.nix`**: Entry point with `mkDarwinHost` and `mkNixOSHost` helpers that eliminate boilerplate
+- **`profiles/`**: Composable role-based modules (home-manager level)
+  - `darwin-desktop.nix`: Full desktop setup for macOS (packages, programs, devel dirs)
+  - `linux-server.nix`: Headless server setup (server packages, ssh-agent)
+  - `work.nix`: Work-specific settings (Jira, monorepo vars)
+- **`hosts/`**: System-level configurations (nix-darwin / NixOS)
+  - `darwin/shared/base.nix`: Common darwin base (zsh, environment, fonts, preferences, homebrew)
+  - `darwin/<machine>.nix`: Per-machine darwin overrides
+  - `linux/<machine>.nix`: Per-machine NixOS configs
+  - `shared/certificates.nix`: Cross-platform certificate config
+- **`home/`**: Per-machine home-manager entry points (import profiles + machine-specific packages)
+  - `shared/`: Low-level shared modules (packages, programs, session vars)
 
-## Shared Configuration Modules
+## How It Fits Together
 
-| Module | Purpose |
-|--------|---------|
-| `common.nix` | Base session variables and paths |
-| `common.packages.nix` | Core CLI tools and applications |
-| `common.programs.nix` | Imports all program-specific configurations |
-| `common.darwin.nix` / `common.linux.nix` | Platform-specific settings |
-| `devel.nix` | Development packages and tools |
-| `work.nix` | Work-specific configurations |
-
-## Program Configuration Pattern
-
-Each program has its own module in `home/shared/programs/` (e.g., `git.nix`, `zsh.nix`, `nvim.nix`) with:
-- Program-specific Nix options
-- Custom scripts and functions
-- Dotfiles referenced from `dotfiles/` subdirectory
-
-## Machine-Specific Imports
-
-Each machine configuration imports shared modules plus machine-specific customizations:
-
-```nix
-imports = [
-  ../shared/common.nix
-  ../shared/common.darwin.nix  # or common.linux.nix
-  ../shared/common.packages.nix
-  ../shared/common.programs.nix
-  ../shared/devel.nix
-];
+```
+flake.nix
+  └─ mkDarwinHost / mkNixOSHost (handles home-manager wiring, specialArgs)
+       ├─ hosts/<platform>/<machine>.nix  (system config)
+       │    └─ hosts/<platform>/shared/base.nix  (common system base)
+       └─ home/<machine>.nix  (home-manager config)
+            └─ profiles/<role>.nix  (composable roles)
+                 └─ home/shared/*  (individual programs & packages)
 ```
 
-## Homebrew Integration
+## Adding a New Machine
 
-macOS configurations use Homebrew for packages that don't work well with Nix:
-- Base packages in `homebrew.common.nix`
-- Machine-specific packages in `homebrew.*.nix` files
-- Commonly used for GUI apps, Docker, and other problematic packages
+1. Create `hosts/<platform>/<machine>.nix` — import `shared/base.nix` + machine-specific modules
+2. Create `home/<machine>.nix` — import relevant profiles + machine-specific packages
+3. Add a `mkDarwinHost` / `mkNixOSHost` call in `flake.nix`
 
-## Development Notes
+## Adding a New Profile
 
-- Uses `nixpkgs-unstable` channel for latest packages
-- Allows unfree packages globally (`allowUnfree = true`)
+Create a file in `profiles/` that imports the relevant `home/shared/*` modules. Then add it to any machine's `home/<machine>.nix` imports.
+
+## Key Design Decisions
+
+- `primaryUser` is passed via `specialArgs` — available to all system and home-manager modules
+- User home directory is derived automatically in `base.nix` from `primaryUser`
+- `mkDarwinHost` / `mkNixOSHost` handle all home-manager integration boilerplate
+- Uses `nixpkgs-unstable` channel, allows unfree packages globally
 - Formatter is `alejandra` for consistent Nix code style
-- Primary user is "thekorn" except on work machine ("d438477")
-- Git configurations change based on repository location (work vs personal repos)
