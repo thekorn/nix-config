@@ -9,7 +9,6 @@
       "steam"
       "parallels"
       "multipass"
-      #"antigravity"
       # "utm"
       # "nvidia-geforce-now"
     ];

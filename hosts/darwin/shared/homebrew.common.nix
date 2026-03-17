@@ -4,17 +4,16 @@
     caskArgs.no_quarantine = true;
     onActivation.cleanup = "zap";
     global.brewfile = true;
-    masApps = {};
+    masApps = { };
     casks = [
       "1password" # <- nix version is marked as broken
       "android-studio"
-      "docker-desktop" # <-- podman does not work for CTF
-      #"antigravity" <-- not working with my current google workspace subscription
+      "docker-desktop"
       "helium-browser"
       "affinity"
       "zed"
     ];
-    taps = [];
-    brews = [];
+    taps = [ ];
+    brews = [ ];
   };
 }
