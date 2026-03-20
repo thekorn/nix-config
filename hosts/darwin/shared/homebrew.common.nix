@@ -4,16 +4,15 @@
     caskArgs.no_quarantine = true;
     onActivation.cleanup = "zap";
     global.brewfile = true;
-    masApps = { };
+    masApps = {};
     casks = [
       "1password" # <- nix version is marked as broken
       "android-studio"
       "docker-desktop"
       "helium-browser"
-      "affinity"
       "zed"
     ];
-    taps = [ ];
-    brews = [ ];
+    taps = [];
+    brews = [];
   };
 }
