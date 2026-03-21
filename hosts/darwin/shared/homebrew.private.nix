@@ -9,6 +9,7 @@
       "pocket-casts"
       "vnc-viewer"
       "voiceink"
+      "affinity"
     ];
     brews = [];
     taps = [];
