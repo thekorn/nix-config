@@ -1,19 +1,17 @@
 model_provider = "openai"
 allow_amend = false
 file_ignore = [
-    "bun.lockb",
-    "Cargo.lock",
-    "composer.lock",
-    "Gemfile.lock",
-    "package-lock.json",
-    "pnpm-lock.yaml",
-    "poetry.lock",
-    "yarn.lock",
+  "bun.lockb",
+  "Cargo.lock",
+  "composer.lock",
+  "Gemfile.lock",
+  "package-lock.json",
+  "pnpm-lock.yaml",
+  "poetry.lock",
+  "yarn.lock",
 ]
 
 [openai]
-api_base = "https://api.openai.com/v1"
-model = "gpt-4o"
 retries = 2
 proxy = ""
 
