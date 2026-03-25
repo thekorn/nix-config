@@ -95,3 +95,12 @@ nix run github:nix-community/nix-index#nix-index
 ```bash
 nix run github:nix-community/nix-index#nix-locate -- bin/hello
 ```
+
+## clearing the nix cache
+
+there are two locations to be cleared
+
+```
+~/.cache/nix
+/var/root/.cache/nix
+```
