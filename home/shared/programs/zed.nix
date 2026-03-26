@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   programs.zsh = {
     shellAliases = {
       zed = "zeditor";
@@ -27,11 +27,13 @@
           "default" = "allow";
         };
         "default_model" = {
-          "model" = "gpt-4.1";
-          "provider" = "copilot_chat";
+          "effort" = "high";
+          "enable_thinking" = true;
+          "model" = "claude-sonnet-4-6";
+          "provider" = "zed.dev";
         };
         "inline_assistant_model" = {
-          "model" = "claude-3-7-sonnet";
+          "model" = "claude-sonnet-4-6";
           "provider" = "zed.dev";
         };
       };
@@ -64,9 +66,6 @@
         "dark" = "Gruvbox Dark Hard";
         "light" = "Gruvbox Dark Hard";
         "mode" = "dark";
-      };
-      "auto_install_extensions" = {
-        "nix" = true;
       };
     };
   };
