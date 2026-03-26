@@ -8,7 +8,7 @@ in {
       description = "Font size for Ghostty terminal";
     };
   };
-  programs.ghostty = {
+  config.programs.ghostty = {
     enable = true;
     package = pkgs.ghostty-bin;
     enableZshIntegration = true;
