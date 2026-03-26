@@ -52,14 +52,6 @@ function updateNvim() (
   git pull
 )
 
-function updateZedConfig() (
-  local CONFIG_DIR=~/.config/zed
-  [ -d "$CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/zed-config.git $CONFIG_DIR
-  cd $CONFIG_DIR
-  git checkout main
-  git pull
-)
-
 # nix
 function nixswitch() {
   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
@@ -75,7 +67,6 @@ function update() (
   nixswitch
   updateBrew
   updateNvim
-  updateZedConfig
 )
 
 # update config

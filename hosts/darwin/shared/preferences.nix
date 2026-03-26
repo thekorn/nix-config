@@ -2,7 +2,8 @@
   username,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../../shared/certificates.nix
   ];
@@ -20,13 +21,16 @@
       show-recents = false;
       persistent-apps = [
         "/System/Applications/Mail.app"
-        #"${pkgs.zed-editor}/Applications/Zed.app" #nixpkgs version
-        "/Applications/Zed.app" #homebrew version
+        "${pkgs.zed-editor}/Applications/Zed.app" # nixpkgs version
+        #"/Applications/Zed.app" #homebrew version
         "/System/Applications/Notes.app"
         "/Applications/Safari.app"
         "${pkgs.ghostty-bin}/Applications/Ghostty.app"
       ];
-      persistent-others = ["/tmp/" "/Users/${username}/Downloads/"];
+      persistent-others = [
+        "/tmp/"
+        "/Users/${username}/Downloads/"
+      ];
     };
 
     screencapture.location = "/tmp";
