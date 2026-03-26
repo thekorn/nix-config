@@ -30,6 +30,8 @@
     #whatsapp-for-mac
   ];
 
+  custom.ghostty.fontSize = 21;
+
   programs.home-manager.enable = true;
 
   home.stateVersion = "22.11";
