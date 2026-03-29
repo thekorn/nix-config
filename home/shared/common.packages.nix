@@ -40,6 +40,8 @@
     llm-agents.opencode
     llm-agents.amp
     llm-agents.pi
+    llm-agents.cursor-agent
+
     fvm
     bun
 

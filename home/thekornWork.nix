@@ -10,8 +10,6 @@
 
   home.packages = with pkgs; [
     zulu25
-
-    llm-agents.cursor-agent
   ];
 
   programs.home-manager.enable = true;
