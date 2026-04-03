@@ -7,7 +7,7 @@
 
   programs.zed-editor = {
     enable = true;
-    extensions = ["nix" "oxc"];
+    extensions = ["nix" "oxc" "tsgo"];
     userSettings = {
       "edit_predictions" = {
         "provider" = "zed";
