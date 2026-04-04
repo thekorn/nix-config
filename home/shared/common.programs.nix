@@ -31,6 +31,7 @@
 
     ./programs/fvm.nix
     #./programs/jujutsu.nix
+    ./programs/codebook.nix
   ];
 
   programs.home-manager.enable = true;
