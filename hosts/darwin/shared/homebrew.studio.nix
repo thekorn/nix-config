@@ -3,13 +3,14 @@
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    masApps = { };
+    masApps = {};
     casks = [
       "obs"
       "steam"
       "parallels"
       "multipass"
       "nvidia-geforce-now"
+      "lm-studio"
     ];
     brews = [
     ];
