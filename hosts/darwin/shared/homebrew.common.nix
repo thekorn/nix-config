@@ -10,7 +10,7 @@
       "android-studio"
       "docker-desktop"
       "helium-browser"
-      # "zed"
+      "google-chrome"
     ];
     taps = [];
     brews = [];
