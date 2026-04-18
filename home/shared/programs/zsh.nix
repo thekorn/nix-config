@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -87,7 +91,7 @@
       enable = true;
       #plugins =
       #  [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
-      custom = "$HOME/.zsh_custom";
+      custom = "${config.home.homeDirectory}/.zsh_custom";
       extraConfig = ''
         plugins=(git tmux jira aws z web-search fzf fnm)
         if [ "$DISABLE_TMUX" = "1" ]
