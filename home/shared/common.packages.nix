@@ -39,7 +39,7 @@
 
     llm-agents.opencode
     llm-agents.amp
-    llm-agents.pi
+    #llm-agents.pi
     llm-agents.cursor-agent
 
     fvm
@@ -47,6 +47,7 @@
 
     glab
     gh
-    television
+
+    #fff
   ];
 }
