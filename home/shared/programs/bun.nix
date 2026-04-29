@@ -1,0 +1,6 @@
+{pkgs, ...}: {
+  home.packages = with pkgs; [bun];
+  home.sessionPath = [
+    "$HOME/.bun/bin"
+  ];
+}

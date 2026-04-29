@@ -11,7 +11,6 @@
 
   home.sessionPath = [
     "$HOME/.pub-cache/bin"
-
     "$HOME/.local/bin"
   ];
 }

@@ -43,11 +43,8 @@
     llm-agents.cursor-agent
 
     fvm
-    bun
 
     glab
     gh
-
-    #fff
   ];
 }

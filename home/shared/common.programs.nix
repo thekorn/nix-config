@@ -17,6 +17,7 @@
     ./programs/zed.nix
     ./programs/oh-my-posh.nix
     ./programs/pnpm.nix
+    ./programs/bun.nix
     ./programs/android-studio.nix
     ./programs/dart-cli.nix
     ./programs/btop.nix

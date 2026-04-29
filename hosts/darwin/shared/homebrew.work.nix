@@ -7,7 +7,10 @@
     casks = [
       "figma"
       "cursor"
-      #"antigravity"
+      "open-pencil/tap/open-pencil"
+    ];
+    taps = [
+      "open-pencil/tap"
     ];
   };
 }
