@@ -11,6 +11,7 @@
       "docker-desktop"
       "helium-browser"
       "google-chrome"
+      "chatgpt" # <- nix version is outdated
     ];
     taps = [];
     brews = [];

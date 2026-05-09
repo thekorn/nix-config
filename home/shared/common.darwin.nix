@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    chatgpt
+    #chatgpt
     #docker
     #colima
   ];
