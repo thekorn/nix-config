@@ -12,7 +12,7 @@
   home.packages = with pkgs; [
     zulu25
     discord
-    llm-agents.gemini-cli
+    #llm-agents.gemini-cli
     #whatsapp-for-mac
   ];
 
