@@ -1,8 +1,8 @@
 # ffmpeg
 
-## convert a screenrecording to an mp4
+## convert a screen recording to an mp4
 
-This reduces filesize drastically
+This reduces file size drastically
 
 ```
 $ ffmpeg -i my-video.mov -vcodec h264 my-video.mp4

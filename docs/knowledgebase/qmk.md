@@ -1,6 +1,6 @@
 # qmk Firmware
 
-## prerequists
+## prerequisite
 
 In order to install the qmk tool and build dependencies, make sure to add the `./home/shared/qmk.nix` file to your home-manager configuration.
 

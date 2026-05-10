@@ -9,7 +9,7 @@ nix-store --gc
 nix-collect-garbage --delete-older-than 14d
 ```
 
-in order to aggressivly remove all old generations of the store, run
+in order to aggressively remove all old generations of the store, run
 
 ```bash
 nix-collect-garbage -d

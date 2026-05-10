@@ -1,5 +1,22 @@
 words = [
     "jujutsu",
     "pkgs",
-    "thekorn"
+    "thekorn",
+    "nixos",
+    "macbook",
+    "BFG",
+    "Homebrew",
+    "lefthook",
+    "rpi",
+    "nvim",
+    "nixpkgs",
+    "Afee",
+    "neovim",
+    "lazyvim",
+    "OSX",
+    "qmk",
+    "gmmk",
 ]
+
+
+ignore_paths = ["keyboards/**", "home/**", "flake.*", "rpi/**", "hosts/**"]
