@@ -12,8 +12,11 @@
       "helium-browser"
       "google-chrome"
       "chatgpt" # <- nix version is outdated
+      #"hunk"
     ];
-    taps = [];
+    taps = [
+      #"modem-dev/tap"
+    ];
     brews = [];
   };
 }
