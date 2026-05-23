@@ -7,9 +7,9 @@
     casks = [
       "transmission"
       "pocket-casts"
-      #"vnc-viewer"
-      #"voiceink"
       "affinity"
+      "antigravity-ide"
+      "antigravity-cli"
     ];
     brews = [];
     taps = [];
