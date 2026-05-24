@@ -8,8 +8,8 @@
       "transmission"
       "pocket-casts"
       "affinity"
-      "antigravity-ide"
-      "antigravity-cli"
+      # "antigravity-ide"
+      # "antigravity-cli"
     ];
     brews = [];
     taps = [];
