@@ -9,7 +9,7 @@
   ];
 
   home.packages = with pkgs; [
-    zulu25
+    zulu17
   ];
 
   programs.home-manager.enable = true;
