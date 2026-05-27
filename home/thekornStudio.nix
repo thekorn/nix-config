@@ -9,6 +9,7 @@
     ./shared/common.programs.nix
     ./shared/devel.nix
     ./shared/work.nix
+    ./shared/private.nix
 
     #./shared/programs/zig.nix
 

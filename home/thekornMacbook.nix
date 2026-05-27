@@ -5,6 +5,7 @@
     ./shared/common.packages.nix
     ./shared/common.programs.nix
     ./shared/devel.nix
+    ./shared/private.nix
 
     #./shared/programs/zig.nix
   ];
