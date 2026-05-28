@@ -11,7 +11,7 @@
       "docker-desktop"
       "helium-browser"
       "google-chrome"
-      #"hunk"
+      "kcov"
     ];
     taps = [
       #"modem-dev/tap"
