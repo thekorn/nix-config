@@ -13,9 +13,6 @@
         "provider" = "zed";
       };
       "buffer_font_size" = null;
-      "features" = {
-        "copilot" = false;
-      };
       "telemetry" = {
         "metrics" = false;
         "diagnostics" = false;
@@ -66,6 +63,9 @@
         "dark" = "Gruvbox Dark Hard";
         "light" = "Gruvbox Dark Hard";
         "mode" = "dark";
+      };
+      "project_panel" = {
+        "dock" = "left";
       };
     };
   };
