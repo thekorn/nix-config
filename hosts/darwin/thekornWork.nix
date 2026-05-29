@@ -28,5 +28,6 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+  nix.enable = false;
   ids.gids.nixbld = 30000;
 }

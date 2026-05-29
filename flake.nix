@@ -118,7 +118,7 @@
       };
     };
 
-    darwinConfigurations."BFG-024849" = mkDarwinHost {
+    darwinConfigurations."BFG-043556" = mkDarwinHost {
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         config.allowUnfree = true;
