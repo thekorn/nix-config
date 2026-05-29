@@ -4,5 +4,5 @@
     # pnpm
     PNPM_HOME = "$HOME/.local/share/pnpm";
   };
-  home.sessionPath = ["$PNPM_HOME"];
+  home.sessionPath = ["$PNPM_HOME/bin"];
 }
