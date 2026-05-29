@@ -11,11 +11,12 @@
       "docker-desktop"
       "helium-browser"
       "google-chrome"
-      "kcov"
     ];
     taps = [
       #"modem-dev/tap"
     ];
-    brews = [];
+    brews = [
+      "kcov"
+    ];
   };
 }
