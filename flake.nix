@@ -24,6 +24,7 @@
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+    workmux.url = "github:raine/workmux";
   };
 
   outputs = {
