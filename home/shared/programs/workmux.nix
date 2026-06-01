@@ -14,7 +14,13 @@ in {
       description = "Default agent for Workmux";
     };
   };
-  config.home.packages = [pkgs.llm-agents.workmux];
+  config.home.packages = [
+    pkgs.llm-agents.workmux
+    {
+      amp = pkgs.llm-agents.amp;
+      cursor-agent = pkgs.llm-agents.cursor-agent;
+    }."${cfg.defaultAgent}"
+  ];
   # broken build, failing tests
   #config.home.packages = [inputs.workmux.packages.${pkgs.system}.default];
 
