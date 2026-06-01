@@ -1,16 +1,27 @@
 {
   inputs,
   pkgs,
+  config,
+  lib,
   ...
-}: {
-  home.packages = [pkgs.llm-agents.workmux];
+}: let
+  cfg = config.custom.workmux;
+in {
+  options.custom.workmux = {
+    defaultAgent = lib.mkOption {
+      type = lib.types.str;
+      default = "amp";
+      description = "Default agent for Workmux";
+    };
+  };
+  config.home.packages = [pkgs.llm-agents.workmux];
   # broken build, failing tests
-  #home.packages = [inputs.workmux.packages.${pkgs.system}.default];
+  #config.home.packages = [inputs.workmux.packages.${pkgs.system}.default];
 
-  xdg.configFile."workmux/config.yaml".text = ''
+  config.xdg.configFile."workmux/config.yaml".text = ''
     nerdfont: true
     worktree_dir: ~/.local/share/workmux/{project}
-    agent: amp
+    agent: ${cfg.defaultAgent}
     panes:
       - command: <agent>
         focus: true

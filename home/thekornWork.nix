@@ -18,5 +18,6 @@
 
   custom = {
     ghostty.fontSize = 19;
+    workmux.defaultAgent = "cursor-agent";
   };
 }
