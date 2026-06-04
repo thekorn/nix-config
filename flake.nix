@@ -81,6 +81,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUser}.imports = [./home/thekornMacbook.nix];
+            home-manager.backupFileExtension = "bck";
           }
         )
       ];
@@ -110,6 +111,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUser}.imports = [./home/thekornStudio.nix];
+            home-manager.backupFileExtension = "bck";
           }
         )
       ];
@@ -139,6 +141,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUser}.imports = [./home/thekornWork.nix];
+            home-manager.backupFileExtension = "bck";
           }
         )
       ];
@@ -201,6 +204,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUser}.imports = [./home/thekornServer.nix];
+            home-manager.backupFileExtension = "bck";
           }
         )
       ];
@@ -226,6 +230,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${primaryUser}.imports = [./home/thekornServer2.nix];
+            home-manager.backupFileExtension = "bck";
           }
         )
       ];

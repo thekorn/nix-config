@@ -6,7 +6,6 @@
     zsh-forgit
     fnm
     awscli2
-    silver-searcher
     jq
     htop
     #delta

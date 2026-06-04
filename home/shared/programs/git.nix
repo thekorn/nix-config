@@ -95,24 +95,24 @@ in {
     pkgs.difftastic
   ];
 
-  #programs.delta = {
-  #  enable = true;
-  #  options = {
-  #      decorations = {
-  #          commit-decoration-style = "blue ol";
-  #          commit-style = "raw";
-  #          file-style = "omit";
-  #          hunk-header-decoration-style = "blue box";
-  #          hunk-header-file-style = "red";
-  #          hunk-header-line-number-style = "#067a00";
-  #          hunk-header-style = "file line-number syntax";
-  #        };
-  #      features = "chameleon";
-  #      whitespace-error-style = "22 reverse";
-  #      side-by-side = false;
-  #      interactive = {keep-plus-minus-markers = true;};
-  #    };
-  #};
+  programs.delta = {
+    enable = true;
+    #  options = {
+    #      decorations = {
+    #          commit-decoration-style = "blue ol";
+    #          commit-style = "raw";
+    #          file-style = "omit";
+    #          hunk-header-decoration-style = "blue box";
+    #          hunk-header-file-style = "red";
+    #          hunk-header-line-number-style = "#067a00";
+    #          hunk-header-style = "file line-number syntax";
+    #        };
+    #      features = "chameleon";
+    #      whitespace-error-style = "22 reverse";
+    #      side-by-side = false;
+    #      interactive = {keep-plus-minus-markers = true;};
+    #    };
+  };
 
   programs.git = {
     enable = true;

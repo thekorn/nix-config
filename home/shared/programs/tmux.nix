@@ -75,6 +75,9 @@ in {
 
       bind-key S run-shell "tmux popup -E ${sessionizer}/bin/tmux-sessionizer"
       bind-key N run-shell "${sessionizer}/bin/tmux-sessionizer ~/.config/nix"
+
+      bind C-d display-popup -h 30 -w 100 -E "workmux dashboard"
+      bind C-s run-shell "workmux sidebar"
     '';
   };
 }
