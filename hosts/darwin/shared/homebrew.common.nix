@@ -2,7 +2,12 @@
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
-    onActivation.cleanup = "zap";
+    onActivation = {
+      cleanup = "zap";
+      extraFlags = [
+        "--force-cleanup"
+      ];
+    };
     global.brewfile = true;
     masApps = {};
     casks = [
