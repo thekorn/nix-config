@@ -7,10 +7,10 @@
     casks = [
       "figma"
       "cursor"
-      "open-pencil/tap/open-pencil"
+      #"open-pencil/tap/open-pencil"
     ];
     taps = [
-      "open-pencil/tap"
+      #"open-pencil/tap"
     ];
   };
 }
