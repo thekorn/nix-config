@@ -17,8 +17,8 @@
       #npm-check-updates = "npx npm-check-updates -u";
 
       # vs code
-      c = "code";
-      ca = "code -a";
+      #c = "code";
+      #ca = "code -a";
 
       # eza vs ls
       ls = "eza";
@@ -40,9 +40,9 @@
       lg = "lazygit";
 
       ## firefox
-      ff = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --new-tab";
-      ffs = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --search";
-      ffp = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --private-window";
+      #ff = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --new-tab";
+      #ffs = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --search";
+      #ffp = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --private-window";
 
       ## git
       cbr = ''git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'';
@@ -50,8 +50,8 @@
       sim = "open -a Simulator";
 
       ## rush
-      rxb = "rushx build";
-      rxbt = "rushx _phase:build && rushx _phase:test";
+      #rxb = "rushx build";
+      #rxbt = "rushx _phase:build && rushx _phase:test";
 
       ## neovim
       vi = "nvim";
@@ -69,12 +69,12 @@
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
     localVariables = {
-      ZSH_TMUX_AUTOSTART = "true";
-      ZSH_TMUX_AUTOSTART_ONCE = "true";
-      ZSH_WEB_SEARCH_ENGINES = [
-        "tt"
-        "https://burdaforward.atlassian.net/jira/software/c/projects/TT/boards/611/backlog?text="
-      ];
+      #ZSH_TMUX_AUTOSTART = "true";
+      #ZSH_TMUX_AUTOSTART_ONCE = "true";
+      #ZSH_WEB_SEARCH_ENGINES = [
+      #  "tt"
+      #  "https://burdaforward.atlassian.net/jira/software/c/projects/TT/boards/611/backlog?text="
+      #];
       ## CTF
       APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
     };
@@ -87,19 +87,71 @@
       burdastudios = "$HOME/devel/bitbucket.org/burdastudios";
       bfops = "$HOME/devel/gitlab.bfops.io";
     };
-    oh-my-zsh = {
-      enable = true;
-      #plugins =
-      #  [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
-      custom = "${config.home.homeDirectory}/.zsh_custom";
-      extraConfig = ''
-        plugins=(git tmux jira aws z web-search fzf fnm)
-        if [ "$DISABLE_TMUX" = "1" ]
-        then
-          plugins[$plugins[(i)tmux]]=()
-        fi
+    siteFunctions = {
+      mkcd = ''
+        mkdir --parents "$1" && cd "$1"
+      '';
+
+      update = ''
+        set -e
+        setopt localoptions
+        pushd ~/.config/nix >/dev/null || return
+        {
+          git pull
+          nix flake update --commit-lock-file
+          git pu
+        } always {
+          popd >/dev/null
+        }
+        nixswitch
+        updateBrew
+        updateNvim
+      '';
+
+      nixswitch = ''
+        sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
+      '';
+
+      updateBrew = ''
+        set -e
+        brew update
+        brew upgrade --greedy
+      '';
+
+      updateNvim = ''
+        setopt localoptions
+        local CONFIG_DIR=~/.config/nvim
+        [ -d "$CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/config.nvim.git $CONFIG_DIR
+        pushd $CONFIG_DIR >/dev/null || return
+        {
+          git checkout main
+          git pull
+        } always {
+          popd >/dev/null
+        }
       '';
     };
+    zplug = {
+      enable = true;
+      plugins = [
+        {
+          name = "gerges/oh-my-zsh-jira-plus";
+        }
+      ];
+    };
+    #oh-my-zsh = {
+    #  enable = false;
+    #  #plugins =
+    #  #  [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
+    #  custom = "${config.home.homeDirectory}/.zsh_custom";
+    #  extraConfig = ''
+    #    plugins=(git tmux jira aws z web-search fzf fnm)
+    #    if [ "$DISABLE_TMUX" = "1" ]
+    #    then
+    #      plugins[$plugins[(i)tmux]]=()
+    #    fi
+    #  '';
+    #};
   };
-  home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.zsh;
+  #home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.zsh;
 }
