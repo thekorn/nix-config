@@ -69,8 +69,6 @@
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
     localVariables = {
-      ZSH_TMUX_AUTOSTART = "true";
-      ZSH_TMUX_AUTOSTART_ONCE = "true";
       ZSH_WEB_SEARCH_ENGINES = [
         "tt"
         "https://burdaforward.atlassian.net/jira/software/c/projects/TT/boards/611/backlog?text="
@@ -90,14 +88,10 @@
     oh-my-zsh = {
       enable = true;
       #plugins =
-      #  [ "git" "tmux" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
+      #  [ "git" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
       custom = "${config.home.homeDirectory}/.zsh_custom";
       extraConfig = ''
-        plugins=(git tmux jira aws z web-search fzf fnm)
-        if [ "$DISABLE_TMUX" = "1" ]
-        then
-          plugins[$plugins[(i)tmux]]=()
-        fi
+        plugins=(git jira aws z web-search fzf fnm)
       '';
     };
   };

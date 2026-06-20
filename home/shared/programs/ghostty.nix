@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   cfg = config.custom.ghostty;
 in {
   options.custom.ghostty = {
@@ -21,6 +26,7 @@ in {
       auto-update = "off";
       copy-on-select = "clipboard";
       quit-after-last-window-closed = true;
+      command = "${pkgs.tmux}/bin/tmux new-session -A -s default";
       cursor-style-blink = true;
       shell-integration-features = "no-cursor, sudo, title";
       config-file = "?custom";
