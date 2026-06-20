@@ -32,14 +32,6 @@ in {
       set -sg repeat-time 600                   # increase repeat timeout
       set -s focus-events on
 
-      set -g prefix2 C-a                        # GNU-Screen compatible prefix
-      bind C-a send-prefix -2
-
-      set -q -g status-utf8 on                  # expect UTF-8 (tmux < 2.2)
-      setw -q -g utf8 on
-
-      set -g history-limit 5000                 # boost history
-
       bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "~/.config/tmux/tmux.conf reloaded"
 
       bind Enter copy-mode # enter copy mode
