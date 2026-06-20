@@ -5,19 +5,19 @@
 }: {
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
-  programs.ssh.matchBlocks = {
+  programs.ssh.settings = {
     "*" = {
-      forwardAgent = false;
-      serverAliveInterval = 0;
-      serverAliveCountMax = 3;
-      compression = false;
-      addKeysToAgent = "no";
-      hashKnownHosts = false;
-      userKnownHostsFile = "~/.ssh/known_hosts";
-      controlMaster = "no";
-      controlPath = "~/.ssh/master-%r@%n:%p";
-      controlPersist = "no";
-      identityAgent = "'~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock'";
+      ForwardAgent = false;
+      ServerAliveInterval = 0;
+      ServerAliveCountMax = 3;
+      Compression = false;
+      AddKeysToAgent = "no";
+      HashKnownHosts = false;
+      UserKnownHostsFile = "~/.ssh/known_hosts";
+      ControlMaster = "no";
+      ControlPath = "~/.ssh/master-%r@%n:%p";
+      ControlPersist = "no";
+      IdentityAgent = "'~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock'";
     };
   };
 }
