@@ -86,27 +86,36 @@
     };
     siteFunctions = {
       updateNvim = ''
+        setopt localoptions
         local CONFIG_DIR=~/.config/nvim
         [ -d "$CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/config.nvim.git $CONFIG_DIR
-        cd $CONFIG_DIR
-        git checkout main
-        git pull
+        pushd $CONFIG_DIR >/dev/null || return
+        {
+          git checkout main
+          git pull
+        } always {
+          popd >/dev/null
+        }
       '';
       nixswitch = ''
         sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
       '';
       update = ''
-        set -e
-        cd ~/.config/nix
-        git pull
-        nix flake update --commit-lock-file
-        git pu
+        setopt localoptions errreturn
+        pushd ~/.config/nix >/dev/null || return
+        {
+          git pull
+          nix flake update --commit-lock-file
+          git pu
+        } always {
+          popd >/dev/null
+        }
         nixswitch
         updateBrew
         updateNvim
       '';
       updateBrew = ''
-        set -e
+        setopt localoptions errreturn
         brew update
         brew upgrade --greedy
       '';

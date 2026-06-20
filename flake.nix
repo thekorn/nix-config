@@ -25,6 +25,11 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
     workmux.url = "github:raine/workmux";
+
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
