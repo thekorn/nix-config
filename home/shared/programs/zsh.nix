@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -69,10 +65,6 @@
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
     localVariables = {
-      ZSH_WEB_SEARCH_ENGINES = [
-        "tt"
-        "https://burdaforward.atlassian.net/jira/software/c/projects/TT/boards/611/backlog?text="
-      ];
       ## CTF
       APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
     };
@@ -85,15 +77,33 @@
       burdastudios = "$HOME/devel/bitbucket.org/burdastudios";
       bfops = "$HOME/devel/gitlab.bfops.io";
     };
-    oh-my-zsh = {
-      enable = true;
-      #plugins =
-      #  [ "git" "jira" "aws" "z" "web-search" "fzf" "flutter" "fnm" ];
-      custom = "${config.home.homeDirectory}/.zsh_custom";
-      extraConfig = ''
-        plugins=(git jira aws z web-search fzf fnm)
+    oh-my-zsh.enable = false;
+    siteFunctions = {
+      updateNvim = ''
+        local CONFIG_DIR=~/.config/nvim
+        [ -d "$CONFIG_DIR/.git" ] || git clone -b main git@github.com:thekorn/config.nvim.git $CONFIG_DIR
+        cd $CONFIG_DIR
+        git checkout main
+        git pull
+      '';
+      nixswitch = ''
+        sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
+      '';
+      update = ''
+        set -e
+        cd ~/.config/nix
+        git pull
+        nix flake update --commit-lock-file
+        git pu
+        nixswitch
+        updateBrew
+        updateNvim
+      '';
+      updateBrew = ''
+        set -e
+        brew update
+        brew upgrade --greedy
       '';
     };
   };
-  home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.zsh;
 }
