@@ -136,6 +136,22 @@
         "type": "github"
       }
     },
+    "config-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1781938535,
+        "narHash": "sha256-0Wjdbgug+8FigtBSGOk3Pqli84+m32u0qsuW1oAe+Wg=",
+        "ref": "refs/heads/main",
+        "rev": "db2df9529645cc8a8aa4ffa3c10feab310523d02",
+        "revCount": 529,
+        "type": "git",
+        "url": "ssh://git@github.com/thekorn/config.nvim.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/thekorn/config.nvim.git"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -910,6 +926,7 @@
     },
     "root": {
       "inputs": {
+        "config-nvim": "config-nvim",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "hunk": "hunk",

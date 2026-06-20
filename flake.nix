@@ -26,6 +26,11 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     workmux.url = "github:raine/workmux";
 
+    config-nvim = {
+      url = "git+ssh://git@github.com/thekorn/config.nvim.git";
+      flake = false;
+    };
+
     hunk = {
       url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
