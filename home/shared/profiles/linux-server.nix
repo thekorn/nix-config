@@ -10,5 +10,5 @@
   home.stateVersion = "25.05";
 
   services.ssh-agent.enable = true;
-  programs.ssh.addKeysToAgent = "yes";
+  programs.ssh.settings."*".AddKeysToAgent = "yes";
 }
