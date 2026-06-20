@@ -3,6 +3,7 @@
     ./programs/bat.nix
     ./programs/eza.nix
     ./programs/fzf.nix
+    ./programs/nvim.nix
     ./programs/zsh.server.nix
     ./programs/git.server.nix
     ./programs/tmux.server.nix
