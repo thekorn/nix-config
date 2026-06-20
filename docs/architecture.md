@@ -2,12 +2,12 @@
 
 ## Directory Structure
 
-- **`hosts/`**: System-level configurations (nix-darwin for macOS, NixOS for Linux)
+- **`hosts/`**: Per-machine entry points. Each host owns both its system configuration and the home-manager profile for its primary user.
   - `darwin/shared/`: Shared macOS system modules (fonts, homebrew, preferences)
   - `linux/shared/`: Shared Linux system modules
-- **`home/`**: User-level home-manager configurations
-  - `shared/`: Shared user modules organized by function
-  - `thekorn*.nix`: Per-machine user configurations
+- **`home/shared/`**: Reusable home-manager modules only. Host files compose these modules into machine-specific user profiles.
+  - `profiles/`: Higher-level home bundles such as `darwin.nix` and `linux-server.nix`
+  - `programs/`: Program-specific home-manager modules
 
 ## Shared Configuration Modules
 
@@ -20,6 +20,21 @@
 | `devel.nix` | Development packages and tools |
 | `work.nix` | Work-specific configurations |
 
+## Home Profiles
+
+Home-manager is wired by the host module, not by `flake.nix`. Shared profile modules provide reusable bundles:
+
+| Profile | Purpose |
+|---------|---------|
+| `home/shared/profiles/darwin.nix` | Common macOS home setup: base shell env, packages, programs, and development folders |
+| `home/shared/profiles/linux-server.nix` | Common Linux server home setup: base env, server packages/programs, SSH agent, and state version |
+
+Host modules then add role- or machine-specific modules:
+
+- private machines add `home/shared/private.nix`
+- work machines add `home/shared/work.nix`
+- individual machines add their extra packages and custom options inline in the host file
+
 ## Program Configuration Pattern
 
 Each program has its own module in `home/shared/programs/` (e.g., `git.nix`, `zsh.nix`, `nvim.nix`) with:
@@ -27,19 +42,30 @@ Each program has its own module in `home/shared/programs/` (e.g., `git.nix`, `zs
 - Custom scripts and functions
 - Dotfiles referenced from `dotfiles/` subdirectory
 
-## Machine-Specific Imports
+## Machine-Specific Composition
 
-Each machine configuration imports shared modules plus machine-specific customizations:
+Each machine now has a single machine-specific file under `hosts/`. That file imports system modules and configures home-manager for the machine's primary user:
 
 ```nix
 imports = [
-  ../shared/common.nix
-  ../shared/common.darwin.nix  # or common.linux.nix
-  ../shared/common.packages.nix
-  ../shared/common.programs.nix
-  ../shared/devel.nix
+  ./shared/homebrew.common.nix
+  ./shared/home.private.nix
+  ./shared/fonts.nix
 ];
+
+home-manager.users.${users.private} = {pkgs, ...}: {
+  imports = [
+    ../../home/shared/profiles/darwin.nix
+    ../../home/shared/private.nix
+  ];
+
+  home.packages = with pkgs; [
+    discord
+  ];
+};
 ```
+
+`flake.nix` stays intentionally small: it defines reusable Darwin/NixOS builders, wires home-manager defaults once, and points each flake output at the corresponding host file.
 
 ## Homebrew Integration
 
