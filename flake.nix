@@ -65,6 +65,9 @@
       inherit self inputs users;
     };
 
+    serverHost = "thekorn-server.home";
+    serverUser = users.private;
+
     homeManagerModule = {
       home-manager.extraSpecialArgs = specialArgs;
       home-manager.useGlobalPkgs = true;
@@ -102,6 +105,33 @@
       };
   in {
     formatter = eachSupportedSystem (system: legacyPackages.${system}.alejandra);
+
+    packages = eachSupportedSystem (system: let
+      pkgs = legacyPackages.${system};
+    in {
+      deploy-thekorn-server = pkgs.writeShellApplication {
+        name = "deploy-thekorn-server";
+        runtimeInputs = with pkgs; [nixos-rebuild openssh];
+        text = ''
+          flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
+
+          exec nixos-rebuild switch \
+            --flake "$flake_ref#thekorn-server" \
+            --target-host "${serverUser}@${serverHost}" \
+            --build-host "${serverUser}@${serverHost}" \
+            --elevate=sudo \
+            --ask-elevate-password \
+            "$@"
+        '';
+      };
+    });
+
+    apps = eachSupportedSystem (system: {
+      deploy-thekorn-server = {
+        type = "app";
+        program = "${self.packages.${system}.deploy-thekorn-server}/bin/deploy-thekorn-server";
+      };
+    });
 
     darwinConfigurations."thekorn-macbook" = mkDarwinHost ./hosts/darwin/thekornMacbook.nix;
 

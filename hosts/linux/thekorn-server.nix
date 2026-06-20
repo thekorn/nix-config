@@ -3,14 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
-  inputs,
+  lib,
   pkgs,
-  users,
   ...
 }: {
   imports = [
-    inputs.omarchy-nix.nixosModules.default
-
     # Include the results of the hardware scan.
     ./configurations/thekorn-server/hardware-configuration.nix
   ];
@@ -58,8 +55,10 @@
     isNormalUser = true;
     description = "thekorn";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [git htop tree];
-    shell = pkgs.bash;
+    packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5L9M3eLZlZNQKyxGFKBRHkklhu4vK8eR4gj9JBb08a1K9tJ5UnWaETGHWq+UM3C5RdYcc5ZGAyc30/9nzxLskb9zi7xo6/Exhn2myMs3Bcwq0d1l/OeBTtdwKdP9YGfnVgNk7ZoPZtNygQCUsd1XWGfqgpw0mQW7BNc+W3U7+i5MeAhoOBC9NVqx8/q/CWPo89S63UPolsiQfrv4paYDakx+yT0M1Wkh6jXvIGNsVRGL4BuqFhYhh5pckmAnPMuBTAQV9jrV4GnpZIF/Y4EGOCKFgeseCMWzX8bDaNeNwZHxKUjmNYLW9nN5ZcQ0UnAap+YlSPH2pGuLgUaN7SNB0nwL1nAEtJEh7cYRufQ2HVZBqUxR/8NoreXGelio0qHbEnF5OMC78KwGry2XmuMfB+Mtvmg2CmHJwqI8z5Vr9hh6vwr7EJV5luKgwOGjdbPKocHQSfwTNg4zdRtrEeumIBYVkFOdV4sAdiIlB+Jtn+o3ZKCpyIGQEoqfglG3FrX6bbWpdL5Ls0t5+JsNnny/Rz2o6PNax84Fgab98seRhdK5nG1q8O+Woz9OnstAFjU+A9Ex0XhLBazsrfpnR0ZY9gfqpUBb2EfwlRS00WmE02ay+4t7rZfkohGcC16ZmJIt8hd/K1wKDSs/CS9q81VGstlHQjRiIPs+LqPsqr6HUzQ=="
+    ];
   };
 
   # Allow unfree packages
@@ -68,13 +67,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     git
-    coreutils
-    nodejs
+    neovim
+    wget
+    htop
   ];
-  environment.shells = with pkgs; [bash zsh];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -84,18 +83,33 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.zsh.enable = true;
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "yes";
+    };
+  };
 
+  # dbus-broker does not reload reliably during remote activation; failed
+  # reloads make nixos-rebuild exit non-zero even when the system switched.
+  systemd.services.dbus-broker = {
+    reloadIfChanged = lib.mkForce false;
+    restartIfChanged = lib.mkForce false;
+  };
+  systemd.user.services.dbus-broker = {
+    reloadIfChanged = lib.mkForce false;
+    restartIfChanged = lib.mkForce false;
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  #networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -105,42 +119,4 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  omarchy = {
-    username = users.private;
-    full_name = "Markus Korn";
-    email_address = "markus.korn@gmail.com";
-    theme = "tokyo-night";
-    seamless_boot = {
-      enable = true; # Enable Plymouth + auto-login
-      username = users.private; # Required for auto-login
-      plymouth_theme = "omarchy"; # Custom boot splash theme
-      silent_boot = true; # Hide kernel messages
-    };
-    monitors = [
-      # "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling, rotate 90deg
-      "HDMI-A-1,3140x2610,auto,1"
-    ];
-    firewall.enable = true;
-    quick_app_bindings = [
-      "ALT_L, RETURN, Terminal, exec, $terminal"
-      "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
-      "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
-    ];
-  };
-
-  home-manager.users.${users.private} = {
-    imports = [
-      inputs.omarchy-nix.homeManagerModules.default
-      ../../home/shared/profiles/linux-server.nix
-    ];
-
-    #programs.wayvnc.enable = true;
-    services.wayvnc.enable = true;
-    services.wayvnc.autoStart = true; #maybe: false
-    services.wayvnc.settings = {
-      address = "localhost";
-      port = 5900;
-    };
-  };
 }
