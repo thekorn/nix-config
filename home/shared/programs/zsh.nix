@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -45,7 +49,11 @@
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
-    localVariables = {
+    sessionVariables = {
+      TMUX_SESSIONIZER_DIRS = "${config.home.homeDirectory}/devel";
+      TMUX_SESSIONIZER_DEPTH = 3;
+      TMUX_SESSIONIZER_EXTRA_DIRS = "/tmp ${config.home.homeDirectory}/.config/nix ${config.home.homeDirectory}/.config/nvim";
+      TMUX_SESSIONIZER_BIND = "S";
       ## CTF
       APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
     };
@@ -64,6 +72,7 @@
       plugins = [
         {name = "gerges-zz/oh-my-zsh-jira-plus";}
         {name = "ltj/gitgo";}
+        {name = "thekorn/tmux-sessionizer";}
       ];
     };
     siteFunctions = {
