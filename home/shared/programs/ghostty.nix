@@ -5,6 +5,10 @@
   ...
 }: let
   cfg = config.custom.ghostty;
+  tmuxConfig = "${config.home.homeDirectory}/.config/tmux/tmux.conf";
+  ghosttyTmux = pkgs.writeShellScriptBin "ghostty-tmux" ''
+    exec ${pkgs.tmux}/bin/tmux -f /dev/null start-server \; source-file "${tmuxConfig}" \; new-session -A -s default
+  '';
 in {
   options.custom.ghostty = {
     fontSize = lib.mkOption {
@@ -26,7 +30,7 @@ in {
       auto-update = "off";
       copy-on-select = "clipboard";
       quit-after-last-window-closed = true;
-      command = "${pkgs.tmux}/bin/tmux new-session -A -s default";
+      command = "${ghosttyTmux}/bin/ghostty-tmux";
       cursor-style-blink = true;
       shell-integration-features = "no-cursor, sudo, title";
       config-file = "?custom";

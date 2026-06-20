@@ -1,8 +1,10 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
+  pluginPath = lib.makeBinPath [pkgs.tmux pkgs.bash pkgs.coreutils] + ":/usr/bin:/bin";
   sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
     ## from https://github.com/mrnugget/dotfiles/blob/master/bin/tmux-sessionizer
 
@@ -44,9 +46,17 @@ in {
     shortcut = "a";
     secureSocket = false;
     terminal = "screen-256color";
-    newSession = true;
+    newSession = false;
 
-    plugins = with pkgs; [tmuxPlugins.nord tmuxPlugins.pain-control];
+    plugins = with pkgs; [
+      {
+        plugin = tmuxPlugins.nord;
+        extraConfig = ''
+          set-environment -g PATH "${pluginPath}"
+        '';
+      }
+      tmuxPlugins.pain-control
+    ];
 
     extraConfig = ''
       set -g default-terminal "screen-256color" # colors!
