@@ -16,19 +16,6 @@
       username = users.private;
     })
   ];
-
-  system.stateVersion = 5;
-
-  programs.zsh.enable = true;
-  environment = {
-    shells = with pkgs; [bash zsh];
-    systemPackages = [pkgs.coreutils];
-    systemPath = ["/opt/homebrew/bin"];
-    pathsToLink = ["/Applications"];
-  };
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
   nix.enable = false;
   # this is a bug, remove once https://github.com/nix-community/home-manager/issues/8291 is fixed
   users.users.${users.private}.uid = 501;

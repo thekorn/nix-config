@@ -59,7 +59,7 @@ This connects to `thekorn@thekorn-server.home`, builds on the server, and activa
 ### Darwin
 - `thekorn-macbook` (Personal MacBook)
 - `thekorn-studio` (Personal Mac Studio)
-- `BFG-024849` (Work Laptop, user: `d438477`)
+- `BFG-043556` (Work Laptop, user: `d438477`)
 
 ### Linux
 - `thekorn-server` (Main server)

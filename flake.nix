@@ -75,6 +75,21 @@
       home-manager.backupFileExtension = "bck";
     };
 
+    darwinBaseModule = {pkgs, ...}: {
+      system.stateVersion = 5;
+
+      programs.zsh.enable = true;
+
+      environment = {
+        shells = with pkgs; [bash zsh];
+        systemPackages = [pkgs.coreutils];
+        systemPath = ["/opt/homebrew/bin"];
+        pathsToLink = ["/Applications"];
+      };
+
+      nix.settings.experimental-features = ["nix-command" "flakes"];
+    };
+
     mkDarwinHost = hostModule:
       darwin.lib.darwinSystem {
         pkgs = import nixpkgs {
@@ -83,6 +98,7 @@
           overlays = [llm-agents.overlays.default];
         };
         modules = [
+          darwinBaseModule
           hostModule
           home-manager.darwinModules.home-manager
           homeManagerModule

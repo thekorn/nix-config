@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.sessionVariables = {
     PAGER = "less";
-    CLICLOLOR = 1;
+    CLICOLOR = 1;
     EDITOR = "nano";
     XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/local/share";
 
