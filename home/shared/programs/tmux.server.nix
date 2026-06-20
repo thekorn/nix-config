@@ -44,7 +44,7 @@ in {
     shortcut = "b";
     secureSocket = false;
     terminal = "screen-256color";
-    newSession = true;
+    newSession = false;
 
     plugins = with pkgs; [tmuxPlugins.pain-control];
 

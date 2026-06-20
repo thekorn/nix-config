@@ -9,6 +9,7 @@
     autosuggestion = {
       enable = true;
     };
+    autocd = true;
     syntaxHighlighting = {
       enable = true;
     };
@@ -34,23 +35,29 @@
       ## neovim
       vi = "nvim";
       vim = "nvim";
+
+      ## CTF
+      akacurl = "curl -H '$APH' -H 'bf-debug: true'";
+      akastgcurl = "curl -H '$APH' -H 'bf-debug: true' --resolve '*:443:23.50.55.49'";
     };
     zprof = {
       enable = false;
     };
     initContent = ''
+      if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && "$TERM" != "dumb" ]] && [[ -t 0 && -t 1 ]]; then
+        exec ${pkgs.tmux}/bin/tmux new-session -A -s default
+      fi
+
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
-
-      zstyle :omz:plugins:ssh-agent identities id_ed25519
     '';
-    localVariables = {
-      ZSH_TMUX_AUTOSTART = "true";
-      ZSH_TMUX_AUTOSTART_ONCE = "true";
-      ZSH_TMUX_AUTOCONNECT = "false";
-      ZSH_TMUX_AUTONAME_SESSION = "false";
-      ZSH_TMUX_AUTOQUIT = "false";
-      ZSH_TMUX_DETACHED = "true"; #maybe true
+    sessionVariables = {
+      TMUX_SESSIONIZER_DIRS = "${config.home.homeDirectory}/devel";
+      TMUX_SESSIONIZER_DEPTH = 3;
+      TMUX_SESSIONIZER_EXTRA_DIRS = "/tmp ${config.home.homeDirectory}/.config/nix ${config.home.homeDirectory}/.config/nvim";
+      TMUX_SESSIONIZER_BIND = "S";
+      ## CTF
+      APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
     };
     dirHashes = {
       nix = "$HOME/.config/nix";
@@ -61,11 +68,15 @@
       burdastudios = "$HOME/devel/bitbucket.org/burdastudios";
       bfops = "$HOME/devel/gitlab.bfops.io";
     };
-    oh-my-zsh = {
+    oh-my-zsh.enable = false;
+    zplug = {
       enable = true;
-      custom = "$HOME/.zsh_custom";
-      plugins = ["git" "tmux" "fzf" "fnm" "ssh-agent"];
+      plugins = [
+        {name = "gerges-zz/oh-my-zsh-jira-plus";}
+        {name = "ltj/gitgo";}
+        {name = "thekorn/tmux-sessionizer";}
+      ];
     };
+    siteFunctions = {};
   };
-  home.file.".zsh_custom/functions.zsh".source = ./dotfiles/zsh_custom/functions.server.zsh;
 }
