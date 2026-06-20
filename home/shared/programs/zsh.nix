@@ -78,6 +78,12 @@
       bfops = "$HOME/devel/gitlab.bfops.io";
     };
     oh-my-zsh.enable = false;
+    zplug = {
+      enable = true;
+      plugins = [
+        {name = "gerges-zz/oh-my-zsh-jira-plus";}
+      ];
+    };
     siteFunctions = {
       updateNvim = ''
         local CONFIG_DIR=~/.config/nvim
