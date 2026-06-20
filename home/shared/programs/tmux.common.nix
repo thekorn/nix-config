@@ -17,6 +17,7 @@
       set -s focus-events on
 
       bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "~/.config/tmux/tmux.conf reloaded"
+      bind-key N run-shell "zsh -i -c 'ts $1' _ ~/.config/nix"
 
       bind Enter copy-mode # enter copy mode
 

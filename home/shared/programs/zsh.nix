@@ -1,9 +1,13 @@
-{
+{config, ...}: {
   imports = [./zsh.common.nix];
 
   programs.zsh = {
     shellAliases = {
       sim = "open -a Simulator";
+    };
+
+    sessionVariables = {
+      TMUX_SESSIONIZER_EXTRA_DIRS = "/tmp ${config.home.homeDirectory}/.config/nix ${config.home.homeDirectory}/.config/nvim";
     };
 
     siteFunctions = {
