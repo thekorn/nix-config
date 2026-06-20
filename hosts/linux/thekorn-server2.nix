@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  users,
   ...
 }: {
   imports = [
@@ -61,4 +62,10 @@
   programs.nix-ld.enable = true;
 
   services.tailscale.enable = false;
+
+  home-manager.users.${users.private} = {
+    imports = [
+      ../../home/shared/profiles/linux-server.nix
+    ];
+  };
 }

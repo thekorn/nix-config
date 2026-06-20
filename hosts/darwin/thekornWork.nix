@@ -3,8 +3,6 @@
   users,
   ...
 }: {
-  # here go the darwin preferences and config items
-
   imports = [
     ./shared/homebrew.common.nix
     ./shared/homebrew.work.nix
@@ -30,4 +28,20 @@
   '';
   nix.enable = false;
   ids.gids.nixbld = 30000;
+
+  home-manager.users.${users.work} = {pkgs, ...}: {
+    imports = [
+      ../../home/shared/profiles/darwin.nix
+      ../../home/shared/work.nix
+    ];
+
+    home.packages = with pkgs; [
+      zulu17
+    ];
+
+    custom = {
+      ghostty.fontSize = 19;
+      workmux.defaultAgent = "cursor-agent";
+    };
+  };
 }

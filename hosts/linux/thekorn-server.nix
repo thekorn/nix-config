@@ -3,10 +3,14 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
+  inputs,
   pkgs,
+  users,
   ...
 }: {
   imports = [
+    inputs.omarchy-nix.nixosModules.default
+
     # Include the results of the hardware scan.
     ./configurations/thekorn-server/hardware-configuration.nix
   ];
@@ -101,4 +105,42 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  omarchy = {
+    username = users.private;
+    full_name = "Markus Korn";
+    email_address = "markus.korn@gmail.com";
+    theme = "tokyo-night";
+    seamless_boot = {
+      enable = true; # Enable Plymouth + auto-login
+      username = users.private; # Required for auto-login
+      plymouth_theme = "omarchy"; # Custom boot splash theme
+      silent_boot = true; # Hide kernel messages
+    };
+    monitors = [
+      # "HDMI-A-1,2560x1440,auto,1,transform,1" # External monitor, 1x scaling, rotate 90deg
+      "HDMI-A-1,3140x2610,auto,1"
+    ];
+    firewall.enable = true;
+    quick_app_bindings = [
+      "ALT_L, RETURN, Terminal, exec, $terminal"
+      "ALT_L, SPACE, Launch apps, exec, omarchy-launch-walker"
+      "ALT_L, K, Show key bindings, exec, omarchy-show-keybindings"
+    ];
+  };
+
+  home-manager.users.${users.private} = {
+    imports = [
+      inputs.omarchy-nix.homeManagerModules.default
+      ../../home/shared/profiles/linux-server.nix
+    ];
+
+    #programs.wayvnc.enable = true;
+    services.wayvnc.enable = true;
+    services.wayvnc.autoStart = true; #maybe: false
+    services.wayvnc.settings = {
+      address = "localhost";
+      port = 5900;
+    };
+  };
 }
