@@ -112,9 +112,5 @@
     nixosConfigurations.thekorn-server = mkNixosHost {
       hostModule = ./hosts/linux/thekorn-server.nix;
     };
-
-    nixosConfigurations.thekorn-server2 = mkNixosHost {
-      hostModule = ./hosts/linux/thekorn-server2.nix;
-    };
   };
 }

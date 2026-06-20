@@ -55,7 +55,6 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 ### Linux
 - `thekorn-server` (Main server)
-- `thekorn-server2` (Secondary server)
 
 ## Maintenance
 
