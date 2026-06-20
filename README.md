@@ -31,11 +31,13 @@ cd ~/.config/nix
 ### Darwin (macOS)
 
 For a first-time installation:
+
 ```bash
 nix run nix-darwin -- switch --flake .#<hostname>
 ```
 
 For subsequent updates:
+
 ```bash
 darwin-rebuild switch --flake .#<hostname>
 ```
@@ -57,16 +59,18 @@ This connects to `thekorn@thekorn-server.home`, builds on the server, and activa
 ## Available Hosts
 
 ### Darwin
+
 - `thekorn-macbook` (Personal MacBook)
 - `thekorn-studio` (Personal Mac Studio)
 - `BFG-043556` (Work Laptop, user: `d438477`)
 
 ### Linux
+
 - `thekorn-server` (Main server)
 
 ## Maintenance
 
-- **Format code**: `nix fmt`
+- **Format code**: `nix fmt .`
 - **Update inputs**: `nix flake update`
 
 ## Reference

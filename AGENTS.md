@@ -2,7 +2,7 @@
 
 ## Commands
 
-- Format: `nix fmt`
+- Format: `nix fmt .`
 - Build darwin: `darwin-rebuild switch --flake .#<hostname>`
 - Build linux: `nixos-rebuild switch --flake .#thekorn-server`
 
