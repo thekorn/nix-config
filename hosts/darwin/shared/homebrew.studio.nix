@@ -1,9 +1,5 @@
 {
   homebrew = {
-    enable = true;
-    #caskArgs.no_quarantine = true;
-    global.brewfile = true;
-    masApps = {};
     casks = [
       "obs"
       "steam"
@@ -11,8 +7,6 @@
       "multipass"
       "nvidia-geforce-now"
       "lm-studio"
-    ];
-    brews = [
     ];
   };
 }

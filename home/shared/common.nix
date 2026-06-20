@@ -2,7 +2,7 @@
   home.sessionVariables = {
     PAGER = "less";
     CLICOLOR = 1;
-    EDITOR = "nano";
+    EDITOR = "nvim";
     XDG_DATA_DIRS = "$XDG_DATA_DIRS:/usr/local/share";
 
     # superfile needs xdg config home

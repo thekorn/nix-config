@@ -1,6 +1,12 @@
-{pkgs, ...}: {
+# Optional, inactive server role. Import this module from a NixOS host to enable
+# Docker and a single-node k3s control plane on that machine.
+{
+  pkgs,
+  users,
+  ...
+}: {
   virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = ["thekorn"];
+  users.extraGroups.docker.members = [users.private];
 
   environment.systemPackages = with pkgs; [kubernetes-helm];
 

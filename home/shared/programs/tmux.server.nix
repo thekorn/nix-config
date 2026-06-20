@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
     ## from https://github.com/mrnugget/dotfiles/blob/master/bin/tmux-sessionizer
 
@@ -38,36 +34,12 @@
     fi
   '';
 in {
-  programs.tmux = {
-    enable = true;
-    historyLimit = 5000;
-    shortcut = "b";
-    secureSocket = false;
-    terminal = "screen-256color";
-    newSession = false;
+  imports = [./tmux.common.nix];
 
-    plugins = with pkgs; [tmuxPlugins.pain-control];
+  programs.tmux = {
+    shortcut = "b";
 
     extraConfig = ''
-      set -g default-terminal "screen-256color" # colors!
-      set -as terminal-features ",xterm-256color:RGB"
-      setw -g xterm-keys on
-      set -s escape-time 10                     # faster command sequences
-      set -sg repeat-time 600                   # increase repeat timeout
-      set -s focus-events on
-
-      set -q -g status-utf8 on                  # expect UTF-8 (tmux < 2.2)
-      setw -q -g utf8 on
-
-      set -g history-limit 5000                 # boost history
-
-      bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "~/.config/tmux/tmux.conf reloaded"
-
-      bind Enter copy-mode # enter copy mode
-
-      set-option -g detach-on-destroy off       # dont quit the terminal session if there is at least one other tmux session running
-      set -g status-left-length 32              # we have more space on the session name field
-
       bind-key S run-shell "tmux popup -E ${sessionizer}/bin/tmux-sessionizer"
       bind-key N run-shell "${sessionizer}/bin/tmux-sessionizer ~/.config/nix"
     '';

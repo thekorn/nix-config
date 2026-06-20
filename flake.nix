@@ -65,8 +65,12 @@
       inherit self inputs users;
     };
 
-    serverHost = "thekorn-server.home";
-    serverUser = users.private;
+    hostMeta = {
+      thekorn-server = {
+        targetHost = "thekorn-server.home";
+        user = users.private;
+      };
+    };
 
     homeManagerModule = {
       home-manager.extraSpecialArgs = specialArgs;
@@ -124,6 +128,7 @@
 
     packages = eachSupportedSystem (system: let
       pkgs = legacyPackages.${system};
+      server = hostMeta.thekorn-server;
     in {
       deploy-thekorn-server = pkgs.writeShellApplication {
         name = "deploy-thekorn-server";
@@ -133,8 +138,8 @@
 
           exec nixos-rebuild switch \
             --flake "$flake_ref#thekorn-server" \
-            --target-host "${serverUser}@${serverHost}" \
-            --build-host "${serverUser}@${serverHost}" \
+            --target-host "${server.user}@${server.targetHost}" \
+            --build-host "${server.user}@${server.targetHost}" \
             --elevate=sudo \
             --ask-elevate-password \
             "$@"
