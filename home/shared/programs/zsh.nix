@@ -5,25 +5,15 @@
     autosuggestion = {
       enable = true;
     };
+    autocd = true;
     syntaxHighlighting = {
       enable = true;
     };
     shellAliases = {
-      # helper
-      #npm-check-updates = "npx npm-check-updates -u";
-
-      # vs code
-      c = "code";
-      ca = "code -a";
-
       # eza vs ls
       ls = "eza";
       ll = "eza --long --header --git --icons";
       tree = "ll --tree --level=4 -a -I=.git --git-ignore";
-
-      # local rush for testing
-      #testrush = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/start.js";
-      #testrushx = "node ~/devel/github.com/thekorn/rushstack/libraries/rush-lib/lib/startx.js";
 
       # git
       ## Goes up the tree to the git root dir
@@ -35,19 +25,10 @@
       # lazygit
       lg = "lazygit";
 
-      ## firefox
-      ff = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --new-tab";
-      ffs = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --search";
-      ffp = "${pkgs.firefox-bin-unwrapped}/Applications/Firefox.app/Contents/MacOS/firefox --private-window";
-
       ## git
       cbr = ''git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'';
 
       sim = "open -a Simulator";
-
-      ## rush
-      rxb = "rushx build";
-      rxbt = "rushx _phase:build && rushx _phase:test";
 
       ## neovim
       vi = "nvim";
@@ -82,6 +63,7 @@
       enable = true;
       plugins = [
         {name = "gerges-zz/oh-my-zsh-jira-plus";}
+        {name = "ltj/gitgo";}
       ];
     };
     siteFunctions = {

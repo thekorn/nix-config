@@ -1,75 +1,8 @@
 {
   pkgs,
-  config,
   inputs,
-  lib,
   ...
 }: let
-  gitOpen = pkgs.writeShellScriptBin "git-open" ''
-    inside_git_repo="$(${pkgs.git}/bin/git rev-parse --is-inside-work-tree 2>/dev/null)"
-
-    if [ "$inside_git_repo" ]; then
-        isgithub=$(${pkgs.git}/bin/git remote get-url origin | grep -c "github.com")
-        isbitbucket=$(${pkgs.git}/bin/git remote get-url origin | grep -c "bitbucket.org")
-        isbfgitlab=$(${pkgs.git}/bin/git remote get-url origin | grep -c "gitlab.bfops.io")
-
-        branch=$(${pkgs.git}/bin/git rev-parse --abbrev-ref HEAD)
-        dirlen=$(${pkgs.git}/bin/git rev-parse --show-toplevel | wc -c)
-
-        if [[ $isgithub -eq 1 ]]; then
-            origin=$(${pkgs.git}/bin/git remote get-url origin | sed -e "s/^git@github.com://" -e "s/^https:\/\/github.com\///" -e "s/.git$//")
-
-            if [[ "$1" == "--pr" ]]; then
-                open "https://github.com/''${origin}/pull/new/''${branch}"
-            else
-                for path in "$@"; do
-                    open "https://github.com/''${origin}/tree/''${branch}/$(realpath "''${path}" | cut -c "''${dirlen}"-)"
-                done
-
-                if [[ "$#" -eq 0 ]]; then
-                    open "https://github.com/''${origin}/tree/''${branch}/$(pwd | cut -c "''${dirlen}"-)"
-                fi
-            fi
-        elif [[ $isbitbucket -eq 1 ]]; then
-            origin=$(${pkgs.git}/bin/git remote get-url origin | sed -e "s/^git@bitbucket.org://" -e "s/^https:\/\/bitbucket.org\///" -e "s/.git$//")
-
-            if [[ "$1" == "--pr" ]]; then
-                open "https://bitbucket.org/''${origin}/pull-requests/new?source=''${branch}&t=1"
-            else
-
-                for path in "$@"; do
-                    open "https://bitbucket.org/''${origin}/src/''${branch}/$(realpath "''${path}" | cut -c "''${dirlen}"-)"
-                done
-
-                if [[ "$#" -eq 0 ]]; then
-                    open "https://bitbucket.org/''${origin}/src/''${branch}/$(pwd | cut -c "''${dirlen}"-)"
-                fi
-            fi
-        elif [[ $isbfgitlab -eq 1 ]]; then
-            echo "ITS BF GITLAB"
-            origin=$(${pkgs.git}/bin/git remote get-url origin | sed -e "s/^git@gitlab.bfops.io://" -e "s/^https:\/\/gitlab.bfops.io\///" -e "s/.git$//")
-
-            if [[ "$1" == "--pr" ]]; then
-                open "https://gitlab.bfops.io/''${origin}/-/merge_requests/new?merge_request[source_branch]=''${branch}"
-            else
-
-                for path in "$@"; do
-                    open "https://gitlab.bfops.io/''${origin}/-/tree/''${branch}$(realpath "''${path}" | cut -c "''${dirlen}"-)"
-                done
-
-                if [[ "$#" -eq 0 ]]; then
-                    open "https://gitlab.bfops.io/''${origin}/-/tree/''${branch}/$(pwd | cut -c "''${dirlen}"-)"
-                fi
-            fi
-        else
-            echo "Not a github, bitbucket or bf gitlab repository."
-            exit 1
-        fi
-    else
-        echo "Not a git repository."
-        exit 1
-    fi
-  '';
   gitHelpers = pkgs.writeShellScriptBin "git-helpers" ''
     HASH="%C(always,yellow)%h%C(always,reset)"
     RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
@@ -91,7 +24,6 @@
   '';
 in {
   home.packages = [
-    gitOpen
     gitHelpers
     pkgs.difftastic
   ];
@@ -102,31 +34,12 @@ in {
 
   programs.hunk = {
     enable = true;
-    enableGitIntegration = true; # Optional: set hunk as default git pager
+    enableGitIntegration = true;
     settings = {
-      theme = "graphite";
+      theme = "github-dark-default";
       mode = "split";
       line_numbers = true;
     };
-  };
-
-  programs.delta = {
-    enable = true;
-    #  options = {
-    #      decorations = {
-    #          commit-decoration-style = "blue ol";
-    #          commit-style = "raw";
-    #          file-style = "omit";
-    #          hunk-header-decoration-style = "blue box";
-    #          hunk-header-file-style = "red";
-    #          hunk-header-line-number-style = "#067a00";
-    #          hunk-header-style = "file line-number syntax";
-    #        };
-    #      features = "chameleon";
-    #      whitespace-error-style = "22 reverse";
-    #      side-by-side = false;
-    #      interactive = {keep-plus-minus-markers = true;};
-    #    };
   };
 
   programs.git = {
@@ -145,8 +58,6 @@ in {
         st = "status";
         br = "branch";
         pu = "push -u";
-        o = "open";
-        or = "open --pr";
         put = "push -u --tags";
         type = "cat-file -t";
         dump = "cat-file -p";
@@ -192,10 +103,9 @@ in {
         default = "current";
         followTags = true;
       };
-      diff = {
-        submodule = "log";
-        external = "difft";
-      };
+      #diff = {
+      #  submodule = "log";
+      #};
       pull = {rebase = false;};
       init = {defaultBranch = "main";};
       commit = {
