@@ -2,8 +2,7 @@
   username,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ../../shared/certificates.nix
   ];
