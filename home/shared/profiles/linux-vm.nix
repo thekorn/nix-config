@@ -9,7 +9,7 @@
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
 
-  custom.tmux.server.statusBarBackgroundColor = "green";
+  custom.tmux.server.statusBarBackgroundColor = "magenta";
 
   services.ssh-agent.enable = true;
   programs.ssh.settings."*".AddKeysToAgent = "yes";

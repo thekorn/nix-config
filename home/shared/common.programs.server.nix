@@ -9,7 +9,6 @@
     ./programs/tmux.server.nix
     ./programs/oh-my-posh.server.nix
     ./devel.nix
-    #    ./programs/nvim.nix
     ./programs/lazygit.nix
     ./programs/ripgrep.nix
     ./programs/zig.nix

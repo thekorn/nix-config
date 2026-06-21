@@ -75,6 +75,10 @@
         targetHost = "thekorn-server.home";
         user = users.private;
       };
+      thekorn-vm = {
+        targetHost = "thekorn-vm";
+        user = users.private;
+      };
     };
 
     homeManagerModule = {
@@ -134,6 +138,7 @@
     packages = eachSupportedSystem (system: let
       pkgs = legacyPackages.${system};
       server = hostMeta.thekorn-server;
+      vm = hostMeta.thekorn-vm;
     in {
       deploy-thekorn-server = pkgs.writeShellApplication {
         name = "deploy-thekorn-server";
@@ -150,12 +155,32 @@
             "$@"
         '';
       };
+
+      deploy-thekorn-vm = pkgs.writeShellApplication {
+        name = "deploy-thekorn-vm";
+        runtimeInputs = with pkgs; [nixos-rebuild openssh];
+        text = ''
+          flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
+
+          exec nixos-rebuild switch \
+            --flake "$flake_ref#thekorn-vm" \
+            --target-host "${vm.user}@${vm.targetHost}" \
+            --build-host "${vm.user}@${vm.targetHost}" \
+            --elevate=sudo \
+            --ask-elevate-password \
+            "$@"
+        '';
+      };
     });
 
     apps = eachSupportedSystem (system: {
       deploy-thekorn-server = {
         type = "app";
         program = "${self.packages.${system}.deploy-thekorn-server}/bin/deploy-thekorn-server";
+      };
+      deploy-thekorn-vm = {
+        type = "app";
+        program = "${self.packages.${system}.deploy-thekorn-vm}/bin/deploy-thekorn-vm";
       };
     });
 
@@ -167,6 +192,10 @@
 
     nixosConfigurations.thekorn-server = mkNixosHost {
       hostModule = ./hosts/linux/thekorn-server.nix;
+    };
+
+    nixosConfigurations.thekorn-vm = mkNixosHost {
+      hostModule = ./hosts/linux/thekorn-vm.nix;
     };
   };
 }
