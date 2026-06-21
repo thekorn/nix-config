@@ -2,12 +2,27 @@
 
 ## Directory Structure
 
+- **`flake/`**: Flake-parts modules. This is the top-level dendritic tree for flake outputs: shared flake helpers, per-system outputs, deploy apps, and host output registration live in separate branches.
 - **`hosts/`**: Per-machine entry points. Each host owns both its system configuration and the home-manager profile for its primary user.
   - `darwin/shared/`: Shared macOS system modules (fonts, homebrew, preferences)
   - `linux/shared/`: Shared Linux system modules
 - **`home/shared/`**: Reusable home-manager modules only. Host files compose these modules into machine-specific user profiles.
   - `profiles/`: Higher-level home bundles such as `darwin.nix` and `linux-server.nix`
   - `programs/`: Program-specific home-manager modules
+
+## Flake-Parts / Dendritic Layout
+
+`flake.nix` is now only the input declaration and `flake-parts.lib.mkFlake` entry point. The actual flake outputs are composed by the dendritic import tree under `flake/`:
+
+| Module | Purpose |
+|--------|---------|
+| `flake/default.nix` | Branch module that imports the flake leaves |
+| `flake/lib.nix` | Shared flake-level values: users, `specialArgs`, host metadata, pkgs import policy, and Darwin/NixOS host builders |
+| `flake/per-system.nix` | System-specific outputs and defaults, currently the formatter and configured `pkgs` |
+| `flake/deploy.nix` | Deploy packages and apps for remote NixOS hosts |
+| `flake/hosts.nix` | Public `darwinConfigurations` and `nixosConfigurations` outputs |
+
+This keeps each flake concern close to one file while preserving the existing host/home module boundaries.
 
 ## Shared Configuration Modules
 
@@ -65,7 +80,7 @@ home-manager.users.${users.private} = {pkgs, ...}: {
 };
 ```
 
-`flake.nix` stays intentionally small: it defines reusable Darwin/NixOS builders, wires home-manager defaults once, and points each flake output at the corresponding host file.
+`flake.nix` stays intentionally small: it declares inputs, enters flake-parts, and imports the dendritic flake module tree. The reusable Darwin/NixOS builders, home-manager defaults, and host output registry live under `flake/`.
 
 ## Homebrew Integration
 
