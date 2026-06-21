@@ -34,7 +34,7 @@ in {
 
   programs.hunk = {
     enable = true;
-    enableGitIntegration = true;
+    enableGitIntegration = false;
     settings = {
       theme = "github-dark-default";
       mode = "split";
@@ -96,8 +96,13 @@ in {
       #};
       core = {
         editor = "nvim";
+        pager = "less -R";
         whitespace = "trailing-space,space-before-tab";
         autocrlf = "input";
+      };
+      pager = {
+        diff = "hunk pager";
+        show = "hunk pager";
       };
       push = {
         default = "current";
