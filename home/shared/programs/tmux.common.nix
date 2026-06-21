@@ -1,4 +1,22 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
+  programs.zsh = {
+    sessionVariables = {
+      TMUX_SESSIONIZER_DIRS = "${config.home.homeDirectory}/devel";
+      TMUX_SESSIONIZER_DEPTH = 3;
+      TMUX_SESSIONIZER_BIND = "S";
+    };
+
+    zplug = {
+      enable = true;
+      plugins = [
+        {name = "thekorn/tmux-sessionizer";}
+      ];
+    };
+  };
   programs.tmux = {
     enable = true;
     historyLimit = 5000;
@@ -22,7 +40,6 @@
       bind Enter copy-mode # enter copy mode
 
       set-option -g detach-on-destroy off       # dont quit the terminal session if there is at least one other tmux session running
-      set -g status-left-length 32              # we have more space on the session name field
     '';
   };
 }

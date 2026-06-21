@@ -14,6 +14,8 @@
     })
   ];
 
+  networking.hostName = "thekorn-macbook";
+
   home-manager.users.${users.private} = {pkgs, ...}: {
     imports = [
       ../../home/shared/profiles/darwin.nix

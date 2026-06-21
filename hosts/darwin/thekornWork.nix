@@ -15,6 +15,7 @@
   ];
   nix.enable = false;
   ids.gids.nixbld = 30000;
+  networking.hostName = "BFG-043556";
 
   home-manager.users.${users.work} = {pkgs, ...}: {
     imports = [

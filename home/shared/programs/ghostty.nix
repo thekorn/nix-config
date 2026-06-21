@@ -17,6 +17,11 @@ in {
       description = "Font size for Ghostty terminal";
     };
   };
+
+  config.programs.tmux = {
+    enable = true;
+  };
+
   config.programs.ghostty = {
     enable = true;
     package = pkgs.ghostty-bin;

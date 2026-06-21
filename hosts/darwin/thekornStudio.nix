@@ -17,6 +17,7 @@
     })
   ];
   nix.enable = false;
+  networking.hostName = "thekorn-studio";
   # this is a bug, remove once https://github.com/nix-community/home-manager/issues/8291 is fixed
   users.users.${users.private}.uid = 501;
 
