@@ -6,7 +6,10 @@
 }: let
   cfg = config.custom.ghostty;
   tmuxConfig = "${config.home.homeDirectory}/.config/tmux/tmux.conf";
+  # Ghostty launches with a minimal PATH; prepend deps needed to load tmux plugins.
+  pluginPath = lib.makeBinPath [pkgs.tmux pkgs.bash pkgs.coreutils] + ":/usr/bin:/bin";
   ghosttyTmux = pkgs.writeShellScriptBin "ghostty-tmux" ''
+    export PATH="${pluginPath}:$PATH"
     exec ${pkgs.tmux}/bin/tmux -f /dev/null start-server \; source-file "${tmuxConfig}" \; new-session -A -s default
   '';
 in {

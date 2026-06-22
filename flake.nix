@@ -27,7 +27,7 @@
     workmux.url = "github:raine/workmux";
 
     config-nvim = {
-      url = "git+ssh://git@github.com/thekorn/config.nvim.git";
+      url = "github:thekorn/config.nvim";
       flake = false;
     };
 
