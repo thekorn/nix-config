@@ -6,6 +6,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    completionInit = lib.mkAfter ''
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+    '';
     autosuggestion.enable = true;
     autocd = true;
     syntaxHighlighting.enable = true;
