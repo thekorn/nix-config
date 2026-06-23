@@ -1,4 +1,0 @@
-gui:
-  showIcons: true
-  showRandomTip: false
-  notARepository: 'quit'
