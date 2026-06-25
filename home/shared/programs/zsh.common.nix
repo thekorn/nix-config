@@ -71,5 +71,53 @@
         {name = "ltj/gitgo";}
       ];
     };
+
+    siteFunctions = {
+      mkcd = ''
+        mkdir --parents "$1" && cd "$1"
+      '';
+      ccd = ''
+        setopt localoptions errreturn
+
+        if (( $# != 1 )); then
+          echo "usage: ccd <git-remote-url>" >&2
+          return 1
+        fi
+
+        local url="$1"
+        local host repo_path target
+
+        if [[ "$url" =~ '^https?://([^/]+)/(.+)$' ]]; then
+          host="$match[1]"
+          repo_path="$match[2]"
+        elif [[ "$url" =~ '^git@([^:]+):(.+)$' ]]; then
+          host="$match[1]"
+          repo_path="$match[2]"
+        elif [[ "$url" =~ '^ssh://git@([^/]+)/(.+)$' ]]; then
+          host="$match[1]"
+          repo_path="$match[2]"
+        elif [[ "$url" =~ '^git://([^/]+)/(.+)$' ]]; then
+          host="$match[1]"
+          repo_path="$match[2]"
+        else
+          echo "ccd: unsupported git remote url: $url" >&2
+          return 1
+        fi
+
+        repo_path="''${repo_path%.git}"
+        repo_path="''${repo_path%/}"
+
+        target="$HOME/devel/$host/$repo_path"
+
+        if [[ -d "$target" ]]; then
+          cd "$target"
+          return 0
+        fi
+
+        mkdir -p "''${target:h}"
+        git clone "$url" "$target"
+        cd "$target"
+      '';
+    };
   };
 }
