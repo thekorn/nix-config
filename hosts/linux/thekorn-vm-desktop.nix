@@ -43,8 +43,32 @@
     variant = "";
   };
 
+  hardware.graphics.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+
+  services.displayManager = {
+    defaultSession = "hyprland-uwsm";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+  };
+
+  security.polkit.enable = true;
+
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
+
+  environment.sessionVariables = {
+    AQ_NO_HARDWARE_CURSORS = "1";
+    WLR_RENDERER_ALLOW_SOFTWARE = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   environment.shells = with pkgs; [bash zsh];
   environment.systemPackages = with pkgs; [
@@ -63,7 +87,7 @@
 
   home-manager.users.${users.private} = {pkgs, ...}: {
     imports = [
-      ../../home/shared/profiles/linux-vm.nix
+      ../../home/shared/profiles/linux-vm-desktop.nix
     ];
   };
 
