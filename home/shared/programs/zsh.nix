@@ -10,6 +10,19 @@
       nixswitch = ''
         sudo -H nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
       '';
+      update-server = ''
+        local host failed=0
+
+        for host in thekorn-vm thekorn-server thekorn-server-2; do
+          echo "Deploying $host..."
+          if ! nix run ~/.config/nix#deploy-$host; then
+            echo "update-server: failed to deploy $host" >&2
+            failed=1
+          fi
+        done
+
+        return $failed
+      '';
       update = ''
         setopt localoptions errreturn
         pushd ~/.config/nix >/dev/null || return
