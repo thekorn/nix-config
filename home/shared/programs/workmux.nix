@@ -34,4 +34,8 @@ in {
       - split: vertical
         size: 15
   '';
+
+  config.xdg.configFile."amp/plugins/workmux-status.ts" = lib.mkIf (cfg.defaultAgent == "amp") {
+    source = ./dotfiles/amp/plugins/workmux-status.ts;
+  };
 }
