@@ -26,7 +26,7 @@ in {
     settings = {
       monitor = ["Virtual-1,2560x1600@60,0x0,1.0"];
 
-      "$terminal" = "foot";
+      "$terminal" = "ghostty";
       "$fileManager" = "dolphin";
       "$menu" = "wofi --show drun";
       "$reload_waybar" = "pkill waybar; waybar &";

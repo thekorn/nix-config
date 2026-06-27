@@ -12,6 +12,21 @@
     export PATH="${pluginPath}:$PATH"
     exec ${pkgs.tmux}/bin/tmux -f /dev/null start-server \; source-file "${tmuxConfig}" \; new-session -A -s default
   '';
+  ghosttyPackage =
+    if pkgs.stdenv.isDarwin
+    then pkgs.ghostty-bin
+    else
+      pkgs.symlinkJoin {
+        name = "ghostty-wrapped";
+        paths = [pkgs.ghostty];
+        nativeBuildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          rm "$out/bin/ghostty"
+          makeWrapper ${pkgs.ghostty}/bin/ghostty "$out/bin/ghostty" \
+            --set LIBGL_ALWAYS_SOFTWARE 1
+        '';
+        inherit (pkgs.ghostty) meta;
+      };
 in {
   options.custom.ghostty = {
     fontSize = lib.mkOption {
@@ -27,21 +42,24 @@ in {
 
   config.programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty-bin;
+    package = ghosttyPackage;
     enableZshIntegration = true;
-    settings = {
-      theme = "nord";
-      font-family = "GeistMono Nerd Font";
-      font-size = cfg.fontSize;
-      font-thicken = true;
-      confirm-close-surface = false;
-      auto-update = "off";
-      copy-on-select = "clipboard";
-      quit-after-last-window-closed = true;
-      command = "${ghosttyTmux}/bin/ghostty-tmux";
-      cursor-style-blink = true;
-      shell-integration-features = "no-cursor, sudo, title";
-      config-file = "?custom";
-    };
+    settings =
+      {
+        font-family = "GeistMono Nerd Font";
+        font-size = cfg.fontSize;
+        font-thicken = true;
+        confirm-close-surface = false;
+        auto-update = "off";
+        copy-on-select = "clipboard";
+        quit-after-last-window-closed = true;
+        command = "${ghosttyTmux}/bin/ghostty-tmux";
+        cursor-style-blink = true;
+        shell-integration-features = "no-cursor, sudo, title";
+        config-file = "?custom";
+      }
+      // lib.optionalAttrs pkgs.stdenv.isDarwin {
+        theme = "nord";
+      };
   };
 }

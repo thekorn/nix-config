@@ -149,11 +149,15 @@
       server2 = hostMeta.thekorn-server-2;
       vm = hostMeta.thekorn-vm;
       vmDesktop = hostMeta.thekorn-vm-desktop;
+      deployNixConf = pkgs.writeTextDir "nix.conf" ''
+        extra-experimental-features = nix-command flakes
+      '';
     in {
       deploy-thekorn-server = pkgs.writeShellApplication {
         name = "deploy-thekorn-server";
         runtimeInputs = with pkgs; [nixos-rebuild openssh];
         text = ''
+          export NIX_CONF_DIR="${deployNixConf}"
           flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
 
           exec nixos-rebuild switch \
@@ -170,6 +174,7 @@
         name = "deploy-thekorn-server-2";
         runtimeInputs = with pkgs; [nixos-rebuild openssh];
         text = ''
+          export NIX_CONF_DIR="${deployNixConf}"
           flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
 
           exec nixos-rebuild switch \
@@ -186,6 +191,7 @@
         name = "deploy-thekorn-vm";
         runtimeInputs = with pkgs; [nixos-rebuild openssh];
         text = ''
+          export NIX_CONF_DIR="${deployNixConf}"
           flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
 
           exec nixos-rebuild switch \
@@ -202,6 +208,7 @@
         name = "deploy-thekorn-vm-desktop";
         runtimeInputs = with pkgs; [nixos-rebuild openssh];
         text = ''
+          export NIX_CONF_DIR="${deployNixConf}"
           flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
 
           exec nixos-rebuild switch \
