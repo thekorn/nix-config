@@ -1,5 +1,11 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [atuin];
-  home.file."/.config/atuin/config.toml".source = ./dotfiles/atuin/config.toml;
-  programs.zsh = {initContent = ''eval "$(atuin init zsh)"'';};
+{
+  #programs.zsh = {initContent = ''eval "$(atuin init zsh)"'';};
+  programs.atuin = {
+    enable = true;
+    settings = {
+      style = "compact";
+      enter_accept = true;
+    };
+    enableZshIntegration = true;
+  };
 }
