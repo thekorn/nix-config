@@ -53,6 +53,10 @@
 
   services.displayManager = {
     defaultSession = "hyprland-uwsm";
+    autoLogin = {
+      enable = true;
+      user = users.private;
+    };
     sddm = {
       enable = true;
       wayland.enable = true;
