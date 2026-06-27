@@ -25,13 +25,15 @@
       '';
       update = ''
         setopt localoptions errreturn
-        pushd ~/.config/nix >/dev/null || return
+        unsetopt auto_pushd
+        local oldpwd=$PWD
+        cd ~/.config/nix || return
         {
           git pull
           nix flake update --commit-lock-file
           git pu
         } always {
-          popd >/dev/null
+          cd "$oldpwd"
         }
         nixswitch
         updateBrew
