@@ -75,6 +75,10 @@
         targetHost = "thekorn-server.home";
         user = users.private;
       };
+      thekorn-server-2 = {
+        targetHost = "thekorn-server-2.home";
+        user = users.private;
+      };
       thekorn-vm = {
         targetHost = "thekorn-vm";
         user = users.private;
@@ -138,6 +142,7 @@
     packages = eachSupportedSystem (system: let
       pkgs = legacyPackages.${system};
       server = hostMeta.thekorn-server;
+      server2 = hostMeta.thekorn-server-2;
       vm = hostMeta.thekorn-vm;
     in {
       deploy-thekorn-server = pkgs.writeShellApplication {
@@ -150,6 +155,22 @@
             --flake "$flake_ref#thekorn-server" \
             --target-host "${server.user}@${server.targetHost}" \
             --build-host "${server.user}@${server.targetHost}" \
+            --elevate=sudo \
+            --ask-elevate-password \
+            "$@"
+        '';
+      };
+
+      deploy-thekorn-server-2 = pkgs.writeShellApplication {
+        name = "deploy-thekorn-server-2";
+        runtimeInputs = with pkgs; [nixos-rebuild openssh];
+        text = ''
+          flake_ref="''${NIX_CONFIG_FLAKE:-${self}}"
+
+          exec nixos-rebuild switch \
+            --flake "$flake_ref#thekorn-server-2" \
+            --target-host "${server2.user}@${server2.targetHost}" \
+            --build-host "${server2.user}@${server2.targetHost}" \
             --elevate=sudo \
             --ask-elevate-password \
             "$@"
@@ -178,6 +199,10 @@
         type = "app";
         program = "${self.packages.${system}.deploy-thekorn-server}/bin/deploy-thekorn-server";
       };
+      deploy-thekorn-server-2 = {
+        type = "app";
+        program = "${self.packages.${system}.deploy-thekorn-server-2}/bin/deploy-thekorn-server-2";
+      };
       deploy-thekorn-vm = {
         type = "app";
         program = "${self.packages.${system}.deploy-thekorn-vm}/bin/deploy-thekorn-vm";
@@ -192,6 +217,10 @@
 
     nixosConfigurations.thekorn-server = mkNixosHost {
       hostModule = ./hosts/linux/thekorn-server.nix;
+    };
+
+    nixosConfigurations.thekorn-server-2 = mkNixosHost {
+      hostModule = ./hosts/linux/thekorn-server-2.nix;
     };
 
     nixosConfigurations.thekorn-vm = mkNixosHost {
