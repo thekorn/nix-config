@@ -1,6 +1,9 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [bottom];
-  home.file = {
-    ".config/bottom/bottom.toml".source = ./dotfiles/bottom/bottom.toml;
+{
+  programs.bottom = {
+    enable = true;
+    settings = {
+      color = "nord";
+      tree = true;
+    };
   };
 }
