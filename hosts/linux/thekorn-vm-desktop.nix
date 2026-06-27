@@ -76,6 +76,10 @@
     wget
   ];
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   services.openssh = {
     enable = true;
     settings = {
