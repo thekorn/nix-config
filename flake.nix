@@ -94,6 +94,11 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bck";
+      home-manager.sharedModules = [
+        {
+          manual.manpages.enable = false;
+        }
+      ];
     };
 
     darwinBaseModule = {pkgs, ...}: {

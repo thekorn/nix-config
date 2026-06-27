@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
+{pkgs, ...}: let
   gitHelpers = pkgs.writeShellScriptBin "git-helpers" ''
     HASH="%C(always,yellow)%h%C(always,reset)"
     RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
@@ -23,24 +19,14 @@
     }
   '';
 in {
+  imports = [
+    ./hunk.nix
+  ];
+
   home.packages = [
     gitHelpers
     pkgs.difftastic
   ];
-
-  imports = [
-    inputs.hunk.homeManagerModules.default
-  ];
-
-  programs.hunk = {
-    enable = true;
-    enableGitIntegration = false;
-    settings = {
-      theme = "github-dark-default";
-      mode = "split";
-      line_numbers = true;
-    };
-  };
 
   programs.git = {
     enable = true;
