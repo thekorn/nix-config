@@ -44,6 +44,10 @@
     zprof.enable = false;
 
     initContent = lib.mkAfter ''
+      setopt AUTO_PUSHD
+      setopt PUSHD_IGNORE_DUPS
+      setopt PUSHD_MINUS
+
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
     '';
@@ -69,6 +73,7 @@
       plugins = [
         {name = "gerges-zz/oh-my-zsh-jira-plus";}
         {name = "ltj/gitgo";}
+        {name = "toku-sa-n/zsh-dot-up";}
       ];
     };
 
