@@ -9,6 +9,7 @@
   programs.home-manager.enable = true;
   home.stateVersion = "25.05";
 
+  custom.btop.theme = "Default";
   custom.tmux.server.statusBarBackgroundColor = "#BF616A";
 
   services.ssh-agent.enable = true;

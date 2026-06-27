@@ -12,5 +12,6 @@
     ./programs/lazygit.nix
     ./programs/ripgrep.nix
     ./programs/zig.nix
+    ./programs/btop.nix
   ];
 }
