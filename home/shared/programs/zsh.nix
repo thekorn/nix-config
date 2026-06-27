@@ -13,7 +13,7 @@
       update-server = ''
         local host failed=0
 
-        for host in thekorn-vm thekorn-server thekorn-server-2; do
+        for host in thekorn-vm thekorn-vm-desktop thekorn-server thekorn-server-2; do
           echo "Deploying $host..."
           if ! nix run ~/.config/nix#deploy-$host; then
             echo "update-server: failed to deploy $host" >&2

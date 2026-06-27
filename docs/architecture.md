@@ -28,6 +28,7 @@ Home-manager is wired by the host module, not by `flake.nix`. Shared profile mod
 |---------|---------|
 | `home/shared/profiles/darwin.nix` | Common macOS home setup: base shell env, packages, programs, and development folders |
 | `home/shared/profiles/linux-server.nix` | Common Linux server home setup: base env, server packages/programs, SSH agent, and state version |
+| `home/shared/profiles/linux-vm.nix` | Common Linux VM home setup: base env, server-style packages/programs, SSH agent, and VM-specific theme |
 
 Host modules then add role- or machine-specific modules:
 

@@ -48,14 +48,16 @@ darwin-rebuild switch --flake .#<hostname>
 sudo nixos-rebuild switch --flake .#<hostname>
 ```
 
-To deploy a server remotely from another machine on the home network:
+To deploy a Linux host remotely from another machine on the network:
 
 ```bash
 nix run .#deploy-thekorn-server
 nix run .#deploy-thekorn-server-2
+nix run .#deploy-thekorn-vm
+nix run .#deploy-thekorn-vm-desktop
 ```
 
-This connects to the matching `thekorn@<hostname>.home`, builds on the server, and activates the matching NixOS configuration there.
+This connects to the matching `thekorn@<hostname>`, builds on the target, and activates the matching NixOS configuration there.
 
 ## Available Hosts
 
@@ -69,6 +71,8 @@ This connects to the matching `thekorn@<hostname>.home`, builds on the server, a
 
 - `thekorn-server` (Main server)
 - `thekorn-server-2` (Second server)
+- `thekorn-vm` (VM)
+- `thekorn-vm-desktop` (Desktop VM)
 
 ## Maintenance
 
