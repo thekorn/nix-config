@@ -4,7 +4,6 @@
     curl
     less
     zsh-forgit
-    fnm
     awscli2
     jq
     htop

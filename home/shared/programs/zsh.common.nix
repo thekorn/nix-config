@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  home.packages = with pkgs; [fnm];
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -50,11 +51,17 @@
 
       source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
+      if [[ -n "$ZSH_FNM_NODE_VERSION" ]]; then
+        fnm default "$ZSH_FNM_NODE_VERSION"
+      fi
     '';
 
     sessionVariables = {
-      ## CTF
+      # CTF
       APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
+
+      # fnm
+      ZSH_FNM_NODE_VERSION = "24.18.0";
     };
 
     dirHashes = {
@@ -74,6 +81,7 @@
         {name = "gerges-zz/oh-my-zsh-jira-plus";}
         {name = "ltj/gitgo";}
         {name = "toku-sa-n/zsh-dot-up";}
+        {name = "dominik-schwabe/zsh-fnm";}
       ];
     };
 
