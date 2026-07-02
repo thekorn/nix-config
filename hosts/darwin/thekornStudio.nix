@@ -44,6 +44,7 @@
       #llm-agents.gemini-cli
       llm-agents.cursor-agent
       #whatsapp-for-mac
+      utm
     ];
 
     custom.ghostty.fontSize = 21;
