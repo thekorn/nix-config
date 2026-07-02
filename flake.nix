@@ -55,11 +55,20 @@
       system:
         import nixpkgs {
           inherit system;
+          overlays = [vendoredPackagesOverlay];
           config = {
             allowUnfree = true;
           };
         }
     );
+
+    vendoredPackagesOverlay = final: prev: {
+      vendored =
+        (prev.vendored or {})
+        // {
+          container = final.callPackage ./pkgs/vendored/container.nix {};
+        };
+    };
 
     users = {
       private = "thekorn";
@@ -121,7 +130,10 @@
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
-          overlays = [llm-agents.overlays.default];
+          overlays = [
+            llm-agents.overlays.default
+            vendoredPackagesOverlay
+          ];
         };
         modules = [
           darwinBaseModule
@@ -139,6 +151,9 @@
       nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+          {
+            nixpkgs.overlays = [vendoredPackagesOverlay];
+          }
           hostModule
           home-manager.nixosModules.home-manager
           homeManagerModule

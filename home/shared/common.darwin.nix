@@ -3,5 +3,6 @@
     #chatgpt
     #docker
     #colima
+    vendored.container
   ];
 }

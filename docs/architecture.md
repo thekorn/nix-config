@@ -8,6 +8,7 @@
 - **`home/shared/`**: Reusable home-manager modules only. Host files compose these modules into machine-specific user profiles.
   - `profiles/`: Higher-level home bundles such as `darwin.nix` and `linux-server.nix`
   - `programs/`: Program-specific home-manager modules
+- **`pkgs/vendored/`**: Locally vendored Nix package definitions for packages that should stay pinned or patched independently of the main `nixpkgs` input.
 
 ## Shared Configuration Modules
 
@@ -79,6 +80,7 @@ macOS configurations use Homebrew for packages that don't work well with Nix:
 ## Development Notes
 
 - Uses `nixpkgs-unstable` channel for latest packages
+- Vendored packages are exposed as `pkgs.vendored.*` through the flake overlay; use these for pinned or locally patched package definitions.
 - Allows unfree packages globally (`allowUnfree = true`)
 - Formatter is `alejandra` for consistent Nix code style
 - Primary user is "thekorn" except on work machine ("d438477")
