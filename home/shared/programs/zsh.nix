@@ -41,7 +41,7 @@
       updateBrew = ''
         setopt localoptions errreturn
         brew update
-        brew upgrade --greedy
+        brew upgrade --greedy --yes
       '';
     };
   };
