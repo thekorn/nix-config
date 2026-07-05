@@ -3,7 +3,6 @@
     fd
     curl
     less
-    zsh-forgit
     awscli2
     jq
     htop

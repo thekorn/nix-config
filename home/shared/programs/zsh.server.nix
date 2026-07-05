@@ -3,7 +3,10 @@
   lib,
   ...
 }: {
-  imports = [./zsh.common.nix];
+  imports = [
+    ./zsh.common.nix
+    ./tmux.server.nix
+  ];
 
   programs.zsh = {
     initContent = lib.mkBefore ''

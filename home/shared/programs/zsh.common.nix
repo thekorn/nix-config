@@ -3,7 +3,13 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [fnm];
+  imports = [
+    ./eza.nix
+    ./lazygit.nix
+    ./git.nix
+    ./nvim.nix
+  ];
+  home.packages = with pkgs; [fnm curl];
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -49,7 +55,6 @@
       setopt PUSHD_IGNORE_DUPS
       setopt PUSHD_MINUS
 
-      source ${pkgs.zsh-forgit}/share/zsh/zsh-forgit/forgit.plugin.zsh
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
       if [[ -n "$ZSH_FNM_NODE_VERSION" ]]; then
         fnm default "$ZSH_FNM_NODE_VERSION"
