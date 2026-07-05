@@ -28,6 +28,7 @@
 
     config-nvim = {
       url = "github:thekorn/config.nvim";
+      #url = "github:thekorn/config.nvim/no-lazy";
       flake = false;
     };
 
