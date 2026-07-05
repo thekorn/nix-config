@@ -8,7 +8,10 @@
   imports = [
     ./configurations/thekorn-server/hardware-configuration.nix
     ./shared/home.private.nix
+    ./shared/microvm.nix
   ];
+
+  enableMicrovm = true;
 
   system.stateVersion = "25.11";
 

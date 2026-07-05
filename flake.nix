@@ -26,6 +26,11 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     workmux.url = "github:raine/workmux";
 
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     config-nvim = {
       url = "github:thekorn/config.nvim";
       flake = false;
