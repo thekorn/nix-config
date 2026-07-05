@@ -139,16 +139,15 @@
     "config-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1783230434,
-        "narHash": "sha256-eotJfj9xWmT7l5DLPLTpJwIdT8IU8AR6mzF4Y5s6HuI=",
+        "lastModified": 1781938535,
+        "narHash": "sha256-0Wjdbgug+8FigtBSGOk3Pqli84+m32u0qsuW1oAe+Wg=",
         "owner": "thekorn",
         "repo": "config.nvim",
-        "rev": "1eee14d282d755fdcdaca93d4323d4a6cf694b48",
+        "rev": "db2df9529645cc8a8aa4ffa3c10feab310523d02",
         "type": "github"
       },
       "original": {
         "owner": "thekorn",
-        "ref": "no-lazy",
         "repo": "config.nvim",
         "type": "github"
       }
