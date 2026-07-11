@@ -4,7 +4,9 @@
   inputs = {
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # Temporarily pinned until the Darwin ld64 hardening regression is fixed upstream.
+    # https://github.com/NixOS/nixpkgs/pull/536365
+    nixpkgs.url = "github:nixos/nixpkgs/f205b5574fd0cb7da5b702a2da51507b7f4fdd1b";
     #nixpkgs.url = "github:nixos/nixpkgs/2175e5c";
     #nixpkgs.url = "github:nixos/nixpkgs/master";
 
