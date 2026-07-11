@@ -6,7 +6,6 @@
     awscli2
     jq
     htop
-    #delta
     httpie
     mkcert
     mongosh

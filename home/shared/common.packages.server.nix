@@ -7,7 +7,6 @@
     awscli2
     jq
     htop
-    #delta
     httpie
     alejandra
     nixd
