@@ -16,6 +16,9 @@
 
   networking.hostName = "thekorn-macbook";
 
+  documentation.enable = false;
+  system.tools.darwin-uninstaller.enable = false;
+
   home-manager.users.${users.private} = {pkgs, ...}: {
     imports = [
       ../../home/shared/profiles/darwin.nix
