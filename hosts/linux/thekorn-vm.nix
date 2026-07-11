@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   users,
@@ -57,7 +56,7 @@
     };
   };
 
-  home-manager.users.${users.private} = {pkgs, ...}: {
+  home-manager.users.${users.private} = {
     imports = [
       ../../home/shared/profiles/linux-vm.nix
     ];

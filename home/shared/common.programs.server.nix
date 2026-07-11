@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./programs/bat.nix
     ./programs/eza.nix

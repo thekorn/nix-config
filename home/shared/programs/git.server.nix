@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   gitHelpers = pkgs.writeShellScriptBin "git-helpers" ''
     HASH="%C(always,yellow)%h%C(always,reset)"
     RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
