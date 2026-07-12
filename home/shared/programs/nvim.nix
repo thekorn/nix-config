@@ -7,10 +7,10 @@
 }: let
   nvimConfig = pkgs.lib.cleanSourceWith {
     src = inputs.config-nvim;
-    filter = path: type: baseNameOf path != "lazy-lock.json";
+    filter = path: type: baseNameOf path != "nvim-pack-lock.json";
   };
 
-  lazyLockPath = "${config.xdg.stateHome}/nvim/lazy-lock.json";
+  packLockPath = "${config.xdg.stateHome}/nvim/nvim-pack-lock.json";
 in {
   home.packages = [pkgs.neovim];
 
@@ -19,14 +19,14 @@ in {
     recursive = true;
   };
 
-  xdg.configFile."nvim/lazy-lock.json".source =
-    config.lib.file.mkOutOfStoreSymlink lazyLockPath;
+  xdg.configFile."nvim/nvim-pack-lock.json".source =
+    config.lib.file.mkOutOfStoreSymlink packLockPath;
 
-  home.activation.seedNvimLazyLock = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [ ! -e ${lib.escapeShellArg lazyLockPath} ]; then
-      $DRY_RUN_CMD mkdir -p ${lib.escapeShellArg (dirOf lazyLockPath)}
-      $DRY_RUN_CMD cp ${lib.escapeShellArg "${inputs.config-nvim}/lazy-lock.json"} ${lib.escapeShellArg lazyLockPath}
-      $DRY_RUN_CMD chmod u+w ${lib.escapeShellArg lazyLockPath}
+  home.activation.seedNvimPackLock = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ ! -e ${lib.escapeShellArg packLockPath} ]; then
+      $DRY_RUN_CMD mkdir -p ${lib.escapeShellArg (dirOf packLockPath)}
+      $DRY_RUN_CMD cp ${lib.escapeShellArg "${inputs.config-nvim}/nvim-pack-lock.json"} ${lib.escapeShellArg packLockPath}
+      $DRY_RUN_CMD chmod u+w ${lib.escapeShellArg packLockPath}
     fi
   '';
 }
