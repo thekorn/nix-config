@@ -18,13 +18,6 @@
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    omarchy-nix = {
-      url = "github:thekorn/omarchy-nix";
-      #url = "path:/home/thekorn/.config/omarchy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     llm-agents.url = "github:numtide/llm-agents.nix";
     workmux.url = "github:raine/workmux";
 
