@@ -1,6 +1,13 @@
 {
   description = "My NixOS config";
 
+  nixConfig = {
+    extra-substituters = ["https://cache.numtide.com"];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+  };
+
   inputs = {
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
@@ -73,6 +80,10 @@
         };
     };
 
+    llmAgentsOverlay = final: prev: {
+      llm-agents = llm-agents.packages.${prev.stdenv.hostPlatform.system};
+    };
+
     users = {
       private = "thekorn";
       work = "d438477";
@@ -134,7 +145,7 @@
           system = "aarch64-darwin";
           config.allowUnfree = true;
           overlays = [
-            llm-agents.overlays.default
+            llmAgentsOverlay
             vendoredPackagesOverlay
           ];
         };
@@ -155,7 +166,10 @@
         inherit system;
         modules = [
           {
-            nixpkgs.overlays = [vendoredPackagesOverlay];
+            nixpkgs.overlays = [
+              llmAgentsOverlay
+              vendoredPackagesOverlay
+            ];
           }
           hostModule
           home-manager.nixosModules.home-manager

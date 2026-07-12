@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   users,
@@ -13,7 +12,6 @@
   system.stateVersion = "25.11";
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [inputs.llm-agents.overlays.default];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
