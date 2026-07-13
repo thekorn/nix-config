@@ -34,6 +34,7 @@
     nil
 
     llm-agents.cursor-agent
+    llm-agents.opencode
 
     fvm
 
