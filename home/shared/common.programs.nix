@@ -35,8 +35,6 @@
     ./programs/codebook.nix
     ./programs/workmux.nix
     ./programs/herdr.nix
-
-    #./programs/vicinae.nix
   ];
 
   programs.home-manager.enable = true;

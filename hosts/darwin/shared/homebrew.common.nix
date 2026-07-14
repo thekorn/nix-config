@@ -16,7 +16,6 @@
       "docker-desktop"
       "helium-browser"
       "google-chrome"
-      # "vicinae"
     ];
     taps = [
       #"modem-dev/tap"
