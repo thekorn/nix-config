@@ -27,6 +27,7 @@
     #gimp-with-plugins
     firefox-bin-unwrapped
     raycast
+
     flutter
     nss
     swiftformat

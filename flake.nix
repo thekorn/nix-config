@@ -31,6 +31,7 @@
       url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vicinae.url = "github:vicinaehq/vicinae";
   };
 
   outputs = {
@@ -39,6 +40,7 @@
     home-manager,
     darwin,
     llm-agents,
+    vicinae,
     ...
   } @ inputs: let
     eachSupportedSystem = nixpkgs.lib.genAttrs [
@@ -104,6 +106,7 @@
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bck";
       home-manager.sharedModules = [
+        vicinae.homeManagerModules.default
         {
           manual.manpages.enable = false;
         }
