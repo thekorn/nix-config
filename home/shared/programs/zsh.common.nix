@@ -6,7 +6,6 @@
   imports = [
     ./eza.nix
     ./lazygit.nix
-    ./git.nix
     ./nvim.nix
   ];
   home.packages = with pkgs; [fnm curl];
