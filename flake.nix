@@ -64,6 +64,11 @@
         (prev.vendored or {})
         // {
           container = final.callPackage ./pkgs/vendored/container.nix {};
+          gptcommit-thekorn = final.callPackage ./pkgs/vendored/gptcommit.thekorn.nix {
+            inherit (final.darwin.apple_sdk.frameworks) Security SystemConfiguration;
+          };
+          hunk = final.callPackage ./pkgs/vendored/hunk.nix {};
+          tmux34 = final.callPackage ./pkgs/vendored/tmux34.nix {};
         };
     };
 

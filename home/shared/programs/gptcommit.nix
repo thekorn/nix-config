@@ -9,7 +9,7 @@
     home.file = {".config/gptcommit/config.toml".source = ./dotfiles/gptcommit/gptcommit.toml;};
     home.packages = with pkgs; [
       _1password-cli
-      #(pkgs.callPackage ./vendor/gptcommit.thekorn.nix {inherit (pkgs.darwin.apple_sdk.frameworks) Security SystemConfiguration;})
+      #vendored.gptcommit-thekorn
       gptcommit
     ];
     programs.git.hooks.prepare-commit-msg = ./bin/git-prepare-commit-msg;
