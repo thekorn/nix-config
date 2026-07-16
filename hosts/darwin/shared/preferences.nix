@@ -76,7 +76,10 @@
       allowSignedApp = true;
       allowSigned = true;
       enable = true;
-      blockAllIncoming = true;
+      blockAllIncoming = false;
+    };
+    wakeOnLan = {
+      enable = true;
     };
   };
 
