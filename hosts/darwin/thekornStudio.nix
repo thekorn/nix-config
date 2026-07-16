@@ -11,13 +11,12 @@
     ./shared/homebrew.ladybird.nix
     ./shared/home.private.nix
     ./shared/fonts.nix
-    #./shared/preferences.nix
-    (import ./shared/preferences.nix {
-      blockAllIncoming = false;
-      inherit pkgs;
-      username = users.private;
-    })
+    ./shared/preferences.nix
   ];
+  custom.preferences = {
+    blockAllIncoming = false;
+    username = users.private;
+  };
   nix.enable = false;
   networking.hostName = "thekorn-studio";
   # this is a bug, remove once https://github.com/nix-community/home-manager/issues/8291 is fixed

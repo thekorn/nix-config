@@ -8,11 +8,9 @@
     ./shared/homebrew.work.nix
     ./shared/home.work.nix
     ./shared/fonts.nix
-    (import ./shared/preferences.nix {
-      inherit pkgs;
-      username = users.work;
-    })
+    ./shared/preferences.nix
   ];
+  custom.preferences.username = users.work;
   nix.enable = false;
   ids.gids.nixbld = 30000;
   networking.hostName = "BFG-043556";

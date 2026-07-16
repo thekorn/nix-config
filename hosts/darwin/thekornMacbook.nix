@@ -8,12 +8,13 @@
     ./shared/homebrew.private.nix
     ./shared/home.private.nix
     ./shared/fonts.nix
-    (import ./shared/preferences.nix {
-      blockAllIncoming = false;
-      inherit pkgs;
-      username = users.private;
-    })
+    ./shared/preferences.nix
   ];
+
+  custom.preferences = {
+    blockAllIncoming = false;
+    username = users.private;
+  };
 
   networking.hostName = "thekorn-macbook";
 
