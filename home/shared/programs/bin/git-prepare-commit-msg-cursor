@@ -39,6 +39,7 @@ fi
 cursor-agent \
   --print \
   --mode ask \
+  --model composer-2.5-fast \
   --trust \
   --workspace "$(git rev-parse --show-toplevel)" \
   "$(<"$context_file")" >"$generated_message"
