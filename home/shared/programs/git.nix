@@ -1,4 +1,10 @@
-{pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.custom.git;
   gitHelpers = pkgs.writeShellScriptBin "git-helpers" ''
     HASH="%C(always,yellow)%h%C(always,reset)"
     RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
@@ -21,6 +27,17 @@
 in {
   imports = [
     ./hunk.nix
+    ./git-cursor-commit-message.nix
+    ({lib, ...}: {
+      options.custom.git.commitMessageTool = lib.mkOption {
+        type = lib.types.enum [
+          "gptcommit"
+          "cursor"
+        ];
+        default = "gptcommit";
+        description = "Tool used by the prepare-commit-msg hook to generate commit messages.";
+      };
+    })
   ];
 
   home.packages = [
@@ -30,7 +47,7 @@ in {
 
   programs.git = {
     enable = true;
-    hooks = {
+    hooks = lib.mkIf (cfg.commitMessageTool == "gptcommit") {
       prepare-commit-msg = ./bin/git-prepare-commit-msg;
     };
     settings = {

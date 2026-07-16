@@ -57,6 +57,7 @@
       };
     };
 
+    custom.git.commitMessageTool = "cursor";
     custom.ghostty.fontSize = 21;
   };
 }
