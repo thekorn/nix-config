@@ -21,12 +21,14 @@
 in {
   imports = [
     ./hunk.nix
+    ./git-amp-commit-message.nix
     ./git-cursor-commit-message.nix
     ({lib, ...}: {
       options.custom.git.commitMessageTool = lib.mkOption {
         type = lib.types.nullOr (lib.types.enum [
           "gptcommit"
           "cursor"
+          "amp"
         ]);
         default = "gptcommit";
         description = "Tool used by the prepare-commit-msg hook to generate commit messages.";

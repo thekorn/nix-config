@@ -1,0 +1,57 @@
+#!/bin/zsh
+
+commit_message_file="$1"
+commit_source="${2:-}"
+
+# Messages supplied by Git or the user should never be replaced.
+if [[ -n "$commit_source" ]] || grep -q '^[[:space:]]*[^#[:space:]]' "$commit_message_file"; then
+  exit 0
+fi
+
+context_file=$(mktemp "${TMPDIR:-/tmp}/amp-commit-context.XXXXXX")
+generated_message=$(mktemp "${TMPDIR:-/tmp}/amp-commit-message.XXXXXX")
+trap 'rm -f "$context_file" "$generated_message"' EXIT
+
+{
+  printf '%s\n' 'Generate a Git commit message for the staged changes below.'
+  printf '%s\n' 'Use the repository commit history to match its style.'
+  printf '%s\n' 'Keep the subject at 72 characters or fewer.'
+  printf '%s\n' 'Add a short body only when it provides useful context.'
+  printf '%s\n\n' 'Output only the commit message, with no Markdown fences or commentary.'
+  printf '%s\n' '## Status'
+  git status --short
+  printf '\n%s\n' '## Diff stat'
+  git diff --cached --stat --no-color
+  printf '\n%s\n' '## Recent commits'
+  git log --oneline -10 || true
+} >"$context_file"
+
+diff_size=$(git diff --cached --no-ext-diff --no-color | wc -c | tr -d '[:space:]')
+if ((diff_size <= 100000)); then
+  {
+    printf '\n%s\n' '## Staged diff'
+    git diff --cached --no-ext-diff --no-color
+  } >>"$context_file"
+else
+  printf '\nThe staged diff is %s bytes, so only its summary is included.\n' "$diff_size" >>"$context_file"
+fi
+
+printf '%s\n' 'Generating commit message with Amp (low mode)...' >&2
+amp \
+  --no-ide \
+  --no-notifications \
+  --mode low \
+  --execute \
+  <"$context_file" >"$generated_message"
+
+if ! grep -q '[^[:space:]]' "$generated_message"; then
+  exit 0
+fi
+
+branch_name=$(git symbolic-ref --quiet --short HEAD || true)
+if [[ "$branch_name" =~ ([A-Z]+-[0-9]+) ]] && [[ "$(<"$generated_message")" != "${BASH_REMATCH[1]}:"* ]]; then
+  printf '%s: ' "${BASH_REMATCH[1]}" >"$commit_message_file"
+  cat "$generated_message" >>"$commit_message_file"
+else
+  cat "$generated_message" >"$commit_message_file"
+fi
