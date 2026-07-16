@@ -55,7 +55,7 @@
       };
     };
 
-    custom.git.commitMessageTool = "amp";
+    #custom.git.commitMessageTool = "amp";
     custom.ghostty.fontSize = 21;
   };
 }
