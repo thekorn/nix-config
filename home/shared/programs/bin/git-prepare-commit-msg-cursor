@@ -36,6 +36,7 @@ else
   printf '\nThe staged diff is %s bytes, so only its summary is included.\n' "$diff_size" >>"$context_file"
 fi
 
+printf '%s\n' 'Generating commit message with Cursor (Composer 2.5 Fast)...' >&2
 cursor-agent \
   --print \
   --mode ask \
