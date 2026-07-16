@@ -6,6 +6,7 @@
   imports = [
     ./zsh.common.nix
     ./tmux.server.nix
+    ./oh-my-posh.server.nix
   ];
 
   programs.zsh = {

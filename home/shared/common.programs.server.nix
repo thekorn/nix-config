@@ -7,7 +7,6 @@
     ./programs/zsh.linux.nix
     ./programs/git.server.nix
     ./programs/tmux.server.nix
-    ./programs/oh-my-posh.server.nix
     ./devel.nix
     ./programs/lazygit.nix
     ./programs/ripgrep.nix

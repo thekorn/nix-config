@@ -15,7 +15,6 @@
     ./programs/gptcommit.nix
     ./programs/atuin.nix
     ./programs/zed.nix
-    ./programs/oh-my-posh.nix
     ./programs/pnpm.nix
     ./programs/bun.nix
     ./programs/android-studio.nix

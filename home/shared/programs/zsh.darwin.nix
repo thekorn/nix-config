@@ -13,7 +13,10 @@
     set -g window-status-current-style "bg=#BF616A,fg=#2E3440,bold"
   '';
 in {
-  imports = [./zsh.common.nix];
+  imports = [
+    ./zsh.common.nix
+    ./oh-my-posh.nix
+  ];
 
   programs.oh-my-posh.enableZshIntegration = false;
 
