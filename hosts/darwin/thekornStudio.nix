@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   users,
   ...
@@ -23,6 +24,7 @@
 
   home-manager.users.${users.private} = {pkgs, ...}: {
     imports = [
+      inputs.agent-skills.homeManagerModules.default
       ../../home/shared/profiles/darwin.nix
       ../../home/shared/work.nix
       ../../home/shared/private.nix
@@ -45,6 +47,20 @@
       llm-agents.cursor-agent
       #whatsapp-for-mac
     ];
+
+    programs.agentSkills = {
+      enable = true;
+      skills = {
+        commit = inputs.agent-skills.skills.commit;
+        grill-me = inputs.agent-skills.skills.grill-me;
+        grilling = inputs.agent-skills.skills.grilling;
+        html = inputs.agent-skills.skills.html;
+        html-plan = inputs.agent-skills.skills.html-plan;
+        html-diagram = inputs.agent-skills.skills.html-diagram;
+        hunk-review = inputs.agent-skills.skills.hunk-review;
+        web-browser = inputs.agent-skills.skills.web-browser;
+      };
+    };
 
     custom.ghostty.fontSize = 21;
   };

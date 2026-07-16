@@ -19,6 +19,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+    agent-skills.url = "github:thekorn/agent-skills";
     workmux.url = "github:raine/workmux";
 
     config-nvim = {

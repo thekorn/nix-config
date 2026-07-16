@@ -2,11 +2,11 @@
   "nodes": {
     "agent-skills": {
       "locked": {
-        "lastModified": 1784141449,
-        "narHash": "sha256-0rWFNVkeV3DPWnkS3Dg3wtwcJCQWhWxY2L2ctq1zHIQ=",
+        "lastModified": 1784178556,
+        "narHash": "sha256-6yqpQaJnc6b+PGCQ6CEc7ICtcd/MC+6Bx2DA47f347U=",
         "owner": "thekorn",
         "repo": "agent-skills",
-        "rev": "c1d20f8432827e66010ab693c8163200f5208b87",
+        "rev": "433523f7ed5c1d3772f8873bdcc2f960cca9000b",
         "type": "github"
       },
       "original": {
