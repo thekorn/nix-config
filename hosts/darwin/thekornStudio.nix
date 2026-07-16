@@ -13,6 +13,7 @@
     ./shared/fonts.nix
     #./shared/preferences.nix
     (import ./shared/preferences.nix {
+      blockAllIncoming = true;
       inherit pkgs;
       username = users.private;
     })

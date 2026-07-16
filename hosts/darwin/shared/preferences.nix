@@ -1,4 +1,5 @@
 {
+  blockAllIncoming ? false,
   username,
   pkgs,
   ...
@@ -76,7 +77,7 @@
       allowSignedApp = true;
       allowSigned = true;
       enable = true;
-      blockAllIncoming = false;
+      inherit blockAllIncoming;
     };
     wakeOnLan = {
       enable = true;

@@ -9,6 +9,7 @@
     ./shared/home.private.nix
     ./shared/fonts.nix
     (import ./shared/preferences.nix {
+      blockAllIncoming = true;
       inherit pkgs;
       username = users.private;
     })
