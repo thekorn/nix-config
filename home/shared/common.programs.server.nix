@@ -4,7 +4,7 @@
     ./programs/eza.nix
     ./programs/fzf.nix
     ./programs/nvim.nix
-    ./programs/zsh.server.nix
+    ./programs/zsh.linux.nix
     ./programs/git.server.nix
     ./programs/tmux.server.nix
     ./programs/oh-my-posh.server.nix

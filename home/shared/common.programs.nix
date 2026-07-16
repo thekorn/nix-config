@@ -6,7 +6,7 @@
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/tmux.nix
-    ./programs/zsh.nix
+    ./programs/zsh.darwin.nix
     ./programs/ssh.nix
     ./programs/nvim.nix
     ./programs/bottom.nix
