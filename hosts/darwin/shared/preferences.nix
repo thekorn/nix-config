@@ -1,5 +1,5 @@
 {
-  blockAllIncoming ? false,
+  blockAllIncoming ? true,
   username,
   pkgs,
   ...
