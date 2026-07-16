@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{username, ...}: {
   imports = [
     ./shared/homebrew.common.nix
     ./shared/homebrew.work.nix

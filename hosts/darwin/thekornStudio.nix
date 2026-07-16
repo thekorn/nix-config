@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   username,
   ...
 }: {
@@ -16,7 +15,7 @@
   custom.preferences.blockAllIncoming = false;
   nix.enable = false;
   # this is a bug, remove once https://github.com/nix-community/home-manager/issues/8291 is fixed
-  users.users.${username}.uid = 501;
+  #users.users.${username}.uid = 501;
 
   home-manager.users.${username} = {pkgs, ...}: {
     imports = [
