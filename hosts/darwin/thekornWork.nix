@@ -1,6 +1,6 @@
 {
   pkgs,
-  users,
+  username,
   ...
 }: {
   imports = [
@@ -10,12 +10,10 @@
     ./shared/fonts.nix
     ./shared/preferences.nix
   ];
-  custom.preferences.username = users.work;
   nix.enable = false;
   ids.gids.nixbld = 30000;
-  networking.hostName = "BFG-043556";
 
-  home-manager.users.${users.work} = {pkgs, ...}: {
+  home-manager.users.${username} = {pkgs, ...}: {
     imports = [
       ../../home/shared/profiles/darwin.nix
       ../../home/shared/work.nix

@@ -1,6 +1,6 @@
 {
   pkgs,
-  users,
+  username,
   ...
 }: {
   imports = [
@@ -11,17 +11,12 @@
     ./shared/preferences.nix
   ];
 
-  custom.preferences = {
-    blockAllIncoming = false;
-    username = users.private;
-  };
-
-  networking.hostName = "thekorn-macbook";
+  custom.preferences.blockAllIncoming = false;
 
   documentation.enable = false;
   system.tools.darwin-uninstaller.enable = false;
 
-  home-manager.users.${users.private} = {pkgs, ...}: {
+  home-manager.users.${username} = {pkgs, ...}: {
     imports = [
       ../../home/shared/profiles/darwin.nix
       ../../home/shared/private.nix

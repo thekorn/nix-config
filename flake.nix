@@ -99,6 +99,21 @@
       };
     };
 
+    darwinHostMeta = {
+      thekorn-macbook = {
+        hostModule = ./hosts/darwin/thekornMacbook.nix;
+        username = users.private;
+      };
+      thekorn-studio = {
+        hostModule = ./hosts/darwin/thekornStudio.nix;
+        username = users.private;
+      };
+      BFG-043556 = {
+        hostModule = ./hosts/darwin/thekornWork.nix;
+        username = users.work;
+      };
+    };
+
     homeManagerModule = {
       home-manager.extraSpecialArgs = specialArgs;
       home-manager.useGlobalPkgs = true;
@@ -126,7 +141,10 @@
       nix.settings.experimental-features = ["nix-command" "flakes"];
     };
 
-    mkDarwinHost = hostModule:
+    mkDarwinHost = hostName: {
+      hostModule,
+      username,
+    }:
       darwin.lib.darwinSystem {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
@@ -138,11 +156,15 @@
         };
         modules = [
           darwinBaseModule
+          {
+            networking.hostName = hostName;
+            custom.preferences.username = username;
+          }
           hostModule
           home-manager.darwinModules.home-manager
           homeManagerModule
         ];
-        inherit specialArgs;
+        specialArgs = specialArgs // {inherit username;};
       };
 
     mkNixosHost = {
@@ -265,11 +287,7 @@
       };
     });
 
-    darwinConfigurations."thekorn-macbook" = mkDarwinHost ./hosts/darwin/thekornMacbook.nix;
-
-    darwinConfigurations."thekorn-studio" = mkDarwinHost ./hosts/darwin/thekornStudio.nix;
-
-    darwinConfigurations."BFG-043556" = mkDarwinHost ./hosts/darwin/thekornWork.nix;
+    darwinConfigurations = nixpkgs.lib.mapAttrs mkDarwinHost darwinHostMeta;
 
     nixosConfigurations.thekorn-server = mkNixosHost {
       hostModule = ./hosts/linux/thekorn-server.nix;

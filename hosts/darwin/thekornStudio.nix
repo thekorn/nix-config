@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  users,
+  username,
   ...
 }: {
   imports = [
@@ -13,16 +13,12 @@
     ./shared/fonts.nix
     ./shared/preferences.nix
   ];
-  custom.preferences = {
-    blockAllIncoming = false;
-    username = users.private;
-  };
+  custom.preferences.blockAllIncoming = false;
   nix.enable = false;
-  networking.hostName = "thekorn-studio";
   # this is a bug, remove once https://github.com/nix-community/home-manager/issues/8291 is fixed
-  users.users.${users.private}.uid = 501;
+  users.users.${username}.uid = 501;
 
-  home-manager.users.${users.private} = {pkgs, ...}: {
+  home-manager.users.${username} = {pkgs, ...}: {
     imports = [
       inputs.agent-skills.homeManagerModules.default
       ../../home/shared/profiles/darwin.nix
