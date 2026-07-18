@@ -2,11 +2,11 @@
   "nodes": {
     "agent-skills": {
       "locked": {
-        "lastModified": 1784224789,
-        "narHash": "sha256-0pRZSMdaA/5NgWHfyuAjcO0KNFV2wDSTq6uGNzK+tiw=",
+        "lastModified": 1784360936,
+        "narHash": "sha256-Eg4RgZ3A/C6NyLmiHiffBPmEa6kn6+z6m69zQxfxBu4=",
         "owner": "thekorn",
         "repo": "agent-skills",
-        "rev": "42db11eee97adfdfedf70f9bb93f131b35d3c5d4",
+        "rev": "3b6e4e83cfb9f779a703c044bb1d719937ebc764",
         "type": "github"
       },
       "original": {
@@ -214,11 +214,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1784356220,
-        "narHash": "sha256-o3/3TwUoz5sR5+MCKR8Xxp0iENCHZitI8ki2TfeDfgs=",
+        "lastModified": 1784360789,
+        "narHash": "sha256-dqXNdpFHE4yPguwKjOTYd+LTzXERAV3g48gnHeNb13g=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "da6b543212d642a16b1778266e6eb28cb3039086",
+        "rev": "1e8ed4ad75cf77ed5faeaeaa13c04c5b425eda1f",
         "type": "github"
       },
       "original": {
