@@ -2,11 +2,11 @@
   "nodes": {
     "agent-skills": {
       "locked": {
-        "lastModified": 1784360936,
-        "narHash": "sha256-Eg4RgZ3A/C6NyLmiHiffBPmEa6kn6+z6m69zQxfxBu4=",
+        "lastModified": 1784393675,
+        "narHash": "sha256-X6ruY9GohBrjglt/WN8mHnKZ7cKdryOTrYM+h7kMKtg=",
         "owner": "thekorn",
         "repo": "agent-skills",
-        "rev": "3b6e4e83cfb9f779a703c044bb1d719937ebc764",
+        "rev": "4f90f97d25e943a3467fa1ed5141b0b5964f77df",
         "type": "github"
       },
       "original": {
@@ -177,11 +177,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784324170,
-        "narHash": "sha256-2YYJAvGyYmnSdTWzWNGOPxXQALzwb98KOJZabs+9IIk=",
+        "lastModified": 1784375934,
+        "narHash": "sha256-wN816Zdj3RXrWVmS1cZ4zYVf7IVbJ0H+jUtbprbZDgU=",
         "owner": "modem-dev",
         "repo": "hunk",
-        "rev": "11747f1661bef200a4dbfff53f0a3e0fe8021167",
+        "rev": "b580edd68b338ef34407238afe443e5e04a9c0f1",
         "type": "github"
       },
       "original": {
@@ -380,11 +380,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1784318697,
-        "narHash": "sha256-JUxYs1Fn9cgYv07FWdjscxvEFnpXNaJWBlU/6c8fjdY=",
+        "lastModified": 1784375035,
+        "narHash": "sha256-HnqP0wvVk3q5nTXzGmFQ96cDqnCQ2zjs4TtO1ZxU80g=",
         "owner": "raine",
         "repo": "workmux",
-        "rev": "3629f9b3fe20df876ec0789f70f70f5b6f0fe922",
+        "rev": "de98e3162fa7caa31332ba6f3fc8dfe5df007e5e",
         "type": "github"
       },
       "original": {
