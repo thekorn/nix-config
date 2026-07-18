@@ -4,13 +4,18 @@
   lib,
   ...
 }: let
+  minimalTmuxStatus = pkgs.tmuxPlugins.minimal-tmux-status;
   sshTmuxConfig = pkgs.writeText "tmux-ssh.conf" ''
     source-file "${config.home.homeDirectory}/.config/tmux/tmux.conf"
 
-    set -g status-style "bg=#BF616A,fg=#2E3440"
-    set -g status-left "#[fg=#2E3440,bg=#BF616A,bold] SSH #S "
-    set -g status-right "#[fg=#2E3440,bg=#BF616A,bold] #h | %Y-%m-%d %H:%M "
-    set -g window-status-current-style "bg=#BF616A,fg=#2E3440,bold"
+    unbind C-a
+    set -g prefix C-b
+    bind C-b send-prefix
+
+    set -g @minimal-tmux-fg "#2E3440"
+    set -g @minimal-tmux-bg "#D08770"
+    set -g @minimal-tmux-status-right-extra " (SSH #h)"
+    run-shell ${minimalTmuxStatus.rtp}
   '';
 in {
   imports = [
