@@ -16,6 +16,7 @@
       "docker-desktop"
       "helium-browser"
       "google-chrome"
+      "cursor"
     ];
     taps = [
       #"modem-dev/tap"
