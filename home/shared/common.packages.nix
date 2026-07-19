@@ -41,5 +41,6 @@
 
     glab
     gh
+    llm-agents.codegraph
   ];
 }
