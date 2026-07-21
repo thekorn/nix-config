@@ -10,13 +10,6 @@
       TMUX_SESSIONIZER_DEPTH = 3;
       TMUX_SESSIONIZER_BIND = "S";
     };
-
-    zplug = {
-      enable = true;
-      plugins = [
-        {name = "thekorn/tmux-sessionizer";}
-      ];
-    };
   };
   programs.tmux = {
     enable = true;

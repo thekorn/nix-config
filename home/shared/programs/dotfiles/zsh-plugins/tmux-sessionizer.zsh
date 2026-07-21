@@ -1,0 +1,88 @@
+# Vendored from https://github.com/thekorn/tmux-sessionizer @ 67b853a7
+# Set default values if not already set
+: ${TMUX_SESSIONIZER_DIRS:="$HOME/Developer"}
+: ${TMUX_SESSIONIZER_EXTRA_DIRS:=""}
+: ${TMUX_SESSIONIZER_BIND:="C-f"}
+: ${TMUX_SESSIONIZER_DEPTH:=2}
+
+function _tmux_sessionizer() {
+  local selected_dir
+
+  if [[ $# -eq 1 ]]; then
+    selected_dir=$1
+  else
+    # Check if fd command exists, otherwise use find
+    if (( ${+commands[fd]} )); then
+        selected_dir=$({
+            fd . ${(z)TMUX_SESSIONIZER_DIRS} -t d -d ${TMUX_SESSIONIZER_DEPTH} 2>/dev/null
+            printf '%s\n' ${(z)TMUX_SESSIONIZER_EXTRA_DIRS}
+        } | sed '/^$/d' | sed "s;$HOME;~;" | fzf --reverse)
+    else
+        selected_dir=$({
+            find ${(z)TMUX_SESSIONIZER_DIRS} -mindepth 1 -maxdepth ${TMUX_SESSIONIZER_DEPTH} -type d 2>/dev/null
+            printf '%s\n' ${(z)TMUX_SESSIONIZER_EXTRA_DIRS}
+        } | sed '/^$/d' | sed "s;$HOME;~;" | fzf --reverse)
+    fi
+  fi
+
+  selected_dir=${~selected_dir}
+
+  if [[ -z "$selected_dir" ]]; then
+    return 0
+  fi
+
+  local session_name=$(basename "$selected_dir" | tr . _)
+
+  if [[ -z "$TMUX" ]]; then
+    # Not in a tmux session
+    # If session doesn't exist, create it, otherwise attach
+    if ! tmux has-session -t="$session_name" 2>/dev/null; then
+      tmux new-session -s "$session_name" -c "$selected_dir"
+    else
+      tmux attach-session -t "$session_name"
+    fi
+  else
+    # If session doesn't exist, create it
+    if ! tmux has-session -t="$session_name" 2> /dev/null; then
+      tmux new-session -ds "$session_name" -c "$selected_dir"
+    fi
+    # Switch to the session
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+
+# Initialize module
+function init() {
+  # Check dependencies
+  local -a missing_deps=()
+
+  if ! (( ${+commands[tmux]} )); then
+    missing_deps+=( tmux )
+  fi
+
+  if ! (( ${+commands[fzf]} )); then
+    missing_deps+=( fzf )
+  fi
+
+  if ! (( ${+commands[fd]} )) && ! (( ${+commands[find]} )); then
+    missing_deps+=( fd )
+  fi
+
+  if (( ${#missing_deps} > 0 )); then
+    print -P "%F{red}Tmux Sessionizer missing required dependencies:%f %F{yellow}${(j:, :)missing_deps}%f" >&2
+    return 1
+  fi
+
+  # Create alias for direct use
+  alias ts=_tmux_sessionizer
+
+  # Add keybinding if inside tmux
+  if [[ -n "$TMUX" ]]; then
+    tmux bind-key "$TMUX_SESSIONIZER_BIND" display-popup -E "zsh -i -c ts"
+  fi
+
+  return 0
+}
+
+init "$@"

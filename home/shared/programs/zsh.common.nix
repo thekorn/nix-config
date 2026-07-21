@@ -7,6 +7,7 @@
     ./eza.nix
     ./lazygit.nix
     ./nvim.nix
+    ./zsh-plugins.nix
   ];
   home.packages = with pkgs; [fnm curl];
   programs.zsh = {
@@ -79,14 +80,6 @@
     };
 
     oh-my-zsh.enable = false;
-    zplug = {
-      enable = true;
-      plugins = [
-        {name = "gerges-zz/oh-my-zsh-jira-plus";}
-        {name = "ltj/gitgo";}
-        {name = "toku-sa-n/zsh-dot-up";}
-      ];
-    };
 
     siteFunctions = {
       mkcd = ''
