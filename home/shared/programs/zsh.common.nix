@@ -85,7 +85,6 @@
         {name = "gerges-zz/oh-my-zsh-jira-plus";}
         {name = "ltj/gitgo";}
         {name = "toku-sa-n/zsh-dot-up";}
-        {name = "dominik-schwabe/zsh-fnm";}
       ];
     };
 
