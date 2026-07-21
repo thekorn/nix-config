@@ -56,7 +56,7 @@
       setopt PUSHD_MINUS
 
       eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
-      if [[ -n "$ZSH_FNM_NODE_VERSION" ]]; then
+      if [[ -n "$ZSH_FNM_NODE_VERSION" && "$(fnm default)" != "v${ZSH_FNM_NODE_VERSION}" ]]; then
         fnm default "$ZSH_FNM_NODE_VERSION"
       fi
     '';
