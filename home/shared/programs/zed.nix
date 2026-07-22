@@ -67,6 +67,18 @@
       "project_panel" = {
         "dock" = "left";
       };
+      "file_scan_exclusions" = [
+        "**/.git"
+        "**/.svn"
+        "**/.hg"
+        "**/.jj"
+        "**/CVS"
+        "**/.DS_Store"
+        "**/Thumbs.db"
+        "**/.classpath"
+        "**/.settings"
+        "**/node_modules"
+      ];
     };
   };
 }
