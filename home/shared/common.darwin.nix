@@ -1,8 +1,13 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  home.packages = [
     #chatgpt
     #docker
     #colima
-    vendored.container
+    pkgs.vendored.container
+    inputs.tuicr.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

@@ -22,6 +22,9 @@
     agent-skills.url = "github:thekorn/agent-skills";
     workmux.url = "github:raine/workmux";
 
+    tuicr.url = "github:agavra/tuicr";
+    tuicr.inputs.nixpkgs.follows = "nixpkgs";
+
     config-nvim = {
       url = "github:thekorn/config.nvim";
       #url = "github:thekorn/config.nvim/no-lazy";
