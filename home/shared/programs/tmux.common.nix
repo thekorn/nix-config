@@ -7,7 +7,7 @@
     enable = true;
     sessionVariables = {
       TMUX_SESSIONIZER_DIRS = "${config.home.homeDirectory}/devel";
-      TMUX_SESSIONIZER_DEPTH = 3;
+      TMUX_SESSIONIZER_DEPTH = 4;
       TMUX_SESSIONIZER_BIND = "S";
     };
   };
