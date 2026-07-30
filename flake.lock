@@ -503,11 +503,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1785359375,
-        "narHash": "sha256-LKwARWkbyWR0M+tBL1kQKMkwuj1iUzpm9IvGy7FnzFQ=",
+        "lastModified": 1785401550,
+        "narHash": "sha256-mDTILD9oE9hUnCt2z+Qqjr30FxSKKOSa5NcnK35D6b4=",
         "owner": "raine",
         "repo": "workmux",
-        "rev": "83a783e1caf0305161496fbc2017e1f0ec6f3226",
+        "rev": "054012a4fb84ce46f7fcbfc0f0d8162c01f78586",
         "type": "github"
       },
       "original": {
