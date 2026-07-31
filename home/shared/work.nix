@@ -7,6 +7,7 @@
     #biome
     #slack
     tflint
+    ruby_4_0
   ];
   home.sessionVariables = {
     #jira
