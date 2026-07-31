@@ -23,7 +23,7 @@
     shellAliases = {
       # eza vs ls
       ls = "eza";
-      ll = "eza --long --header --git --icons";
+      ll = "eza --long --header --git --icons auto";
       tree = "ll --tree --level=4 -a -I=.git --git-ignore";
 
       # git
