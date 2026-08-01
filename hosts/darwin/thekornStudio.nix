@@ -7,11 +7,12 @@
     ./shared/homebrew.common.nix
     ./shared/homebrew.studio.nix
     ./shared/homebrew.private.nix
-    ./shared/homebrew.ladybird.nix
     ./shared/home.private.nix
     ./shared/fonts.nix
     ./shared/preferences.nix
+    ../../home/shared/devel/ladybird.nix
   ];
+
   custom.preferences.blockAllIncoming = false;
   nix.enable = false;
 
@@ -24,9 +25,6 @@
 
       #./shared/programs/qmk.nix
       #./shared/programs/steam.nix
-      # this would be great, but ladybird build fails with those
-      # using homebrew for now
-      #../../home/shared/devel/ladybird.darwin.nix
       # package not working, use homebrew
       #../../home/shared/devel/rpi.darwin.nix
     ];
