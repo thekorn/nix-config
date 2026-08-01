@@ -1,4 +1,8 @@
-{lib, config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   pluginDir = ./dotfiles/zsh-plugins;
   vendoredPlugins = [
     "${pluginDir}/jira-plus.plugin.zsh"
@@ -20,7 +24,7 @@ in {
           "zplug"
           "zplug-vendor"
         ];
-        default = "zplug";
+        default = "zplug-vendor";
         description = ''
           How zsh plugins are loaded.
 

@@ -4,6 +4,17 @@
 : ${TMUX_SESSIONIZER_EXTRA_DIRS:=""}
 : ${TMUX_SESSIONIZER_BIND:="C-f"}
 : ${TMUX_SESSIONIZER_DEPTH:=2}
+: ${TMUX_SESSIONIZER_GIT_ONLY:=""}
+
+function _tmux_sessionizer_filter_dirs() {
+  local candidate
+
+  while IFS= read -r candidate; do
+    if [[ -z "$TMUX_SESSIONIZER_GIT_ONLY" || -e "$candidate/.git" ]]; then
+      print -r -- "$candidate"
+    fi
+  done
+}
 
 function _tmux_sessionizer() {
   local selected_dir
@@ -14,12 +25,12 @@ function _tmux_sessionizer() {
     # Check if fd command exists, otherwise use find
     if (( ${+commands[fd]} )); then
         selected_dir=$({
-            fd . ${(z)TMUX_SESSIONIZER_DIRS} -t d -d ${TMUX_SESSIONIZER_DEPTH} 2>/dev/null
+            fd . ${(z)TMUX_SESSIONIZER_DIRS} -t d -d ${TMUX_SESSIONIZER_DEPTH} 2>/dev/null | _tmux_sessionizer_filter_dirs
             printf '%s\n' ${(z)TMUX_SESSIONIZER_EXTRA_DIRS}
         } | sed '/^$/d' | sed "s;$HOME;~;" | fzf --reverse)
     else
         selected_dir=$({
-            find ${(z)TMUX_SESSIONIZER_DIRS} -mindepth 1 -maxdepth ${TMUX_SESSIONIZER_DEPTH} -type d 2>/dev/null
+            find ${(z)TMUX_SESSIONIZER_DIRS} -mindepth 1 -maxdepth ${TMUX_SESSIONIZER_DEPTH} -type d 2>/dev/null | _tmux_sessionizer_filter_dirs
             printf '%s\n' ${(z)TMUX_SESSIONIZER_EXTRA_DIRS}
         } | sed '/^$/d' | sed "s;$HOME;~;" | fzf --reverse)
     fi
