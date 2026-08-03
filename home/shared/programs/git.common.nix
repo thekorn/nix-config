@@ -27,6 +27,7 @@ in {
 
   programs.git = {
     enable = true;
+    ignores = [".codegraph/"];
 
     settings = {
       user = {
