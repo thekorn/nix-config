@@ -1,3 +1,4 @@
+//@ts-expect-error its a drop in plugin
 import type { PluginAPI } from "@ampcode/plugin";
 
 export default function (amp: PluginAPI) {
