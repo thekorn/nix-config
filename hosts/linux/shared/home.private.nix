@@ -3,6 +3,12 @@
   users,
   ...
 }: {
+  # FIXME: tmp workaround for a doc build error
+  #   ```Failed to render option services.seerr.stateRevision```
+  documentation.enable = false;
+  documentation.doc.enable = false;
+  documentation.nixos.enable = false;
+
   users = {
     users = {
       ${users.private} = {
