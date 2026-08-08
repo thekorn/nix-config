@@ -4,6 +4,7 @@
     ./programs/eza.nix
     ./programs/fzf.nix
     ./programs/nvim.nix
+    ./programs/pnpm.nix
     ./programs/zsh.linux.nix
     ./programs/git.server.nix
     ./programs/tmux.server.nix
