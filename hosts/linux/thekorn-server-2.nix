@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./configurations/thekorn-server-2/hardware-configuration.nix
+    ./shared/amp-runner.nix
     ./shared/home.private.nix
     ./shared/virtualisation.nix
   ];
