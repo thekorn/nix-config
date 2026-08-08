@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+started_at=$SECONDS
+
+log() {
+  printf '[orb setup] %s\n' "$*"
+}
+
+missing_packages=()
+for package in ca-certificates curl xz-utils; do
+  if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -Fq 'install ok installed'; then
+    missing_packages+=("$package")
+  fi
+done
+
+if ((${#missing_packages[@]})); then
+  log "installing system packages: ${missing_packages[*]}"
+  sudo apt-get update
+  sudo apt-get install -y "${missing_packages[@]}"
+else
+  log "system packages already installed"
+fi
+
+nix_profile_script="/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+if [[ ! -x /nix/var/nix/profiles/default/bin/nix ]]; then
+  log "installing Determinate Nix"
+  curl --proto '=https' --tlsv1.2 -fsSL https://install.determinate.systems/nix \
+    | sh -s -- install --no-confirm
+else
+  log "Nix already installed"
+fi
+
+if [[ ! -r "$nix_profile_script" ]]; then
+  printf 'Nix profile script was not installed at %s\n' "$nix_profile_script" >&2
+  exit 1
+fi
+
+# The installer cannot update this running process's environment.
+# shellcheck disable=SC1090
+source "$nix_profile_script"
+
+tools_root="$HOME/.local/share/nix-config-orb"
+mkdir -p "$tools_root"
+system="$(nix eval --impure --raw --expr builtins.currentSystem)"
+log "installing the locked Alejandra formatter for $system"
+nix build \
+  --no-write-lock-file \
+  --out-link "$tools_root/alejandra" \
+  "$repo_root#formatter.$system"
+
+profile_marker="# nix-config orb Nix environment"
+if ! grep -Fqx "$profile_marker" "$HOME/.bash_profile" 2>/dev/null; then
+  log "adding the Nix environment to login shells"
+  cat >>"$HOME/.bash_profile" <<EOF
+
+$profile_marker
+if [[ -r "$nix_profile_script" ]]; then
+  source "$nix_profile_script"
+fi
+export PATH="$tools_root/alejandra/bin:/nix/var/nix/profiles/default/bin:\$PATH"
+EOF
+else
+  log "login-shell environment already configured"
+fi
+
+env -i \
+  HOME="$HOME" \
+  USER="$USER" \
+  LOGNAME="$USER" \
+  SHELL=/bin/bash \
+  PATH=/usr/bin:/bin \
+  /bin/bash -lc 'command -v nix >/dev/null && command -v alejandra >/dev/null'
+
+log "complete in $((SECONDS - started_at))s"

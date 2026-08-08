@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+started_at=$SECONDS
+nix_bin="/nix/var/nix/profiles/default/bin/nix"
+alejandra_bin="$HOME/.local/share/nix-config-orb/alejandra/bin/alejandra"
+
+if systemctl list-unit-files nix-daemon.socket >/dev/null 2>&1; then
+  if ! systemctl is-active --quiet nix-daemon.socket; then
+    printf '[orb resume] starting the Nix daemon socket\n'
+    sudo systemctl start nix-daemon.socket
+  fi
+fi
+
+if [[ ! -x "$nix_bin" || ! -x "$alejandra_bin" ]]; then
+  printf '[orb resume] Nix environment is incomplete; rerun .agents/setup\n' >&2
+  exit 1
+fi
+
+printf '[orb resume] Nix environment ready in %ss\n' "$((SECONDS - started_at))"
