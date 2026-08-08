@@ -7,6 +7,7 @@
   imports = [
     ./configurations/thekorn-server/hardware-configuration.nix
     ./shared/home.private.nix
+    ./shared/virtualisation.nix
   ];
 
   system.stateVersion = "25.11";
