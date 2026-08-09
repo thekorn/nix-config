@@ -241,11 +241,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1786252007,
-        "narHash": "sha256-B43/S2NVWQ3CJslyQPkvKQzkEgZLzYpyZr3iGiQZHEo=",
+        "lastModified": 1786275593,
+        "narHash": "sha256-JcorQMqnmYSI0Kw53P/Gr0GUrHAqSBR1SvEiUPIF828=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "2c27c5fcb51edf0ac740e944c2c357016d9ea2d9",
+        "rev": "a3cf44d5a3082134ada0d95736f542954eecd3f7",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1786269061,
-        "narHash": "sha256-RGzIl6tIoh0PsdbojAmeVgNv7LxHxdvb2SA0Ej24nX0=",
+        "lastModified": 1786283307,
+        "narHash": "sha256-n0wZsXt/t6Qa1nuojS87ox0cUip0lNo930tpXVxk7dU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b78ee463a44bd56f935ec34724f54611e0b569a2",
+        "rev": "3706cba4fafe3eccbb619ca302a380ad00a83094",
         "type": "github"
       },
       "original": {
@@ -503,11 +503,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1786185763,
-        "narHash": "sha256-LFeOsfXwMeE8SswUI+BW9fu6Tdb4wGnitiyI9YRbsbk=",
+        "lastModified": 1786274699,
+        "narHash": "sha256-BKiIKVV+0ctNrJqY2cAi91GVlpghzm97kuOjBARdF6w=",
         "owner": "raine",
         "repo": "workmux",
-        "rev": "01a8e5793c71a62b4e9acafb9257983bf97b8349",
+        "rev": "1e827c797b6522aee52d3c17cf1ae6741ed7985b",
         "type": "github"
       },
       "original": {
