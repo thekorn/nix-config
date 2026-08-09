@@ -1,4 +1,3 @@
-# Vendored from https://github.com/thekorn/tmux-sessionizer @ 67b853a7
 # Set default values if not already set
 : ${TMUX_SESSIONIZER_DIRS:="$HOME/Developer"}
 : ${TMUX_SESSIONIZER_EXTRA_DIRS:=""}
