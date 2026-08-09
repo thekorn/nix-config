@@ -29,6 +29,7 @@
       };
 in {
   options.custom.ghostty = {
+    enable = lib.mkEnableOption "Ghostty";
     fontSize = lib.mkOption {
       type = lib.types.int;
       default = 12;
@@ -36,30 +37,29 @@ in {
     };
   };
 
-  config.programs.tmux = {
-    enable = true;
-  };
-
-  config.programs.ghostty = {
-    enable = true;
-    package = ghosttyPackage;
-    enableZshIntegration = true;
-    settings =
-      {
-        font-family = "GeistMono Nerd Font";
-        font-size = cfg.fontSize;
-        font-thicken = true;
-        confirm-close-surface = false;
-        auto-update = "off";
-        copy-on-select = "clipboard";
-        quit-after-last-window-closed = true;
-        command = "${ghosttyTmux}/bin/ghostty-tmux";
-        cursor-style-blink = true;
-        shell-integration-features = "no-cursor, sudo, title";
-        config-file = "?custom";
-      }
-      // lib.optionalAttrs pkgs.stdenv.isDarwin {
-        theme = "nord";
-      };
+  config = lib.mkIf cfg.enable {
+    programs.tmux.enable = true;
+    programs.ghostty = {
+      enable = true;
+      package = ghosttyPackage;
+      enableZshIntegration = true;
+      settings =
+        {
+          font-family = "GeistMono Nerd Font";
+          font-size = cfg.fontSize;
+          font-thicken = true;
+          confirm-close-surface = false;
+          auto-update = "off";
+          copy-on-select = "clipboard";
+          quit-after-last-window-closed = true;
+          command = "${ghosttyTmux}/bin/ghostty-tmux";
+          cursor-style-blink = true;
+          shell-integration-features = "no-cursor, sudo, title";
+          config-file = "?custom";
+        }
+        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+          theme = "nord";
+        };
+    };
   };
 }

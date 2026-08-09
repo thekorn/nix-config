@@ -1,23 +1,29 @@
 {
-  imports = [
-    ./git.common.nix
-    ./hunk.nix
-    ./git-amp-commit-message.nix
-    ./git-cursor-commit-message.nix
-    ({lib, ...}: {
-      options.custom.git.commitMessageTool = lib.mkOption {
-        type = lib.types.nullOr (lib.types.enum [
-          "gptcommit"
-          "cursor"
-          "amp"
-        ]);
-        default = "gptcommit";
-        description = "Tool used by the prepare-commit-msg hook to generate commit messages.";
-      };
-    })
-  ];
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.custom.git;
+in {
+  options.custom.git = {
+    enable = lib.mkEnableOption "Git";
+    server = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Use the server Git configuration.";
+    };
+    commitMessageTool = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum [
+        "gptcommit"
+        "cursor"
+        "amp"
+      ]);
+      default = "gptcommit";
+      description = "Tool used by the prepare-commit-msg hook to generate commit messages.";
+    };
+  };
 
-  programs.git = {
+  config.programs.git = lib.mkIf (cfg.enable && !cfg.server) {
     settings = {
       alias = {
         merges = "log --oneline --decorate --color=auto --merges --first-parent";

@@ -6,13 +6,16 @@
 }: let
   cfg = config.custom.btop;
 in {
-  options.custom.btop.theme = lib.mkOption {
-    type = lib.types.str;
-    default = "nord";
-    description = "Color theme for btop.";
+  options.custom.btop = {
+    enable = lib.mkEnableOption "btop";
+    theme = lib.mkOption {
+      type = lib.types.str;
+      default = "nord";
+      description = "Color theme for btop.";
+    };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.file.".config/btop/themes".source = "${pkgs.btop}/share/btop/themes";
 
     programs.btop = {

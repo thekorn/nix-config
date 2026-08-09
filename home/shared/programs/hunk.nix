@@ -22,7 +22,7 @@ in {
     '';
   };
 
-  config.programs.hunk =
+  config.programs.hunk = lib.mkIf (config.custom.git.enable && !config.custom.git.server) (
     {
       enable = true;
       enableGitIntegration = false;
@@ -34,5 +34,6 @@ in {
     }
     // lib.optionalAttrs (cfg.package != null) {
       package = cfg.package;
-    };
+    }
+  );
 }

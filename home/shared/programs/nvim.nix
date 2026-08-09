@@ -12,21 +12,24 @@
 
   packLockPath = "${config.xdg.stateHome}/nvim/nvim-pack-lock.json";
 in {
-  home.packages = [pkgs.neovim];
+  options.custom.nvim.enable = lib.mkEnableOption "Neovim";
+  config = lib.mkIf config.custom.nvim.enable {
+    home.packages = [pkgs.neovim];
 
-  xdg.configFile."nvim" = {
-    source = nvimConfig;
-    recursive = true;
+    xdg.configFile."nvim" = {
+      source = nvimConfig;
+      recursive = true;
+    };
+
+    xdg.configFile."nvim/nvim-pack-lock.json".source =
+      config.lib.file.mkOutOfStoreSymlink packLockPath;
+
+    home.activation.seedNvimPackLock = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -e ${lib.escapeShellArg packLockPath} ]; then
+        $DRY_RUN_CMD mkdir -p ${lib.escapeShellArg (dirOf packLockPath)}
+        $DRY_RUN_CMD cp ${lib.escapeShellArg "${inputs.config-nvim}/nvim-pack-lock.json"} ${lib.escapeShellArg packLockPath}
+        $DRY_RUN_CMD chmod u+w ${lib.escapeShellArg packLockPath}
+      fi
+    '';
   };
-
-  xdg.configFile."nvim/nvim-pack-lock.json".source =
-    config.lib.file.mkOutOfStoreSymlink packLockPath;
-
-  home.activation.seedNvimPackLock = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if [ ! -e ${lib.escapeShellArg packLockPath} ]; then
-      $DRY_RUN_CMD mkdir -p ${lib.escapeShellArg (dirOf packLockPath)}
-      $DRY_RUN_CMD cp ${lib.escapeShellArg "${inputs.config-nvim}/nvim-pack-lock.json"} ${lib.escapeShellArg packLockPath}
-      $DRY_RUN_CMD chmod u+w ${lib.escapeShellArg packLockPath}
-    fi
-  '';
 }

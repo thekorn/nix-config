@@ -1,4 +1,10 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.custom.mpv;
   play = pkgs.writeShellScriptBin "play-ls" ''
     set -e
 
@@ -17,7 +23,8 @@
     ${pkgs.mpv-unwrapped}/bin/mpv "$selected"
   '';
 in {
-  home.packages = [
+  options.custom.mpv.enable = lib.mkEnableOption "mpv";
+  config.home.packages = lib.mkIf cfg.enable [
     pkgs.mpv-unwrapped
     # 2026-02-23: broken build
     #pkgs.yt-dlp

@@ -13,9 +13,8 @@
     then configuredHostName
     else "default";
 in {
-  imports = [./tmux.common.nix];
-
   options.custom.tmux.server = {
+    enable = lib.mkEnableOption "the server tmux variant";
     statusBarBackgroundColor = lib.mkOption {
       type = lib.types.str;
 
@@ -28,24 +27,26 @@ in {
     };
   };
 
-  config.programs.zsh = {
-    sessionVariables = {
-      TMUX_SESSIONIZER_EXTRA_DIRS = "/tmp";
+  config = lib.mkIf (config.custom.tmux.enable && cfg.enable) {
+    programs.zsh = {
+      sessionVariables = {
+        TMUX_SESSIONIZER_EXTRA_DIRS = "/tmp";
+      };
     };
-  };
 
-  config.programs.tmux = {
-    shortcut = "b";
+    programs.tmux = {
+      shortcut = "b";
 
-    plugins = with pkgs; [
-      {
-        plugin = tmuxPlugins.minimal-tmux-status; # as now available in nixpkgs
-        extraConfig = ''
-          set -g @minimal-tmux-fg "#2E3440"
-          set -g @minimal-tmux-bg "${cfg.statusBarBackgroundColor}"
-          set -g @minimal-tmux-status-right-extra " (${lib.escapeShellArg extraHostname})"
-        '';
-      }
-    ];
+      plugins = with pkgs; [
+        {
+          plugin = tmuxPlugins.minimal-tmux-status; # as now available in nixpkgs
+          extraConfig = ''
+            set -g @minimal-tmux-fg "#2E3440"
+            set -g @minimal-tmux-bg "${cfg.statusBarBackgroundColor}"
+            set -g @minimal-tmux-status-right-extra " (${lib.escapeShellArg extraHostname})"
+          '';
+        }
+      ];
+    };
   };
 }

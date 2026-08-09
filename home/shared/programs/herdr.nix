@@ -1,30 +1,36 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
-  programs.herdr = {
-    enable = true;
-    package = pkgs.llm-agents.herdr;
-  };
+}: let
+  cfg = config.custom.herdr;
+in {
+  options.custom.herdr.enable = lib.mkEnableOption "Herdr";
+  config = lib.mkIf cfg.enable {
+    programs.herdr = {
+      enable = true;
+      package = pkgs.llm-agents.herdr;
+    };
 
-  programs.ghostty = {
-    enable = true;
-  };
+    programs.ghostty = {
+      enable = true;
+    };
 
-  home.file.".local/bin/herdr-ghostty" = {
-    executable = true;
-    text = ''
-      #!/bin/bash
+    home.file.".local/bin/herdr-ghostty" = {
+      executable = true;
+      text = ''
+        #!/bin/bash
 
-      # @raycast.schemaVersion 1
-      # @raycast.title Herdr
-      # @raycast.mode silent
-      # @raycast.packageName Development
-      # @raycast.description Launch Herdr in Ghostty
+        # @raycast.schemaVersion 1
+        # @raycast.title Herdr
+        # @raycast.mode silent
+        # @raycast.packageName Development
+        # @raycast.description Launch Herdr in Ghostty
 
-      unset HERDR_ENV
-      exec ${config.programs.ghostty.package}/bin/ghostty -e ${config.programs.herdr.package}/bin/herdr
-    '';
+        unset HERDR_ENV
+        exec ${config.programs.ghostty.package}/bin/ghostty -e ${config.programs.herdr.package}/bin/herdr
+      '';
+    };
   };
 }

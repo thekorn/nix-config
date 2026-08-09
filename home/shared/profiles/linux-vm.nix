@@ -4,6 +4,7 @@
     ../common.linux.nix
     ../common.packages.server.nix
     ../common.programs.server.nix
+    ../devel.nix
   ];
 
   programs.home-manager.enable = true;

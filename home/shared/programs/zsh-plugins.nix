@@ -17,25 +17,21 @@
     {name = "thekorn/tmux-sessionizer";}
   ];
 in {
-  imports = [
-    ({lib, ...}: {
-      options.custom.zsh.pluginBackend = lib.mkOption {
-        type = lib.types.enum [
-          "zplug"
-          "zplug-vendor"
-        ];
-        default = "zplug-vendor";
-        description = ''
-          How zsh plugins are loaded.
+  options.custom.zsh.pluginBackend = lib.mkOption {
+    type = lib.types.enum [
+      "zplug"
+      "zplug-vendor"
+    ];
+    default = "zplug-vendor";
+    description = ''
+      How zsh plugins are loaded.
 
-          - `zplug`: install and load plugins via zplug on shell startup
-          - `zplug-vendor`: source vendored plugin files directly (faster startup)
-        '';
-      };
-    })
-  ];
+      - `zplug`: install and load plugins via zplug on shell startup
+      - `zplug-vendor`: source vendored plugin files directly (faster startup)
+    '';
+  };
 
-  config = {
+  config = lib.mkIf config.custom.zsh.enable {
     programs.zsh = {
       zplug = lib.mkIf (config.custom.zsh.pluginBackend == "zplug") {
         enable = true;

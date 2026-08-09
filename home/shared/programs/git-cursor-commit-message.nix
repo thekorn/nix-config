@@ -15,7 +15,7 @@
     text = builtins.readFile ./bin/git-prepare-commit-msg-cursor;
   };
 in {
-  config = lib.mkIf (cfg.commitMessageTool == "cursor") {
+  config = lib.mkIf (cfg.enable && !cfg.server && cfg.commitMessageTool == "cursor") {
     home.packages = [pkgs.llm-agents.cursor-agent];
     programs.git.hooks.prepare-commit-msg = "${cursorPrepareCommitMessage}/bin/cursor-prepare-commit-msg";
   };

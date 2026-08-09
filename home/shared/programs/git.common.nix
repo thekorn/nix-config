@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   gitHelpers = pkgs.writeShellScriptBin "git-helpers" ''
@@ -23,93 +24,95 @@
     }
   '';
 in {
-  home.packages = [gitHelpers];
+  config = lib.mkIf config.custom.git.enable {
+    home.packages = [gitHelpers];
 
-  programs.git = {
-    enable = true;
-    ignores = [".codegraph/"];
+    programs.git = {
+      enable = true;
+      ignores = [".codegraph/"];
 
-    settings = {
-      user = {
-        name = "Markus Korn";
-        email = "markus.korn@gmail.com";
-      };
-      alias = {
-        co = "checkout";
-        cm = "commit";
-        st = "status";
-        br = "branch";
-        pu = "push -u";
-        put = "push -u --tags";
-        type = "cat-file -t";
-        dump = "cat-file -p";
-        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-        diffc = "diff --cached";
-        permission-reset = ''
-          !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
-        patch = "!git --no-pager diff --no-color";
-
-        l = "!. ${gitHelpers}/bin/git-helpers && pretty_git_log";
-        la = "!git l --all";
-        lr = "!git l -30";
-        lra = "!git lr --all";
-        lgg = "!git l -G $1 -- $2";
-
-        # list tags
-        ltags = "!git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags";
-      };
-      core = {
-        editor = "nvim";
-        whitespace = "trailing-space,space-before-tab";
-      };
-      push = {
-        default = "current";
-        followTags = true;
-      };
-      pull = {rebase = false;};
-      init = {defaultBranch = "main";};
-      commit = {
-        # dont sign per default
-        gpgsign = false;
-      };
-    };
-
-    signing = {
-      format = "ssh";
-      signByDefault = true;
-    };
-
-    includes = lib.mkAfter [
-      {
-        condition = "gitdir:**/bitbucket.org/burdastudios/**";
-        contents = {
-          user = {
-            email = "markus.korn@burda.com";
-            name = "Markus Korn";
-          };
-          core = {
-            hooksPath = ".git/hooks";
-          };
-          # FIXME: default sign per 1password command not working
-          commit = {gpgsign = false;};
-          tag = {gpgsign = false;};
+      settings = {
+        user = {
+          name = "Markus Korn";
+          email = "markus.korn@gmail.com";
         };
-      }
-      {
-        condition = "gitdir:**/gitlab.bfops.io/**";
-        contents = {
-          user = {
-            email = "markus.korn@burda.com";
-            name = "Markus Korn";
-          };
-          core = {
-            hooksPath = ".git/hooks";
-          };
-          # FIXME: default sign per 1password command not working
-          commit = {gpgsign = false;};
-          tag = {gpgsign = false;};
+        alias = {
+          co = "checkout";
+          cm = "commit";
+          st = "status";
+          br = "branch";
+          pu = "push -u";
+          put = "push -u --tags";
+          type = "cat-file -t";
+          dump = "cat-file -p";
+          lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+          diffc = "diff --cached";
+          permission-reset = ''
+            !git diff -p -R --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'';
+          patch = "!git --no-pager diff --no-color";
+
+          l = "!. ${gitHelpers}/bin/git-helpers && pretty_git_log";
+          la = "!git l --all";
+          lr = "!git l -30";
+          lra = "!git lr --all";
+          lgg = "!git l -G $1 -- $2";
+
+          # list tags
+          ltags = "!git for-each-ref --sort=creatordate --format '%(refname) %(creatordate)' refs/tags";
         };
-      }
-    ];
+        core = {
+          editor = "nvim";
+          whitespace = "trailing-space,space-before-tab";
+        };
+        push = {
+          default = "current";
+          followTags = true;
+        };
+        pull = {rebase = false;};
+        init = {defaultBranch = "main";};
+        commit = {
+          # dont sign per default
+          gpgsign = false;
+        };
+      };
+
+      signing = {
+        format = "ssh";
+        signByDefault = true;
+      };
+
+      includes = lib.mkAfter [
+        {
+          condition = "gitdir:**/bitbucket.org/burdastudios/**";
+          contents = {
+            user = {
+              email = "markus.korn@burda.com";
+              name = "Markus Korn";
+            };
+            core = {
+              hooksPath = ".git/hooks";
+            };
+            # FIXME: default sign per 1password command not working
+            commit = {gpgsign = false;};
+            tag = {gpgsign = false;};
+          };
+        }
+        {
+          condition = "gitdir:**/gitlab.bfops.io/**";
+          contents = {
+            user = {
+              email = "markus.korn@burda.com";
+              name = "Markus Korn";
+            };
+            core = {
+              hooksPath = ".git/hooks";
+            };
+            # FIXME: default sign per 1password command not working
+            commit = {gpgsign = false;};
+            tag = {gpgsign = false;};
+          };
+        }
+      ];
+    };
   };
 }

@@ -1,40 +1,31 @@
 {...}: {
-  imports = [
-    ./programs/1password.nix
-    ./programs/bat.nix
-    ./programs/eza.nix
-    ./programs/fzf.nix
-    ./programs/git.nix
-    ./programs/tmux.nix
-    ./programs/zsh.darwin.nix
-    ./programs/ssh.nix
-    ./programs/nvim.nix
-    ./programs/bottom.nix
-    ./programs/lazygit.nix
-    ./programs/ripgrep.nix
-    ./programs/gptcommit.nix
-    ./programs/atuin.nix
-    ./programs/zed.nix
-    ./programs/pnpm.nix
-    ./programs/bun.nix
-    ./programs/android-studio.nix
-    ./programs/dart-cli.nix
-    ./programs/btop.nix
-    ./programs/vscode.nix
-    ./programs/ghostty.nix
-    #./programs/yazi.nix
-    #./programs/podman.nix #<-- podman does not work for CTF
-    ./programs/mpv.nix
-    #./programs/slumber.nix
-    # marked as broken: https://github.com/NixOS/nixpkgs/pull/486721
-    #./programs/google-chrome.nix
-
-    ./programs/fvm.nix
-    #./programs/jujutsu.nix
-    ./programs/codebook.nix
-    ./programs/workmux.nix
-    ./programs/herdr.nix
-  ];
+  custom = {
+    "1password".enable = true;
+    bat.enable = true;
+    eza.enable = true;
+    fzf.enable = true;
+    git.enable = true;
+    tmux.enable = true;
+    zsh.enable = true;
+    ssh.enable = true;
+    nvim.enable = true;
+    bottom.enable = true;
+    lazygit.enable = true;
+    ripgrep.enable = true;
+    atuin.enable = true;
+    zed.enable = true;
+    pnpm.enable = true;
+    bun.enable = true;
+    androidStudio.enable = true;
+    dartCli.enable = true;
+    btop.enable = true;
+    ghostty.enable = true;
+    mpv.enable = true;
+    fvm.enable = true;
+    codebook.enable = true;
+    workmux.enable = true;
+    herdr.enable = true;
+  };
 
   programs.home-manager.enable = true;
 

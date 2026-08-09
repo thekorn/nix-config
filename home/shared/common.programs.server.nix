@@ -1,17 +1,25 @@
 {
-  imports = [
-    ./programs/bat.nix
-    ./programs/eza.nix
-    ./programs/fzf.nix
-    ./programs/nvim.nix
-    ./programs/pnpm.nix
-    ./programs/zsh.linux.nix
-    ./programs/git.server.nix
-    ./programs/tmux.server.nix
-    ./devel.nix
-    ./programs/lazygit.nix
-    ./programs/ripgrep.nix
-    ./programs/zig.nix
-    ./programs/btop.nix
-  ];
+  custom = {
+    bat.enable = true;
+    eza.enable = true;
+    fzf.enable = true;
+    nvim.enable = true;
+    pnpm.enable = true;
+    zsh = {
+      enable = true;
+      server = true;
+    };
+    git = {
+      enable = true;
+      server = true;
+    };
+    tmux = {
+      enable = true;
+      server.enable = true;
+    };
+    lazygit.enable = true;
+    ripgrep.enable = true;
+    zig.enable = true;
+    btop.enable = true;
+  };
 }

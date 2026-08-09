@@ -1,6 +1,13 @@
-{pkgs, ...}: {
-  programs.vscode = {
-    enable = false;
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.custom.vscode;
+in {
+  options.custom.vscode.enable = lib.mkEnableOption "VS Code configuration";
+  config.programs.vscode = lib.mkIf cfg.enable {
+    enable = true;
     profiles.default.userSettings = {
       "workbench.colorTheme" = "Nord";
       "editor.suggestSelection" = "first";

@@ -1,7 +1,9 @@
 {
-  imports = [./git.common.nix];
-
-  programs.git = {
+  config,
+  lib,
+  ...
+}: {
+  config.programs.git = lib.mkIf (config.custom.git.enable && config.custom.git.server) {
     settings = {
       diff = {submodule = "log";};
     };

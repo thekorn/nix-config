@@ -1,84 +1,93 @@
-{...}: {
-  programs.zsh = {
-    shellAliases = {
-      zed = "zeditor";
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.custom.zed;
+in {
+  options.custom.zed.enable = lib.mkEnableOption "Zed";
+  config = lib.mkIf cfg.enable {
+    programs.zsh = {
+      shellAliases = {
+        zed = "zeditor";
+      };
     };
-  };
 
-  programs.zed-editor = {
-    enable = true;
-    extensions = ["nix" "oxc" "tsgo" "codebook" "scss" "dart" "git-firefly" "lua"];
-    userSettings = {
-      "edit_predictions" = {
-        "provider" = "zed";
-      };
-      "buffer_font_size" = null;
-      "telemetry" = {
-        "metrics" = false;
-        "diagnostics" = false;
-      };
-      "ui_font_size" = 15;
-      "vim_mode" = false;
-      "agent" = {
-        "tool_permissions" = {
-          "default" = "allow";
+    programs.zed-editor = {
+      enable = true;
+      extensions = ["nix" "oxc" "tsgo" "codebook" "scss" "dart" "git-firefly" "lua"];
+      userSettings = {
+        "edit_predictions" = {
+          "provider" = "zed";
         };
-        "default_model" = {
-          "effort" = "high";
-          "enable_thinking" = true;
-          "model" = "claude-sonnet-4-6";
-          "provider" = "zed.dev";
+        "buffer_font_size" = null;
+        "telemetry" = {
+          "metrics" = false;
+          "diagnostics" = false;
         };
-        "inline_assistant_model" = {
-          "model" = "claude-sonnet-4-6";
-          "provider" = "zed.dev";
+        "ui_font_size" = 15;
+        "vim_mode" = false;
+        "agent" = {
+          "tool_permissions" = {
+            "default" = "allow";
+          };
+          "default_model" = {
+            "effort" = "high";
+            "enable_thinking" = true;
+            "model" = "claude-sonnet-4-6";
+            "provider" = "zed.dev";
+          };
+          "inline_assistant_model" = {
+            "model" = "claude-sonnet-4-6";
+            "provider" = "zed.dev";
+          };
         };
-      };
-      "base_keymap" = "VSCode";
-      "buffer_font_family" = "MonaspiceNe Nerd Font";
-      "git" = {
-        "inline_blame" = {
-          "show_commit_summary" = true;
+        "base_keymap" = "VSCode";
+        "buffer_font_family" = "MonaspiceNe Nerd Font";
+        "git" = {
+          "inline_blame" = {
+            "show_commit_summary" = true;
+          };
         };
-      };
-      "lsp" = {
-        "eslint" = {
-          "settings" = {
-            "problems" = {
-              "shortenToSingleLine" = true;
+        "lsp" = {
+          "eslint" = {
+            "settings" = {
+              "problems" = {
+                "shortenToSingleLine" = true;
+              };
             };
           };
         };
-      };
-      "terminal" = {
-        "dock" = "bottom";
-        "env" = {
-          "DISABLE_TMUX" = "1";
+        "terminal" = {
+          "dock" = "bottom";
+          "env" = {
+            "DISABLE_TMUX" = "1";
+          };
+          "line_height" = {
+            "custom" = 1.15;
+          };
         };
-        "line_height" = {
-          "custom" = 1.15;
+        "theme" = {
+          "dark" = "Gruvbox Dark Hard";
+          "light" = "Gruvbox Dark Hard";
+          "mode" = "dark";
         };
+        "project_panel" = {
+          "dock" = "left";
+        };
+        "file_scan_exclusions" = [
+          "**/.git"
+          "**/.svn"
+          "**/.hg"
+          "**/.jj"
+          "**/CVS"
+          "**/.DS_Store"
+          "**/Thumbs.db"
+          "**/.classpath"
+          "**/.settings"
+          "**/node_modules"
+        ];
       };
-      "theme" = {
-        "dark" = "Gruvbox Dark Hard";
-        "light" = "Gruvbox Dark Hard";
-        "mode" = "dark";
-      };
-      "project_panel" = {
-        "dock" = "left";
-      };
-      "file_scan_exclusions" = [
-        "**/.git"
-        "**/.svn"
-        "**/.hg"
-        "**/.jj"
-        "**/CVS"
-        "**/.DS_Store"
-        "**/Thumbs.db"
-        "**/.classpath"
-        "**/.settings"
-        "**/node_modules"
-      ];
     };
   };
 }

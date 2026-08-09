@@ -15,7 +15,7 @@
     text = builtins.readFile ./bin/git-prepare-commit-msg-amp;
   };
 in {
-  config = lib.mkIf (cfg.commitMessageTool == "amp") {
+  config = lib.mkIf (cfg.enable && !cfg.server && cfg.commitMessageTool == "amp") {
     home.packages = [pkgs.llm-agents.amp];
     programs.git.hooks.prepare-commit-msg = "${ampPrepareCommitMessage}/bin/amp-prepare-commit-msg";
   };
