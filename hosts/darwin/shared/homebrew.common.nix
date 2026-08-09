@@ -17,9 +17,13 @@
       "helium-browser"
       "google-chrome"
       "cursor"
+      "steipete/tap/codexbar"
+      "abue-ammar/tinycast/tinycast"
     ];
     taps = [
       #"modem-dev/tap"
+      "steipete/tap"
+      "abue-ammar/tinycast"
     ];
     brews = [
       "kcov"

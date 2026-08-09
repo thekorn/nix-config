@@ -26,7 +26,7 @@
     #brave
     #gimp-with-plugins
     firefox-bin-unwrapped
-    raycast
+    #raycast
 
     flutter
     nss
