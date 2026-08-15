@@ -19,5 +19,8 @@
       Restart = "always";
       RestartSec = 5;
     };
+    path = with pkgs; [
+      tmux
+    ];
   };
 }
