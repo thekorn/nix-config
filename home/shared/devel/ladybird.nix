@@ -4,7 +4,7 @@
   ...
 }: {
   # in case the nix packages dont work on darwin...
-  #homebrew.brews = pkgs.lib.optionals (pkgs.stdenv.isDarwin) [
+  #homebrew.brews = pkgs.lib.optionals (pkgs.stdenv.hostPlatform.isDarwin) [
   #  "autoconf"
   #  "autoconf-archive"
   #  "automake"

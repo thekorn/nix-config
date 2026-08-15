@@ -23,7 +23,7 @@
     mpv.enable = true;
     fvm.enable = true;
     codebook.enable = true;
-    workmux.enable = true;
+    workmux.enable = false;
     herdr.enable = true;
   };
 

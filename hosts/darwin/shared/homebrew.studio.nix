@@ -1,12 +1,12 @@
 {
   homebrew = {
     casks = [
-      "obs"
-      "steam"
+      #"obs"
+      #"steam"
       "parallels"
-      "multipass"
-      "nvidia-geforce-now"
-      "lm-studio"
+      #"multipass"
+      #"nvidia-geforce-now"
+      #"lm-studio"
       "raspberry-pi-imager"
     ];
   };

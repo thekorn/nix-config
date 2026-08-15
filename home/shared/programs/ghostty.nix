@@ -13,7 +13,7 @@
     exec ${pkgs.tmux}/bin/tmux -f /dev/null start-server \; source-file "${tmuxConfig}" \; new-session -A -s default
   '';
   ghosttyPackage =
-    if pkgs.stdenv.isDarwin
+    if pkgs.stdenv.hostPlatform.isDarwin
     then pkgs.ghostty-bin
     else
       pkgs.symlinkJoin {
@@ -57,7 +57,7 @@ in {
           shell-integration-features = "no-cursor, sudo, title";
           config-file = "?custom";
         }
-        // lib.optionalAttrs pkgs.stdenv.isDarwin {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
           theme = "nord";
         };
     };

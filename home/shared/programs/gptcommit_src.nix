@@ -31,7 +31,7 @@ in
     doCheck = false;
 
     buildInputs =
-      lib.optionals stdenv.isDarwin [Security SystemConfiguration]
+      lib.optionals stdenv.hostPlatform.isDarwin [Security SystemConfiguration]
       ++ lib.optionals stdenv.isLinux [openssl];
 
     passthru = {
