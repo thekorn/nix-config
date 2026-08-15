@@ -58,6 +58,12 @@
     };
   };
 
+  users.users.${users.private}.extraGroups = ["dialout"];
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="303a", ATTR{idProduct}=="1001", GROUP="dialout", MODE="0660"
+  '';
+
   home-manager.users.${users.private} = {
     imports = [
       ../../home/shared/profiles/linux-server.nix
