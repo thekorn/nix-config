@@ -60,6 +60,8 @@
     imports = [
       ../../home/shared/profiles/linux-vm.nix
     ];
+
+    custom.git.commitMessageModel = "gpt-5.6-luna";
   };
 
   # dbus-broker does not reload reliably during remote activation; failed

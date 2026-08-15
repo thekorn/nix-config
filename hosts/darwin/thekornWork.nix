@@ -31,6 +31,7 @@
     };
 
     custom = {
+      git.commitMessageModel = "gpt-5.6-luna";
       ghostty.fontSize = 19;
       workmux.defaultAgent = "cursor-agent";
     };

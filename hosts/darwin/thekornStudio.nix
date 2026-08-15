@@ -45,6 +45,7 @@
     };
 
     #custom.git.commitMessageTool = "amp";
+    custom.git.commitMessageModel = "gpt-5.6-luna";
     custom.ghostty.fontSize = 21;
   };
 }
