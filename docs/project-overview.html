@@ -433,8 +433,8 @@
       </div>
       <div class="stat">
         <div class="k">Vendored pkgs</div>
-        <div class="v">4</div>
-        <div class="sub">container, hunk, tmux34, gptcommit</div>
+        <div class="v">3</div>
+        <div class="sub">container, hunk, tmux34</div>
       </div>
     </div>
 
@@ -513,7 +513,7 @@
 │       │   ├── <span class="file">wayland.nix</span>    <span class="note">Hyprland, wofi, grim, slurp</span>
 │       │   └── <span class="file">workmux.nix</span>    <span class="note">multi-agent tmux worktree tool</span>
 │       └── <span class="dir">devel/</span>             <span class="note">ladybird, rpi builds (commented out)</span>
-├── <span class="dir">pkgs/vendored/</span>            <span class="note">container, gptcommit, hunk, tmux34</span>
+├── <span class="dir">pkgs/vendored/</span>            <span class="note">container, hunk, tmux34</span>
 ├── <span class="dir">rpi/</span>                       <span class="note">Raspberry Pi SD image builder</span>
 └── <span class="dir">docs/</span>                      <span class="note">architecture.md + knowledgebase</span>
 </pre></div>
@@ -590,7 +590,7 @@
         </div>
         <div class="pattern">
           <h3>Vendored packages for stability</h3>
-          <p>Four packages are vendored in pkgs/vendored/ to work around upstream issues: Apple Container, forked gptcommit, hunk (prebuilt), and tmux 3.4 (pinned for /bin/sh regression).</p>
+          <p>Three packages are vendored in pkgs/vendored/ to work around upstream issues: Apple Container, hunk (prebuilt), and tmux 3.4 (pinned for /bin/sh regression).</p>
           <div class="tags"><span class="tag">pkgs/vendored/</span><span class="tag">overlay</span></div>
         </div>
         <div class="pattern">
@@ -659,8 +659,8 @@
         </div>
         <div class="pattern">
           <h3>AI commit generation</h3>
-          <p>Forked gptcommit and opencommit generate AI-powered git commit messages, integrated into the git workflow via custom options.</p>
-          <div class="tags"><span class="tag">pkgs/vendored/gptcommit</span><span class="tag">custom.git</span></div>
+          <p>Codex, Amp, and Cursor generate AI-powered git commit messages through a configurable prepare-commit-msg hook.</p>
+          <div class="tags"><span class="tag">codex exec</span><span class="tag">custom.git</span></div>
         </div>
       </div>
     </section>

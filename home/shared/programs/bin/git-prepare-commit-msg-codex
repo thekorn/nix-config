@@ -1,0 +1,71 @@
+commit_message_file="$1"
+commit_source="${2:-}"
+
+# Do not replace messages supplied by Git or the user, including amends.
+if [[ -n "$commit_source" ]] || grep -q '^[[:space:]]*[^#[:space:]]' "$commit_message_file"; then
+  exit 0
+fi
+
+if git diff --cached --quiet --no-ext-diff; then
+  exit 0
+else
+  diff_status=$?
+  if ((diff_status > 1)); then
+    exit "$diff_status"
+  fi
+fi
+
+generated_message=$(mktemp "${TMPDIR:-/tmp}/codex-commit-message.XXXXXX")
+result=$(mktemp "${TMPDIR:-/tmp}/codex-commit-result.XXXXXX")
+trap 'rm -f "$generated_message" "$result"' EXIT
+
+codex_args=(
+  exec
+  --ephemeral
+  --sandbox read-only
+  --color never
+  --output-last-message "$generated_message"
+)
+if [[ -n "${CODEX_COMMIT_MODEL:-}" ]]; then
+  codex_args+=(--model "$CODEX_COMMIT_MODEL")
+fi
+
+prompt='Write a concise Git commit message for the staged diff supplied via stdin.
+Follow Conventional Commits and use the imperative mood.
+Keep the subject at 72 characters or fewer.
+Add a short body only when it provides useful context.
+Output only the commit message, without Markdown fences or commentary.'
+
+if [[ -n "${CODEX_COMMIT_MODEL:-}" ]]; then
+  printf 'Generating commit message with Codex (%s)...\n' "$CODEX_COMMIT_MODEL" >&2
+else
+  printf '%s\n' 'Generating commit message with Codex...' >&2
+fi
+
+git diff \
+  --cached \
+  --ignore-all-space \
+  --diff-algorithm=minimal \
+  --function-context \
+  --no-ext-diff \
+  --no-color \
+  | codex "${codex_args[@]}" "$prompt" >/dev/null
+
+if ! grep -q '[^[:space:]]' "$generated_message"; then
+  exit 0
+fi
+
+branch_name=$(git symbolic-ref --quiet --short HEAD || true)
+first_line=$(head -n 1 "$generated_message")
+if [[ "$branch_name" =~ ([A-Z]+-[0-9]+) ]] && [[ "$first_line" != "${BASH_REMATCH[1]}:"* ]]; then
+  printf '%s: ' "${BASH_REMATCH[1]}" >"$result"
+fi
+cat "$generated_message" >>"$result"
+
+# Keep Git's commented template/status content available in the editor.
+if [[ -s "$commit_message_file" ]]; then
+  printf '\n' >>"$result"
+  cat "$commit_message_file" >>"$result"
+fi
+
+cat "$result" >"$commit_message_file"

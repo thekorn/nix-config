@@ -7,10 +7,10 @@
     ./programs/git.nix
     ./programs/git.server.nix
     ./programs/git.common.nix
+    ./programs/git-codex-commit-message.nix
     ./programs/git-amp-commit-message.nix
     ./programs/git-cursor-commit-message.nix
     ./programs/hunk.nix
-    ./programs/gptcommit.nix
     ./programs/tmux.nix
     ./programs/tmux.server.nix
     ./programs/tmux.common.nix

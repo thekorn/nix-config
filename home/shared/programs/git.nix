@@ -14,12 +14,18 @@ in {
     };
     commitMessageTool = lib.mkOption {
       type = lib.types.nullOr (lib.types.enum [
-        "gptcommit"
+        "codex"
         "cursor"
         "amp"
       ]);
-      default = "gptcommit";
+      default = "codex";
       description = "Tool used by the prepare-commit-msg hook to generate commit messages.";
+    };
+    commitMessageModel = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      example = "gpt-5.3-codex";
+      description = "Codex model used to generate commit messages. Null uses the Codex CLI default.";
     };
   };
 
