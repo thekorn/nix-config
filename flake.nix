@@ -122,6 +122,7 @@
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "bck";
       home-manager.sharedModules = [
+        ./home/shared/programs/attic.nix
         {
           manual.manpages.enable = false;
         }
@@ -183,6 +184,10 @@
               llmAgentsOverlay
               vendoredPackagesOverlay
             ];
+
+            # Keep Home Manager user services such as the Attic store watcher
+            # running on headless hosts before and after interactive logins.
+            users.users.${users.private}.linger = true;
           }
           hostModule
           home-manager.nixosModules.home-manager
