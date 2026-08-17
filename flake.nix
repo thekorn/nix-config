@@ -158,6 +158,7 @@
         };
         modules = [
           darwinBaseModule
+          ./hosts/shared/attic-cache.nix
           {
             networking.hostName = hostName;
             custom.preferences.username = username;
@@ -176,6 +177,7 @@
       nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+          ./hosts/shared/attic-cache.nix
           {
             nixpkgs.overlays = [
               llmAgentsOverlay
