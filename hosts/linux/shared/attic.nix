@@ -19,10 +19,12 @@ in {
   # each cache's separate Nix signing key in its database.
   system.activationScripts.atticd-token.text = ''
     if [[ ! -s ${environmentFile} ]]; then
-      token="$(${pkgs.openssl}/bin/openssl genrsa -traditional 4096 | ${pkgs.coreutils}/bin/base64 -w0)"
-      umask 077
-      printf 'ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=%s\n' "$token" > ${environmentFile}.new
-      mv ${environmentFile}.new ${environmentFile}
+      (
+        umask 077
+        token="$(${pkgs.openssl}/bin/openssl genrsa -traditional 4096 | ${pkgs.coreutils}/bin/base64 -w0)"
+        printf 'ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=%s\n' "$token" > ${environmentFile}.new
+        mv ${environmentFile}.new ${environmentFile}
+      )
     fi
   '';
 
