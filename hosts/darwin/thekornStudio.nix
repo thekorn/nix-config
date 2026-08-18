@@ -34,6 +34,8 @@
 
       prismlauncher
       discord
+
+      keymapp
       #llm-agents.gemini-cli
       llm-agents.cursor-agent
       #whatsapp-for-mac
