@@ -7,7 +7,7 @@
     #chatgpt
     #docker
     #colima
-    pkgs.vendored.container
+    #pkgs.vendored.container
     inputs.tuicr.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

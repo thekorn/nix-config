@@ -27,6 +27,7 @@
     ];
     brews = [
       "kcov"
+      "container" #<-- nix version is vendored, and still broken
     ];
   };
 }
