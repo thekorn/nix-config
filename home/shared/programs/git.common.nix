@@ -36,6 +36,11 @@ in {
           name = "Markus Korn";
           email = "markus.korn@gmail.com";
         };
+        credential = {
+          "https://ampcode.com" = {
+            helper = "!amp git-credential-helper";
+          };
+        };
         alias = {
           co = "checkout";
           cm = "commit";
