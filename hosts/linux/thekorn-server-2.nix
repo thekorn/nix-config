@@ -62,6 +62,10 @@
 
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="303a", ATTR{idProduct}=="1001", GROUP="dialout", MODE="0660"
+    SUBSYSTEM=="tty", KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="0001", ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_PATH}=="pci-0000:00:14.0-usb-0:3.1:1.0", SYMLINK+="esp32-1", GROUP="dialout", MODE="0660"
+    SUBSYSTEM=="tty", KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="0001", ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_PATH}=="pci-0000:00:14.0-usb-0:3.2:1.0", SYMLINK+="esp32-2", GROUP="dialout", MODE="0660"
+    SUBSYSTEM=="tty", KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="0001", ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_PATH}=="pci-0000:00:14.0-usb-0:3.3:1.0", SYMLINK+="esp32-3", GROUP="dialout", MODE="0660"
+    SUBSYSTEM=="tty", KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="0001", ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_PATH}=="pci-0000:00:14.0-usb-0:3.4:1.0", SYMLINK+="esp32-4", GROUP="dialout", MODE="0660"
   '';
 
   home-manager.users.${users.private} = {
