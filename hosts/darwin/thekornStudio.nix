@@ -39,6 +39,7 @@
       #llm-agents.gemini-cli
       llm-agents.cursor-agent
       #whatsapp-for-mac
+      uv
     ];
 
     programs.agentSkills = {
