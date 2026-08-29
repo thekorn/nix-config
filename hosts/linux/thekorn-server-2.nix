@@ -58,6 +58,15 @@
     };
   };
 
+  services.caddy = {
+    enable = true;
+    openFirewall = true;
+    virtualHosts."thekorn-server-2.home".extraConfig = ''
+      tls internal
+      respond "Caddy is running on thekorn-server-2"
+    '';
+  };
+
   users.users.${users.private}.extraGroups = ["dialout"];
 
   services.udev.extraRules = ''
