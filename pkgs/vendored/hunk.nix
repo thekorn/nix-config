@@ -9,19 +9,19 @@
   # 26.05 x86_64-darwin deprecation warning during darwin-rebuild. The prebuilt
   # archive is the same released CLI, keeps this configuration declarative, and
   # avoids that unrelated evaluation warning.
-  version = "0.17.1";
+  version = "0.20.1";
   releases = {
     aarch64-darwin = {
       asset = "hunkdiff-darwin-arm64.tar.gz";
-      hash = "sha256-v/NhLy8EX9xRntkwLuqEt7/OlTLjJpgxG7cksKqJVHY=";
+      hash = "sha256-ostOW0DN+5R8koLV6WhFapIYP0B4QiwZXaMoyuGe+N4=";
     };
     aarch64-linux = {
       asset = "hunkdiff-linux-arm64.tar.gz";
-      hash = "sha256-62MnqUDAyJsmsSnUFgvunFEQaUjpAitPXIhl7KmpoQU=";
+      hash = "sha256-G0bVp7MhU8lsjCeyyfNzbo9bA0U65Noo9TJXZ5QaWgE=";
     };
     x86_64-linux = {
       asset = "hunkdiff-linux-x64.tar.gz";
-      hash = "sha256-IdezOc+tXmtg8RXx/9vk3oaSuoSSsWVWHJrY/iP/h9w=";
+      hash = "sha256-SLPo47Ho4vSwzvzUhwtiYtob+G6ULDecPjZkZMTKEaA=";
     };
   };
   release =

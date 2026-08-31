@@ -29,7 +29,9 @@
     };
 
     hunk = {
-      url = "github:modem-dev/hunk";
+      # temporary fix, there is some unstable main right now
+      # url = "github:modem-dev/hunk";
+      url = "github:modem-dev/hunk/v0.20.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
