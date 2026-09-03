@@ -19,7 +19,7 @@
       "cursor"
       "steipete/tap/codexbar"
       "abue-ammar/tinycast/tinycast"
-      "orchard"
+      #"orchard"
     ];
     taps = [
       #"modem-dev/tap"
@@ -29,7 +29,6 @@
     brews = [
       "kcov"
       "container" #<-- nix version is vendored, and still broken
-      #"orchard"
     ];
   };
 }
