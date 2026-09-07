@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 commit_message_file="$1"
 commit_source="${2:-}"
 
