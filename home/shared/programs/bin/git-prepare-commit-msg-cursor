@@ -36,11 +36,11 @@ else
   printf '\nThe staged diff is %s bytes, so only its summary is included.\n' "$diff_size" >>"$context_file"
 fi
 
-printf '%s\n' 'Generating commit message with Cursor (gpt-5.6-luna)...' >&2
+printf '%s\n' 'Generating commit message with Cursor (gemini-3-flash)...' >&2
 cursor-agent \
   --print \
   --mode ask \
-  --model gpt-5.6-luna-none \
+  --model gemini-3-flash \
   --trust \
   --workspace "$(git rev-parse --show-toplevel)" \
   "$(<"$context_file")" >"$generated_message"
