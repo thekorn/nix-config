@@ -24,7 +24,7 @@
     fvm.enable = true;
     codebook.enable = true;
     workmux.enable = false;
-    herdr.enable = true;
+    herdr.enable = false;
   };
 
   programs.home-manager.enable = true;

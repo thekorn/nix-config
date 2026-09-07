@@ -36,11 +36,11 @@ else
   printf '\nThe staged diff is %s bytes, so only its summary is included.\n' "$diff_size" >>"$context_file"
 fi
 
-printf '%s\n' 'Generating commit message with Cursor (Composer 2.5 Fast)...' >&2
+printf '%s\n' 'Generating commit message with Cursor (Composer 2.5)...' >&2
 cursor-agent \
   --print \
   --mode ask \
-  --model composer-2.5-fast \
+  --model composer-2.5 \
   --trust \
   --workspace "$(git rev-parse --show-toplevel)" \
   "$(<"$context_file")" >"$generated_message"
