@@ -40,7 +40,7 @@ printf '%s\n' 'Generating commit message with Cursor (Composer 2.5)...' >&2
 cursor-agent \
   --print \
   --mode ask \
-  --model composer-2.5 \
+  --model gpt-5.6-luna-none \
   --trust \
   --workspace "$(git rev-parse --show-toplevel)" \
   "$(<"$context_file")" >"$generated_message"
