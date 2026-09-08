@@ -52,7 +52,7 @@ in {
 
       siteFunctions = {
         nixswitch = ''
-          sudo -H nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
+          sudo -H nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix#$(hostname)
         '';
         update-server = ''
           local host failed=0
