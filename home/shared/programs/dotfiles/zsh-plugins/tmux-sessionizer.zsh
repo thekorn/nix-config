@@ -89,7 +89,9 @@ function init() {
 
   # Add keybinding if inside tmux
   if [[ -n "$TMUX" ]]; then
-    tmux bind-key "$TMUX_SESSIONIZER_BIND" display-popup -E "zsh -i -c ts"
+    local plugin_file=${(%):-%x}
+    tmux bind-key "$TMUX_SESSIONIZER_BIND" display-popup -E \
+      "zsh -c 'source ${(q)plugin_file}; _tmux_sessionizer'"
   fi
 
   return 0
