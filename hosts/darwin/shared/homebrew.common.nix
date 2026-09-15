@@ -19,6 +19,7 @@
       "cursor"
       "steipete/tap/codexbar"
       "abue-ammar/tinycast/tinycast"
+      "cloudflare-warp"
       #"orchard"
     ];
     taps = [
