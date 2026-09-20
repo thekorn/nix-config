@@ -30,7 +30,7 @@
     ];
 
     home.packages = with pkgs; [
-      zulu25
+      zulu17
 
       prismlauncher
       discord
