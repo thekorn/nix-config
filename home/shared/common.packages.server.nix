@@ -17,5 +17,6 @@
     glab
     fosrl-newt
     television
+    devenv
   ];
 }

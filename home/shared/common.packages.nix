@@ -36,5 +36,7 @@
     glab
     gh
     llm-agents.codegraph
+
+    devenv
   ];
 }
