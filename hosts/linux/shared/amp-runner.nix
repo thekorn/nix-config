@@ -18,6 +18,7 @@ in {
     serviceConfig = {
       User = users.private;
       WorkingDirectory = "/tmp";
+      # ExecStart = "${pkgs.llm-agents.amp}/bin/amp --no-tui --runner-id ${config.networking.hostName} --discover-dirs=${discoveryDirectory} --discover-depth 3 --remote-control-terminal --amp-env";
       ExecStart = "${pkgs.llm-agents.amp}/bin/amp --no-tui --runner-id ${config.networking.hostName} --discover-dirs=${discoveryDirectory} --discover-depth 3 --remote-control-terminal";
       Restart = "always";
       RestartSec = 5;
