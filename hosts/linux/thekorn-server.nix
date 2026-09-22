@@ -59,6 +59,16 @@
     };
   };
 
+  services.github-runners.bunte-app = {
+    enable = true;
+    name = "thekorn-server-bunte-app";
+    url = "https://github.com/thekorn/bunte-app";
+    # Provision separately as root:root, mode 0600; never put tokens in the Nix store.
+    # Registration tokens expire after one hour; re-registration needs a fresh one.
+    tokenFile = "/var/lib/github-runner-secrets/bunte-app.token";
+    extraLabels = ["nixos" "thekorn-server"];
+  };
+
   home-manager.users.${users.private} = {
     imports = [
       ../../home/shared/profiles/linux-server.nix
