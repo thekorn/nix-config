@@ -67,6 +67,14 @@
     # Registration tokens expire after one hour; re-registration needs a fresh one.
     tokenFile = "/var/lib/github-runner-secrets/bunte-app.token";
     extraLabels = ["nixos" "thekorn-server"];
+    # TCP 5037 (ADB) and 5630-5633 (emulators) are reserved by host convention for this runner.
+    # Personal/local Android sessions must use different ports.
+    extraPackages = [pkgs.iproute2];
+    serviceOverrides = {
+      PrivateDevices = false;
+      DevicePolicy = "closed";
+      DeviceAllow = ["/dev/kvm rw"];
+    };
   };
 
   home-manager.users.${users.private} = {
