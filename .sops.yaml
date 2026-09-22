@@ -1,0 +1,9 @@
+# Public recipient derived from thekorn-server's SSH Ed25519 host key.
+# Private keys must stay outside this repository and the Nix store.
+keys:
+  - &thekorn-server age17k6n58kw2zje473hzmepalkluyzsgnyhlkyetmmjfeweqd9qwy0qyzk9g4
+creation_rules:
+  - path_regex: ^secrets/thekorn-server/[^/]+$
+    key_groups:
+      - age:
+          - *thekorn-server
