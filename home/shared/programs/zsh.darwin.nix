@@ -31,10 +31,6 @@ in {
     programs.oh-my-posh.enableZshIntegration = false;
 
     programs.zsh = {
-      shellAliases = {
-        sim = "open -a Simulator";
-      };
-
       initContent = lib.mkMerge [
         (lib.mkBefore ''
           if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && "$TERM" != "dumb" ]] && [[ -t 0 && -t 1 ]]; then
