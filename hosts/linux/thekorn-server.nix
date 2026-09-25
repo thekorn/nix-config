@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./configurations/thekorn-server/hardware-configuration.nix
-    ./shared/amp-runner.nix
+    ./configurations/thekorn-server/runner-vms.nix
     ./shared/attic.nix
     ./shared/home.private.nix
     ./shared/virtualisation.nix
@@ -56,24 +56,6 @@
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "prohibit-password";
-    };
-  };
-
-  services.github-runners.bunte-app = {
-    enable = true;
-    name = "thekorn-server-bunte-app";
-    url = "https://github.com/thekorn/bunte-app";
-    # Provision separately as root:root, mode 0600; never put tokens in the Nix store.
-    # Registration tokens expire after one hour; re-registration needs a fresh one.
-    tokenFile = "/var/lib/github-runner-secrets/bunte-app.token";
-    extraLabels = ["nixos" "thekorn-server"];
-    # TCP 5037 (ADB) and 5630-5633 (emulators) are reserved by host convention for this runner.
-    # Personal/local Android sessions must use different ports.
-    extraPackages = [pkgs.iproute2];
-    serviceOverrides = {
-      PrivateDevices = false;
-      DevicePolicy = "closed";
-      DeviceAllow = ["/dev/kvm rw"];
     };
   };
 
