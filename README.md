@@ -86,9 +86,24 @@ The server manages two NixOS QEMU/KVM guests with `microvm.nix`:
 Each guest has 4 vCPUs, 8 GiB RAM and a persistent 64 GiB root disk at
 `/var/lib/microvms/<vm>/root.img`. Allow 16 GiB RAM for the guests **plus** host
 headroom, and disk space for both root disks and generated Nix store images.
-Resource allocations live in
-`hosts/linux/configurations/thekorn-server/runner-vms.nix`; changing the configured
-disk size does not resize an existing disk.
+Resource defaults live in `hosts/linux/shared/runner-vms/base.nix`; changing the
+configured disk size does not resize an existing disk.
+
+Import `hosts/linux/shared/runner-vms.nix` to enable either reusable runner VM:
+
+```nix
+custom.runnerVMs.amp = {
+  enable = true;
+  hostName = "my-amp-runner"; # Also used as the Amp runner ID.
+  sshPort = 2222; # Optional; GitHub defaults to 2221.
+};
+```
+
+`custom.runnerVMs.github` has the same options. Configure GitHub registrations
+through `microvm.vms.github-runner.config.services.github-runners`, as shown in
+`hosts/linux/configurations/thekorn-server/runner-vms.nix`. Guest overrides such
+as `microvm.vms.amp-runner.config.microvm.mem = 4096` use the standard microVM
+options. Nested KVM settings remain host-specific.
 
 The guests use outbound QEMU user-mode NAT, key-only SSH and the same authorized
 key as the host. There are no host filesystem shares. Each guest has its own
@@ -158,6 +173,54 @@ acceleration. ADB and emulator ports are guest-local and no longer conflict with
 host sessions. Confirm both runners reconnect and Amp repositories survive after
 a controlled guest restart. Neither VM boot nor nested KVM can be tested in an
 Amp orb without `/dev/kvm`.
+
+### Amp runner on thekorn-server-2
+
+Amp currently runs directly on the host through `hosts/linux/shared/amp-runner.nix`,
+with runner ID `thekorn-amp-runner-2` and repositories under `/home/thekorn/devel`.
+The module's `custom.ampRunner.runnerId` option defaults to `networking.hostName`;
+server-2 overrides it without changing the host's name.
+There are no runner VMs configured on this server: Intel VT-x is disabled in
+firmware, so `/dev/kvm` is unavailable.
+
+Deploy with `nix run .#deploy-thekorn-server-2` to restore the host service after
+the attempted VM migration. Any existing VM disk is left untouched.
+
+#### Future VM migration
+
+Enable Intel Virtualization Technology / VT-x in BIOS/UEFI, reboot, and verify
+`/dev/kvm` exists first. Then replace the host's `./shared/amp-runner.nix` import
+with `./shared/runner-vms.nix`, remove the host's `custom.ampRunner.runnerId`
+override, and set:
+
+```nix
+custom.runnerVMs.amp = {
+  enable = true;
+  hostName = "thekorn-amp-runner-2";
+};
+```
+
+The guest defaults to host loopback SSH port 2222, 4 vCPUs, 8 GiB RAM, and a
+64 GiB root disk at `/var/lib/microvms/amp-runner/root.img`. To migrate:
+
+1. Finish active Amp threads and back up needed working data. Deploy with
+   `nix run .#deploy-thekorn-server-2`. Activation removes the host `amp-runner`
+   service and starts the guest; it does not copy credentials or repositories.
+2. Connect with a distinct SSH host-key alias for this guest:
+
+   ```bash
+   ssh -J thekorn@thekorn-server-2.home -p 2222 \
+     -o HostKeyAlias=thekorn-amp-runner-2 thekorn@127.0.0.1
+   ```
+
+3. Follow the Amp provisioning steps above: stop the guest service, sign in as
+   `thekorn`, provision repositories under `/home/thekorn/devel` and tool
+   credentials, then start the service. Select `thekorn-amp-runner-2` in Amp.
+4. Verify the host `amp-runner.service` is absent, `microvm@amp-runner` is active,
+   the guest runner reconnects, and repositories survive a guest restart.
+
+Host files and USB/serial devices are not passed into the guest. Existing host
+repositories remain untouched; migrate required working copies explicitly.
 
 ## Maintenance
 
