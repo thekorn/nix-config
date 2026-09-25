@@ -74,6 +74,91 @@ This connects to the matching `thekorn@<hostname>`, builds on the target, and ac
 - `thekorn-vm` (VM)
 - `thekorn-vm-desktop` (Desktop VM)
 
+### Runner VMs on thekorn-server
+
+The server manages two NixOS QEMU/KVM guests with `microvm.nix`:
+
+| VM / host systemd unit | Runner | SSH port on host loopback |
+| --- | --- | --- |
+| `microvm@github-runner` | GitHub Actions: `thekorn-server-bunte-app` | 2221 |
+| `microvm@amp-runner` | Amp: `thekorn-amp-runner` | 2222 |
+
+Each guest has 4 vCPUs, 8 GiB RAM and a persistent 64 GiB root disk at
+`/var/lib/microvms/<vm>/root.img`. Allow 16 GiB RAM for the guests **plus** host
+headroom, and disk space for both root disks and generated Nix store images.
+Resource allocations live in
+`hosts/linux/configurations/thekorn-server/runner-vms.nix`; changing the configured
+disk size does not resize an existing disk.
+
+The guests use outbound QEMU user-mode NAT, key-only SSH and the same authorized
+key as the host. There are no host filesystem shares. Each guest has its own
+writable Nix store; Amp also has the server home-manager profile and Docker.
+The guest user `thekorn` has passwordless sudo **inside the guests only**.
+NAT is not an outbound security policy: jobs can still reach the host and LAN.
+
+#### First deployment and migration
+
+1. Drain GitHub jobs and finish Amp threads on the old host runners. Back up any
+   working data you need. Deploy this branch with `nix run .#deploy-thekorn-server`.
+   This removes both host runner services and starts the VMs, but does not copy
+   host credentials, repositories, or runner state into them.
+2. On the host, verify `cat /sys/module/kvm_amd/parameters/nested` reports `1` or
+   `Y`. The configuration enables nested AMD KVM; if the already-loaded module
+   still has it disabled, reboot the server during a maintenance window. Do not
+   unload KVM while VMs are running. Firmware virtualization must be enabled too.
+3. Connect through the server from your workstation (no SSH agent forwarding is
+   needed):
+
+   ```bash
+   ssh -J thekorn@thekorn-server.home -p 2221 thekorn@127.0.0.1
+   ssh -J thekorn@thekorn-server.home -p 2222 thekorn@127.0.0.1
+   ```
+
+4. Once the old runner is stopped, remove its offline registration from the
+   repository's GitHub Actions runner settings: the guest keeps the same name
+   and does not automatically replace existing registrations. Create a fresh
+   registration token for `thekorn/bunte-app` (tokens expire after one hour).
+   Keep it in a protected local file, outside this repository. From the
+   workstation, install it in the GitHub guest:
+
+   ```bash
+   ssh -J thekorn@thekorn-server.home -p 2221 thekorn@127.0.0.1 \
+     'sudo install -d -m 0700 /var/lib/github-runner-secrets && sudo sh -c "umask 077; cat > /var/lib/github-runner-secrets/bunte-app.token"' \
+     < /path/to/fresh-registration-token
+   ssh -J thekorn@thekorn-server.home -p 2221 thekorn@127.0.0.1 \
+     'sudo systemctl start github-runner-bunte-app'
+   ```
+
+   The service is skipped until that file exists. Its existing name, repository
+   URL and labels (`nixos`, `thekorn-server`) are preserved. Registration state
+   persists in the guest, but configuration/token changes may require a fresh
+   registration token and removal of the previous offline registration.
+   Job working directories retain the NixOS module's cleanup-on-start behavior.
+5. In the Amp guest, run `sudo systemctl stop amp-runner`, then run `amp` as
+   `thekorn` and complete sign-in. Exit the interactive CLI, clone or securely copy
+   the required repositories under `/home/thekorn/devel`, then run
+   `sudo systemctl start amp-runner`. Provision Git and other tool credentials
+   separately; do not copy the entire host home or share its Docker socket.
+   Select the new `thekorn-amp-runner` in Amp.
+
+#### Operations and verification
+
+Host rebuilds update both guest systems and restart guests whose configuration
+changed. Drain jobs first: this is not a rolling or job-aware restart. Root disks
+survive rebuilds, restarts and host reboots; back them up with the VM stopped.
+The previous host runner data is left untouched. A NixOS generation rollback
+does not roll back guest disks or GitHub registrations.
+
+On the host, inspect `systemctl status microvm@github-runner microvm@amp-runner`
+and `journalctl -u microvm@github-runner -u microvm@amp-runner`. In each guest,
+inspect `systemctl status github-runner-bunte-app` or `systemctl status amp-runner`.
+Verify `nix store ping --store daemon` works in both guests. In the GitHub guest,
+check `/dev/kvm` exists, then run a real Android emulator workflow to verify nested
+acceleration. ADB and emulator ports are guest-local and no longer conflict with
+host sessions. Confirm both runners reconnect and Amp repositories survive after
+a controlled guest restart. Neither VM boot nor nested KVM can be tested in an
+Amp orb without `/dev/kvm`.
+
 ## Maintenance
 
 - **Format code**: `nix fmt .`
