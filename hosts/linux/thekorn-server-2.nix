@@ -6,14 +6,21 @@
 }: {
   imports = [
     ./configurations/thekorn-server-2/hardware-configuration.nix
-    # Keep Amp on the host until Intel VT-x is enabled in firmware.
-    # see: amp threads continue https://ampcode.com/threads/T-01a0da07-969a-7669-a453-8ee4ca1a61f1
-    ./shared/amp-runner.nix
+    ./shared/runner-vms.nix
     ./shared/home.private.nix
     ./shared/virtualisation.nix
   ];
 
-  custom.ampRunner.runnerId = "thekorn-amp-runner-2";
+  custom.runnerVMs.amp = {
+    enable = true;
+    hostName = "thekorn-amp-runner-2";
+  };
+
+  # Expose early activation errors in the host's microvm@amp-runner journal.
+  microvm.vms.amp-runner.config.boot.initrd.systemd.services.initrd-nixos-activation.serviceConfig = {
+    StandardOutput = "journal+console";
+    StandardError = "journal+console";
+  };
 
   system.stateVersion = "26.05";
 

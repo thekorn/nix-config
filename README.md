@@ -176,22 +176,9 @@ Amp orb without `/dev/kvm`.
 
 ### Amp runner on thekorn-server-2
 
-Amp currently runs directly on the host through `hosts/linux/shared/amp-runner.nix`,
-with runner ID `thekorn-amp-runner-2` and repositories under `/home/thekorn/devel`.
-The module's `custom.ampRunner.runnerId` option defaults to `networking.hostName`;
-server-2 overrides it without changing the host's name.
-There are no runner VMs configured on this server: Intel VT-x is disabled in
-firmware, so `/dev/kvm` is unavailable.
-
-Deploy with `nix run .#deploy-thekorn-server-2` to restore the host service after
-the attempted VM migration. Any existing VM disk is left untouched.
-
-#### Future VM migration
-
-Enable Intel Virtualization Technology / VT-x in BIOS/UEFI, reboot, and verify
-`/dev/kvm` exists first. Then replace the host's `./shared/amp-runner.nix` import
-with `./shared/runner-vms.nix`, remove the host's `custom.ampRunner.runnerId`
-override, and set:
+Amp is configured in a VM through `hosts/linux/shared/runner-vms.nix`, with
+guest hostname and runner ID `thekorn-amp-runner-2`. Intel VT-x is now enabled
+and `/dev/kvm` is available. Only the Amp VM is enabled on this server:
 
 ```nix
 custom.runnerVMs.amp = {
