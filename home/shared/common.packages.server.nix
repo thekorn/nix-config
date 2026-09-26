@@ -15,8 +15,6 @@
     tree-sitter
 
     glab
-    fosrl-newt
-    television
     devenv
   ];
 }
