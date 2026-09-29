@@ -15,7 +15,7 @@
     home.packages = [pkgs.devenv];
 
     xdg.configFile = {
-      "devenvs/flutter/devenv.nix".source = ./dotfiles/devenvs/flutter.nix;
+      "devenvs/flutter/devenv.nix".source = ./definitions/flutter.nix;
       "devenvs/flutter/devenv.yaml".text = ''
         inputs:
           nixpkgs:

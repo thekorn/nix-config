@@ -231,7 +231,7 @@ Flutter includes its matching Dart SDK; use `fvm flutter` / `fvm dart` for an
 app's FVM-selected SDK. Existing SDKs in `~/.local/state/fvm` are preserved.
 Android Studio, Xcode and their platform SDKs remain separately configured.
 
-Edit `home/shared/programs/dotfiles/devenvs/flutter.nix` to change the toolbox.
+Edit `home/shared/devenvs/definitions/flutter.nix` to change the toolbox.
 Its nixpkgs revision follows this repository's `flake.lock`. Rebuild the host
 after configuration changes. To omit the environment and shortcut on a host,
 set `custom.flutterDevenv.enable = false` in its Home Manager configuration.

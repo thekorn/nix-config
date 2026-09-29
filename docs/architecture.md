@@ -5,9 +5,11 @@
 - **`hosts/`**: Per-machine entry points. Each host owns both its system configuration and the home-manager profile for its primary user.
   - `darwin/shared/`: Shared macOS system modules (fonts, homebrew, preferences)
   - `linux/shared/`: Shared Linux system modules
-- **`home/shared/`**: Reusable home-manager modules only. Host files compose these modules into machine-specific user profiles.
+- **`home/shared/`**: Reusable home-manager modules and development environment definitions. Host files compose the modules into machine-specific user profiles.
   - `profiles/`: Higher-level home bundles such as `darwin.nix` and `linux-server.nix`
-  - `programs/`: Program-specific home-manager modules
+  - `programs/`: Home-manager modules for user-installed programs and their configuration
+  - `devenvs/`: Home-manager modules that expose on-demand development environments and shell shortcuts
+    - `definitions/`: Devenv definitions containing toolbox packages and environment settings, separate from Home Manager wiring
 - **`pkgs/vendored/`**: Locally vendored Nix package definitions for packages that should stay pinned or patched independently of the main `nixpkgs` input.
 
 ## Shared Configuration Modules

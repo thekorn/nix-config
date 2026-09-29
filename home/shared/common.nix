@@ -30,7 +30,6 @@
     ./programs/pnpm.nix
     ./programs/bun.nix
     ./programs/android-studio.nix
-    ./programs/flutter-devenv.nix
     ./programs/btop.nix
     ./programs/vscode.nix
     ./programs/ghostty.nix
@@ -39,6 +38,8 @@
     ./programs/workmux.nix
     ./programs/herdr.nix
     ./programs/zig.nix
+
+    ./devenvs/flutter.nix
   ];
 
   home.sessionVariables = {
