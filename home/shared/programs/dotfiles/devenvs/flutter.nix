@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   # Flutter supplies its matching Dart SDK; avoid a second, mismatched Dart.
-  packages = [pkgs.flutter pkgs.fvm];
+  packages = [pkgs.flutter pkgs.fvm] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [pkgs.cocoapods];
 
   env.DEVENV_TOOLBOX = "flutter";
 

@@ -24,7 +24,6 @@
 
     nss
     swiftformat
-    cocoapods
     nil
 
     llm-agents.cursor-agent
