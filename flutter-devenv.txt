@@ -1,0 +1,695 @@
+
+i am looking into nix devenvs - is there a way to configure devenvs on global user level? like: i do not want to maintain the devenv.nix in the project repos - some of which i do not control. i'd rather have them defined for my user, and activate them on demand
+Yes — and as of devenv 2.2, your use case is actually supported quite nicely via out-of-tree environments. You don't need a devenv.nix in repositories you don't control.
+
+I’d keep a personal repository/directory such as:
+
+~/.config/devenvs/
+├── devenv.nix
+├── devenv.yaml
+└── modules/
+    ├── node.nix
+    ├── flutter.nix
+    ├── zig.nix
+    └── rust.nix
+Then define profiles in your central devenv.nix:
+
+{ pkgs, ... }:
+
+{
+  packages = [
+    pkgs.git
+    pkgs.jq
+  ];
+
+  profiles = {
+    node.module = {
+      languages.javascript = {
+        enable = true;
+        node.enable = true;
+        pnpm.enable = true;
+      };
+    };
+
+    rust.module = {
+      languages.rust.enable = true;
+    };
+
+    zig.module = {
+      languages.zig.enable = true;
+    };
+
+    flutter.module = {
+      languages.dart.enable = true;
+
+      packages = [
+        pkgs.flutter
+      ];
+    };
+
+    web.extends = [ "node" ];
+
+    # Compose environments
+    fullstack.extends = [
+      "node"
+      "rust"
+    ];
+  };
+}
+Profiles are explicitly designed to be selected using --profile, and they can extend/combine other profiles.
+
+Option 1: activate one on demand
+From any project:
+
+cd ~/src/some-random-repository
+
+devenv \
+  --from path:$HOME/.config/devenvs \
+  --profile node \
+  shell
+
+Nothing gets added to the repository. The devenv configuration remains entirely yours. Local --from path:... sources load their complete configuration, including devenv.yaml, imports, and modules.
+
+You could make this pleasant with shell aliases/functions:
+
+dv-node() {
+  devenv --from path:$HOME/.config/devenvs --profile node shell
+}
+
+dv-rust() {
+  devenv --from path:$HOME/.config/devenvs --profile rust shell
+}
+
+dv-zig() {
+  devenv --from path:$HOME/.config/devenvs --profile zig shell
+}
+
+Then:
+
+cd ~/work/some-project
+dv-node
+
+Option 2: bind a repo to your personal devenv
+This is probably exactly what you're looking for.
+
+With devenv 2.2:
+
+cd ~/work/some-project
+
+devenv \
+  --from path:$HOME/.config/devenvs \
+  --profile node \
+  allow
+
+devenv remembers that this directory should use your external configuration and the selected profile.
+
+Afterwards:
+
+cd ~/work/some-project
+
+devenv shell
+
+works without --from or --profile.
+
+Even nicer, enable the devenv shell hook:
+
+# ~/.zshrc
+eval "$(devenv hook zsh)"
+
+Then entering the directory can automatically activate the environment:
+
+$ cd ~/work/some-project
+(devenv) $
+No .envrc, devenv.nix, devenv.yaml, or other files need to be placed into that project's Git repository. The native auto-activation mechanism and devenv allow are documented here.
+
+To remove it:
+
+cd ~/work/some-project
+devenv revoke
+
+This could fit your Nix setup especially well
+Given that you already manage your machines declaratively with Nix/Nix-Darwin/NixOS, I'd probably take it one step further and make your personal environments their own flake/repository, something like:
+
+github:thekorn/devenvs
+
+devenv.nix
+devenv.yaml
+modules/
+  common.nix
+  node.nix
+  rust.nix
+  zig.nix
+  flutter.nix
+  bun.nix
+  nix.nix
+Then you could use it locally:
+
+devenv --from path:~/projects/devenvs --profile zig shell
+
+or directly from GitHub:
+
+devenv \
+  --from github:thekorn/devenvs \
+  --profile zig \
+  shell
+
+And bind arbitrary repositories:
+
+cd ~/src/some-zig-project
+
+devenv \
+  --from github:thekorn/devenvs \
+  --profile zig \
+  allow
+
+That gives you a nice separation:
+
+                 your devenv repo
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+      node            zig           flutter
+     profile         profile         profile
+        │              │              │
+        ▼              ▼              ▼
+ ~/work/bunte     ~/src/vulkan     ~/src/app
+   repo A            repo B          repo C
+
+      repositories remain untouched
+The only caveat is that ~/.config/devenv/config.yaml is not a global devenv.nix; it's intended for personal TUI/presentation settings rather than packages/languages/services.
+
+So for what you described, I'd use one external personal devenv + profiles + devenv --from … allow. That's considerably cleaner than putting .envrc/devenv.nix into every project, especially for your mix of Zig, Rust, Flutter, Node/Bun, and Nix projects. devenv documentation on out-of-tree environments
+
+as you know, i have my entire systems managed with nix flakes. is there a way to define those devenvs with my nix config?
+Yes. The clean pattern is to make the devenv definitions part of your system flake, then expose/materialize them into a stable user path such as ~/.config/devenvs. Since you're already using Home Manager, that fits especially well.
+
+For example, in your Nix config:
+
+nix-config/
+├── flake.nix
+├── home/
+│   └── devenvs.nix
+└── devenvs/
+    ├── devenv.nix
+    ├── devenv.yaml
+    └── modules/
+        ├── common.nix
+        ├── node.nix
+        ├── zig.nix
+        ├── rust.nix
+        └── flutter.nix
+Then your Home Manager module can expose the directory:
+
+{ config, ... }:
+
+{
+  home.file.".config/devenvs" = {
+    source = ../devenvs;
+    recursive = true;
+  };
+}
+After your normal:
+
+darwin-rebuild switch --flake ...
+# or
+nixos-rebuild switch --flake ...
+
+you'd have:
+
+~/.config/devenvs/
+    devenv.nix
+    devenv.yaml
+    modules/
+        node.nix
+        zig.nix
+        ...
+and can use exactly the approach from before:
+
+devenv \
+  --from path:$HOME/.config/devenvs \
+  --profile zig \
+  shell
+
+Or bind the current project once:
+
+devenv \
+  --from path:$HOME/.config/devenvs \
+  --profile zig \
+  allow
+
+Then devenv shell / auto-activation takes over.
+
+I would actually avoid copying the files
+Because Home Manager can symlink directly into the Nix store, I'd probably do:
+
+xdg.configFile."devenvs".source = ../devenvs;
+That gives you conceptually:
+
+~/.config/devenvs
+       │
+       └──→ /nix/store/abc...-source/devenvs
+This is quite elegant because your devenv definitions become completely declarative and immutable. Changing one means changing your Nix config and rebuilding.
+
+Even better: make a small Home Manager abstraction
+Given your setup, I'd probably create something along these lines:
+
+{ config, lib, pkgs, ... }:
+
+let
+  devenvs = {
+    node = ./devenvs/node;
+    zig = ./devenvs/zig;
+    flutter = ./devenvs/flutter;
+    rust = ./devenvs/rust;
+  };
+in
+{
+  programs.devenv.enable = true;
+
+  xdg.configFile = lib.mapAttrs' (
+    name: source:
+      lib.nameValuePair "devenvs/${name}" {
+        inherit source;
+      }
+  ) devenvs;
+}
+with:
+
+devenvs/
+├── node/
+│   ├── devenv.nix
+│   └── devenv.yaml
+├── zig/
+│   ├── devenv.nix
+│   └── devenv.yaml
+├── flutter/
+│   ├── devenv.nix
+│   └── devenv.yaml
+└── rust/
+    ├── devenv.nix
+    └── devenv.yaml
+Then:
+
+devenv --from path:$HOME/.config/devenvs/zig shell
+
+But given devenv's profile support, one environment with profiles is probably nicer:
+
+devenvs/
+└── global/
+    ├── devenv.nix
+    ├── devenv.yaml
+    └── modules/
+        ├── common.nix
+        ├── zig.nix
+        ├── node.nix
+        ├── flutter.nix
+        └── rust.nix
+and:
+
+xdg.configFile."devenvs/global".source = ./devenvs/global;
+so your commands become:
+
+devenv --from path:$HOME/.config/devenvs/global --profile zig shell
+
+devenv --from path:$HOME/.config/devenvs/global --profile node shell
+
+devenv --from path:$HOME/.config/devenvs/global --profile flutter shell
+
+You could then add a tiny shell function:
+
+dv() {
+  devenv \
+    --from "path:$HOME/.config/devenvs/global" \
+    --profile "$1" \
+    shell
+}
+
+giving you:
+
+cd some-random-zig-repository
+dv zig
+
+One thing I'd change from my previous answer
+I wouldn't put the devenv definitions into a separate Git repository in your case. Since your existing flake already describes your Macs/NixOS machines and your development tooling, the devenv definitions are really another part of that same declarative configuration.
+
+I'd structure the responsibility as:
+
+                     nix-config flake
+                           │
+          ┌────────────────┼─────────────────┐
+          │                │                 │
+      nix-darwin        NixOS         Home Manager
+                                             │
+                                       personal devenvs
+                                             │
+                       ┌─────────┬────────────┼─────────┐
+                       │         │            │         │
+                      zig      flutter       node      rust
+                       │
+                       ▼
+              arbitrary git repo
+              (remains untouched)
+That gives you the property you're after: a freshly installed Mac/NixOS machine gets not only your normal CLI tools and configuration, but also your complete collection of on-demand project environments from the same flake.
+
+One additional refinement I'd consider for your setup is declaring a dv command through Nix rather than .zshrc, with things like dv zig, dv flutter, and potentially dv allow zig. Then the command itself is also managed by your flake.
+
+okay, lets say i need a devenv which is for my typescript project, using pnpm as package manager, which needs the pm2 package globally installed
+
+Exactly. For that environment I'd keep project dependencies (typescript, etc.) in the project's package.json, while devenv supplies Node, pnpm, and the globally available pm2 executable.
+
+Assuming pm2 from nixpkgs is acceptable, your profile can be very small:
+
+{ pkgs, ... }:
+
+{
+  profiles.typescript.module = {
+    languages.javascript = {
+      enable = true;
+      pnpm.enable = true;
+    };
+
+    languages.typescript.enable = true;
+
+    packages = [
+      pkgs.pm2
+    ];
+  };
+}
+devenv has first-class pnpm support, and its packages option puts Nix packages on the environment's PATH.
+
+So inside:
+
+devenv \
+  --from path:$HOME/.config/devenvs/global \
+  --profile typescript \
+  shell
+
+you get:
+
+node --version
+pnpm --version
+pm2 --version
+
+without installing pm2 into your actual user environment.
+
+I'd probably make Node explicit
+For reproducibility, I'd select the Node version through Nix rather than inheriting devenv's default:
+
+{ pkgs, ... }:
+
+{
+  profiles.typescript.module = {
+    languages.javascript = {
+      enable = true;
+
+      package = pkgs.nodejs_24;
+
+      pnpm = {
+        enable = true;
+        package = pkgs.pnpm;
+      };
+    };
+
+    languages.typescript.enable = true;
+
+    packages = [
+      pkgs.pm2
+    ];
+  };
+}
+languages.javascript.package controls the Node package, while languages.javascript.pnpm.package lets you control the pnpm package.
+
+Then your actual repo remains completely untouched:
+
+your nix-config
+│
+├── devenvs/
+│   └── devenv.nix
+│       └── profile: typescript
+│            ├── node 24
+│            ├── pnpm
+│            ├── pm2
+│            └── typescript tooling
+│
+└── home-manager
+      └── ~/.config/devenvs/global → /nix/store/...
+
+~/work/random-project/
+├── package.json
+├── pnpm-lock.yaml
+└── src/
+One distinction: pm2 isn't actually "globally npm-installed"
+With this approach:
+
+packages = [ pkgs.pm2 ];
+Nix provides pm2. That's preferable if all you need is:
+
+pm2 start ...
+
+It's available globally inside the devenv, but doesn't mutate an npm global directory.
+
+If you specifically require the npm-distributed PM2 rather than nixpkgs' PM2, that's a different problem. We could package the npm package through Nix, but I wouldn't do that unless there's a concrete reason.
+
+And pnpm install?
+You can optionally tell devenv to install the project's dependencies:
+
+languages.javascript.pnpm = {
+  enable = true;
+  install.enable = true;
+};
+devenv supports this directly.
+
+Personally, for your global/out-of-tree environment I'd leave that off. Entering an arbitrary repository shouldn't unexpectedly modify its node_modules; I'd still run:
+
+pnpm install
+
+myself when appropriate.
+
+So my starting definition for you would simply be:
+
+{ pkgs, ... }:
+
+{
+  profiles.typescript.module = {
+    languages.javascript = {
+      enable = true;
+      package = pkgs.nodejs_24;
+      pnpm.enable = true;
+    };
+
+    languages.typescript.enable = true;
+
+    packages = [
+      pkgs.pm2
+    ];
+  };
+}
+This also scales nicely: we can make typescript a base profile and add typescript-bun, typescript-playwright, typescript-aws, etc. as profiles that extends = [ "typescript" ]. devenv profiles explicitly support this kind of composition.
+
+devenv JavaScript options · devenv profiles
+
+i also need the npm package @microsoft/rush installed
+Yes. In that case I would add Rush to the same environment. The important distinction is that @microsoft/rush is an npm package, but for a declarative Nix setup I'd prefer packaging/exposing it through Nix rather than doing npm install -g every time.
+
+If rush is available in your pinned nixpkgs, the profile becomes essentially:
+
+{ pkgs, ... }:
+
+{
+  profiles.typescript.module = {
+    languages.javascript = {
+      enable = true;
+      package = pkgs.nodejs_24;
+
+      pnpm.enable = true;
+    };
+
+    packages = [
+      pkgs.pm2
+      pkgs.rush
+    ];
+  };
+}
+devenv's packages are added to the environment's PATH, so conceptually both are "global" within the devenv.
+
+Then:
+
+dv typescript
+
+node --version
+pnpm --version
+pm2 --version
+rush --version
+
+But there's an important Rush-specific wrinkle
+For a Rush monorepo, you generally don't need to globally install the exact Rush version used by the repository. Rush's normal setup uses a global Rush launcher, which then reads:
+
+common/config/rush/rush.json
+and uses the repository's configured Rush version.
+
+So the environment should provide the Rush launcher, while the repository remains authoritative about which Rush version it actually uses.
+
+That's particularly attractive for your case because you can use the same:
+
+dv typescript
+
+across different Rush repos without coupling your global environment to a specific Rush version.
+
+If pkgs.rush isn't in your nixpkgs
+I wouldn't fall back to something like:
+
+enterShell = ''
+  npm install -g @microsoft/rush
+'';
+That throws away most of the reason you're doing this through Nix in the first place: it is mutable, network-dependent and not reproducible.
+
+Instead, I'd package @microsoft/rush in your system flake and then make that package available to the devenv.
+
+For example, I'd structure your Nix config roughly as:
+
+nix-config/
+├── flake.nix
+├── packages/
+│   └── rush.nix
+├── devenvs/
+│   └── global/
+│       └── devenv.nix
+└── modules/
+    └── home/
+        └── devenv.nix
+This also gives us a nice place for any other npm CLI tools you want globally inside development environments.
+
+One thing I want to correct from my previous answer: languages.typescript.enable isn't necessary here. devenv's current JavaScript module already includes TypeScript/JavaScript LSP support; Node and pnpm are configured under languages.javascript.
+
+So I'd aim for your eventual developer UX to be:
+
+cd ~/work/ctf
+
+dv typescript
+
+and suddenly you have:
+
+node       Node 24
+pnpm       pnpm
+rush       @microsoft/rush launcher
+pm2        PM2
+
++ whatever the repository itself declares
+without installing any of those globally on the Mac and without adding a single devenv-related file to the CTF repository. That seems like a particularly good fit for your Rush-monorepo use case.
+
+i am using oh my posh to style my zsh shell. is there a way to change the style when i am in a devenv?
+Yes. The nicest way is to make Oh My Posh detect an environment variable that devenv sets—or, even better, set your own variable in the devenv profile.
+
+For example, in your devenv.nix:
+
+profiles.typescript.module = {
+  env.DEVENV_PROFILE = "typescript";
+
+  # ...
+};
+Then in your Oh My Posh config, use that variable to conditionally render a segment. Oh My Posh templates can access environment variables via .Env. So you can add something like:
+
+{
+  "type": "text",
+  "style": "powerline",
+  "template": "  devenv:{{ .Env.DEVENV_PROFILE }} ",
+  "foreground": "#ffffff",
+  "background": "#7c3aed"
+}
+
+with a condition:
+
+{
+  "type": "text",
+  "style": "powerline",
+  "template": "  {{ .Env.DEVENV_PROFILE }} ",
+  "foreground": "#ffffff",
+  "background": "#7c3aed",
+  "include_folders": [],
+  "properties": {
+    "cache_duration": "none"
+  }
+}
+
+However, for actually hiding it outside devenv, I'd use Oh My Posh's template conditionals directly:
+
+{
+  "type": "text",
+  "style": "powerline",
+  "template": "{{ if .Env.DEVENV_PROFILE }}  {{ .Env.DEVENV_PROFILE }} {{ end }}",
+  "foreground": "#ffffff",
+  "background": "#7c3aed"
+}
+
+So normally:
+
+~/src/ctf ❯
+and after:
+
+dv typescript
+
+you could get:
+
+~/src/ctf   typescript ❯
+You can go further and change the entire prompt
+If by "change the style" you mean actually make the prompt look different, rather than merely adding a devenv indicator, I'd make your Oh My Posh config conditional.
+
+Oh My Posh's template engine lets you use .Env, so blocks/segments can vary based on:
+
+DEVENV_PROFILE=typescript
+For example, your normal prompt could have:
+
+"template": "{{ if .Env.DEVENV_PROFILE }}...devenv style...{{ else }}...normal style...{{ end }}"
+
+This lets you change things like the prompt symbol, labels, backgrounds, icons, etc.
+
+Oh My Posh template documentation
+
+I'd make this part of your Nix abstraction
+Since you're building these environments declaratively, I'd actually standardize it:
+
+profiles = {
+  typescript.module = {
+    env.DEVENV_PROFILE = "typescript";
+
+    languages.javascript = {
+      enable = true;
+      package = pkgs.nodejs_24;
+      pnpm.enable = true;
+    };
+
+    packages = [
+      pkgs.pm2
+      pkgs.rush
+    ];
+  };
+
+  zig.module = {
+    env.DEVENV_PROFILE = "zig";
+    languages.zig.enable = true;
+  };
+
+  flutter.module = {
+    env.DEVENV_PROFILE = "flutter";
+    # ...
+  };
+};
+Then Oh My Posh has a generic segment:
+
+{
+  "type": "text",
+  "style": "powerline",
+  "template": "{{ if .Env.DEVENV_PROFILE }} 󰏗 {{ .Env.DEVENV_PROFILE }} {{ end }}"
+}
+
+and doesn't need to know anything about your individual environments.
+
+You could even expose two variables:
+
+env = {
+  DEVENV_ACTIVE = "1";
+  DEVENV_PROFILE = "typescript";
+};
+Then DEVENV_ACTIVE controls the visual style and DEVENV_PROFILE controls the displayed name.
+
+That would be my preferred setup: devenv provides semantic context, Oh My Posh decides how that context looks.

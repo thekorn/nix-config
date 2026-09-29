@@ -34,6 +34,14 @@
           "type": "path"
         },
         {
+          "background": "#b48ead",
+          "foreground": "#3b4252",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "{{ if .Env.DEVENV_TOOLBOX }} devenv:{{ .Env.DEVENV_TOOLBOX }} {{ end }}",
+          "type": "text"
+        },
+        {
           "background": "#a3be8c",
           "background_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#ebcb8b{{ end }}",

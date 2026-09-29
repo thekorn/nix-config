@@ -20,6 +20,12 @@
           "type": "path"
         },
         {
+          "foreground": "#C591E8",
+          "style": "plain",
+          "template": "{{ if .Env.DEVENV_TOOLBOX }} devenv:{{ .Env.DEVENV_TOOLBOX }} {{ end }}",
+          "type": "text"
+        },
+        {
           "foreground": "#D0666F",
           "properties": {
             "branch_icon": "",

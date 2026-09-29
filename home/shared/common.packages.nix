@@ -22,7 +22,6 @@
 
     firefox-bin-unwrapped
 
-    flutter
     nss
     swiftformat
     cocoapods
@@ -30,8 +29,6 @@
 
     llm-agents.cursor-agent
     llm-agents.opencode
-
-    fvm
 
     glab
     gh

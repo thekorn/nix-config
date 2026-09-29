@@ -30,12 +30,11 @@
     ./programs/pnpm.nix
     ./programs/bun.nix
     ./programs/android-studio.nix
-    ./programs/dart-cli.nix
+    ./programs/flutter-devenv.nix
     ./programs/btop.nix
     ./programs/vscode.nix
     ./programs/ghostty.nix
     ./programs/mpv.nix
-    ./programs/fvm.nix
     ./programs/codebook.nix
     ./programs/workmux.nix
     ./programs/herdr.nix
@@ -53,7 +52,6 @@
   };
 
   home.sessionPath = [
-    "$HOME/.pub-cache/bin"
     "$HOME/.local/bin"
   ];
 }

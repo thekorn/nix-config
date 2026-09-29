@@ -17,11 +17,9 @@
     pnpm.enable = true;
     bun.enable = true;
     androidStudio.enable = true;
-    dartCli.enable = true;
     btop.enable = true;
     ghostty.enable = true;
     mpv.enable = true;
-    fvm.enable = true;
     codebook.enable = true;
     workmux.enable = false;
     herdr.enable = false;

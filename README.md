@@ -209,6 +209,36 @@ The guest defaults to host loopback SSH port 2222, 4 vCPUs, 8 GiB RAM, and a
 Host files and USB/serial devices are not passed into the guest. Existing host
 repositories remain untouched; migrate required working copies explicitly.
 
+## Global Flutter toolbox
+
+Home Manager provides `~/.config/devenvs/flutter` on every user profile. From
+any Flutter app directory, run:
+
+```zsh
+dv-flutter                 # Enter an interactive Zsh with Flutter, Dart and FVM
+dv-flutter flutter doctor  # Or run one command without staying in the shell
+exit                       # Leave the interactive toolbox
+```
+
+Both Oh My Posh themes show `devenv:flutter` while the toolbox is active.
+There is no auto-activation and no need for app-local devenv configuration.
+The shortcut keeps `.devenv/` and `devenv.lock` under
+`~/.local/state/devenvs/flutter` (Home Manager's `xdg.stateHome`) and returns to
+the app directory inside the activated environment. No devenv files are created
+in the app directory. `DEVENV_ROOT` points to the global state directory, so
+this toolbox is intended for packages, not project-relative tasks or services.
+Flutter includes its matching Dart SDK; use `fvm flutter` / `fvm dart` for an
+app's FVM-selected SDK. Existing SDKs in `~/.local/state/fvm` are preserved.
+Android Studio, Xcode and their platform SDKs remain separately configured.
+
+Edit `home/shared/programs/dotfiles/devenvs/flutter.nix` to change the toolbox.
+Its nixpkgs revision follows this repository's `flake.lock`. Rebuild the host
+after configuration changes. To omit the environment and shortcut on a host,
+set `custom.flutterDevenv.enable = false` in its Home Manager configuration.
+Flutter, Dart, FVM and the Pub executable path are no longer installed/exposed
+by the normal user profile. Start a fresh login session after switching to drop
+the old PATH and session variables; existing Pub/FVM caches are not deleted.
+
 ## Maintenance
 
 - **Format code**: `nix fmt .`
