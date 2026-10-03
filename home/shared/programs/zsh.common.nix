@@ -5,7 +5,7 @@
   ...
 }: {
   config = lib.mkIf config.custom.zsh.enable {
-    home.packages = with pkgs; [fnm curl];
+    home.packages = with pkgs; [curl];
     programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -50,19 +50,11 @@
         setopt AUTO_PUSHD
         setopt PUSHD_IGNORE_DUPS
         setopt PUSHD_MINUS
-
-        eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
-        if [[ -n "$ZSH_FNM_NODE_VERSION" && "$(fnm default)" != "v''${ZSH_FNM_NODE_VERSION}" ]]; then
-          fnm default "$ZSH_FNM_NODE_VERSION"
-        fi
       '';
 
       sessionVariables = {
         # CTF
         APH = "Pragma: akamai-x-get-cache-tags, akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id, akamai-x-request-trace, akamai-x--meta-trace, akama-xi-get-extracted-values";
-
-        # fnm
-        ZSH_FNM_NODE_VERSION = "24.18.0";
       };
 
       dirHashes = {

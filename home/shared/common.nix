@@ -39,6 +39,7 @@
     ./programs/herdr.nix
     ./programs/zig.nix
 
+    ./devenvs/ctf.nix
     ./devenvs/flutter.nix
   ];
 

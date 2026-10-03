@@ -103,19 +103,6 @@
           "template": " 󱄅 "
         },
         {
-          "background": "#b48ead",
-          "foreground": "#3b4252",
-          "invert_powerline": true,
-          "powerline_symbol": "\ue0b2",
-          "properties": {
-            "fetch_version": true,
-            "display_mode": "always"
-          },
-          "style": "powerline",
-          "template": " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} \ue718 ",
-          "type": "node"
-        },
-        {
           "background": "#00acd7",
           "foreground": "#111111",
           "invert_powerline": true,

@@ -38,14 +38,6 @@
                     "type": "git"
                 },
                 {
-                    "background": "#8be9fd",
-                    "foreground": "#f8f8f2",
-                    "powerline_symbol": "\ue0b0",
-                    "style": "powerline",
-                    "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
-                    "type": "node"
-                },
-                {
                     "background": "#ff79c6",
                     "foreground": "#f8f8f2",
                     "properties": {

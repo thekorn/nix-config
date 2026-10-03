@@ -3,6 +3,7 @@
     fd
     curl
     less
+    nodejs_26
     awscli2
     jq
     htop

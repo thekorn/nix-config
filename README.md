@@ -239,6 +239,24 @@ Flutter, Dart, FVM and the Pub executable path are no longer installed/exposed
 by the normal user profile. Start a fresh login session after switching to drop
 the old PATH and session variables; existing Pub/FVM caches are not deleted.
 
+## Global CTF toolbox
+
+Run `dv-ctf` from any project directory to enter the CTF environment, or use
+`dv-ctf <command>` to run a single command. It includes fnm, mongosh, the Docker
+CLI, Node.js, awscli2, mkcert, mongodb-tools, jq, `@microsoft/rush@5.166.0`,
+`pnpm@10.27.0`, and pm2. Docker requires an existing daemon (for example,
+Docker Desktop on macOS).
+
+Like the Flutter toolbox, it keeps devenv state outside the project, under
+`~/.local/state/devenvs/ctf`. The Node tools are installed there on first entry
+(requiring npm registry access) and reused on subsequent entries. pm2 is
+unpinned and resolves to the current version at installation time. fnm is
+initialized for manual Node version selection with `fnm use`.
+
+Edit `home/shared/devenvs/definitions/ctf.nix` to change the toolbox and rebuild
+the host to activate it. Set `custom.ctfDevenv.enable = false` in a host's Home
+Manager configuration to omit it.
+
 ## Maintenance
 
 - **Format code**: `nix fmt .`
