@@ -2,7 +2,7 @@
   homebrew = {
     casks = [
       #"obs"
-      #"steam"
+      "steam"
       "parallels"
       #"multipass"
       #"nvidia-geforce-now"
