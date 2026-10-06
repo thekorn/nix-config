@@ -23,6 +23,8 @@
 
     firefox-bin-unwrapped
 
+    flutter
+    fvm
     nss
     swiftformat
     nil

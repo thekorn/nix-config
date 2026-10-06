@@ -235,9 +235,8 @@ Edit `home/shared/devenvs/definitions/flutter.nix` to change the toolbox.
 Its nixpkgs revision follows this repository's `flake.lock`. Rebuild the host
 after configuration changes. To omit the environment and shortcut on a host,
 set `custom.flutterDevenv.enable = false` in its Home Manager configuration.
-Flutter, Dart, FVM and the Pub executable path are no longer installed/exposed
-by the normal user profile. Start a fresh login session after switching to drop
-the old PATH and session variables; existing Pub/FVM caches are not deleted.
+Flutter and FVM are also installed in the normal user profile, while the
+`dv-flutter` toolbox remains available for an isolated development shell.
 
 ## Global CTF toolbox
 

@@ -8,6 +8,7 @@
     #slack
     tflint
     ruby_4_0
+    llm-agents.amp
   ];
   home.sessionVariables = {
     #jira
