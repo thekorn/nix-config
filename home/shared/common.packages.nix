@@ -25,6 +25,7 @@
 
     flutter
     fvm
+    cocoapods
     nss
     swiftformat
     nil

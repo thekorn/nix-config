@@ -235,7 +235,7 @@ Edit `home/shared/devenvs/definitions/flutter.nix` to change the toolbox.
 Its nixpkgs revision follows this repository's `flake.lock`. Rebuild the host
 after configuration changes. To omit the environment and shortcut on a host,
 set `custom.flutterDevenv.enable = false` in its Home Manager configuration.
-Flutter and FVM are also installed in the normal user profile, while the
+Flutter, FVM and CocoaPods are also installed in the normal macOS user profile, while the
 `dv-flutter` toolbox remains available for an isolated development shell.
 
 ## Global CTF toolbox
