@@ -33,7 +33,6 @@
       zulu17
 
       prismlauncher
-      discord
 
       keymapp
       #llm-agents.gemini-cli
