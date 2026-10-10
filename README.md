@@ -83,10 +83,12 @@ The server manages two NixOS QEMU/KVM guests with `microvm.nix`:
 | `microvm@github-runner` | GitHub Actions: `thekorn-server-bunte-app` | 2221 |
 | `microvm@amp-runner` | Amp: `thekorn-amp-runner` | 2222 |
 
-Each guest has 4 vCPUs, 8 GiB RAM and a persistent 64 GiB root disk at
-`/var/lib/microvms/<vm>/root.img`. Allow 16 GiB RAM for the guests **plus** host
+Each guest has 4 vCPUs and a persistent 64 GiB root disk at
+`/var/lib/microvms/<vm>/root.img`. The GitHub guest has 8 GiB RAM; the Amp guest
+has 16 GiB. Allow 24 GiB RAM for the guests **plus** host
 headroom, and disk space for both root disks and generated Nix store images.
-Resource defaults live in `hosts/linux/shared/runner-vms/base.nix`; changing the
+Resource defaults live in `hosts/linux/shared/runner-vms/base.nix`, with Amp's
+memory allocation in `hosts/linux/shared/runner-vms/amp.nix`; changing the
 configured disk size does not resize an existing disk.
 
 Import `hosts/linux/shared/runner-vms.nix` to enable either reusable runner VM:
@@ -102,7 +104,7 @@ custom.runnerVMs.amp = {
 `custom.runnerVMs.github` has the same options. Configure GitHub registrations
 through `microvm.vms.github-runner.config.services.github-runners`, as shown in
 `hosts/linux/configurations/thekorn-server/runner-vms.nix`. Guest overrides such
-as `microvm.vms.amp-runner.config.microvm.mem = 4096` use the standard microVM
+as `microvm.vms.amp-runner.config.microvm.mem = lib.mkForce 4096` use the standard microVM
 options. Nested KVM settings remain host-specific.
 
 The guests use outbound QEMU user-mode NAT, key-only SSH and the same authorized
@@ -187,7 +189,7 @@ custom.runnerVMs.amp = {
 };
 ```
 
-The guest defaults to host loopback SSH port 2222, 4 vCPUs, 8 GiB RAM, and a
+The guest defaults to host loopback SSH port 2222, 4 vCPUs, 16 GiB RAM, and a
 64 GiB root disk at `/var/lib/microvms/amp-runner/root.img`. To migrate:
 
 1. Finish active Amp threads and back up needed working data. Deploy with

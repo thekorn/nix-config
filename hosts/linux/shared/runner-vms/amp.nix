@@ -11,6 +11,8 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  microvm.mem = 16384;
+
   users.users.${users.private}.linger = true;
   home-manager = {
     extraSpecialArgs = {inherit inputs self users;};
