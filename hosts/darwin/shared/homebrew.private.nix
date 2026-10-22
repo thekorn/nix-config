@@ -6,7 +6,7 @@
       "affinity"
       "chatgpt"
       "amp-app"
-      "cloudflare-warp"
+      # "cloudflare-warp"
     ];
   };
 }
