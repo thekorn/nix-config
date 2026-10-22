@@ -8,6 +8,7 @@
       #"nvidia-geforce-now"
       #"lm-studio"
       "raspberry-pi-imager"
+      "focusrite-control-2"
     ];
   };
 }
