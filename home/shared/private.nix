@@ -3,5 +3,5 @@
     llm-agents.amp
     uv
   ];
-  programs.discord.enable = true;
+  programs.discord.enable = false;
 }
