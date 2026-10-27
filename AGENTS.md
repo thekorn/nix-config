@@ -8,7 +8,7 @@
 
 ## Hosts
 
-- Darwin: `thekorn-macbook`, `thekorn-studio`, `BFG-024849` (user: `d438477`)
+- Darwin: `thekorn-macbook`, `thekorn-studio`, `M-G19X71XW4W` (user: `d438477`)
 - Linux: `thekorn-server`
 
 See [docs/architecture.md](docs/architecture.md) for structure details.

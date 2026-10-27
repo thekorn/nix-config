@@ -115,7 +115,7 @@
         hostModule = ./hosts/darwin/thekornStudio.nix;
         username = users.private;
       };
-      BFG-043556 = {
+      M-G19X71XW4W = {
         hostModule = ./hosts/darwin/thekornWork.nix;
         username = users.work;
       };

@@ -65,7 +65,7 @@ This connects to the matching `thekorn@<hostname>`, builds on the target, and ac
 
 - `thekorn-macbook` (Personal MacBook)
 - `thekorn-studio` (Personal Mac Studio)
-- `BFG-043556` (Work Laptop, user: `d438477`)
+- `M-G19X71XW4W` (Work Laptop, user: `d438477`)
 
 ### Linux
 
