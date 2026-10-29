@@ -1,6 +1,5 @@
 {lib, ...}: {
   imports = [
-    ./initrd-compat.nix # remove once https://github.com/microvm-nix/microvm.nix/pull/627 is merged
     ../home.private.nix
     ../../../shared/attic-cache.nix
   ];
