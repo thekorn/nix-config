@@ -17,6 +17,7 @@
       "helium-browser"
       "google-chrome"
       "cursor"
+      "finetune"
       "steipete/tap/codexbar"
       "abue-ammar/tinycast/tinycast"
       #"orchard"
