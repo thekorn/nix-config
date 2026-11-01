@@ -1,0 +1,43 @@
+AI session integration tests model independent machines with fake agents, but
+their liveness checks still see the build host's processes. On macOS, another
+user's unreadable Node process can therefore make an idle Pi fixture look live.
+
+Give each test machine its own proc fixture. The override is compiled only with
+the existing test-utils feature; the installed binary keeps real process checks.
+
+--- a/crates/atuin-common/src/harnesstools/sync/liveness.rs
++++ b/crates/atuin-common/src/harnesstools/sync/liveness.rs
+@@ -106,6 +106,13 @@ impl Processes {
+     /// This machine's processes.
+     #[must_use]
+     pub fn here() -> Self {
++        // Integration-test machines must not share the build host's processes.
++        // Normal builds never accept this override.
++        #[cfg(feature = "test-utils")]
++        if let Some(root) = crate::env::var_os("ATUIN_TEST_PROCFS") {
++            return Self::ProcFs(PathBuf::from(root));
++        }
++
+         if cfg!(target_os = "linux") {
+             Self::ProcFs(PathBuf::from("/proc"))
+         } else if sysinfo::IS_SUPPORTED_SYSTEM {
+--- a/crates/atuin/tests/common/ai.rs
++++ b/crates/atuin/tests/common/ai.rs
+@@ -156,6 +156,9 @@ impl Machine {
+     /// `sync`, if any: its daemon syncing every so many seconds, or (0) never.
+     fn configured(sync: Option<(&str, u32)>, top: &str, threads: &str) -> Self {
+         let env = FreshEnv::new();
++        // These machines write transcripts directly, without running real agents.
++        // Keep their idle process tables independent of the host and one another.
++        std::fs::create_dir(env.home().join("proc")).unwrap();
+         let bin = tempfile::Builder::new().prefix("bin-").tempdir_in(target_tmp()).unwrap();
+         install_fakes(bin.path(), &Agent::ALL);
+         for agent in Agent::ALL {
+@@ -234,6 +237,7 @@ impl Machine {
+     pub fn atuin(&self, args: &[&str]) -> Command {
+         let mut command = self.env.atuin(args);
+         command.env("PATH", self.path_var());
++        command.env("ATUIN_TEST_PROCFS", self.home().join("proc"));
+         // The harness turns automatic sync off for every command; the config decides here.
+         command.env_remove("ATUIN_AUTO_SYNC");
+         command
