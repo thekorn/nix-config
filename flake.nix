@@ -32,9 +32,7 @@
     };
 
     hunk = {
-      # temporary fix, there is some unstable main right now
-      # url = "github:modem-dev/hunk";
-      url = "github:modem-dev/hunk/v0.20.1";
+      url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -69,7 +67,6 @@
         (prev.vendored or {})
         // {
           container = final.callPackage ./pkgs/vendored/container.nix {};
-          hunk = final.callPackage ./pkgs/vendored/hunk.nix {};
           tmux34 = final.callPackage ./pkgs/vendored/tmux34.nix {};
         };
     };
