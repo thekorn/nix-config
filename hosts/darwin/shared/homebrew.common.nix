@@ -18,14 +18,12 @@
       "google-chrome"
       "cursor"
       "finetune"
-      "steipete/tap/codexbar"
-      "abue-ammar/tinycast/tinycast"
+      "codexbar"
+      "tinycast"
       #"orchard"
     ];
     taps = [
       #"modem-dev/tap"
-      "steipete/tap"
-      "abue-ammar/tinycast"
     ];
     brews = [
       "kcov"
