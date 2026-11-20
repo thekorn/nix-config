@@ -12,6 +12,7 @@
   ];
 
   custom.preferences.blockAllIncoming = false;
+  custom.preferences.dockTerminal = "/Applications/Rex Beta.app";
 
   documentation.enable = false;
   system.tools.darwin-uninstaller.enable = false;

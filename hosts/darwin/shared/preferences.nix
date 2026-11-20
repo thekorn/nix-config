@@ -21,6 +21,12 @@ in {
       default = true;
       description = "Whether the macOS application firewall blocks all incoming connections.";
     };
+
+    dockTerminal = lib.mkOption {
+      type = lib.types.str;
+      default = "${pkgs.ghostty-bin}/Applications/Ghostty.app";
+      description = "Path of the terminal app pinned to the dock.";
+    };
   };
 
   config = {
@@ -41,7 +47,7 @@ in {
           #"/Applications/Zed.app" #homebrew version
           "/System/Applications/Notes.app"
           "/Applications/Safari.app"
-          "${pkgs.ghostty-bin}/Applications/Ghostty.app"
+          cfg.dockTerminal
         ];
         persistent-others = [
           "/tmp/"
