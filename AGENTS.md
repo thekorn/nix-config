@@ -13,6 +13,6 @@
 
 ## Hotfixes
 
-- Whenever you work around a broken build, such as moving a package to Homebrew, adding an override or patch, vendoring or pinning a package, or turning a package off, add an entry to [HOTFIXES.md](HOTFIXES.md). When you remove the workaround, remove its entry too.
+- Whenever you work around a broken build, such as moving a package to Homebrew, adding an override or patch, vendoring or pinning a package, or turning a package off, add an entry to [HOTFIXES.md](HOTFIXES.md). When you remove the workaround, remove its entry too. The `check-hotfixes` skill describes the format, and "check hotfixes" checks every entry and removes the ones no longer needed.
 
 See [docs/architecture.md](docs/architecture.md) for structure details.
