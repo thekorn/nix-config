@@ -66,6 +66,8 @@
     ];
 
     custom.git.commitMessageModel = "gpt-5.6-luna";
+    custom.rex.enable = true;
+    services.rex.enable = true;
   };
 
   # dbus-broker does not reload reliably during remote activation; failed

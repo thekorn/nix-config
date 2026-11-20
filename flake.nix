@@ -34,6 +34,11 @@
       url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rex = {
+      url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

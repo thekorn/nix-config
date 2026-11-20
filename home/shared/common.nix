@@ -37,6 +37,7 @@
     ./programs/codebook.nix
     ./programs/workmux.nix
     ./programs/herdr.nix
+    ./programs/rex.nix
     ./programs/zig.nix
 
     ./devenvs/ctf.nix
