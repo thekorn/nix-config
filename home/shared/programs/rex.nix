@@ -38,6 +38,13 @@ in {
     '';
   };
 
+  # Nix resets PATH at shell startup, dropping the rex directory the Rex app adds.
+  config.programs.zsh.initContent = lib.mkIf cfg.enable (lib.mkAfter ''
+    if [ -n "$REX_BIN_DIR" ]; then
+      export PATH="$REX_BIN_DIR:$PATH"
+    fi
+  '');
+
   config.xdg.configFile."rex/sessionizer.lua" = lib.mkIf cfg.enable {
     source = ./dotfiles/rex/sessionizer.lua;
   };
