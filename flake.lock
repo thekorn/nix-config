@@ -332,11 +332,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1795187430,
-        "narHash": "sha256-HadOzcX0GooitZHLSmOhQZtjpWRSjX33wNgQYzyStaU=",
+        "lastModified": 1795192828,
+        "narHash": "sha256-+ysTB6TtdQkD7MCqWXXJa+yUSIUuR/kpz1TvkHwChvM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "505f22c9a23a08db18d277b2eac05cd5d881a514",
+        "rev": "d11520e161cd76b33548fec504baebad5df5d49b",
         "type": "github"
       },
       "original": {
@@ -353,10 +353,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1795185608,
-        "narHash": "sha256-OFLLkgLobxm6EOnOdtn3eADsPT+KnYlis1WbeNCMvU0=",
+        "lastModified": 1795191045,
+        "narHash": "sha256-5ZAsCO8T0czl4gOF86yFPvQHSTmwJqwWUe4r5KqOVDc=",
         "type": "tarball",
-        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.0.1795185608-gb04a65.tar.gz"
+        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.0.1795191045-g7da303.tar.gz"
       },
       "original": {
         "type": "tarball",
