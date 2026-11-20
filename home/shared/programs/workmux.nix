@@ -22,8 +22,6 @@ in {
         cursor-agent = pkgs.llm-agents.cursor-agent;
       }."${cfg.defaultAgent}"
     ];
-    # broken build, failing tests
-    #config.home.packages = [inputs.workmux.packages.${pkgs.system}.default];
 
     xdg.configFile."workmux/config.yaml".text = ''
       nerdfont: true

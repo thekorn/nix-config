@@ -20,7 +20,6 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
     agent-skills.url = "github:thekorn/agent-skills";
-    workmux.url = "github:raine/workmux";
 
     tuicr.url = "github:agavra/tuicr";
     tuicr.inputs.nixpkgs.follows = "nixpkgs";
@@ -67,7 +66,6 @@
         (prev.vendored or {})
         // {
           container = final.callPackage ./pkgs/vendored/container.nix {};
-          tmux34 = final.callPackage ./pkgs/vendored/tmux34.nix {};
         };
     };
 

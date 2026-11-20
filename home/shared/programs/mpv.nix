@@ -34,8 +34,7 @@ in {
   config.home.packages = lib.mkIf cfg.enable (
     lib.optional (!isDarwin) pkgs.mpv-unwrapped
     ++ [
-      # 2026-02-23: broken build
-      #pkgs.yt-dlp
+      pkgs.yt-dlp
       play
     ]
   );

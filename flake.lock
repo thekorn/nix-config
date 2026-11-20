@@ -346,22 +346,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1787900134,
-        "narHash": "sha256-VYXO0XZlgj06dxJZRhrD3WoSsvq/c7+/Akyoa22pefw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "83199d0d373dd3ac2b9a1996b1d0263f76ab7a4c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agent-skills": "agent-skills",
@@ -372,8 +356,7 @@
         "llm-agents": "llm-agents",
         "microvm": "microvm",
         "nixpkgs": "nixpkgs_2",
-        "tuicr": "tuicr",
-        "workmux": "workmux"
+        "tuicr": "tuicr"
       }
     },
     "rust-analyzer-src": {
@@ -534,24 +517,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "workmux": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1795032031,
-        "narHash": "sha256-Cx5/mGGhlxprEXOo5GNqNedKVyoXQ29dZ9QFGbGIRBc=",
-        "owner": "raine",
-        "repo": "workmux",
-        "rev": "e9b16d54ca7d7456fd139544c49e883c7d275160",
-        "type": "github"
-      },
-      "original": {
-        "owner": "raine",
-        "repo": "workmux",
         "type": "github"
       }
     }

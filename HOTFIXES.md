@@ -8,24 +8,17 @@ These are workarounds for broken or failing builds: packages that moved to Homeb
 | --- | --- | --- | --- |
 | swiftformat | 2026-11-20 | `home/shared/common.packages.nix`, `hosts/darwin/shared/homebrew.common.nix` | On Darwin, the Nix build fails because swift-collections won't link (install_name_tool headerpad). Linux still installs it from Nix. |
 | mpv | 2026-11-20 | `home/shared/programs/mpv.nix`, `hosts/darwin/shared/homebrew.common.nix` | Building it needs Swift, which fails on Darwin. On Darwin, `play-ls` runs `mpv` from `PATH`. |
-| container | – | `hosts/darwin/shared/homebrew.common.nix`, `pkgs/vendored/container.nix` | The vendored Nix version is still broken. |
-| 1password | – | `hosts/darwin/shared/homebrew.common.nix`, `home/shared/programs/1password.nix` | The Nix version is marked as broken. |
+| container | – | `hosts/darwin/shared/homebrew.common.nix`, `pkgs/vendored/container.nix` | The nixpkgs `container` (1.5.0) fails to build on Darwin with the same swift-collections link error as swiftformat. The vendored 1.2.2 build in `pkgs/vendored/container.nix` still builds but is not installed (commented out in `home/shared/common.darwin.nix`). |
+| 1password | – | `hosts/darwin/shared/homebrew.common.nix`, `home/shared/programs/1password.nix` | The Nix version used to be marked as broken. As of 2026-11-20, `_1password-gui` 8.12.46 builds. The cask stays until switching is decided, because 1Password expects to run from `/Applications`, so the swap would need nix-darwin's `programs._1password-gui`. |
 
 ## Overrides and patches
 
-| Package | Since | Where | Reason |
-| --- | --- | --- | --- |
-| codebook | 2026-11-09 | `home/shared/programs/codebook.nix` | Adds `pkg-config` and `aws-lc` because the build now needs the system AWS-LC library. Remove this once nixpkgs supplies them. |
-| atuin | 2026-11-06 | `home/shared/programs/atuin.nix`, `pkgs/vendored/atuin-isolate-test-processes.patch` | On Darwin, the patch isolates test processes, for versions 18.24.4 and 18.24.5 only. Revisit after 18.24.5. |
-| ccache | 2026-10-26 | `home/shared/devel/ladybird.nix` | On Darwin, the override drops `elfutils` from the check inputs and silences unused Clang flags so the tests pass. |
-| tmux34 | – | `pkgs/vendored/tmux34.nix` | tmux 3.4 is pinned because tmux 3.5a on unstable always runs `/bin/sh`. |
+None at the moment. Use the columns Package, Since, Where, and Reason.
 
 ## Disabled
 
 | Package | Where | Reason |
 | --- | --- | --- |
-| yt-dlp | `home/shared/programs/mpv.nix` | The build has been broken since 2026-02-23. |
-| workmux | `home/shared/programs/workmux.nix` | The build is broken and its tests fail. |
 | NixOS documentation | `hosts/linux/shared/home.private.nix` | The doc build fails with `Failed to render option services.seerr.stateRevision`. |
 
 ## Upstream changes
