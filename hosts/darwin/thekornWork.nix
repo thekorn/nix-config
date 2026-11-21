@@ -11,7 +11,7 @@
     ./shared/preferences.nix
   ];
   nix.enable = false;
-  custom.preferences.dockTerminal = "/Applications/Rex Beta.app";
+  custom.preferences.dockTerminal = "/Applications/Rex.app";
   ids.gids.nixbld = 30000;
 
   home-manager.users.${username} = {pkgs, ...}: {
