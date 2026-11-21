@@ -25,5 +25,4 @@ None at the moment. Use the columns Package, Since, Where, and Reason.
 
 | Package | Since | Where | Change |
 | --- | --- | --- | --- |
-| hunk | 2026-11-09 | `flake.nix`, `home/shared/programs/hunk.nix` | Dropped the vendored prebuilt package and the `v0.20.1` pin. The config now tracks upstream `main` through its Home Manager module. |
 | codexbar, tinycast casks | 2026-11-09 | `hosts/darwin/shared/homebrew.common.nix` | Switched to the official cask names and removed the `steipete/tap` and `abue-ammar/tinycast` taps. |

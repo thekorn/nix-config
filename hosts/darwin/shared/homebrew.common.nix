@@ -20,10 +20,11 @@
       "finetune"
       "codexbar"
       "tinycast"
+      "ShayanAbbas1/dbdelve/dbdelve"
       #"orchard"
     ];
     taps = [
-      #"modem-dev/tap"
+      "ShayanAbbas1/dbdelve"
     ];
     brews = [
       "kcov"

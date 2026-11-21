@@ -1,17 +1,13 @@
 {
   config,
-  inputs,
   lib,
+  pkgs,
   ...
 }: {
-  imports = [
-    inputs.hunk.homeManagerModules.default
-  ];
+  config = lib.mkIf (config.custom.git.enable && !config.custom.git.server) {
+    home.packages = [pkgs.hunk];
 
-  config.programs.hunk = lib.mkIf (config.custom.git.enable && !config.custom.git.server) {
-    enable = true;
-    enableGitIntegration = false;
-    settings = {
+    xdg.configFile."hunk/config.toml".source = (pkgs.formats.toml {}).generate "hunk-config.toml" {
       theme = "github-dark-default";
       mode = "split";
       line_numbers = true;
