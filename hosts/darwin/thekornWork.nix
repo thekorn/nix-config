@@ -11,6 +11,7 @@
     ./shared/preferences.nix
   ];
   nix.enable = false;
+  custom.preferences.dockTerminal = "/Applications/Rex Beta.app";
   ids.gids.nixbld = 30000;
 
   home-manager.users.${username} = {pkgs, ...}: {
@@ -35,6 +36,7 @@
       git.commitMessageModel = "gpt-5.6-luna";
       ghostty.fontSize = 19;
       workmux.defaultAgent = "cursor-agent";
+      rex.enable = true;
     };
   };
 }

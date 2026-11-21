@@ -33,8 +33,10 @@
       skills = inputs.agent-skills.profiles.private;
     };
 
-    custom.git.commitMessageModel = "gpt-5.6-luna";
-    custom.ghostty.fontSize = 21;
-    custom.rex.enable = true;
+    custom = {
+      git.commitMessageModel = "gpt-5.6-luna";
+      ghostty.fontSize = 21;
+      rex.enable = true;
+    };
   };
 }
