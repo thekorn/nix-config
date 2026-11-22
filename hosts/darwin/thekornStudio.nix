@@ -14,7 +14,7 @@
   ];
 
   custom.preferences.blockAllIncoming = false;
-  custom.preferences.dockTerminal = "/Applications/Rex Beta.app";
+  custom.preferences.dockTerminal = "/Applications/Rex.app";
   nix.enable = false;
 
   home-manager.users.${username} = {pkgs, ...}: {
