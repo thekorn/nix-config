@@ -38,6 +38,16 @@ in {
     '';
   };
 
+  # ssh runs commands in a non-interactive shell without the Rex app's REX_BIN_DIR,
+  # so point it at the rex command the app installs.
+  config.programs.zsh.envExtra = lib.mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isDarwin) ''
+    : "''${REX_BIN_DIR:=$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS}"
+    if [ -d "$REX_BIN_DIR" ]; then
+      export REX_BIN_DIR
+      export PATH="$REX_BIN_DIR:$PATH"
+    fi
+  '';
+
   # Nix resets PATH at shell startup, dropping the rex directory the Rex app adds.
   config.programs.zsh.initContent = lib.mkIf cfg.enable (lib.mkAfter ''
     if [ -n "$REX_BIN_DIR" ]; then
