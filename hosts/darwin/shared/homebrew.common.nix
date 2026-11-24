@@ -31,6 +31,7 @@
       "container" #<-- nix version is vendored, and still broken
       "swiftformat" #<-- nix version needs swift, which fails to build on darwin
       "mpv" #<-- same swift build failure
+      "terminal-browser"
     ];
   };
 }
