@@ -37,7 +37,7 @@ in {
           email = "markus.korn@gmail.com";
         };
         credential = {
-          "https://ampcode.com" = {
+          "https://ampcode.com/" = {
             helper = "!amp git-credential-helper";
           };
         };
