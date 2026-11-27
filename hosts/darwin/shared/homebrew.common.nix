@@ -22,6 +22,7 @@
       "tinycast"
       "ShayanAbbas1/dbdelve/dbdelve"
       #"orchard"
+      "terminal-browser"
     ];
     taps = [
       "ShayanAbbas1/dbdelve"
@@ -31,7 +32,6 @@
       "container" #<-- nix version is vendored, and still broken
       "swiftformat" #<-- nix version needs swift, which fails to build on darwin
       "mpv" #<-- same swift build failure
-      "terminal-browser"
     ];
   };
 }
