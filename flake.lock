@@ -136,11 +136,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795748630,
-        "narHash": "sha256-J1iQ1QMnkFwZFXnlPt2t3Qx7TsGjw08/0L3QMqNt+Wg=",
+        "lastModified": 1795827905,
+        "narHash": "sha256-Udjs2j0EkvK+qGXKHRIQwXWRgzNBIl4oXSUktuOzbmQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "54f903fdaaf5d5720ed36706fe75332af69eb793",
+        "rev": "5f5abf5eb8de62d954232f3797b5bf4505656b91",
         "type": "github"
       },
       "original": {
@@ -159,11 +159,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1795764997,
-        "narHash": "sha256-dkX4GGtumxtSOcdwTsS6Dy5LyPv9Nx6Ya6yRx1i3y1o=",
+        "lastModified": 1795831089,
+        "narHash": "sha256-cwO9VHA37d4DCJOCBOHL0eFNVL6jCjLCNcREc7S8N+g=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "ccf868b7a2a8de6713c0a572885657739a448cf0",
+        "rev": "512d27e2882c99d80648a121b88de0c4b0426119",
         "type": "github"
       },
       "original": {
@@ -234,11 +234,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1795783276,
-        "narHash": "sha256-0kz1Lj/gYkhuYwhz9e9M5j8n39oKjwLZ+yMEzuzNqeM=",
+        "lastModified": 1795847087,
+        "narHash": "sha256-/uQzSMDxaHNPcSXaVLuFTVbQ/OrL0EI1JOdFMoQu38E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "58f15da8ccc6a1287b10a7413120635810571fe8",
+        "rev": "32fbdcab84123ba84cca2cf562dce83a3367ea34",
         "type": "github"
       },
       "original": {
@@ -255,10 +255,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1795782599,
-        "narHash": "sha256-7Dl7U3y/Y66k6th1LfTRJgAGpJDOmdwlYOD70u8kj0U=",
+        "lastModified": 1795838691,
+        "narHash": "sha256-IL0XDgRaew6gRZQtG6bBsNQ5G5yiRYx7ybK/HA+fXXE=",
         "type": "tarball",
-        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.1.0-snapshot.2688.tar.gz"
+        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.1.0-snapshot.2705.tar.gz"
       },
       "original": {
         "type": "tarball",
